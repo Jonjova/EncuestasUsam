@@ -18,9 +18,11 @@ application/logs/*
 
 #no modificable
 .htaccess
-application/config/*
-application/core/*
-application/hooks/*
-application/language/*
-application/third_party/*
+application/config/
+application/core/
+application/hooks/
+application/language/
+application/third_party/
+application/helpers/
+application/libraries/
 
