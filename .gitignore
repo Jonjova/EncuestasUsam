@@ -15,3 +15,12 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 /vendor/
+
+#no modificable
+.htaccess
+application/config/*
+application/core/*
+application/hooks/*
+application/language/*
+application/third_party/*
+
