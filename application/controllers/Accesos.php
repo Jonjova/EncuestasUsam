@@ -11,7 +11,7 @@ class Accesos extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('NOMBRE_USUARIO')){
+		if($this->session->userdata('nombre_usuario')){
 			redirect('Accesos/home');
 		}
 		else{
@@ -31,12 +31,12 @@ class Accesos extends CI_Controller
 		$output = array('error' => false);
 
 		$user = $_POST['user'];
-		$password = sha1($_POST['password']) ;
-
+		$password = sha1($_POST['password']);
+		
 		$data = $this->am->loginUser($user, $password);
 
 		if($data){
-			$this->session->set_userdata('NOMBRE_USUARIO', $data);
+			$this->session->set_userdata('nombre_usuario', $data);
 			$output['message'] = 'Iniciando sesión. Espere...';
 		}
 		else{
@@ -48,11 +48,14 @@ class Accesos extends CI_Controller
 	}
 
 	public function home(){
-		//load session library
-
-		//restrict users to go to home if not logged in
-		if($this->session->userdata('NOMBRE_USUARIO')){
-			$this->load->view('welcome_message');
+		
+		if($this->session->userdata('nombre_usuario')){
+			//header
+			$this->load->view('Layout/Header');
+		//Body
+			$this->load->view('Bienvenidos');
+		 //Footer
+			$this->load->view('Layout/Footer');
 		}
 		else{
 			$this->index();
@@ -62,8 +65,8 @@ class Accesos extends CI_Controller
 
 	public function logout(){
 		//load session library
-		
-		$this->session->unset_userdata('NOMBRE_USUARIO');
+		$this->session->unset_userdata('nombre_usuario');
+		$this->session->sess_destroy();
 		redirect('Accesos/index');
 	}
 }

@@ -1,3 +1,6 @@
+<!--Recursos Diseño y alertas -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/estilo.css')?>">
 <body>
 	<div class="split-screen">
         <div class="left">
@@ -14,6 +17,7 @@
                 <section class="copy">
                     <h2>Inicio de Sesión</h2>
                 </section>
+                <?php echo validation_errors(); ?>
                 <div class="input-container email">
                     <input type="text"  name="user" placeholder="Usuario" />
                 </div>
@@ -21,7 +25,7 @@
                     <input type="password" name="password" placeholder="Password" />
                     <!--<i class="fas fa-eye-slash"></i>-->
                 </div>
-                <button type="submit" class="signup-btn"><span id="logText"></span></button>
+                <button type="submit" id="btnIngresar" class="signup-btn"><span id="logText"></span></button>
                 <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
                     <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
                     <span id="message"></span>

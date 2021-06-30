@@ -3,13 +3,13 @@ $(document).ready(function(){
 	$('#logForm').submit(function(e){
 		e.preventDefault();
 		$('#logText').html('Comprobado ...');
-		var user = $('#logForm').serialize();
+
 		var login = function(){
 			$.ajax({
 				type: 'POST',
 				url: url + 'Accesos/login',
 				dataType: 'json',
-				data: user,
+				data: $('#logForm').serialize(),
 				success:function(response){
 					$('#message').html(response.message);
 					$('#logText').html('Ingresar');
@@ -21,12 +21,12 @@ $(document).ready(function(){
 						$('#logForm')[0].reset();
 						setTimeout(function(){
 							location.reload();
-						}, 3000);
+						}, 2000);
 					}
 				}
 			});
 		};
-		setTimeout(login, 3000);
+		setTimeout(login, 2000);
 	});
 
 	$(document).on('click', '#clearMsg', function(){
