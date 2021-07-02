@@ -15,11 +15,9 @@ class Accesos extends CI_Controller
 			redirect('Accesos/home');
 		}
 		else{
-
 			//header
 			$this->load->view('Layout/Header');
 		   //Body
-			$this->load->view('Layout/Sidebar');
 			$this->load->view('Login');
 		   //Footer
 			$this->load->view('Layout/Footer');
