@@ -34,7 +34,7 @@
                     <p>
                         <span class="small">
                             Universidad Salvadoreña Alberto Masferrer <br />
-                            <a href="#">&copy; @DateTime.Now.Year </a>&amp;<a href="#">
+                            <a href="#">&copy; <?php echo date('Y'); ?> </a>&amp;<a href="#">
                             Derechos Reservados
                         </a>
                     </span>
