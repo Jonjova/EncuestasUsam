@@ -25,13 +25,26 @@
 <!-- CHART JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!--custom-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->	
 <script type="text/javascript">
 	var url = '<?php echo base_url();?>';
 	
-	$(document).ready(function () {
+	 $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
             $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
+                 $('#sidebar').toggleClass('active');
             });
         });
 </script>

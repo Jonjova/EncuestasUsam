@@ -19,6 +19,7 @@ class Accesos extends CI_Controller
 			//header
 			$this->load->view('Layout/Header');
 		   //Body
+			$this->load->view('Layout/Sidebar');
 			$this->load->view('Login');
 		   //Footer
 			$this->load->view('Layout/Footer');
@@ -53,6 +54,7 @@ class Accesos extends CI_Controller
 			//header
 			$this->load->view('Layout/Header');
 		//Body
+			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');
 		 //Footer
 			$this->load->view('Layout/Footer');

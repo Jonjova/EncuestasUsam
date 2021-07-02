@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/gsdk-bootstrap-wizard.css">
 	<!-- BOOTSTRAP 4 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" >
+	<!--custom-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<!-- SIDEBAR CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css')?>">
 	<!-- FONTAWESOME -->
