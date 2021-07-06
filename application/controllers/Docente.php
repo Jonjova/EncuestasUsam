@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coordinador extends CI_Controller {
+class Docente extends CI_Controller {
 
 	// CONSTRUCTOR PARA LLAMAR AL MODELO
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('CoordinadorModel','modelCoordinador',true);
+		$this->load->model('DocenteModel','modelDocente',true);
 	}
 
 	// METODO GUARDAR
@@ -30,11 +30,11 @@ class Coordinador extends CI_Controller {
 			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL')
 		);
 
-		$datosCoordinador = array(
-			'ID_COORDINADOR' => $this->input->post('ID_COORDINADOR'),
+		$datosDocente = array(
+			'ID_DOCENTE' => $this->input->post('ID_DOCENTE'),
 			'PERSONA' => $this->input->post('ID_PERSONA'),
 			'PROFESION' => $this->input->post('PROFESION'),
-			'COORDINACION' => $this->input->post('COORDINACION')
+			'COORDINADOR' => 1
 		);
 
 		$datosUsuario = array(
@@ -42,15 +42,15 @@ class Coordinador extends CI_Controller {
 			'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
 			'PASSWORD' => sha1($this->input->post('PASSWORD')),
 			'ESTADO_PERMISO' => false,
-			'ID_TIPO_USUARIO' => 3,
+			'ID_TIPO_USUARIO' => 4,
 			'ID_PERSONA_USUARIO' => $this->input->post('ID_PERSONA')
 		);
 
-		$insert_persona = $this->modelCoordinador->insertarPersona($datosPersona);
-		$insert_coordinador = $this->modelCoordinador->insertarCoordinador($datosCoordinador);
-		$insert_usuario = $this->modelCoordinador->insertarUsuario($datosUsuario);
+		$insert_persona = $this->modelDocente->insertarPersona($datosPersona);
+		$insert_docente = $this->modelDocente->insertarDocente($datosDocente);
+		$insert_usuario = $this->modelDocente->insertarUsuario($datosUsuario);
 		
-		if ($insert_persona == TRUE && $insert_coordinador == TRUE && $insert_usuario == TRUE)
+		if ($insert_persona == TRUE && $insert_docente == TRUE && $insert_usuario == TRUE)
 		{
 			echo "true";
 		}

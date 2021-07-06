@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CoordinadorModel extends CI_Model 
+class DocenteModel extends CI_Model 
 {
 	// INSERTAR PERSONA
 	public function insertarPersona($persona)
@@ -14,9 +14,9 @@ class CoordinadorModel extends CI_Model
 	}
 
 	// INSERTAR COORDINADOR
-	public function insertarCoordinador($coordinador)
+	public function insertarDocente($docente)
 	{
-		if ($this->db->insert('tbl_coordinador', $coordinador)) {
+		if ($this->db->insert('tbl_docente', $docente)) {
 			return true;
 		} else {
 			return false;

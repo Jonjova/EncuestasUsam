@@ -22,11 +22,10 @@ class Accesos extends CI_Controller
 		   //Footer
 			$this->load->view('Layout/Footer');
 		}
-
 	}
 
-	public function login(){
-
+	public function login()
+	{
 		$output = array('error' => false);
 
 		$user = $_POST['user'];
@@ -46,8 +45,16 @@ class Accesos extends CI_Controller
 		echo json_encode($output); 
 	}
 
-	public function home(){
-		
+	public function logout()
+	{
+		//load session library
+		$this->session->unset_userdata('nombre_usuario');
+		$this->session->sess_destroy();
+		redirect('Accesos/index');
+	}
+
+	public function home()
+	{
 		if($this->session->userdata('nombre_usuario')){
 			//header
 			$this->load->view('Layout/Header');
@@ -60,16 +67,39 @@ class Accesos extends CI_Controller
 		else{
 			$this->index();
 		}
-
 	}
 
-	public function logout(){
-		//load session library
-		$this->session->unset_userdata('nombre_usuario');
-		$this->session->sess_destroy();
-		redirect('Accesos/index');
+	public function coordinador()
+	{
+		if($this->session->userdata('nombre_usuario')){
+			//header
+			$this->load->view('Layout/Header');
+		//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('VistasAdmin/InsertarCoordinador');
+		 //Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->index();
+		}
 	}
+
+	public function docente()
+	{
+		if($this->session->userdata('nombre_usuario')){
+			//header
+			$this->load->view('Layout/Header');
+		//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('VistasCoordinador/InsertarDocente');
+		 //Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->index();
+		}
+	}
+
 }
-
-
 ?>

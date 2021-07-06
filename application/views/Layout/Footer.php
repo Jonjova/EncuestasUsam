@@ -14,8 +14,8 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/Login.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/ValidaLogin.js"></script>
 
-<!-- CRUD AJAX COORDINADOR -->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/CrudAjax/coordinadorCrud.js"></script>
+<!-- CRUD AJAX COORDINADOR & DOCENTE -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/CrudAjax/coordinador_docente_Crud.js"></script>
 
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>

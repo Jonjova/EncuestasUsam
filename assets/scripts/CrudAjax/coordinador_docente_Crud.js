@@ -5,6 +5,7 @@ $(document).ready(function() {
 function llenar() {
     MaxPersona();
     MaxCoordinador();
+    MaxDocente();
     MaxUsuario();
     Sexo();
     Departamento();
@@ -12,10 +13,13 @@ function llenar() {
     Coordinacion();
 }
 
+/**************************************
+            LLENAR MAX IDs
+**************************************/
 // LLENAR ID_PERSONA
 function MaxPersona() {
     $.ajax({
-        url: url + "Coordinador/maxPersona",
+        url: url + "CatalogosAndMaxIDs/maxPersona",
         type: 'post',
         success: function(respuesta) {
             $('#print_persona').html(respuesta);
@@ -26,7 +30,7 @@ function MaxPersona() {
 // LLENAR ID_COORDINADOR
 function MaxCoordinador() {
     $.ajax({
-        url: url + "Coordinador/maxCoordinador",
+        url: url + "CatalogosAndMaxIDs/maxCoordinador",
         type: 'post',
         success: function(respuesta) {
             $('#print_coordinador').html(respuesta);
@@ -34,10 +38,21 @@ function MaxCoordinador() {
     })
 }
 
+// LLENAR ID_COORDINADOR
+function MaxDocente() {
+    $.ajax({
+        url: url + "CatalogosAndMaxIDs/maxDocente",
+        type: 'post',
+        success: function(respuesta) {
+            $('#print_docente').html(respuesta);
+        }
+    })
+}
+
 // LLENAR ID_USUARIO
 function MaxUsuario() {
     $.ajax({
-        url: url + "Coordinador/maxUsuario",
+        url: url + "CatalogosAndMaxIDs/maxUsuario",
         type: 'post',
         success: function(respuesta) {
             $('#print_usuario').html(respuesta);
@@ -45,10 +60,13 @@ function MaxUsuario() {
     })
 }
 
+/**************************************
+            LLENAR DROPDOWN
+**************************************/
 // LLENAR SELECT SEXO
 function Sexo() {
     $.ajax({
-        url: url + "Coordinador/dropSexo",
+        url: url + "CatalogosAndMaxIDs/dropSexo",
         type: 'post',
         success: function(respuesta) {
             $('#SEXO').html(respuesta);
@@ -59,7 +77,7 @@ function Sexo() {
 // LLENAR SELECT DEPARTAMENTO
 function Departamento() {
     $.ajax({
-        url: url + "Coordinador/dropDepartamento",
+        url: url + "CatalogosAndMaxIDs/dropDepartamento",
         type: 'post',
         success: function(respuesta) {
             $('#DEPARTAMENTO').html(respuesta);
@@ -70,7 +88,7 @@ function Departamento() {
 // LLENAR SELECT PROFESION
 function Profesion() {
     $.ajax({
-        url: url + "Coordinador/dropProfesion",
+        url: url + "CatalogosAndMaxIDs/dropProfesion",
         type: 'post',
         success: function(respuesta) {
             $('#PROFESION').html(respuesta);
@@ -81,7 +99,7 @@ function Profesion() {
 // LLENAR SELECT COORDINACIÓN
 function Coordinacion() {
     $.ajax({
-        url: url + "Coordinador/dropCoordinacion",
+        url: url + "CatalogosAndMaxIDs/dropCoordinacion",
         type: 'post',
         success: function(respuesta) {
             $('#COORDINACION').html(respuesta);
@@ -89,6 +107,9 @@ function Coordinacion() {
     })
 }
 
+/**************************************
+            VALIDAR CAMPOS
+**************************************/
 // VALIDAR DUI
 var dui = $('#DUI');
 var spanDUI = $('<span></span>').insertAfter(dui);
@@ -96,7 +117,7 @@ $('#DUI').change(function() {
     spanDUI.hide().removeClass();
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarDUI",
+        url: url + "ValidarCampos/validarDUI",
         data: { 'DUI': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -114,7 +135,7 @@ $('#NIT').change(function() {
     spanNIT.hide().removeClass();
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarNIT",
+        url: url + "ValidarCampos/validarNIT",
         data: { 'NIT': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -134,7 +155,7 @@ $('#TELEFONO_FIJO').change(function() {
     spanTel1.hide().removeClass();
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarTelFijo",
+        url: url + "ValidarCampos/validarTelFijo",
         data: { 'TELEFONO_FIJO': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -149,7 +170,7 @@ $('#TELEFONO_MOVIL').change(function() {
     spanTel2.hide().removeClass();
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarTelMovil",
+        url: url + "ValidarCampos/validarTelMovil",
         data: { 'TELEFONO_MOVIL': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -173,10 +194,9 @@ $('#CORREO_PERSONAL').change(function() {
     //     spanEmail.show();
     //     spanEmail.text("Ingrese un Correo V\u00e1lido").addClass('text-danger');
     // }
-    $('#CORREO_PERSONAL-error').text("Ingrese un Correo V\u00e1lido");
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarEmail",
+        url: url + "ValidarCampos/validarEmail",
         data: { 'CORREO_PERSONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -190,7 +210,7 @@ $('#CORREO_INSTITUCIONAL').change(function() {
     spanEmailUSAM.hide().removeClass();
     $.ajax({
         type: "POST",
-        url: url + "Coordinador/validarEmailUSAM",
+        url: url + "ValidarCampos/validarEmailUSAM",
         data: { 'CORREO_INSTITUCIONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
@@ -201,6 +221,9 @@ $('#CORREO_INSTITUCIONAL').change(function() {
     });
 });
 
+/**************************************
+        CREAR USUARIO Y PASSWORD
+**************************************/
 // LLENAR USUARIO Y PASSWORD
 $('input[name=finish]').click(function() {
     var correo = $('#CORREO_INSTITUCIONAL').val(),
@@ -211,7 +234,9 @@ $('input[name=finish]').click(function() {
     $('#PASSWORD').val(pass);
 });
 
-// Acción de Insertar.
+/**************************************
+            INSERTAR COORDINADOR
+**************************************/
 $(function() {
     $("#CreateCoordinador").submit(function(event) {
         $.ajax({
@@ -236,6 +261,50 @@ $(function() {
                     inicioWizard();
                     llenar();
                     $('#CreateCoordinador')[0].reset();
+
+                } else {
+                    alert('ingrese datos');
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algunos campos son requeridos!'
+                })
+            }
+        });
+        event.preventDefault();
+    });
+});
+
+/**************************************
+            INSERTAR DOCENTE
+**************************************/
+$(function() {
+    $("#CreateDocente").submit(function(event) {
+        $.ajax({
+            url: url + 'Docente/Guardar',
+            data: $("#CreateDocente").serialize(),
+            type: "post",
+            async: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response !== '') {
+                    //alert('Datos guardados correctamente');
+                    Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos guardados correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        // $('#createModal').modal('hide');
+                        //Actualiza la tabla sin regargar la pagina 
+                        // $('#Cliente').DataTable().ajax.reload(null, false);
+                    inicioWizard();
+                    llenar();
+                    $('#CreateDocente')[0].reset();
 
                 } else {
                     alert('ingrese datos');

@@ -46,6 +46,7 @@ a:focus {
     margin: 40px 0;
 }
 
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -100,6 +101,7 @@ a:focus {
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
+
 .overlay.active {
     display: block;
     opacity: 1;
@@ -169,7 +171,8 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #343a40;;
+    color: #343a40;
+    ;
 }
 
 a.article,
@@ -178,6 +181,7 @@ a.article:hover {
     color: #fff !important;
 }
 
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -185,7 +189,7 @@ a.article:hover {
 #content {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    height: auto;
     transition: all 0.3s;
     position: absolute;
     top: 0;
