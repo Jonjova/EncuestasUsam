@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css')?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/estilo.css')?>">
 <body>
-	<div class="split-screen">
+    <div class="split-screen">
         <div class="left">
             <section class="copy">
                 <h1>Formamos Ganadores</h1>
@@ -10,26 +10,28 @@
             </section>
         </div>
         <div class="right">
-            <form id="logForm" method="post">
+            <form method="POST" action="<?php echo base_url('Accesos/Validar')?>" id="logForm">
                 <div style="text-align:center;">
 
                 </div>
                 <section class="copy">
                     <h2>Inicio de Sesión</h2>
                 </section>
-                <?php echo validation_errors(); ?>
+                
                 <div class="input-container email">
                     <input type="text"  name="user" placeholder="Usuario" />
                 </div>
                 <div class="input-container">
-                    <input type="password" name="password" placeholder="Password" />
-                    <!--<i class="fas fa-eye-slash"></i>-->
+
+                    <input ID="txtPassword" type="password" name="password" placeholder="Password"/>
+                    <div class="input-group-append boton_ver" >
+                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                    </div> 
                 </div>
-                <button type="submit" id="btnIngresar" class="signup-btn"><span id="logText"></span></button>
-                <div id="responseDiv" class="alert text-center" style="margin-top:20px; display:none;">
-                    <button type="button" class="close" id="clearMsg"><span aria-hidden="true">&times;</span></button>
-                    <span id="message"></span>
-                </div>
+                
+                <button type="submit" id="btnIngresar" class="signup-btn">Ingresar</button>
+                <br>
+                <div class="form-group" id="alert"></div>
                 <section class="copy legal">
                     <p>
                         <span class="small">

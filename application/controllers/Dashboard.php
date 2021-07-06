@@ -11,12 +11,22 @@ class Dashboard extends CI_Controller
 	}
 	public function index()
 	{
-		//header
-		 $this->load->view('Layout/Header');
-		//Body
-		$this->load->view('Bienvenidos');
-		 //Footer
-		$this->load->view('Layout/Footer');
+		if($this->session->userdata('is_logged')){
+			//header
+			$this->load->view('Layout/Header');
+			//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('Bienvenidos');
+			 //Footer
+			$this->load->view('Layout/Footer');
+		}else{
+			
+			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+
+		}
+
 	}
 }
 ?>

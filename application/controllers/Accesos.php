@@ -9,53 +9,67 @@ class Accesos extends CI_Controller
 		$this->load->model('AccesosModel','am',true);
 	}
 
+	
 	public function index()
 	{
-		if($this->session->userdata('nombre_usuario')){
-			redirect('Accesos/home');
+		if($this->session->userdata('currently_logged_in') or false){
+			redirect('/Dashboard/');
 		}
 		else{
-			//header
-			$this->load->view('Layout/Header');
-		   //Body
-			$this->load->view('Login');
-		   //Footer
-			$this->load->view('Layout/Footer');
+			if ($this->session->userdata('currently_logged_in') or true) {
+				//header
+				$this->load->view('Layout/Header');
+		  	   //Body
+				$this->load->view('Login');
+		       //Footer
+				$this->load->view('Layout/Footer');
+			}
 		}
+
 	}
 
-	public function login()
-	{
-		$output = array('error' => false);
+	public function Validar(){
 
-		$user = $_POST['user'];
-		$password = sha1($_POST['password']);
-		
-		$data = $this->am->loginUser($user, $password);
+		$user = $this->input->post('user');
+		$pass = sha1($this->input->post('password'));
 
-		if($data){
-			$this->session->set_userdata('nombre_usuario', $data);
-			$output['message'] = 'Iniciando sesión. Espere...';
+			if (!isset($user) || $user == '' || !isset($pass) || $pass == '') {
+			echo json_encode(array('msg' => 'Campo de usuario y de contraseña son requeridos.'));
+				$this->output->set_status_header(400);//si no se cumple status 400
+				exit();
+			}
+
+			if(!$res = $this->am->iniciarSession($user,$pass)){//condicion de verificacion
+				echo json_encode(array('msg' => 'Verfique sus credenciales.'));
+				$this->output->set_status_header(401);//si no se cumple status 401
+				exit;
+			}
+			
+			//si todo esta bien 
+			$data = array('ID_USUARIO' => $res->ID_USUARIO,
+				'ID_TIPO_USUARIO' => $res->ID_TIPO_USUARIO,
+				'ESTADO_PERMISO' => $res->ESTADO_PERMISO,
+				'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
+				'is_logged'=> true,
+				'currently_logged_in' => 1 
+				);
+			$this->session->set_userdata($data);
+			//$this->session->set_flashdata('msg','Bienvenido al sistema '.$data['nombre_usuario']);
+			echo json_encode( array('url' => base_url('dashboard')));
+			
 		}
-		else{
-			$output['error'] = true;
-			$output['message'] = 'Inicio de sesión no válido. Usuario no encontrado';
-		}
 
-		echo json_encode($output); 
-	}
-
-	public function logout()
-	{
+	public function logout(){
 		//load session library
-		$this->session->unset_userdata('nombre_usuario');
-		$this->session->sess_destroy();
-		redirect('Accesos/index');
-	}
+			$vars = array('ID_USUARIO','ID_TIPO_USUARIO','ESTADO_PERMISO','NOMBRE_USUARIO','is_logged');
+			$this->session->unset_userdata($vars);
+			$this->session->sess_destroy();
+			redirect('Accesos/index');
+		}
 
 	public function home()
 	{
-		if($this->session->userdata('nombre_usuario')){
+		if($this->session->userdata('is_logged')){
 			//header
 			$this->load->view('Layout/Header');
 		//Body
@@ -71,7 +85,7 @@ class Accesos extends CI_Controller
 
 	public function coordinador()
 	{
-		if($this->session->userdata('nombre_usuario')){
+		if($this->session->userdata('is_logged')){
 			//header
 			$this->load->view('Layout/Header');
 		//Body
@@ -87,7 +101,7 @@ class Accesos extends CI_Controller
 
 	public function docente()
 	{
-		if($this->session->userdata('nombre_usuario')){
+		if($this->session->userdata('is_logged')){
 			//header
 			$this->load->view('Layout/Header');
 		//Body

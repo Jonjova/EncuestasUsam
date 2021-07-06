@@ -18,7 +18,7 @@
                             <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14046.jpg" width="40" height="40" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Dashboard</a>
+                            <a class="dropdown-item" href="#"> <?=$this->session->userdata('NOMBRE_USUARIO')?> </a>
                             <a class="dropdown-item" href="#">Editar Perfil</a>
                             <a class="dropdown-item" href="<?php  echo base_url('Accesos/logout')?>"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
