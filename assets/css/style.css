@@ -134,6 +134,26 @@ label {
   cursor: pointer;
 }
 
+.contra-btn {
+  display: block;
+  width: 15%;
+  background: #228F8E;
+  color: white;
+  font-weight: 700;
+  border: none;
+  padding: 7px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contra-btn:hover {
+  background: #913F2C;
+  cursor: pointer;
+}
+
+
 @media screen and (min-width: 900px) {
   .split-screen {
     flex-direction: row;
@@ -150,4 +170,7 @@ label {
 
 .boton_ver{
   margin-top: -65px;margin-left: 279px;margin-bottom: 35px;
+}
+a, a:hover{
+  color:#333
 }

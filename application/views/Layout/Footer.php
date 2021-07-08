@@ -1,3 +1,13 @@
+   </div>
+   <!--agregar los div aqui termina contenido de la página  -->
+
+</div>
+<!--es nesesarios este div de la clase wrapper -->
+
+<div class="overlay">
+</div>
+<!--tambien es necesario este div para overlay  -->
+
 <!-- DATATABLES PAPA BUSQUEDA Y PAGINACION AL MOSTRAR LOS DATOS JS -->
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/idiomaDatatable.js"></script>
@@ -33,20 +43,20 @@
 <script type="text/javascript">
 	var url = '<?php echo base_url();?>';
 	
-	 $(document).ready(function () {
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
+  $(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
 
-            $('#dismiss, .overlay').on('click', function () {
-                $('#sidebar').removeClass('active');
-                $('.overlay').removeClass('active');
-            });
+    $('#dismiss, .overlay').on('click', function () {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
 
-            $('#sidebarCollapse').on('click', function () {
-                 $('#sidebar').toggleClass('active');
-            });
-        });
+    $('#sidebarCollapse').on('click', function () {
+     $('#sidebar').toggleClass('active');
+ });
+});
 </script>
 
 </html>

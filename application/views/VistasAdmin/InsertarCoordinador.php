@@ -237,15 +237,6 @@
             </div>
             <!--aqui termina tu contenido de desarrollo-->
 
-        </div>
-        <!--agregar los div aqui termina contenido de la página  -->
-
-    </div>
-    <!--es nesesarios este div de la clase wrapper -->
-
-    <div class="overlay">
-    </div>
-    <!--tambien es necesario este div para overlay  -->
     <script>
         $('#DUI').mask('99999999-9');
         $('#NIT').mask('9999-999999-999-9');

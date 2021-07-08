@@ -59,26 +59,28 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Docentes</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
-                        </li>
-                        <li>
-                            <a href="#">Página  2</a>
-                        </li>
-                        <li>
-                            <a href="#">Página  3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Portafolio</a>
-                </li>
-                <li>
-                    <a href="#">Contacto</a>
-                </li>
-            </ul>
-            
-        </nav>
+                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                            <li>
+                               <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
+                           </li>
+                       <?php endif; ?>
+                       <li>
+                        <a href="#">Página  2</a>
+                    </li>
+                    <li>
+                        <a href="#">Página  3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portafolio</a>
+            </li>
+            <li>
+                <a href="#">Contacto</a>
+            </li>
+        </ul>
 
-        <!-- Contenido de la página  -->
-        <div id="content">
+    </nav>
+
+    <!-- Contenido de la página  -->
+    <div id="content">

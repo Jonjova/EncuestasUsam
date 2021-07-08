@@ -24,10 +24,10 @@
                 <div class="input-container">
 
                     <input ID="txtPassword" type="password" name="password" placeholder="Password"/>
-                    <div class="input-group-append boton_ver" >
-                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                    <div class="input-group-append " >
+                        <button id="show_password" class="contra-btn" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                     </div> 
-                </div>
+                </div><br>
                 
                 <button type="submit" id="btnIngresar" class="signup-btn">Ingresar</button>
                 <br>
