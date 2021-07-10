@@ -41,7 +41,7 @@ class Coordinador extends CI_Controller {
 			'ID_USUARIO' => $this->input->post('ID_USUARIO'),
 			'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
 			'PASSWORD' => sha1($this->input->post('PASSWORD')),
-			'ESTADO_PERMISO' => false,
+			'ESTADO_PERMISO' => true,
 			'ID_TIPO_USUARIO' => 3,
 			'ID_PERSONA_USUARIO' => $this->input->post('ID_PERSONA')
 		);
