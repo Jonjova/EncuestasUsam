@@ -34,7 +34,7 @@ class Docente extends CI_Controller {
 			'ID_DOCENTE' => $this->input->post('ID_DOCENTE'),
 			'PERSONA' => $this->input->post('ID_PERSONA'),
 			'PROFESION' => $this->input->post('PROFESION'),
-			'COORDINADOR' => 1
+			'COORDINADOR' => $this->input->post('COORDINADOR')
 		);
 
 		$datosUsuario = array(

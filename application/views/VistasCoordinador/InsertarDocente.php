@@ -194,6 +194,10 @@
                                             <span id="print_docente">
                                                 <!-- ID DOCENTE -->
                                             </span>
+                                            <span>
+                                                <!-- ID COORDINADOR -->
+                                                <input type="hidden" name="COORDINADOR" value="<?=$this->session->userdata('COORDINADOR')?>">
+                                            </span>
                                             <span id="print_usuario">
                                                 <!-- ID USUARIO -->
                                             </span>

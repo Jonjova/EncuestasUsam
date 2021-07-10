@@ -1,24 +1,26 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        
         <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-info">
                 <i class="fas fa-align-left"></i>
             </button>
-
+            
             <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-align-justify"></i>
+            <i class="fas fa-align-justify"></i>
             </button>
-
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " style="margin-left: 95px;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14046.jpg" width="40" height="40" class="rounded-circle">
+                            <span>&ensp; <?=$this->session->userdata('PERSONA_USUARIO')?> &ensp;&ensp;&ensp;</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#"> <?=$this->session->userdata('NOMBRE_USUARIO')?> </a>
+                            <a class="dropdown-item" href="#">Dashboard</a>
                             <a class="dropdown-item" href="#">Editar Perfil</a>
                             <a class="dropdown-item" href="<?php  echo base_url('Accesos/logout')?>"><i class="fas fa-sign-out-alt"></i></a>
                         </div>

@@ -28,44 +28,48 @@ class Accesos extends CI_Controller
 
 	}
 
-	public function Validar(){
-
+	public function Validar()
+	{
 		$user = $this->input->post('user');
 		$pass = sha1($this->input->post('password'));
 
-			if (!isset($user) || $user == '' || !isset($pass) || $pass == '') {
+		if (!isset($user) || $user == '' || !isset($pass) || $pass == '') {
 			echo json_encode(array('msg' => 'Campo de usuario y de contraseña son requeridos.'));
-				$this->output->set_status_header(400);//si no se cumple status 400
-				exit();
-			}
-
-			if(!$res = $this->am->iniciarSession($user,$pass)){//condicion de verificacion
-				echo json_encode(array('msg' => 'Verfique sus credenciales.'));
-				$this->output->set_status_header(401);//si no se cumple status 401
-				exit;
-			}
-			
-			//si todo esta bien 
-			$data = array('ID_USUARIO' => $res->ID_USUARIO,
-				'ID_TIPO_USUARIO' => $res->ID_TIPO_USUARIO,
-				'ESTADO_PERMISO' => $res->ESTADO_PERMISO,
-				'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
-				'is_logged'=> true,
-				'currently_logged_in' => 1 
-				);
-			$this->session->set_userdata($data);
-			//$this->session->set_flashdata('msg','Bienvenido al sistema '.$data['nombre_usuario']);
-			echo json_encode( array('url' => base_url('dashboard')));
-			
+			$this->output->set_status_header(400);//si no se cumple status 400
+			exit();
 		}
 
-	public function logout(){
+		if (!$res = $this->am->iniciarSession($user, $pass)){//condicion de verificacion
+			echo json_encode(array('msg' => 'Verfique sus credenciales.'));
+			$this->output->set_status_header(401);//si no se cumple status 401
+			exit;
+		}
+			
+		//si todo esta bien 
+		$data = array(
+			'COORDINADOR' => $res->COORDINADOR,
+			'DOCENTE' => $res->DOCENTE,
+			'ID_USUARIO' => $res->ID_USUARIO,
+			'ID_TIPO_USUARIO' => $res->ID_TIPO_USUARIO,
+			'NOMBRE_ROL' => $res->NOMBRE_ROL,
+			'PERSONA_USUARIO' => $res->PERSONA_USUARIO,
+			'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
+			'ESTADO_PERMISO' => $res->ESTADO_PERMISO,
+			'is_logged' => true,
+			'currently_logged_in' => 1);
+		$this->session->set_userdata($data);
+		//$this->session->set_flashdata('msg','Bienvenido al sistema '.$data['nombre_usuario']);
+		echo json_encode( array('url' => base_url('dashboard')));
+	}
+
+	public function logout()
+	{
 		//load session library
-			$vars = array('ID_USUARIO','ID_TIPO_USUARIO','ESTADO_PERMISO','NOMBRE_USUARIO','is_logged');
-			$this->session->unset_userdata($vars);
-			$this->session->sess_destroy();
-			redirect('Accesos/index');
-		}
+		$vars = array('COORDINADOR', 'DOCENTE', 'ID_USUARIO', 'ID_TIPO_USUARIO', 'NOMBRE_ROL', 'ESTADO_PERMISO', 'PERSONA_USUARIO', 'NOMBRE_USUARIO', 'ESTADO_PERMISO', 'is_logged');
+		$this->session->unset_userdata($vars);
+		$this->session->sess_destroy();
+		redirect('Accesos/index');
+	}
 
 	public function home()
 	{
