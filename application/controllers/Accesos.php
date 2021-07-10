@@ -18,7 +18,8 @@ class Accesos extends CI_Controller
 		else{
 			if ($this->session->userdata('currently_logged_in') or true) {
 				//header
-				$this->load->view('Layout/Header');
+				$data = array('title' => 'Inicio de Sesion' );
+				$this->load->view('Layout/Header',$data);
 		  	   //Body
 				$this->load->view('Login');
 		       //Footer

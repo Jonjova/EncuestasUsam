@@ -13,7 +13,8 @@ class Dashboard extends CI_Controller
 	{
 		if($this->session->userdata('is_logged')){
 			//header
-			$this->load->view('Layout/Header');
+			$data = array('title' => 'Bienvenidos' );
+			$this->load->view('Layout/Header',$data);
 			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');
