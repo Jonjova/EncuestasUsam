@@ -6,6 +6,7 @@
 
 <div class="overlay">
 </div>
+</body>
 <!--tambien es necesario este div para overlay  -->
 
 <!-- DATATABLES PAPA BUSQUEDA Y PAGINACION AL MOSTRAR LOS DATOS JS -->
@@ -26,6 +27,10 @@
 
 <!-- CRUD AJAX COORDINADOR & DOCENTE -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/CrudAjax/coordinador_docente_Crud.js"></script>
+
+<!--CRUD PROYECTO-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/ValidaProyecto.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/CrudProyecto.js"></script>
 
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>

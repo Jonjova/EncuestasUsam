@@ -43,11 +43,13 @@
                     <a href="<?php echo base_url();?>Accesos/home">Inicio</a>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Coordinadores</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="<?php echo base_url();?>Accesos/coordinador">Agregar</a>
-                        </li>
+                    <a href="#coordinadorSubmenu" data-toggle="collapse" aria-expanded="false">Coordinadores</a>
+                    <ul class="collapse list-unstyled" id="coordinadorSubmenu">
+                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                            <li>
+                                <a href="<?php echo base_url();?>Accesos/coordinador">Agregar</a>
+                            </li>
+                        <?php endif; ?>
                         <li>
                             <a href="#">Submenú 2</a>
                         </li>
@@ -57,14 +59,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Docentes</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false">Docentes</a>
+                    <ul class="collapse list-unstyled" id="DocenteSubmenu">
                         <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                             <li>
-                               <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
-                           </li>
-                       <?php endif; ?>
-                       <li>
+                             <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
+                         </li>
+                     <?php endif; ?>
+                     <li>
                         <a href="#">Página  2</a>
                     </li>
                     <li>
@@ -73,14 +75,30 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Portafolio</a>
-            </li>
-            <li>
-                <a href="#">Contacto</a>
-            </li>
-        </ul>
+                <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyecto</a>
+                <ul class="collapse list-unstyled" id="proyectSubmenu">
+                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                        <li>
+                         <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
+                     </li>
+                 <?php endif; ?>
+                 <li>
+                    <a href="#">Página  2</a>
+                </li>
+                <li>
+                    <a href="#">Página  3</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Portafolio</a>
+        </li>
+        <li>
+            <a href="#">Contacto</a>
+        </li>
+    </ul>
 
-    </nav>
+</nav>
 
-    <!-- Contenido de la página  -->
-    <div id="content">
+<!-- Contenido de la página  -->
+<div id="content">

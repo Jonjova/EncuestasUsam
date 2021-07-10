@@ -71,11 +71,12 @@ class Accesos extends CI_Controller
 	{
 		if($this->session->userdata('is_logged')){
 			//header
-			$this->load->view('Layout/Header');
-		//Body
+			$data = array('title' => 'Inicio' );
+			$this->load->view('Layout/Header',$data);
+			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');
-		 //Footer
+		 	//Footer
 			$this->load->view('Layout/Footer');
 		}
 		else{
@@ -87,8 +88,9 @@ class Accesos extends CI_Controller
 	{
 		if($this->session->userdata('is_logged')){
 			//header
-			$this->load->view('Layout/Header');
-		//Body
+			$data = array('title' => 'Coordinador' );
+			$this->load->view('Layout/Header',$data);
+			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('VistasAdmin/InsertarCoordinador');
 		 //Footer
@@ -103,11 +105,12 @@ class Accesos extends CI_Controller
 	{
 		if($this->session->userdata('is_logged')){
 			//header
-			$this->load->view('Layout/Header');
-		//Body
+			$data = array('title' => 'Docente' );
+			$this->load->view('Layout/Header',$data);
+			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('VistasCoordinador/InsertarDocente');
-		 //Footer
+		 	//Footer
 			$this->load->view('Layout/Footer');
 		}
 		else{
