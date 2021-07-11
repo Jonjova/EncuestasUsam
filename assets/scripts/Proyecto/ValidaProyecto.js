@@ -28,7 +28,7 @@ jQuery.validator.setDefaults({
     }
 });
 
-
+//aqui se agrega el campo del name
 $("#CrearProyecto").validate({
 	rules: 
 	{

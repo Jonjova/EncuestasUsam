@@ -38,7 +38,7 @@ class ProyectoModel extends CI_Model
 		$datos = $this->db->get('tbl_ciclo');
 		return $datos->result_array();
 	}
-
+	//Insertar tbl_proyecto
 	public function insertProyecto($data)
 	{
 		if ($this->db->insert('tbl_proyecto',$data)) {
@@ -46,6 +46,14 @@ class ProyectoModel extends CI_Model
 		}else{
 			return false;
 		}
+	}
+	
+	public function mostrarProyect()
+	{
+		$this->db->select('*');
+		$this->db->from('vw_proyecto');
+		$datos = $this->db->get();
+		return $datos->result_array();
 	}
 }
 ?>

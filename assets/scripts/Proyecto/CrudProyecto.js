@@ -1,3 +1,15 @@
+//Versión datatable y ajax.
+$(document).ready(function() {
+    //Mostrar campos de la tabla Cliente.
+  var res =  $('#Proyecto').DataTable({
+        "ajax": url + "Proyectos/MostrarProyecto",
+        "order": [],
+        "language": idioma_espanol
+    });
+
+    console.log(res);
+});
+//llenado de todos los select
 $(document).ready(function($) {
     obtTipoInvestiga();
     obtMater();
@@ -70,7 +82,7 @@ function obtCicl() {
         }
     })
 }
-// Acción de Insertar especialidades.
+// Acción de Insertar Proyecto.
 $(function() {
     $("#CrearProyecto").submit(function(event) {
         $.ajax({
@@ -83,7 +95,6 @@ $(function() {
 
                 if (data !== '') {
 
-                    //alert('Datos guardados correctamente');
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -93,7 +104,7 @@ $(function() {
                     })
                    
                     $('#CrearProyecto')[0].reset();
-                   // validator.resetForm();
+                  
 
                 } else {
                     alert('ingrese datos');
@@ -105,7 +116,6 @@ $(function() {
                     title: 'Oops...',
                     text: 'Algunos campos son requeridos!'
                 })
-                    //alert("Algunos campos son requeridos");
                 }
             });
         event.preventDefault();

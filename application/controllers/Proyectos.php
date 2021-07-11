@@ -10,6 +10,25 @@ class Proyectos extends CI_Controller
 		$this->load->model('ProyectoModel','pm',true);
 	}
 
+	public function index()
+	{
+		if($this->session->userdata('is_logged')){
+			$data = array('title' => 'Registro de Proyecto' );
+			//header
+			$this->load->view('Layout/Header',$data);
+		//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('Proyecto/Mostrar');
+		 //Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
+	}
+
 	public function proyecto(){
 		if($this->session->userdata('is_logged')){
 			$data = array('title' => 'Proyecto' );
@@ -68,10 +87,37 @@ class Proyectos extends CI_Controller
 			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
 		}
 	}
+	//Mostrar
+	public function MostrarProyecto()
+	{
 
+		$resultList = $this->pm->mostrarProyect('*','tbl_proyecto',array());
+
+		$result = array();
+		$estado = '';
+		$i = 1;
+		foreach ($resultList as $key => $value) {
+
+			$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
+			$result['data'][] = array(
+				$i++,
+				$value['NOMBRE_PROYECTO'],
+				$value['DESCRIPCION'],
+				$value['NOMBRE_TIPO_INVESTIGACION'],
+				$value['NOMBRE_MATERIA'],
+				$value['NOMBRE_DISENIO'],
+				$value['FECHA_ASIGNACION'],
+				$value['NOMBRE_GRUPO'],
+				$value['COD_CICLO'],
+				$estado
+				);
+		}
+		echo json_encode($result);
+	}
+	//Guardar
 	public function Guardar()
 	{
-		//Datos de tabla 1 "Cliente"
+		//Datos de tabla  "Proyectos"
 		$insert = $this->pm->insertProyecto($_POST);
 		if($insert == TRUE )
 		{

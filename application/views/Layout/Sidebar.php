@@ -1,7 +1,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        
+
         <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -9,7 +9,7 @@
             </button>
             
             <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
+                <i class="fas fa-align-justify"></i>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -65,10 +65,10 @@
                     <ul class="collapse list-unstyled" id="DocenteSubmenu">
                         <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                             <li>
-                             <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
-                         </li>
-                     <?php endif; ?>
-                     <li>
+                               <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
+                           </li>
+                       <?php endif; ?>
+                       <li>
                         <a href="#">Página  2</a>
                     </li>
                     <li>
@@ -81,13 +81,14 @@
                 <ul class="collapse list-unstyled" id="proyectSubmenu">
                     <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                         <li>
-                         <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
+                            <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
+                        </li>
+
+                        <li>
+                         <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>   
                      </li>
                  <?php endif; ?>
                  <li>
-                    <a href="#">Página  2</a>
-                </li>
-                <li>
                     <a href="#">Página  3</a>
                 </li>
             </ul>
