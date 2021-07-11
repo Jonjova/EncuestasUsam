@@ -1,13 +1,12 @@
 //Versión datatable y ajax.
 $(document).ready(function() {
     //Mostrar campos de la tabla Cliente.
-  var res =  $('#Proyecto').DataTable({
+   $('#Proyecto').DataTable({
         "ajax": url + "Proyectos/MostrarProyecto",
         "order": [],
         "language": idioma_espanol
     });
 
-    console.log(res);
 });
 //llenado de todos los select
 $(document).ready(function($) {

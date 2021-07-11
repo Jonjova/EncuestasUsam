@@ -1,9 +1,8 @@
-<div class="container">
-		<h2>Registro de Proyecto</h2><br>
 
+		<h2>Registro de Proyecto</h2><br>
 		<!--Aquí se listan las Cliente.-->
-		<div class="table-responsive-sm">
-			<table id="Proyecto" class="display table table-hover" style="width: 100%;" >
+		
+			<table id="Proyecto"  class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
 				<thead class="thead-dark">
 					<tr>
 						<th>Id</th>
@@ -20,7 +19,7 @@
 				</thead>
 
 			</table>
-		</div>
+		
 		<!--Aqui termina la lista de tabla de Cliente-->
 
-	</div>
+

@@ -10,7 +10,10 @@
 <!--tambien es necesario este div para overlay  -->
 
 <!-- DATATABLES PAPA BUSQUEDA Y PAGINACION AL MOSTRAR LOS DATOS JS -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/idiomaDatatable.js"></script>
 
 <!-- BOOTSTRAP WIZARD JS -->
