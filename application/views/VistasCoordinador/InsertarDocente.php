@@ -213,12 +213,12 @@
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
-                                            <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next" value="Next" />
-                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Finish"/>
+                                            <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next" value="Siguiente" />
+                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar"/>
                                         </div>
 
                                         <div class="pull-left">
-                                            <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous" />
+                                            <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Anterior" />
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

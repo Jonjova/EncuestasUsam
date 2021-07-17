@@ -66,7 +66,17 @@ class Accesos extends CI_Controller
 	public function logout()
 	{
 		//load session library
-		$vars = array('COORDINADOR', 'DOCENTE', 'ID_USUARIO', 'ID_TIPO_USUARIO', 'NOMBRE_ROL', 'ESTADO_PERMISO', 'PERSONA_USUARIO', 'NOMBRE_USUARIO', 'ESTADO_PERMISO', 'is_logged');
+		$vars = array(
+			'COORDINADOR',
+			'DOCENTE',
+			'ID_USUARIO',
+			'ID_TIPO_USUARIO',
+			'NOMBRE_ROL',
+			'ESTADO_PERMISO',
+			'PERSONA_USUARIO',
+			'NOMBRE_USUARIO',
+			'ESTADO_PERMISO',
+			'is_logged');
 		$this->session->unset_userdata($vars);
 		$this->session->sess_destroy();
 		redirect('Accesos/index');
@@ -81,40 +91,6 @@ class Accesos extends CI_Controller
 			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');
-		 	//Footer
-			$this->load->view('Layout/Footer');
-		}
-		else{
-			$this->index();
-		}
-	}
-
-	public function coordinador()
-	{
-		if($this->session->userdata('is_logged')){
-			//header
-			$data = array('title' => 'Coordinador' );
-			$this->load->view('Layout/Header',$data);
-			//Body
-			$this->load->view('Layout/Sidebar');
-			$this->load->view('VistasAdmin/InsertarCoordinador');
-		 //Footer
-			$this->load->view('Layout/Footer');
-		}
-		else{
-			$this->index();
-		}
-	}
-
-	public function docente()
-	{
-		if($this->session->userdata('is_logged')){
-			//header
-			$data = array('title' => 'Docente' );
-			$this->load->view('Layout/Header',$data);
-			//Body
-			$this->load->view('Layout/Sidebar');
-			$this->load->view('VistasCoordinador/InsertarDocente');
 		 	//Footer
 			$this->load->view('Layout/Footer');
 		}

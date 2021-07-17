@@ -10,6 +10,46 @@ class Docente extends CI_Controller {
 		$this->load->model('DocenteModel','modelDocente',true);
 	}
 
+	// VISTA INSERTAR DOCENTE
+	public function docente()
+	{
+		if($this->session->userdata('is_logged')){
+			//header
+			$data = array('title' => 'Nuevo Docente' );
+			$this->load->view('Layout/Header',$data);
+			//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('VistasCoordinador/InsertarDocente');
+		 	//Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
+	}
+
+	// VISTA MOSTRAR DOCENTES
+	public function viewDocentes()
+	{
+		if($this->session->userdata('is_logged')){
+			$data = array('title' => 'Docentes' );
+			//header
+			$this->load->view('Layout/Header',$data);
+		//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('VistasCoordinador/MostrarDocentes');
+		 //Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
+	}
+
 	// METODO GUARDAR
 	public function Guardar()
 	{
@@ -56,4 +96,52 @@ class Docente extends CI_Controller {
 		}
 	}
 	
+	// MOSTRAR DOCENTES
+	public function MostrarDocentes()
+	{
+		$resultList = $this->modelDocente->mostrarDocentes('*', 'vw_docentes', array());
+
+		$result = array();
+		foreach ($resultList as $key => $value) {
+
+			$btnestado = ($value['ESTADO_PERMISO'] > 0) ? '<button class="btn btn-success">Activo</button>' : '<button class="btn btn-danger">Inactivo</button>';
+			$btnSwitch = ($value['ESTADO_PERMISO'] > 0) ?
+				'<input type="checkbox" name="ESTADO_PERMISO" id="ESTADO_PERMISO" onchange="CambiarEstado('.$value['ID_USUARIO'].');" checked="checked">' :
+				'<input type="checkbox" name="ESTADO_PERMISO" id="ESTADO_PERMISO" onchange="CambiarEstado('.$value['ID_USUARIO'].');">';
+			$result['data'][] = array(
+				// $value['ID_USUARIO'],
+				$value['ID_DOCENTE'],
+				$value['DOCENTE'],
+				$value['CORREO_PERSONAL'],
+				$value['CORREO_INSTITUCIONAL'],
+				$value['RESPONSABLE'],
+				$btnestado,
+				$btnSwitch,
+			);
+		}
+		echo json_encode($result);
+	}
+
+	public function CambiarEstado()
+	{
+
+		$where = $this->input->post('ID_USUARIO');
+		$estado_permiso = $this->modelDocente->setEstado($where);
+		$estado = 0;
+		foreach ($estado_permiso as $e) {
+			if ($e['ESTADO_PERMISO'] == 0) {
+				$estado = 1;
+			}
+		}
+		
+		$editar = $this->modelDocente->cambiarEstado('tbl_usuario', array('ESTADO_PERMISO' => $estado), array('ID_USUARIO' => $where));
+		if ($editar == TRUE) 
+		{
+			echo "true";
+			// echo $estado_permiso;
+		}else{
+			echo "false";
+		}
+	}
+
 }

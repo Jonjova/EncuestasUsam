@@ -13,7 +13,7 @@ class DocenteModel extends CI_Model
 		}
 	}
 
-	// INSERTAR COORDINADOR
+	// INSERTAR DOCENTE
 	public function insertarDocente($docente)
 	{
 		if ($this->db->insert('tbl_docente', $docente)) {
@@ -32,6 +32,27 @@ class DocenteModel extends CI_Model
 			return false;
 		}
 	}
+
+	// MOSTRAR DOCENTES
+	public function mostrarDocentes()
+	{
+		$this->db->select('*');
+		$this->db->from('vw_docentes');
+		$datos = $this->db->get();
+		return $datos->result_array();
+	}
+
+	// CAMBIAR ESTADO DOCENTES
+	public function cambiarEstado($tablename, $data, $where)
+	{
+		$query = $this->db->update($tablename, $data, $where);
+		return $query;
+	}
 	
+	public function setEstado($where)
+	{
+		$estatus = $this->db->query('SELECT `ESTADO_PERMISO` FROM `tbl_usuario` WHERE `ID_USUARIO` = '.$where.'');
+		return $estatus->result_array();
+	}
 }
 ?>

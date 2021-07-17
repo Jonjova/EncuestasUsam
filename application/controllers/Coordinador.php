@@ -1,13 +1,32 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coordinador extends CI_Controller {
-
+class Coordinador extends CI_Controller
+{
 	// CONSTRUCTOR PARA LLAMAR AL MODELO
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('CoordinadorModel','modelCoordinador',true);
+	}
+
+	public function coordinador()
+	{
+		if($this->session->userdata('is_logged')){
+			//header
+			$data = array('title' => 'Coordinador' );
+			$this->load->view('Layout/Header',$data);
+			//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('VistasAdmin/InsertarCoordinador');
+		 //Footer
+			$this->load->view('Layout/Footer');
+		}
+		else{
+			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
 	}
 
 	// METODO GUARDAR

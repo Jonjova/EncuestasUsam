@@ -7,11 +7,11 @@
             <button type="button" id="sidebarCollapse" class="btn btn-info">
                 <i class="fas fa-align-left"></i>
             </button>
-            
+
             <button class="btn btn-secondary d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-align-justify"></i>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown">
@@ -24,7 +24,7 @@
                             <a class="dropdown-item" href="#">Editar Perfil</a>
                             <a class="dropdown-item" href="<?php  echo base_url('Accesos/logout')?>"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
-                    </li>   
+                    </li>
                 </ul>
             </div>
         </div>
@@ -34,74 +34,76 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
 
-            <div class="">
+            <div class="image-sidebar">
                 <!-- <h3>Bootstrap Sidebar</h3> -->
-                <img src="<?php echo base_url();?>assets/img/usam.jpg" width="250px" style="margin-top: 18px;"/>
+                <img src="<?php echo base_url();?>assets/img/usam.jpg" width="250px" style=""/>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
+                <!-- <p>Dummy Heading</p> -->
                 <li class="active">
                     <a href="<?php echo base_url();?>Accesos/home">Inicio</a>
                 </li>
-                <li>
-                    <a href="#coordinadorSubmenu" data-toggle="collapse" aria-expanded="false">Coordinadores</a>
-                    <ul class="collapse list-unstyled" id="coordinadorSubmenu">
-                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                    <li>
+                        <a href="#coordinadorSubmenu" data-toggle="collapse" aria-expanded="false">Coordinadores</a>
+                        <ul class="collapse list-unstyled" id="coordinadorSubmenu">
                             <li>
-                                <a href="<?php echo base_url();?>Accesos/coordinador">Agregar</a>
+                                <a href="<?php echo base_url();?>Coordinador/coordinador">Agregar</a>
+                            </li>
+                            <li>
+                                <a href="#">Submenú 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Submenú 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
+                    <li>
+                        <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false">Docentes</a>
+                        <ul class="collapse list-unstyled" id="DocenteSubmenu">
+                            <li>
+                                <a href="<?php echo base_url();?>Docente/docente">Agregar</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url();?>Docente/viewDocentes">Mostrar</a>
+                            </li>
+                            <li>
+                                <a href="#">Página  3</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <li>
+                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyecto</a>
+                    <ul class="collapse list-unstyled" id="proyectSubmenu">
+                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+                            <li>
+                                <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
                             </li>
                         <?php endif; ?>
                         <li>
-                            <a href="#">Submenú 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Submenú 3</a>
+                            <a href="#">Página  3</a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false">Docentes</a>
-                    <ul class="collapse list-unstyled" id="DocenteSubmenu">
-                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
-                            <li>
-                               <a href="<?php echo base_url();?>Accesos/docente">Agregar</a>
-                           </li>
-                       <?php endif; ?>
-                       <li>
-                        <a href="#">Página  2</a>
-                    </li>
-                    <li>
-                        <a href="#">Página  3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyecto</a>
-                <ul class="collapse list-unstyled" id="proyectSubmenu">
-                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
-                        <li>
-                            <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
-                        </li>
-
-                        <li>
-                         <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>   
-                     </li>
-                 <?php endif; ?>
-                 <li>
-                    <a href="#">Página  3</a>
+                <!-- <li>
+                    <a href="#">Portafolio</a>
                 </li>
+                <li>
+                    <a href="#">Contacto</a>
+                </li> -->
             </ul>
-        </li>
-        <li>
-            <a href="#">Portafolio</a>
-        </li>
-        <li>
-            <a href="#">Contacto</a>
-        </li>
-    </ul>
 
-</nav>
+        </nav>
 
-<!-- Contenido de la página  -->
-<div id="content">
+        <!-- Contenido de la página  -->
+        <div id="content">

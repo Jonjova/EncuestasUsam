@@ -1,8 +1,8 @@
-   </div>
-   <!--agregar los div aqui termina contenido de la página  -->
+        </div>
+        <!--agregar los div aqui termina contenido de la página  -->
 
-</div>
-<!--es nesesarios este div de la clase wrapper -->
+    </div>
+    <!--es nesesarios este div de la clase wrapper -->
 
 <div class="overlay">
 </div>

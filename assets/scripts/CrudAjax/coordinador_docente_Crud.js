@@ -1,7 +1,23 @@
 $(document).ready(function() {
     llenar();
+    llenarTablaDocente();
+    var ESTADO_PERMISO = $(this).prop('checked') == true ? 1 : 0;
 });
 
+/**************************************
+        LLENAR TABLA DE DOCENTES
+**************************************/
+function llenarTablaDocente() {
+    $('#Docentes').DataTable({
+        "ajax": url + "Docente/MostrarDocentes",
+        "order": [],
+        "language": idioma_espanol
+    });
+}
+
+/**************************************
+        LLENAR MAX IDs & SELECTS
+**************************************/
 function llenar() {
     MaxPersona();
     MaxCoordinador();
@@ -228,7 +244,7 @@ $('#CORREO_INSTITUCIONAL').change(function() {
 $('input[name=finish]').click(function() {
     var correo = $('#CORREO_INSTITUCIONAL').val(),
         usuario = correo.split('@')[0];
-    var pass = $('#PRIMER_APELLIDO_PERSONA').val();
+    var pass = $('#PRIMER_APELLIDO_PERSONA').val().toLowerCase();
 
     $('#NOMBRE_USUARIO').val(usuario);
     $('#PASSWORD').val(pass);
@@ -321,3 +337,26 @@ $(function() {
         event.preventDefault();
     });
 });
+
+/**************************************
+        CAMBIAR ESTADO DOCENTE
+**************************************/
+function CambiarEstado(USUARIO) {
+    $.ajax({
+        url: url + 'Docente/CambiarEstado',
+        data: { 'ID_USUARIO': USUARIO },
+        type: "post",
+        async: false,
+        dataType: 'json',
+        success: function() {
+            $('#Docentes').DataTable().ajax.reload(null, false);
+        },
+        error: function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error al cambiar estado!'
+            })
+        }
+    });
+}
