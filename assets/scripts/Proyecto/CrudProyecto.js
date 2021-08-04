@@ -1,7 +1,7 @@
 //Versión datatable y ajax.
 $(document).ready(function() {
     //Mostrar campos de la tabla Cliente.
-   $('#Proyecto').DataTable({
+    $('#Proyecto').DataTable({
         "ajax": url + "Proyectos/MostrarProyecto",
         "order": [],
         "language": idioma_espanol
@@ -15,6 +15,7 @@ $(document).ready(function($) {
     obtDiseInvestiga();
     obtGrupoAlumn();
     obtCicl();
+
 });
 //llenar select de Tipo de investigación. 
 function obtTipoInvestiga() {
@@ -55,18 +56,28 @@ function obtDiseInvestiga() {
         }
     })
 }
-//llenar select Diseño de investigación. 
+//llenar select Grupo de alumno. 
+
 function obtGrupoAlumn() {
     $.ajax({
         url: url + "Proyectos/obtGrupoAlumno",
         type: 'post',
-        success: function(respuesta) {
-            //Insertar
-            $('#ID_GRUPO_ALUMNO').html(respuesta);
-            //Actualizar
-            $('#ID_GRUPO_ALUMNO_').html(respuesta);
-        }
-    })
+        dataType: 'json',
+        async:true,
+        cache:false,
+        success: function(data) {
+        
+         var json = JSON.parse(JSON.stringify(data));
+         console.log(json);
+         var select = $('<select>');
+        $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
+         $.each(json, function(id, name) {
+            select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
+        });
+         $('#ID_GRUPO_ALUMNO').append(select.html());
+        
+     }
+ })
 }
 //llenar select Diseño de investigación. 
 function obtCicl() {
@@ -101,9 +112,9 @@ $(function() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                   
+
                     $('#CrearProyecto')[0].reset();
-                  
+
 
                 } else {
                     alert('ingrese datos');
@@ -115,8 +126,8 @@ $(function() {
                     title: 'Oops...',
                     text: 'Algunos campos son requeridos!'
                 })
-                }
-            });
+            }
+        });
         event.preventDefault();
     });
 
