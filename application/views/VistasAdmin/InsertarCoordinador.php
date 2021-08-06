@@ -64,7 +64,6 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-10 col-sm-offset-1">
                                                     <div class="col-sm-10">
                                                         <div class="form-group">
@@ -195,15 +194,6 @@
 
                                         <!-- DATOS DE LA CUENTA -->
                                         <div class="tab-pane" id="cuenta">
-                                            <span id="print_persona">
-                                                <!-- ID PERSONA -->
-                                            </span>
-                                            <span id="print_coordinador">
-                                                <!-- ID COORDINADOR -->
-                                            </span>
-                                            <span id="print_usuario">
-                                                <!-- ID USUARIO -->
-                                            </span>
                                             <span>
                                                 <!-- USUARIO -->
                                                 <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="text">
@@ -217,7 +207,7 @@
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next" value="Siguiente" />
-                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar"/>
+                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar" onclick="crearCoordinador();"/>
                                         </div>
 
                                         <div class="pull-left">

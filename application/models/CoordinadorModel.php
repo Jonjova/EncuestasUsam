@@ -3,35 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CoordinadorModel extends CI_Model 
 {
-	// INSERTAR PERSONA
-	public function insertarPersona($persona)
-	{
-		if ($this->db->insert('tbl_persona', $persona)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	// INSERTAR COORDINADOR
-	public function insertarCoordinador($coordinador)
-	{
-		if ($this->db->insert('tbl_coordinador', $coordinador)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	function crearCoordinadorModel($datosCoordinador){
+        try {
+            $this->db->reconnect();
+            $sql = "CALL `SP_CREAR_COORDINADOR`(
+				".$datosCoordinador['ID_PERSONA'].", 
+				'".$datosCoordinador['PRIMER_NOMBRE_PERSONA']."', 
+				'".$datosCoordinador['SEGUNDO_NOMBRE_PERSONA']."', 
+				'".$datosCoordinador['PRIMER_APELLIDO_PERSONA']."', 
+				'".$datosCoordinador['SEGUNDO_APELLIDO_PERSONA']."', 
+				".$datosCoordinador['SEXO'].", 
+				'".$datosCoordinador['CORREO_INSTITUCIONAL']."', 
+				'".$datosCoordinador['CORREO_PERSONAL']."',  
+				'".$datosCoordinador['DUI']."', 
+				'".$datosCoordinador['NIT']."', 
+				'".$datosCoordinador['DIRECCION']."', 
+				".$datosCoordinador['DEPARTAMENTO'].",
+				'".$datosCoordinador['TELEFONO_FIJO']."', 
+				'".$datosCoordinador['TELEFONO_MOVIL']."', 
+				".$datosCoordinador['ID_COORDINADOR'].", 
+				".$datosCoordinador['PROFESION'].", 
+				".$datosCoordinador['COORDINACION'].", 
+				".$datosCoordinador['ID_USUARIO'].", 
+				'".$datosCoordinador['NOMBRE_USUARIO']."', 
+				'".$datosCoordinador['PASSWORD']."');";
+            $result = $this->db->query($sql, $datosCoordinador);
+            $this->db->close();
 
-	// INSERTAR USUARIO
-	public function insertarUsuario($usuario)
-	{
-		if ($this->db->insert('tbl_usuario', $usuario)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
+    }
 	
 }
 ?>

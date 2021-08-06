@@ -767,10 +767,15 @@ label.error {
 }
 
 @media (min-width: 576px) and (max-width: 992px) {
+    #tab-content .col-sm-1,
+    #tab-content .col-sm-2,
+    #tab-content .col-sm-3,
     #tab-content .col-sm-4,
     #tab-content .col-sm-5,
     #tab-content .col-sm-6,
     #tab-content .col-sm-7,
+    #tab-content .col-sm-8,
+    #tab-content .col-sm-9,
     #tab-content .col-sm-10 {
         width: 100%;
         max-width: 100%;

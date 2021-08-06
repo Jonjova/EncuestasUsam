@@ -64,7 +64,6 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-10 col-sm-offset-1">
                                                     <div class="col-sm-10">
                                                         <div class="form-group">
@@ -168,39 +167,40 @@
                                                 <br>
                                                 <br>
 
-                                                <div class="col-sm-6 col-sm-offset-1">
-                                                    <div class="form-group">
+                                                <div class="col-sm-5 col-sm-offset-1">
+                                                        <div class="form-group">
+                                                            <label>Profesi&oacute;n</label>
+                                                            <select name="PROFESION" id="PROFESION" class="custom-select" style="font-size: 1rem;" required>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                <div class="col-sm-7 col-sm-offset-1">
                                                         <div class="form-group">
                                                             <label>Correo Institucional</label>
                                                             <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL" type="text" class="form-control" placeholder="docente@liveusam.edu.sv" required>
                                                         </div>
-                                                    </div>
                                                 </div>
-                                                <div class="col-sm-6 col-sm-offset-1">
-                                                    <div class="form-group">
-                                                        <label>Profesi&oacute;n</label>
-                                                        <select name="PROFESION" id="PROFESION" class="custom-select" style="font-size: 1rem;" required>
-                                                        </select>
+                                                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                                                    <div class="col-sm-8 col-sm-offset-1">
+                                                        <div class="form-group">
+                                                            <label>Coordinador</label>
+                                                            <select name="COORDINADOR" id="COORDINADOR" class="custom-select" style="font-size: 1rem;" required>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                <?php endif; ?>
+
                                             </div>
                                         </div>
 
                                         <!-- DATOS DE LA CUENTA -->
                                         <div class="tab-pane" id="cuenta">
-                                            <span id="print_persona">
-                                                <!-- ID PERSONA -->
-                                            </span>
-                                            <span id="print_docente">
-                                                <!-- ID DOCENTE -->
-                                            </span>
-                                            <span>
-                                                <!-- ID COORDINADOR -->
-                                                <input type="hidden" name="COORDINADOR" value="<?=$this->session->userdata('COORDINADOR')?>">
-                                            </span>
-                                            <span id="print_usuario">
-                                                <!-- ID USUARIO -->
-                                            </span>
+                                            <?php if($this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
+                                                <span>
+                                                    <!-- ID COORDINADOR -->
+                                                    <input type="hidden" name="COORDINADOR" value="<?=$this->session->userdata('COORDINADOR')?>">
+                                                </span>
+                                            <?php endif; ?>
                                             <span>
                                                 <!-- USUARIO -->
                                                 <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="text">
@@ -214,7 +214,7 @@
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next" value="Siguiente" />
-                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar"/>
+                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar" onclick="crearDocente()"/>
                                         </div>
 
                                         <div class="pull-left">
