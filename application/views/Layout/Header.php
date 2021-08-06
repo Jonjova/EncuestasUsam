@@ -18,17 +18,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<!-- SIDEBAR CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css')?>">
+	<!--Select2 -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap-select.css');?>">
 	<!-- FONTAWESOME -->
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
 	<!-- ALERTAS CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/sweetalert2.css">
-	
 	<!-- LIBRERIA DE PDF MPDF -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/pdf.css">
 	<!-- JQUERY 3.5.1 Para evitar cualquier bloqueo al DOM se incluye aqui -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- MASCARA DE CAMPOS -->
-	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
-	
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>	
 </head>
 

@@ -8,11 +8,14 @@ class Proyectos extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('ProyectoModel','pm',true);
+		$this->load->model('GrupoAlumnoModel','gam',true);
 	}
 
 	public function index()
 	{
+
 		if($this->session->userdata('is_logged')){
+			
 			$data = array('title' => 'Registro de Proyecto' );
 			//header
 			$this->load->view('Layout/Header',$data);
@@ -37,6 +40,9 @@ class Proyectos extends CI_Controller
 		//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Proyecto/insertar');
+			//$dos['alumnoG'] = $this->gam->obtAlum();
+			$this->load->view('GrupoAlumno/insertar');
+			$this->load->view('Alumno/insertarAlumno');
 		 //Footer
 			$this->load->view('Layout/Footer');
 		}
@@ -49,7 +55,7 @@ class Proyectos extends CI_Controller
 	//Obteniendo Tipo de investigación
 	public function obtTipoInvestigacion(){
 		$datos = $this->pm->obtTI();
-		echo "<option selected disabled value=''>Seleccionar Tipo de investigación</option>";
+		echo "<option selected disabled value=''>Seleccionar...</option>";
 		foreach ($datos as $ti) {
 			echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
 		}
@@ -57,7 +63,7 @@ class Proyectos extends CI_Controller
 	//Obteniendo Materia
 	public function obtMaterias(){
 		$datos = $this->pm->obtM();
-		echo "<option selected disabled value=''>Seleccionar Materia</option>";
+		echo "<option selected disabled value=''>Seleccionar...</option>";
 		foreach ($datos as $m) {
 			echo "<option value='".$m['ID_MATERIA']."'>".$m['NOMBRE_MATERIA']."</option>";
 		}
@@ -66,7 +72,7 @@ class Proyectos extends CI_Controller
 	//Obteniendo Diseño de investigación
 	public function obtDisenioInvestigacion(){
 		$datos = $this->pm->obtDI();
-		echo "<option selected disabled value=''>Seleccionar investigación</option>";
+		echo "<option selected disabled value=''>Seleccionar...</option>";
 		foreach ($datos as $di) {
 			echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
 		}
@@ -74,10 +80,7 @@ class Proyectos extends CI_Controller
 	//Obteniendo Grupo de alumno 
 	public function obtGrupoAlumno(){
 		$datos = $this->pm->obtGA();
-		echo "<option selected disabled value=''>Seleccionar Grupo Alumno</option>";
-		foreach ($datos as $ga) {
-			echo "<option value='".$ga['ID_GRUPO_ALUMNO']."'>".$ga['NOMBRE_GRUPO']."</option>";
-		}
+		echo json_encode($datos);
 	}
 	//Obteniendo Ciclo
 	public function obtCiclo(){
@@ -114,11 +117,22 @@ class Proyectos extends CI_Controller
 		}
 		echo json_encode($result);
 	}
-	//Guardar
+	//Guardar Proyecto
 	public function Guardar()
 	{
+		$datos = array('NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
+						'DESCRIPCION' => $this->input->post('DESCRIPCION'),
+						'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION'),
+						'ID_MATERIA' => $this->input->post('ID_MATERIA'),
+						'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION'),
+						'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
+						'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
+						'CICLO' => $this->input->post('CICLO'),
+						'ESTADO_PROYECTO' => true	
+		 );
+
 		//Datos de tabla  "Proyectos"
-		$insert = $this->pm->insertProyecto($_POST);
+		$insert = $this->pm->insertProyecto($datos);
 		if($insert == TRUE )
 		{
 			echo "true";
