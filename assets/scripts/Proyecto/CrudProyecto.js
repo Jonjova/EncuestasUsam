@@ -67,11 +67,11 @@ function obtGrupoAlumn() {
         cache:false,
         success: function(data) {
         
-         var json = JSON.parse(JSON.stringify(data));
-         console.log(json);
+         //var json = JSON.parse(JSON.stringify(data));
+         //console.log(data);
          var select = $('<select>');
         $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
-         $.each(json, function(id, name) {
+         $.each(data, function(id, name) {
             select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
         });
          $('#ID_GRUPO_ALUMNO').append(select.html());

@@ -20,7 +20,7 @@ function obtA() {
      var select = $('<select>');
      $('#ID_ALUMNO_GA').empty().append("");
      $.each(json, function(id, name) {
-      select.append('<option value=' + name.ID_ALUMNO + '>' + 
+      select.append('<option value=' + id.ID_ALUMNO + '>' + 
                                        name.CARNET + " "+
                                        name.PRIMER_NOMBRE_PERSONA + " "+
                                        name.PRIMER_APELLIDO_PERSONA +
@@ -55,3 +55,4 @@ $("#createForm").submit(function(event) {
     }
   });
 }); 
+
