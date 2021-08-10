@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CatalogosAndMaxIDsModel extends CI_Model 
+class DatosComunesModel extends CI_Model 
 {
 	// MAX ID PERSONA
 	public function maxPersonaModel()
@@ -56,6 +56,13 @@ class CatalogosAndMaxIDsModel extends CI_Model
 	public function dropCoordinacionModel()
 	{
 		$datos = $this->db->get('cat_coordinacion');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT COORDINADOR
+	public function dropCoordinadorModel()
+	{
+		$datos = $this->db->get('vw_coordinadores');
 		return $datos->result_array();
 	}
 

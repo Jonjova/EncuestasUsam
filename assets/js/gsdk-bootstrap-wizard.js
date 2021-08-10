@@ -119,8 +119,8 @@ $(document).ready(function() {
             CORREO_INSTITUCIONAL: { required: true },
             FECHA_INGRESO: { required: true },
             PROFESION: { required: true },
-            COORDINACION: { required: true },
-            // PASSWORD: { required: true }
+            COORDINADOR: { required: true },
+            COORDINACION: { required: true }
         },
         messages: {
             PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.' },
@@ -137,8 +137,8 @@ $(document).ready(function() {
             CORREO_INSTITUCIONAL: { required: "El Correo Institucional es Requerido." },
             FECHA_INGRESO: { required: "La Fecha de Ingreso es Requerida." },
             PROFESION: { required: "La Profesi\u00f3n es Requerida." },
-            COORDINACION: { required: "La coordinaci\u00f3n es Requerida." }
-            // PASSWORD: "La Contrase\361a es Requerida"
+            COORDINADOR: { required: "El Coordinador es Requerido." },
+            COORDINACION: { required: "La Coordinaci\u00f3n es Requerida." }
         }
     });
 
@@ -152,10 +152,15 @@ $(document).ready(function() {
             var $valid = $('.wizard-card form').valid();
             if (!$valid || $('span').hasClass('text-danger')) {
                 $validator.focusInvalid();
+                $('select').addClass('is-valid');
                 $('#CreateCoordinador').addClass('was-validated');
+                $('#CreateDocente').addClass('was-validated');
+
                 return false;
             }
+            $('select').removeClass('is-invalid');
             $('#CreateCoordinador').removeClass('was-validated');
+            $('#CreateDocente').removeClass('was-validated');
         },
 
         onInit: function(tab, navigation, index) {
@@ -185,10 +190,14 @@ $(document).ready(function() {
 
             if (!$valid || $('span').hasClass('text-danger')) {
                 $validator.focusInvalid();
+                $('select').addClass('is-valid');
                 $('#CreateCoordinador').addClass('was-validated');
+                $('#CreateDocente').addClass('was-validated');
                 return false;
             } else {
+                $('select').removeClass('is-invalid');
                 $('#CreateCoordinador').removeClass('was-validated');
+                $('#CreateDocente').removeClass('was-validated');
                 return true;
             }
         },
@@ -199,7 +208,6 @@ $(document).ready(function() {
 
             var $wizard = navigation.closest('.wizard-card');
 
-            // If it's the last tab then hide the last button and show the finish instead
             if ($current >= $total) {
                 $($wizard).find('.btn-next').hide();
                 $($wizard).find('.btn-finish').show();
@@ -214,27 +222,11 @@ $(document).ready(function() {
                 $('.moving-tab').text(button_text);
             }, 150);
 
-            var checkbox = $('.footer-checkbox');
-
-            if (!index == 0) {
-                $(checkbox).css({
-                    'opacity': '0',
-                    'visibility': 'hidden',
-                    'position': 'absolute'
-                });
-            } else {
-                $(checkbox).css({
-                    'opacity': '1',
-                    'visibility': 'visible'
-                });
-            }
-
             refreshAnimation($wizard, index);
         }
     });
 
 });
-
 
 $(window).resize(function() {
     $('.wizard-card').each(function() {
@@ -255,7 +247,7 @@ function refreshAnimation($wizard, index) {
     step_width = move_distanceW;
     move_distanceW *= index;
 
-    move_distanceH = $('li').height();
+    move_distanceH = $wizard.find('li').height();
     move_distanceH *= index;
 
     if ($(document).width() <= 992) {

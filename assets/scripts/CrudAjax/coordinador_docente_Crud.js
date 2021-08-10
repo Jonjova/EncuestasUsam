@@ -1,89 +1,41 @@
+/****************************************************************************
+                            CARGAR METODOS
+****************************************************************************/
 $(document).ready(function() {
-    llenar();
+    llenarDropdowns();
     llenarTablaDocente();
-    var ESTADO_PERMISO = $(this).prop('checked') == true ? 1 : 0;
 });
 
-/**************************************
-        LLENAR TABLA DE DOCENTES
-**************************************/
+/****************************************************************************
+                        LLENAR TABLA DE DOCENTES
+****************************************************************************/
 function llenarTablaDocente() {
     $('#Docentes').DataTable({
-        "ajax": url + "Docente/MostrarDocentes",
+        "ajax": url + "Docente/mostrarDocentes",
         "order": [],
         "language": idioma_espanol
     });
 }
 
-/**************************************
-        LLENAR MAX IDs & SELECTS
-**************************************/
-function llenar() {
-    MaxPersona();
-    MaxCoordinador();
-    MaxDocente();
-    MaxUsuario();
-    Sexo();
-    Departamento();
-    Profesion();
-    Coordinacion();
+/****************************************************************************
+                            CARGAR DROPDOWNS
+****************************************************************************/
+function llenarDropdowns() {
+    sexo();
+    departamento();
+    profesion();
+    coordinacion();
+    coordinador();
 }
 
-/**************************************
-            LLENAR MAX IDs
-**************************************/
-// LLENAR ID_PERSONA
-function MaxPersona() {
-    $.ajax({
-        url: url + "CatalogosAndMaxIDs/maxPersona",
-        type: 'post',
-        success: function(respuesta) {
-            $('#print_persona').html(respuesta);
-        }
-    })
-}
-
-// LLENAR ID_COORDINADOR
-function MaxCoordinador() {
-    $.ajax({
-        url: url + "CatalogosAndMaxIDs/maxCoordinador",
-        type: 'post',
-        success: function(respuesta) {
-            $('#print_coordinador').html(respuesta);
-        }
-    })
-}
-
-// LLENAR ID_COORDINADOR
-function MaxDocente() {
-    $.ajax({
-        url: url + "CatalogosAndMaxIDs/maxDocente",
-        type: 'post',
-        success: function(respuesta) {
-            $('#print_docente').html(respuesta);
-        }
-    })
-}
-
-// LLENAR ID_USUARIO
-function MaxUsuario() {
-    $.ajax({
-        url: url + "CatalogosAndMaxIDs/maxUsuario",
-        type: 'post',
-        success: function(respuesta) {
-            $('#print_usuario').html(respuesta);
-        }
-    })
-}
-
-/**************************************
-            LLENAR DROPDOWN
-**************************************/
+/****************************************************************************
+                            LLENAR DROPDOWNS
+****************************************************************************/
 // LLENAR SELECT SEXO
-function Sexo() {
+function sexo() {
     $.ajax({
-        url: url + "CatalogosAndMaxIDs/dropSexo",
-        type: 'post',
+        url: url + "DatosComunes/dropSexo",
+        type: 'POST',
         success: function(respuesta) {
             $('#SEXO').html(respuesta);
         }
@@ -91,10 +43,10 @@ function Sexo() {
 }
 
 // LLENAR SELECT DEPARTAMENTO
-function Departamento() {
+function departamento() {
     $.ajax({
-        url: url + "CatalogosAndMaxIDs/dropDepartamento",
-        type: 'post',
+        url: url + "DatosComunes/dropDepartamento",
+        type: 'POST',
         success: function(respuesta) {
             $('#DEPARTAMENTO').html(respuesta);
         }
@@ -102,10 +54,10 @@ function Departamento() {
 }
 
 // LLENAR SELECT PROFESION
-function Profesion() {
+function profesion() {
     $.ajax({
-        url: url + "CatalogosAndMaxIDs/dropProfesion",
-        type: 'post',
+        url: url + "DatosComunes/dropProfesion",
+        type: 'POST',
         success: function(respuesta) {
             $('#PROFESION').html(respuesta);
         }
@@ -113,19 +65,30 @@ function Profesion() {
 }
 
 // LLENAR SELECT COORDINACIÓN
-function Coordinacion() {
+function coordinacion() {
     $.ajax({
-        url: url + "CatalogosAndMaxIDs/dropCoordinacion",
-        type: 'post',
+        url: url + "DatosComunes/dropCoordinacion",
+        type: 'POST',
         success: function(respuesta) {
             $('#COORDINACION').html(respuesta);
         }
     })
 }
 
-/**************************************
-            VALIDAR CAMPOS
-**************************************/
+// LLENAR SELECT COORDINADOR
+function coordinador() {
+    $.ajax({
+        url: url + "DatosComunes/dropCoordinador",
+        type: 'POST',
+        success: function(respuesta) {
+            $('#COORDINADOR').html(respuesta);
+        }
+    })
+}
+
+/****************************************************************************
+                            VALIDAR CAMPOS
+****************************************************************************/
 // VALIDAR DUI
 var dui = $('#DUI');
 var spanDUI = $('<span></span>').insertAfter(dui);
@@ -134,11 +97,21 @@ $('#DUI').change(function() {
     $.ajax({
         type: "POST",
         url: url + "ValidarCampos/validarDUI",
-        data: { 'DUI': $(this).val() },
+        data: { 'DUI': dui.val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                dui.removeClass('is-valid');
+                dui.addClass('is-invalid');
                 spanDUI.show();
-                spanDUI.text("Este DUI ya existe").addClass('text-danger');
+                spanDUI.text('Este DUI ya existe').addClass('text-danger');
+            } else {
+                dui.removeClass('is-invalid');
+                dui.addClass('is-valid');
+                spanDUI.show();
+                spanDUI.text('DUI v\u00e1lido').addClass('text-success');
+            }
+            if (dui.val() === '') {
+                spanDUI.hide().removeClass();
             }
         }
     });
@@ -152,17 +125,24 @@ $('#NIT').change(function() {
     $.ajax({
         type: "POST",
         url: url + "ValidarCampos/validarNIT",
-        data: { 'NIT': $(this).val() },
+        data: { 'NIT': nit.val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                nit.removeClass('is-valid');
+                nit.addClass('is-invalid');
                 spanNIT.show();
                 spanNIT.text("Este NIT ya existe").addClass('text-danger');
+            } else {
+                nit.removeClass('is-invalid');
+                nit.addClass('is-valid');
+                spanNIT.show();
+                spanNIT.text('NIT v\u00e1lido').addClass('text-success');
             }
         }
     });
 });
 
-// VALIDAR TELEFONOS
+// VALIDAR TELEFONO FIJO
 var telefono1 = $('#TELEFONO_FIJO');
 var spanTel1 = $('<span></span>').insertAfter(telefono1);
 var telefono2 = $('#TELEFONO_MOVIL');
@@ -172,56 +152,74 @@ $('#TELEFONO_FIJO').change(function() {
     $.ajax({
         type: "POST",
         url: url + "ValidarCampos/validarTelFijo",
-        data: { 'TELEFONO_FIJO': $(this).val() },
+        data: { 'TELEFONO_FIJO': telefono1.val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                telefono1.removeClass('is-valid');
+                telefono1.addClass('is-invalid');
                 spanTel1.show();
                 spanTel1.text("Este Tel\u00e9fono ya existe").addClass('text-danger');
+            } else {
+                telefono1.removeClass('is-invalid');
+                telefono1.addClass('is-valid');
+                spanTel1.show();
+                spanTel1.text('Tel\u00e9fono v\u00e1lido').addClass('text-success');
             }
         }
     });
 });
 
+// VALIDAR TELEFONO MOVIL
 $('#TELEFONO_MOVIL').change(function() {
     spanTel2.hide().removeClass();
     $.ajax({
         type: "POST",
         url: url + "ValidarCampos/validarTelMovil",
-        data: { 'TELEFONO_MOVIL': $(this).val() },
+        data: { 'TELEFONO_MOVIL': telefono2.val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                telefono2.removeClass('is-valid');
+                telefono2.addClass('is-invalid');
                 spanTel2.show();
                 spanTel2.text("Este Tel\u00e9fono ya existe").addClass('text-danger');
+            } else {
+                telefono2.removeClass('is-invalid');
+                telefono2.addClass('is-valid');
+                spanTel2.show();
+                spanTel2.text('Tel\u00e9fono v\u00e1lido').addClass('text-success');
             }
         }
     });
 });
 
-// VALIDAR CORREOS
+// VALIDAR CORREO PERSONAL
 var email = $('#CORREO_PERSONAL');
 var emailUSAM = $('#CORREO_INSTITUCIONAL');
 var spanEmail = $('<span></span>').insertAfter(email);
 var spanEmailUSAM = $('<span></span>').insertAfter(emailUSAM);
-let validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
 $('#CORREO_PERSONAL').change(function() {
     spanEmail.hide().removeClass();
-    // if (!validEmail.test(email.value)) {
-    //     spanEmail.show();
-    //     spanEmail.text("Ingrese un Correo V\u00e1lido").addClass('text-danger');
-    // }
     $.ajax({
         type: "POST",
         url: url + "ValidarCampos/validarEmail",
         data: { 'CORREO_PERSONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                email.removeClass('is-valid');
+                email.addClass('is-invalid');
                 spanEmail.show();
                 spanEmail.text("Este Correo ya existe").addClass('text-danger');
+            }
+            if (email.hasClass('is-valid')) {
+                spanEmail.show();
+                spanEmail.text('Correo v\u00e1lido').addClass('text-success');
             }
         }
     });
 });
+
+// VALIDAR CORREO INSTITUCIONAL
 $('#CORREO_INSTITUCIONAL').change(function() {
     spanEmailUSAM.hide().removeClass();
     $.ajax({
@@ -230,16 +228,22 @@ $('#CORREO_INSTITUCIONAL').change(function() {
         data: { 'CORREO_INSTITUCIONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) { // duplicado
+                emailUSAM.removeClass('is-valid');
+                emailUSAM.addClass('is-invalid');
                 spanEmailUSAM.show();
                 spanEmailUSAM.text("Este Correo ya existe").addClass('text-danger');
+            }
+            if (email.hasClass('is-valid')) {
+                spanEmailUSAM.show();
+                spanEmailUSAM.text('Correo v\u00e1lido').addClass('text-success');
             }
         }
     });
 });
 
-/**************************************
-        CREAR USUARIO Y PASSWORD
-**************************************/
+/****************************************************************************
+                        CREAR USUARIO Y PASSWORD
+****************************************************************************/
 // LLENAR USUARIO Y PASSWORD
 $('input[name=finish]').click(function() {
     var correo = $('#CORREO_INSTITUCIONAL').val(),
@@ -250,113 +254,126 @@ $('input[name=finish]').click(function() {
     $('#PASSWORD').val(pass);
 });
 
-/**************************************
-            INSERTAR COORDINADOR
-**************************************/
-$(function() {
-    $("#CreateCoordinador").submit(function(event) {
-        $.ajax({
-            url: url + 'Coordinador/Guardar',
-            data: $("#CreateCoordinador").serialize(),
-            type: "post",
-            async: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response !== '') {
-                    //alert('Datos guardados correctamente');
+/****************************************************************************
+                            INSERTAR COORDINADOR
+****************************************************************************/
+function crearCoordinador() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false || $('span').hasClass('text-danger')) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Complete el formulario!'
+                })
+                if ($('span').hasClass('text-danger')) {
                     Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Complete el formulario!\n' + '\nAlgunos campos son unicos!'
+                    })
+                }
+                form.classList.add('was-validated');
+            }
+            if (form.checkValidity() === true && !$('span').hasClass('text-danger')) {
+                $.ajax({
+                    url: url + 'Coordinador/crearCoordinador',
+                    data: $("#CreateCoordinador").serialize(),
+                    type: "POST",
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        Swal.fire({
                             position: 'top-end',
                             icon: 'success',
                             title: 'Datos guardados correctamente',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 0
                         })
-                        // $('#createModal').modal('hide');
-                        //Actualiza la tabla sin regargar la pagina 
-                        // $('#Cliente').DataTable().ajax.reload(null, false);
-                    inicioWizard();
-                    llenar();
-                    $('#CreateCoordinador')[0].reset();
+                    }
+                });
+                setTimeout(function() {
+                    location.reload();
+                }, 1400)
+            }
+        }, false);
+    });
+}
 
-                } else {
-                    alert('ingrese datos');
+/****************************************************************************
+                            INSERTAR DOCENTE
+****************************************************************************/
+function crearDocente() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false || $('span').hasClass('text-danger')) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Complete el formulario!'
+                })
+                if ($('span').hasClass('text-danger')) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Complete el formulario!\n' + '\nAlgunos campos son unicos!'
+                    })
                 }
+                form.classList.add('was-validated');
+            }
+            if (form.checkValidity() === true && !$('span').hasClass('text-danger')) {
+                $.ajax({
+                    url: url + 'Docente/crearDocente',
+                    data: $("#CreateDocente").serialize(),
+                    type: "POST",
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos guardados correctamente',
+                            showConfirmButton: false,
+                            timer: 0
+                        })
+                    }
+                });
+                setTimeout(function() {
+                    location.reload();
+                }, 1400)
+            }
+        }, false);
+    });
+}
+
+/****************************************************************************
+                            CAMBIAR ESTADO DOCENTE
+****************************************************************************/
+function cambiarEstado(USUARIO) {
+    setTimeout(function() {
+        $.ajax({
+            url: url + 'Docente/cambiarEstado',
+            data: { 'ID_USUARIO': USUARIO },
+            type: "POST",
+            async: false,
+            dataType: 'json',
+            success: function() {
+                $('#Docentes').DataTable().ajax.reload(null, false);
             },
             error: function() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Algunos campos son requeridos!'
+                    text: 'Error al cambiar estado!'
                 })
             }
         });
-        event.preventDefault();
-    });
-});
+    }, 300)
 
-/**************************************
-            INSERTAR DOCENTE
-**************************************/
-$(function() {
-    $("#CreateDocente").submit(function(event) {
-        $.ajax({
-            url: url + 'Docente/Guardar',
-            data: $("#CreateDocente").serialize(),
-            type: "post",
-            async: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response !== '') {
-                    //alert('Datos guardados correctamente');
-                    Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Datos guardados correctamente',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        // $('#createModal').modal('hide');
-                        //Actualiza la tabla sin regargar la pagina 
-                        // $('#Cliente').DataTable().ajax.reload(null, false);
-                    inicioWizard();
-                    llenar();
-                    $('#CreateDocente')[0].reset();
-
-                } else {
-                    alert('ingrese datos');
-                }
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Algunos campos son requeridos!'
-                })
-            }
-        });
-        event.preventDefault();
-    });
-});
-
-/**************************************
-        CAMBIAR ESTADO DOCENTE
-**************************************/
-function CambiarEstado(USUARIO) {
-    $.ajax({
-        url: url + 'Docente/CambiarEstado',
-        data: { 'ID_USUARIO': USUARIO },
-        type: "post",
-        async: false,
-        dataType: 'json',
-        success: function() {
-            $('#Docentes').DataTable().ajax.reload(null, false);
-        },
-        error: function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Error al cambiar estado!'
-            })
-        }
-    });
 }

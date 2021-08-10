@@ -2,39 +2,43 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DocenteModel extends CI_Model 
-{
-	// INSERTAR PERSONA
-	public function insertarPersona($persona)
-	{
-		if ($this->db->insert('tbl_persona', $persona)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
+{	
 	// INSERTAR DOCENTE
-	public function insertarDocente($docente)
-	{
-		if ($this->db->insert('tbl_docente', $docente)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	function crearDocenteModel($datosDocente){
+        try {
+            $this->db->reconnect();
+            $sql = "CALL `SP_CREAR_DOCENTE`(
+				".$datosDocente['ID_PERSONA'].", 
+				'".$datosDocente['PRIMER_NOMBRE_PERSONA']."', 
+				'".$datosDocente['SEGUNDO_NOMBRE_PERSONA']."', 
+				'".$datosDocente['PRIMER_APELLIDO_PERSONA']."', 
+				'".$datosDocente['SEGUNDO_APELLIDO_PERSONA']."', 
+				".$datosDocente['SEXO'].", 
+				'".$datosDocente['CORREO_INSTITUCIONAL']."', 
+				'".$datosDocente['CORREO_PERSONAL']."',  
+				'".$datosDocente['DUI']."', 
+				'".$datosDocente['NIT']."', 
+				'".$datosDocente['DIRECCION']."', 
+				".$datosDocente['DEPARTAMENTO'].",
+				'".$datosDocente['TELEFONO_FIJO']."', 
+				'".$datosDocente['TELEFONO_MOVIL']."', 
+				".$datosDocente['ID_DOCENTE'].", 
+				".$datosDocente['PROFESION'].", 
+				".$datosDocente['COORDINADOR'].", 
+				".$datosDocente['ID_USUARIO'].", 
+				'".$datosDocente['NOMBRE_USUARIO']."', 
+				'".$datosDocente['PASSWORD']."');";
+            $result = $this->db->query($sql, $datosDocente);
+            $this->db->close();
 
-	// INSERTAR USUARIO
-	public function insertarUsuario($usuario)
-	{
-		if ($this->db->insert('tbl_usuario', $usuario)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
+    }
 
 	// MOSTRAR DOCENTES
-	public function mostrarDocentes()
+	public function mostrarDocentesModel()
 	{
 		$this->db->select('*');
 		$this->db->from('vw_docentes');
@@ -42,17 +46,19 @@ class DocenteModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// CAMBIAR ESTADO DOCENTES
-	public function cambiarEstado($tablename, $data, $where)
-	{
-		$query = $this->db->update($tablename, $data, $where);
-		return $query;
-	}
-	
-	public function setEstado($where)
+	// OBTENER ESTADO DOCENTES
+	public function getEstadoModel($where)
 	{
 		$estatus = $this->db->query('SELECT `ESTADO_PERMISO` FROM `tbl_usuario` WHERE `ID_USUARIO` = '.$where.'');
 		return $estatus->result_array();
 	}
+
+	// CAMBIAR ESTADO DOCENTES
+	public function cambiarEstadoModel($tablename, $data, $where)
+	{
+		$query = $this->db->update($tablename, $data, $where);
+		return $query;
+	}
+
 }
 ?>
