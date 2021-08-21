@@ -37,13 +37,12 @@ class Proyectos extends CI_Controller
 			$data = array('title' => 'Proyecto' );
 			//header
 			$this->load->view('Layout/Header',$data);
-		//Body
+			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Proyecto/insertar');
-			//$dos['alumnoG'] = $this->gam->obtAlum();
 			$this->load->view('GrupoAlumno/insertar');
 			$this->load->view('Alumno/insertarAlumno');
-		 //Footer
+		    //Footer
 			$this->load->view('Layout/Footer');
 		}
 		else{
