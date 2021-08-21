@@ -20,9 +20,9 @@
                             <span>&ensp; <?=$this->session->userdata('PERSONA_USUARIO')?> &ensp;&ensp;&ensp;</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Dashboard</a>
-                            <a class="dropdown-item" href="#">Editar Perfil</a>
-                            <a class="dropdown-item" href="<?php  echo base_url('Accesos/logout')?>"><i class="fas fa-sign-out-alt"></i></a>
+                            <a class="dropdown-item" href="<?php echo base_url('Persona/cambiar');?>"><i class="fas fa-key"></i> Cambiar Contrase&ntilde;a</a>
+                            <a class="dropdown-item" href="<?php echo base_url('Persona/persona');?>"><i class="fas fa-user"></i> Editar Perfil</a>
+                            <a class="dropdown-item" href="<?php echo base_url('Accesos/logout')?>"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
                         </div>
                     </li>
                 </ul>
@@ -52,12 +52,6 @@
                             <li>
                                 <a href="<?php echo base_url();?>Coordinador/coordinador">Agregar</a>
                             </li>
-                            <li>
-                                <a href="#">Submenú 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Submenú 3</a>
-                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -70,31 +64,39 @@
                                 <a href="<?php echo base_url();?>Docente/docente">Agregar</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>Docente/viewDocentes">Mostrar</a>
-                            </li>
-                            <li>
-                                <a href="#">Página  3</a>
+                                <a href="<?php echo base_url();?>Docente/docentes">Mostrar</a>
                             </li>
                         </ul>
                     </li>
                 <?php endif; ?>
 
-                <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyecto</a>
-                    <ul class="collapse list-unstyled" id="proyectSubmenu">
-                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
+                    <li>
+                        <a href="#AsignaturasSubmenu" data-toggle="collapse" aria-expanded="false">Asignaturas</a>
+                        <ul class="collapse list-unstyled" id="AsignaturasSubmenu">
+                            <li>
+                                <a href="<?php echo base_url();?>Asignatura/asignatura">Agregar</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url();?>Asignatura/asignar">Asignar</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+                    <li>
+                        <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
+                        <ul class="collapse list-unstyled" id="proyectSubmenu">
                             <li>
                                 <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
                             </li>
-                        <?php endif; ?>
-                        <li>
-                            <a href="#">Página  3</a>
-                        </li>
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <!-- <li>
                     <a href="#">Portafolio</a>
                 </li>

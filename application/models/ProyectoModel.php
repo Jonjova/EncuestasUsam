@@ -15,7 +15,7 @@ class ProyectoModel extends CI_Model
 	//llenado Select Materia 
 	public function obtM()
 	{
-		$datos = $this->db->get('tbl_materias');
+		$datos = $this->db->get('tbl_asignatura');
 		return $datos->result_array();
 	}
 

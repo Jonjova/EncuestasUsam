@@ -37,9 +37,9 @@ function obtMater() {
         type: 'post',
         success: function(respuesta) {
             //Insertar
-            $('#ID_MATERIA').html(respuesta);
+            $('#ID_ASIGNATURA').html(respuesta);
             //Actualizar
-            $('#ID_MATERIA_').html(respuesta);
+            $('#ID_ASIGNATURA').html(respuesta);
         }
     })
 }
@@ -63,21 +63,21 @@ function obtGrupoAlumn() {
         url: url + "Proyectos/obtGrupoAlumno",
         type: 'post',
         dataType: 'json',
-        async:true,
-        cache:false,
+        async: true,
+        cache: false,
         success: function(data) {
-        
-         var json = JSON.parse(JSON.stringify(data));
-         console.log(json);
-         var select = $('<select>');
-        $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
-         $.each(json, function(id, name) {
-            select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
-        });
-         $('#ID_GRUPO_ALUMNO').append(select.html());
-        
-     }
- })
+
+            var json = JSON.parse(JSON.stringify(data));
+            console.log(json);
+            var select = $('<select>');
+            $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
+            $.each(json, function(id, name) {
+                select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
+            });
+            $('#ID_GRUPO_ALUMNO').append(select.html());
+
+        }
+    })
 }
 //llenar select Diseño de investigación. 
 function obtCicl() {

@@ -1,11 +1,11 @@
         </div>
         <!--agregar los div aqui termina contenido de la página  -->
 
- </div>
- <!--es nesesarios este div de la clase wrapper -->
+    </div>
+    <!--es nesesarios este div de la clase wrapper -->
 
- <div class="overlay">
- </div>
+    <div class="overlay">
+    </div>
 </body>
 <!--tambien es necesario este div para overlay  -->
 
@@ -28,8 +28,14 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/Login.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/ValidaLogin.js"></script>
 
-<!-- CRUD AJAX COORDINADOR & DOCENTE -->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/CrudAjax/coordinador_docente_Crud.js"></script>
+<!-- DATOS Y VALIDACIONES -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/DatosValidaciones/DatosValidaciones.js"></script>
+<!-- CRUD COORDINADOR -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Coordinador/CrudCoordinador.js"></script>
+<!-- CRUD DOCENTE -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Docente/CrudDocente.js"></script>
+<!-- CRUD MATERIA -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Materia/CrudMateria.js"></script>
 
 <!--CRUD PROYECTO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/ValidaProyecto.js"></script>

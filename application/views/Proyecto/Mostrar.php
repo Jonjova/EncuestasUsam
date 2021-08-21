@@ -9,7 +9,7 @@
 						<th>Nombre Proyecto </th>
 						<th>Descripción</th>
 						<th>Tipo de investigación</th>
-						<th>Materia</th>
+						<th>Asignatura</th>
 						<th>Diseño</th>
 						<th>Fecha Asignación</th>
 						<th>Grupo</th>

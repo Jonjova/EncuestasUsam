@@ -62,7 +62,28 @@ class DatosComunesModel extends CI_Model
 	// LLENAR SELECT COORDINADOR
 	public function dropCoordinadorModel()
 	{
-		$datos = $this->db->get('vw_coordinadores');
+		$datos = $this->db->get('VW_DROP_COORDINADORES');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT ASIGNATURA
+	public function dropAsignaturaModel()
+	{
+		$datos = $this->db->get('tbl_asignatura');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT DOCENTE
+	public function dropDocenteModel($coordinador)
+	{
+		if ($coordinador >= 1)
+		{
+			$datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
+		}
+		else
+		{
+			$datos = $this->db->get('VW_DROP_DOCENTES');
+		}
 		return $datos->result_array();
 	}
 

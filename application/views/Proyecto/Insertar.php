@@ -65,7 +65,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Materia</label>
-                                            <select name="ID_MATERIA" id="ID_MATERIA" class="form-control" style="font-size: 1rem;" required>
+                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="form-control" style="font-size: 1rem;" required>
                                             </select>
                                         </div>
                                     </div>

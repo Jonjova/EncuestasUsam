@@ -6,7 +6,7 @@ class AccesosModel extends CI_Model
 	
 	public function iniciarSession($user, $password)
 	{
-	$query = $this->db->get_where('vw_usuario', array('nombre_usuario' => $user ,'password' => $password), 1);
+		$query = $this->db->get_where('VW_USUARIO', array('NOMBRE_USUARIO' => $user ,'PASSWORD' => $password), 1);
 		if(!$query->result()){
 			return false;
 		}
@@ -14,5 +14,4 @@ class AccesosModel extends CI_Model
 	}
 
 }
-
 ?>

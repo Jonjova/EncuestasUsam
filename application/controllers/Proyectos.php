@@ -65,7 +65,7 @@ class Proyectos extends CI_Controller
 		$datos = $this->pm->obtM();
 		echo "<option selected disabled value=''>Seleccionar...</option>";
 		foreach ($datos as $m) {
-			echo "<option value='".$m['ID_MATERIA']."'>".$m['NOMBRE_MATERIA']."</option>";
+			echo "<option value='".$m['ID_ASIGNATURA']."'>".$m['NOMBRE_ASIGNATURA']."</option>";
 		}
 	}
 
@@ -107,7 +107,7 @@ class Proyectos extends CI_Controller
 				$value['NOMBRE_PROYECTO'],
 				$value['DESCRIPCION'],
 				$value['NOMBRE_TIPO_INVESTIGACION'],
-				$value['NOMBRE_MATERIA'],
+				$value['NOMBRE_ASIGNATURA'],
 				$value['NOMBRE_DISENIO'],
 				$value['FECHA_ASIGNACION'],
 				$value['NOMBRE_GRUPO'],
@@ -123,7 +123,7 @@ class Proyectos extends CI_Controller
 		$datos = array('NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
 						'DESCRIPCION' => $this->input->post('DESCRIPCION'),
 						'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION'),
-						'ID_MATERIA' => $this->input->post('ID_MATERIA'),
+						'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA'),
 						'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION'),
 						'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
 						'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),

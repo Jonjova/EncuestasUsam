@@ -9,14 +9,16 @@ class Accesos extends CI_Controller
 		$this->load->model('AccesosModel','am',true);
 	}
 
-	
 	public function index()
 	{
-		if($this->session->userdata('currently_logged_in') or false){
+		if($this->session->userdata('currently_logged_in') or false)
+		{
 			redirect('/Dashboard/');
 		}
-		else{
-			if ($this->session->userdata('currently_logged_in') or true) {
+		else
+		{
+			if ($this->session->userdata('currently_logged_in') or true) 
+			{
 				//header
 				$data = array('title' => 'Inicio de Sesion' );
 				$this->load->view('Layout/Header',$data);
@@ -26,7 +28,6 @@ class Accesos extends CI_Controller
 				$this->load->view('Layout/Footer');
 			}
 		}
-
 	}
 
 	public function Validar()
@@ -34,13 +35,15 @@ class Accesos extends CI_Controller
 		$user = $this->input->post('user');
 		$pass = sha1($this->input->post('password'));
 
-		if (!isset($user) || $user == '' || !isset($pass) || $pass == '') {
+		if (!isset($user) || $user == '' || !isset($pass) || $pass == '')
+		{
 			echo json_encode(array('msg' => 'Campo de usuario y de contraseña son requeridos.'));
 			$this->output->set_status_header(400);//si no se cumple status 400
 			exit();
 		}
 
-		if (!$res = $this->am->iniciarSession($user, $pass)){//condicion de verificacion
+		if (!$res = $this->am->iniciarSession($user, $pass))//condicion de verificacion
+		{
 			echo json_encode(array('msg' => 'Verfique sus credenciales.'));
 			$this->output->set_status_header(401);//si no se cumple status 401
 			exit;
@@ -48,6 +51,7 @@ class Accesos extends CI_Controller
 			
 		//si todo esta bien 
 		$data = array(
+			'PERSONA' => $res->PERSONA,
 			'COORDINADOR' => $res->COORDINADOR,
 			'DOCENTE' => $res->DOCENTE,
 			'ID_USUARIO' => $res->ID_USUARIO,
@@ -67,6 +71,7 @@ class Accesos extends CI_Controller
 	{
 		//load session library
 		$vars = array(
+			'PERSONA',
 			'COORDINADOR',
 			'DOCENTE',
 			'ID_USUARIO',
@@ -84,7 +89,8 @@ class Accesos extends CI_Controller
 
 	public function home()
 	{
-		if($this->session->userdata('is_logged')){
+		if($this->session->userdata('is_logged'))
+		{
 			//header
 			$data = array('title' => 'Inicio' );
 			$this->load->view('Layout/Header',$data);
@@ -94,7 +100,8 @@ class Accesos extends CI_Controller
 		 	//Footer
 			$this->load->view('Layout/Footer');
 		}
-		else{
+		else
+		{
 			$this->index();
 		}
 	}

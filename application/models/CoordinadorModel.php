@@ -13,6 +13,7 @@ class CoordinadorModel extends CI_Model
 				'".$datosCoordinador['SEGUNDO_NOMBRE_PERSONA']."', 
 				'".$datosCoordinador['PRIMER_APELLIDO_PERSONA']."', 
 				'".$datosCoordinador['SEGUNDO_APELLIDO_PERSONA']."', 
+				'".$datosCoordinador['FECHA_NACIMIENTO']."', 
 				".$datosCoordinador['SEXO'].", 
 				'".$datosCoordinador['CORREO_INSTITUCIONAL']."', 
 				'".$datosCoordinador['CORREO_PERSONAL']."',  

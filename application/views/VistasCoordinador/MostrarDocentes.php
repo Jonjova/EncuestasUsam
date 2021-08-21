@@ -7,9 +7,10 @@
                     <th rowspan="2">#</th>
                     <th rowspan="2">Docente</th>
                     <th colspan="2">Correos</th>
-                    <th rowspan="2">Responsable</th>
+                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                        <th rowspan="2">Responsable</th>
+                    <?php endif; ?>
                     <th rowspan="2">Estado</th>
-                    <!-- <th rowspan="2">Estado Permiso</th> -->
                     <th rowspan="2">Habilitar / Deshabilitar</th>
                 </tr>
                 <tr>

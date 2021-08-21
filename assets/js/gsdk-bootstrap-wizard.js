@@ -105,10 +105,11 @@ $(document).ready(function() {
 
     var $validator = $('.wizard-card form').validate({
         rules: {
-            PRIMER_NOMBRE_PERSONA: { required: true, lettersonly: true },
-            SEGUNDO_NOMBRE_PERSONA: { required: true },
-            PRIMER_APELLIDO_PERSONA: { required: true },
-            SEGUNDO_APELLIDO_PERSONA: { required: true },
+            PRIMER_NOMBRE_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_NOMBRE_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            PRIMER_APELLIDO_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_APELLIDO_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            FECHA_NACIMIENTO: { required: true },
             SEXO: { required: true },
             DUI: { required: true },
             NIT: { required: true },
@@ -119,26 +120,41 @@ $(document).ready(function() {
             CORREO_INSTITUCIONAL: { required: true },
             FECHA_INGRESO: { required: true },
             PROFESION: { required: true },
+            COORDINACION: { required: true },
             COORDINADOR: { required: true },
-            COORDINACION: { required: true }
+            CODIGO_ASIGNATURA: { required: true },
+            NOMBRE_ASIGNATURA: { required: true },
+            ID_ASIGNATURA: { required: true },
+            ID_DOCENTE: { required: true },
+            OLD_PASSWORD: { required: true },
+            PASSWORD: { required: true },
+            RE_PASSWORD: { required: true }
         },
         messages: {
-            PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.' },
-            SEGUNDO_NOMBRE_PERSONA: { required: "Nombre Requerido." },
-            PRIMER_APELLIDO_PERSONA: { required: "Apellido Requerido." },
-            SEGUNDO_APELLIDO_PERSONA: { required: "Apellido Requerido." },
-            SEXO: { required: "Campo Sexo es Requerido." },
-            DUI: { required: "Campo DUI es Requerido." },
-            NIT: { required: "Campo NIT es Requerido." },
-            TELEFONO_FIJO: { required: "Tel\u00f3fono Fijo es Requerido." },
-            TELEFONO_MOVIL: { required: "Tel\u00f3fono M\u00f3vil es Requerido." },
-            DEPARTAMENTO: { required: "El Departamento es Requerido." },
-            DIRECCION: { required: "La Direcci\u00f3n es Requerida." },
-            CORREO_INSTITUCIONAL: { required: "El Correo Institucional es Requerido." },
-            FECHA_INGRESO: { required: "La Fecha de Ingreso es Requerida." },
-            PROFESION: { required: "La Profesi\u00f3n es Requerida." },
-            COORDINADOR: { required: "El Coordinador es Requerido." },
-            COORDINACION: { required: "La Coordinaci\u00f3n es Requerida." }
+            PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            SEGUNDO_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            PRIMER_APELLIDO_PERSONA: { required: "Apellido Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            SEGUNDO_APELLIDO_PERSONA: { required: "Apellido Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            FECHA_NACIMIENTO: { required: "Fecha de Nacimiento Requerida." },
+            SEXO: { required: "Sexo Requerido." },
+            DUI: { required: "DUI Requerido." },
+            NIT: { required: "NIT Requerido." },
+            TELEFONO_FIJO: { required: "Tel\u00f3fono Fijo Requerido." },
+            TELEFONO_MOVIL: { required: "Tel\u00f3fono M\u00f3vil Requerido." },
+            DEPARTAMENTO: { required: "Departamento Requerido." },
+            DIRECCION: { required: "Direcci\u00f3n Requerida." },
+            CORREO_INSTITUCIONAL: { required: "Correo Institucional Requerido." },
+            FECHA_INGRESO: { required: "Fecha de Ingreso Requerida." },
+            PROFESION: { required: "Profesi\u00f3n Requerida." },
+            COORDINACION: { required: "Coordinaci\u00f3n Requerida." },
+            COORDINADOR: { required: "Coordinador Requerido." },
+            CODIGO_ASIGNATURA: { required: "C\u00f3digo Requerido." },
+            NOMBRE_ASIGNATURA: { required: "Nombre Requerido." },
+            ID_ASIGNATURA: { required: "Asignatura Requerida." },
+            ID_DOCENTE: { required: "Docente Requerido." },
+            OLD_PASSWORD: { required: "Contrase\u00f1a Antigua Requerida." },
+            PASSWORD: { required: "Nueva Contrase\u00f1a Requerida." },
+            RE_PASSWORD: { required: "Confirme la Nueva Contrase\u00f1a." }
         }
     });
 
@@ -152,13 +168,10 @@ $(document).ready(function() {
             var $valid = $('.wizard-card form').valid();
             if (!$valid || $('span').hasClass('text-danger')) {
                 $validator.focusInvalid();
-                $('select').addClass('is-valid');
                 $('#CreateCoordinador').addClass('was-validated');
                 $('#CreateDocente').addClass('was-validated');
-
                 return false;
             }
-            $('select').removeClass('is-invalid');
             $('#CreateCoordinador').removeClass('was-validated');
             $('#CreateDocente').removeClass('was-validated');
         },
@@ -190,12 +203,10 @@ $(document).ready(function() {
 
             if (!$valid || $('span').hasClass('text-danger')) {
                 $validator.focusInvalid();
-                $('select').addClass('is-valid');
                 $('#CreateCoordinador').addClass('was-validated');
                 $('#CreateDocente').addClass('was-validated');
                 return false;
             } else {
-                $('select').removeClass('is-invalid');
                 $('#CreateCoordinador').removeClass('was-validated');
                 $('#CreateDocente').removeClass('was-validated');
                 return true;

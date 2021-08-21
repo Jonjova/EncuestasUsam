@@ -13,6 +13,7 @@ class DocenteModel extends CI_Model
 				'".$datosDocente['SEGUNDO_NOMBRE_PERSONA']."', 
 				'".$datosDocente['PRIMER_APELLIDO_PERSONA']."', 
 				'".$datosDocente['SEGUNDO_APELLIDO_PERSONA']."', 
+				'".$datosDocente['FECHA_NACIMIENTO']."', 
 				".$datosDocente['SEXO'].", 
 				'".$datosDocente['CORREO_INSTITUCIONAL']."', 
 				'".$datosDocente['CORREO_PERSONAL']."',  
@@ -38,11 +39,18 @@ class DocenteModel extends CI_Model
     }
 
 	// MOSTRAR DOCENTES
-	public function mostrarDocentesModel()
+	public function mostrarDocentesModel($idCoodinador)
 	{
-		$this->db->select('*');
-		$this->db->from('vw_docentes');
-		$datos = $this->db->get();
+		if ($idCoodinador != 0)
+		{
+			$datos = $this->db->query('SELECT * FROM VW_DOCENTES WHERE COORDINADOR = '.$idCoodinador.'');
+		}
+		else
+		{
+			$this->db->select('*');
+			$this->db->from('VW_DOCENTES');
+			$datos = $this->db->get();
+		}
 		return $datos->result_array();
 	}
 
