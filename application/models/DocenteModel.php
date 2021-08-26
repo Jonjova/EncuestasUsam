@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class DocenteModel extends CI_Model 
 {	
 	// INSERTAR DOCENTE
-	function crearDocenteModel($datosDocente){
+	function crearDocenteModel($datosDocente)
+	{
         try {
             $this->db->reconnect();
             $sql = "CALL `SP_CREAR_DOCENTE`(

@@ -248,7 +248,6 @@ $('#CORREO_INSTITUCIONAL').change(function() {
                 $('#CORREO_INSTITUCIONAL').val('');
                 $('#CORREO_INSTITUCIONAL').removeClass('is-valid');
             }
-
         }
     });
 });
@@ -292,7 +291,6 @@ $('#OLD_PASSWORD').change(function() {
                 $('#OLD_PASSWORD').val('');
                 $('#OLD_PASSWORD').removeClass('is-valid');
             }
-
         }
     });
 });
@@ -499,6 +497,99 @@ $(function() {
                 setTimeout(function() {
                     location.href = url + 'Dashboard';
                 }, 1400)
+            }
+        });
+    });
+});
+
+/****************************************************************************
+                    VALIDAR RESTABLECER CONTRASEÑA
+****************************************************************************/
+// VALIDAR CONTRASEÑA ACTUAL
+$('#CORREO_USUARIO').change(function() {
+    $.ajax({
+        type: "POST",
+        url: url + "Persona/validarUser",
+        data: { 'CORREO_INSTITUCIONAL': $(this).val() },
+        success: function(msg) {
+            if (msg == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Correo de usuario no existe!'
+                })
+                $('#CORREO_USUARIO').val('');
+            }
+        }
+    });
+});
+
+// VALIDAR FECHA DE NACIMIENTO USUARIO
+$('#FECHA_NACIMIENTO_USUARIO').change(function() {
+    if ($('#CORREO_USUARIO').val() != '') {
+        $.ajax({
+            type: "POST",
+            url: url + "Persona/validarFechaUser",
+            data: $("#ResetPass").serialize(),
+            success: function(msg) {
+                if (msg == 1) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'La fecha no coincide!'
+                    })
+                    $('#FECHA_NACIMIENTO_USUARIO').val('');
+                }
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ingrese su correo!'
+        })
+        $('#FECHA_NACIMIENTO_USUARIO').val('');
+    }
+});
+
+$("#btnRecuperar").on("click", function() {
+    $("#ResetPass").validate({
+        rules: {
+            CORREO_INSTITUCIONAL: { required: true },
+            FECHA_NACIMIENTO: { required: true }
+        },
+        messages: {
+            CORREO_INSTITUCIONAL: { required: "Correo Usuario Requerido." },
+            FECHA_NACIMIENTO: { required: "Fecha de Nacimiento Requerida." }
+        }
+    });
+
+});
+
+/****************************************************************************
+                            RESTABLECER CONTRASEÑA
+****************************************************************************/
+$(function() {
+    $("#ResetPass").submit(function(event) {
+        var forms = $("#ResetPass");
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            if (form.checkValidity() === true) {
+                $.ajax({
+                    url: url + 'Persona/resetPass',
+                    data: $("#ResetPass").serialize(),
+                    type: "POST",
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Su contrase\u00f1a se ha restablecido',
+                            showConfirmButton: false,
+                            timer: 0
+                        })
+                    }
+                });
+                // setTimeout(function() {
+                //     location.href = url + 'Dashboard';
+                // }, 1400)
             }
         });
     });

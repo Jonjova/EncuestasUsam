@@ -60,39 +60,39 @@ function obtDiseInvestiga() {
 
 function obtGrupoAlumn() {
     $.ajax({
-        url: url + "Proyectos/obtGrupoAlumno",
-        type: 'post',
-        dataType: 'json',
-        async: true,
-        cache: false,
-        success: function(data) {
-<<<<<<< HEAD
+            url: url + "Proyectos/obtGrupoAlumno",
+            type: 'post',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            success: function(data) {
+                // <<<<<<< HEAD
 
-            var json = JSON.parse(JSON.stringify(data));
-            console.log(json);
-            var select = $('<select>');
-            $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
-            $.each(json, function(id, name) {
-                select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
-            });
-            $('#ID_GRUPO_ALUMNO').append(select.html());
+                var json = JSON.parse(JSON.stringify(data));
+                console.log(json);
+                var select = $('<select>');
+                $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
+                $.each(json, function(id, name) {
+                    select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
+                });
+                $('#ID_GRUPO_ALUMNO').append(select.html());
 
-        }
-    })
-=======
-        
-         //var json = JSON.parse(JSON.stringify(data));
-         //console.log(data);
-         var select = $('<select>');
-        $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
-         $.each(data, function(id, name) {
-            select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
-        });
-         $('#ID_GRUPO_ALUMNO').append(select.html());
-        
-     }
- })
->>>>>>> de6a65418eaaf8a0477c495058622095c4ebf3a5
+            }
+        })
+        // =======
+
+    //          //var json = JSON.parse(JSON.stringify(data));
+    //          //console.log(data);
+    //          var select = $('<select>');
+    //         $('#ID_GRUPO_ALUMNO').empty().append("<option selected disabled value=''>Seleccionar...</option>");
+    //          $.each(data, function(id, name) {
+    //             select.append('<option value=' + name.ID_GRUPO_ALUMNO + '>' + name.NOMBRE_GRUPO + '</option>');
+    //         });
+    //          $('#ID_GRUPO_ALUMNO').append(select.html());
+
+    //      }
+    //  })
+    // >>>>>>> de6a65418eaaf8a0477c495058622095c4ebf3a5
 }
 //llenar select Diseño de investigación. 
 function obtCicl() {

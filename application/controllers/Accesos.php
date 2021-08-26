@@ -106,5 +106,26 @@ class Accesos extends CI_Controller
 		}
 	}
 
+	public function recuperar()
+	{
+		if($this->session->userdata('currently_logged_in') or false)
+		{
+			redirect('/Dashboard/');
+		}
+		else
+		{
+			if ($this->session->userdata('currently_logged_in') or true) 
+			{
+				//header
+				$data = array('title' => 'Recuperar Contraseña' );
+				$this->load->view('Layout/Header', $data);
+		  	   //Body
+				$this->load->view('RestablecerContrasenia');
+		       //Footer
+				$this->load->view('Layout/Footer');
+			}
+		}
+	}
+
 }
 ?>

@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CoordinadorModel extends CI_Model 
 {
 	// INSERTAR COORDINADOR
-	function crearCoordinadorModel($datosCoordinador){
+	function crearCoordinadorModel($datosCoordinador)
+	{
         try {
             $this->db->reconnect();
             $sql = "CALL `SP_CREAR_COORDINADOR`(

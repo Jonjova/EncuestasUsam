@@ -17,17 +17,19 @@
                 <section class="copy">
                     <h2>Inicio de Sesión</h2>
                 </section>
-                
+                <br>
                 <div class="input-container email">
                     <input type="text"  name="user" placeholder="Usuario" />
                 </div>
                 <div class="input-container">
-
                     <input ID="txtPassword" type="password" name="password" placeholder="Password"/>
-                    <div class="input-group-append " >
+                    <div class="input-group-append">
                         <button id="show_password" class="contra-btn" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                        <a href="<?php echo base_url('Accesos/recuperar')?>" style="margin-left: auto;">Recuperar contrase&ntilde;a</a>
                     </div> 
-                </div><br>
+                </div>
+                
+                <br>
                 
                 <button type="submit" id="btnIngresar" class="signup-btn">Ingresar</button>
                 <br>
@@ -36,15 +38,15 @@
                     <p>
                         <span class="small">
                             Universidad Salvadoreña Alberto Masferrer <br />
-                            <a href="#">&copy; <?php echo date('Y'); ?> </a>&amp;<a href="#">
+                            <a href="#">&copy; <?php echo date('Y'); ?> </a>
+                            &amp;
+                            <a href="#">
                             Derechos Reservados
-                        </a>
-                    </span>
-                </p>
-            </section>
-        </form>
+                            </a>
+                        </span>
+                    </p>
+                </section>
+            </form>
+        </div>
     </div>
-</div>
 </body>
-
-

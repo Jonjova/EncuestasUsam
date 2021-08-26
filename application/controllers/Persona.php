@@ -104,5 +104,51 @@
             }
         }
 
+        // VALIDAR CORREO USUARIO
+		public function validarUser()
+		{ 
+			$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
+            if (!$res = $this->modelPersona->findUser($correoUsuario))
+            {
+				echo 1;
+			}
+			else
+			{ 
+				echo 0;
+			}
+		}
+
+        // VALIDAR FECHA DE NACIMIENTO USUARIO
+		public function validarFechaUser()
+		{ 
+			$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
+            $fechaUser = $this->input->post('FECHA_NACIMIENTO');
+            if (!$res = $this->modelPersona->findFechaUser($correoUsuario, $fechaUser))
+            {
+				echo 1;
+			}
+			else
+			{ 
+				echo 0;
+			}
+		}
+
+        // RESTABLECER CONTRASEÑA
+		public function resetPass()
+		{
+			$datosUsuario = array(
+				'FECHA' => $this->input->post('FECHA_NACIMIENTO'),
+				'CORREO' => $this->input->post('CORREO_INSTITUCIONAL')
+			);
+
+			$insert = $this->modelPersona->resetPassModel($datosUsuario);
+			if ($insert == TRUE) 
+			{
+				echo "true";
+			} else {
+				echo "false";
+			}
+		}
+
     }
 ?>

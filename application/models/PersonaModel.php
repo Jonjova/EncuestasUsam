@@ -35,5 +35,44 @@
             return $query;
         }
 
+        // VALIDAR CORREO USUARIO
+        public function findUser($correoUsuario)
+        {
+            $query = $this->db->get_where('tbl_persona', array('CORREO_INSTITUCIONAL' => $correoUsuario), 1);
+            if(!$query->result())
+            {
+                return false;
+            }
+            return $query->row();
+        }
+
+        // VALIDAR FECHA DE NACIMIENTO USUARIO
+        public function findFechaUser($correoUsuario, $fechaUser)
+        {
+            $query = $this->db->get_where('tbl_persona', array('CORREO_INSTITUCIONAL' => $correoUsuario, 'FECHA_NACIMIENTO' => $fechaUser), 1);
+            if(!$query->result())
+            {
+                return false;
+            }
+            return $query->row();
+        }
+
+        // RESTABLECER CONTRASEÑA
+        function resetPassModel($datosUsuario)
+        {
+            try {
+                $this->db->reconnect();
+                $sql = "CALL `SP_RESET_PASSWORD`(
+                    '".$datosUsuario['FECHA']."', 
+                    '".$datosUsuario['CORREO']."');";
+                $result = $this->db->query($sql, $datosUsuario);
+                $this->db->close();
+
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+            return $result;
+        }
+
     }
 ?>
