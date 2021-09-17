@@ -128,6 +128,7 @@
                          </button>
                      </div>
                  </div>
+
                  <div class="col-sm-6" >
                     
 
@@ -157,7 +158,9 @@
 <!-- wizard container -->
 
 </div>
+
 </div>
+
 <!-- end row -->
 </div>
 <!--aqui termina tu contenido de desarrollo-->

@@ -70,7 +70,10 @@
 
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->    
 <script type="text/javascript">
-    var url = '<?php echo base_url();?>';
+	var url = '<?php echo base_url();?>';
 </script>
+<!--Progreso -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/formeter.js"></script>
+
 
 </html>

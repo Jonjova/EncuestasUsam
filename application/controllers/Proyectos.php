@@ -127,7 +127,9 @@ class Proyectos extends CI_Controller
 						'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
 						'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
 						'CICLO' => $this->input->post('CICLO'),
-						'ESTADO_PROYECTO' => true	
+						'ESTADO_PROYECTO' => true,
+						'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
+						'FECHA_CREA' => date('Y-m-d H:m:s')	
 		 );
 
 		//Datos de tabla  "Proyectos"

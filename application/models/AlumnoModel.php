@@ -100,6 +100,20 @@ class AlumnoModel extends CI_Model
 			return 0;
 		}
 	}
+
+	// MAX ID PERSONA
+	public function maxIdPersonaModel()
+	{
+		$maxid = $this->db->query('SELECT MAX(ID_PERSONA + 1) as ID_PERSONA FROM `tbl_persona`');
+		return $maxid->result_array();
+	}
+
+	// MAX ID PERSONA
+	public function maxIdAlumnoModel()
+	{
+		$maxid = $this->db->query('SELECT MAX(ID_ALUMNO + 1) as ID_ALUMNO FROM `tbl_alumnos`');
+		return $maxid->result_array();
+	}
 }
 
 ?>
