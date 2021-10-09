@@ -59,20 +59,20 @@
                                        <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Tipo Investigaci&oacute;n</label>
-                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="form-control" required id-data="validationCustom03"></select>
+                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="custom-select" required id-data="validationCustom03"></select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Materia</label>
-                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="form-control" style="font-size: 1rem;" required>
+                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="custom-select" style="font-size: 1rem;" required>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Diseño de Investigaci&oacute;n</label>
-                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="form-control"  style="font-size: 1rem;" required>
+                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="custom-select"  style="font-size: 1rem;" required>
                                             </select>
                                         </div>
                                     </div>  
@@ -97,7 +97,7 @@
                                     <div class="col-sm-10">
                                       <div class="form-group">
                                         <label>Ciclo</label>
-                                        <select name="CICLO" id="CICLO" class="form-control" style="font-size: 1rem;" required>
+                                        <select name="CICLO" id="CICLO" class="custom-select" style="font-size: 1rem;" required>
                                         </select>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                 <div class="col-sm-6">
                                  <div class="form-group">
                                     <label>Grupo de Alumno</label>
-                                    <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" required>
+                                    <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO" class="custom-select"  style="font-size: 1rem;" required>
                                       
                                    </select>
                                </div>

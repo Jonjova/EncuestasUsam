@@ -23,8 +23,9 @@ function obtA() {
      $("#ID_ALUMNO_GA").change(function(){
 
       valGrupoAlumno();
-        
-    });
+     // alert("hola");
+     
+   });
      console.log(data);
 
    }
@@ -78,10 +79,10 @@ function limpiar2() {
 //Validación de si ya existe en un grupo 
 function valGrupoAlumno(){
   //var grupo =$('#ID_ALUMNO_GA').val();
-   var grupo = $('#ID_ALUMNO_GA :selected').val();
+  var grupo = $('#ID_ALUMNO_GA :selected').val();
   if(grupo){
     $.ajax({
-      url:url+ 'GrupoAlumno/validarGrupoAlumno',
+      url: url+ 'GrupoAlumno/validarGrupoAlumno',
       data:'ID_ALUMNO_GA='+grupo,
       type:'post',
       success: function(data){
@@ -94,7 +95,7 @@ function valGrupoAlumno(){
             text: 'Este alumno ya existe en un grupo!'
           })
           $("#ID_ALUMNO_GA option:selected").prop("selected", false);
-         
+          
           //$('#CARNET_A').val('');   
           //$('#CARNET_A').removeClass('is-valid');
 

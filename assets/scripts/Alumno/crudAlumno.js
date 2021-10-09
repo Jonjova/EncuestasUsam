@@ -93,13 +93,11 @@ $(function(){
 });
 
 
-
 // Esta función remueve al principio de un nav-tabs
 $('#modalAlumno').on('hidden.bs.modal', function() { 
 
   $(this).find('.nav-tabs a:first').tab('show');
   $('#cancelBtnId').click();  
-
 
 }) ;
 

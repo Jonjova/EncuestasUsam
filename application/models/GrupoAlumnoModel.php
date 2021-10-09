@@ -45,7 +45,7 @@ class GrupoAlumnoModel extends CI_Model
 	public function validarGrupo($grupo)
 	{
 		$this->db->where('ID_DET_GRUPO',$grupo);
-		$resultado = $this->db->get('TBL_GRUPO_ALUMNO');
+		$resultado = $this->db->get('tbl_grupo_alumno');
 		if($resultado->num_rows()>0){
 			return 1;
 		}else{
@@ -71,7 +71,7 @@ class GrupoAlumnoModel extends CI_Model
 	// MAX ID DETALLE GRUPO ALUMNO
 	public function maxIdDGAModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_DET_GA + 1) as ID_DET_GA FROM `TBL_GRUPO_ALUMNO`');
+		$maxid = $this->db->query('SELECT MAX(ID_DET_GA + 1) as ID_DET_GA FROM `tbl_grupo_alumno`');
 		return $maxid->result_array();
 	}
 
