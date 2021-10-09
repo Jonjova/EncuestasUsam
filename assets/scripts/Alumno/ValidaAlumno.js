@@ -176,7 +176,7 @@ function valN(){
     });
   }
 }
-
+//valida el boton de guardar 
  $(document).on('change keyup', '.required', function(e){
    let Disabled = true;
     $(".required").each(function() {

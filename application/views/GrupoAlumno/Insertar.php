@@ -6,7 +6,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Grupo de Alumno</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" onclick="obtA();limpiar2();">&times;</span>
           </button>
         </div>
         <div class="modal-body">
@@ -19,22 +19,21 @@
            <label  >Alumnos</label>
          </div>
          <div class="form-group col-md-2">
-          <button type="button" class="btn btn-outline-dark " onclick="obtA()"><span class="fas fa-sync">
+          <button type="button" class="btn btn-outline-dark " onclick="obtA();obtGrupoAlumn();"><span class="fas fa-sync">
           </span>
-         
+
         </button>
       </div>
     </div>
     <div class="form-group">
-     <select name="ID_ALUMNO_GA[]" id="ID_ALUMNO_GA" title="Selecciona.." data-live-search="true" class="bootstrap-select strings show-tick" multiple data-width="100%"   required> 
+    <select name="ID_ALUMNO_GA[]" id="ID_ALUMNO_GA" title="Selecciona.." data-live-search="true" class="bootstrap-select strings show-tick " multiple data-width="100%"   required> 
+    </select>
+  </div>
 
-     </select>
-   </div>
-
- </div>
- <div class="modal-footer">
-  <button type="button" class="btn btn-secondary pull-left btn-sm" data-dismiss="modal">Cerrar</button>
-  <button  type="submit" class="btn btn-success btn-sm" onclick="obtGrupoAlumn()">Guardar</button> 
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="obtA();limpiar2();" data-dismiss="modal">Cerrar</button>
+  <button  type="submit" class="btn btn-success btn-sm" onclick="obtA()">Guardar</button> 
 </div>
 </div>
 </div>

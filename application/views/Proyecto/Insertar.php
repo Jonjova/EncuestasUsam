@@ -105,8 +105,8 @@
                                 <div class="col-sm-6">
                                  <div class="form-group">
                                     <label>Grupo de Alumno</label>
-                                    <select name="ID_GRUPO_ALUMNO" id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" required>
-                                       <option selected disabled value=''>Seleccionar... </option>
+                                    <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" required>
+                                      
                                    </select>
                                </div>
                            </div>
