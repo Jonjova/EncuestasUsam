@@ -12,15 +12,71 @@ class GrupoAlumnoModel extends CI_Model
 		$datos = $this->db->get();
 		return $datos->result_array();
 	}
-	//Insertar tbl_grupo_alumno
-	public function insertGrupoA($data)
+
+	// CREAR
+	public function insertGrupoAlumno($grupo,$alumno){
+		$this->db->trans_start();
+			//Insertar grupo
+		date_default_timezone_set("America/El_Salvador");
+		$data  = array(
+			//'ID_GRUPO_ALUMNO' => $this->maxIdGrupo(),
+			'NOMBRE_GRUPO' => $grupo,
+			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
+			'FECHA_CREA' => date('Y-m-d H:m:s')
+			);
+		$this->db->insert('tbl_grupo', $data);
+			//Obtener id grupo
+		$grupo_id = $this->db->insert_id();
+		$result = array();
+		foreach($alumno AS $key => $val){
+			$result[] = array(
+				'ID_DET_GA' =>$this->maxIdDGA(),
+				'ID_DET_GRUPO' => $grupo_id,
+				'ID_DET_ALUMNO' => $_POST['ID_ALUMNO_GA'][$key]
+				);
+		}      
+			//insercion multiple en la tabla detalle
+		$this->db->insert_batch('tbl_grupo_alumno', $result);
+		$this->db->trans_complete();
+	}
+
+	
+	//validar si existe un alumno en un grupo 
+	public function validarGrupo($grupo)
 	{
-		if ($this->db->insert('tbl_grupo_alumno',$data)) {
-			return true;
+		$this->db->where('ID_DET_GRUPO',$grupo);
+		$resultado = $this->db->get('tbl_grupo_alumno');
+		if($resultado->num_rows()>0){
+			return 1;
 		}else{
-			return false;
+			return 0;
 		}
 	}
+
+
+	//ID DETALLE GRUPO ALUMNO
+	public function maxIdDGA()
+	{
+		$id = $this->maxIdDGAModel();
+		foreach ($id as $i) {
+			if ($i['ID_DET_GA'] == null) {
+				return 1;
+			} else {
+				return $i['ID_DET_GA'];
+			}
+		}
+	}
+
+
+	// MAX ID DETALLE GRUPO ALUMNO
+	public function maxIdDGAModel()
+	{
+		$maxid = $this->db->query('SELECT MAX(ID_DET_GA + 1) as ID_DET_GA FROM `tbl_grupo_alumno`');
+		return $maxid->result_array();
+	}
+
+
+
 }
 
 ?>

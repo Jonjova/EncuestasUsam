@@ -1,10 +1,19 @@
+<style type="text/css">
+  .not-active { 
+            pointer-events: none; 
+            cursor: none; 
+        } 
+</style>
 <!--Aquí comienza el modal de nuevo de Alumno -->
-<form id="crearAlumno" class="needs-validation">
-  <div class="modal fade" id="modalAlumno"  data-backdrop="static" aria-hidden="true">
+<form id="crearAlumno" class="needs-validation" >
+  <div class="modal fade" id="modalAlumno"  data-backdrop="static" aria-hidden="true" oncontextmenu="return false" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Alumno</h5>
+         <!-- <div class="meter" style="left: 120px;">
+            <div id="percentage"></div>
+          </div>-->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,43 +38,49 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                <label  >Carnet</label>
-               <input type="text" placeholder="Ingrese Carnet" id="CARNET_A" name="CARNET_A" class="form-control mb-2 mr-sm-2 "  onblur="valC()" required>
+               <input type="text" placeholder="Ingrese Carnet" id="CARNET_A" name="CARNET_A" class="form-control mb-2 mr-sm-2 required"  onblur="valC()" required>
              </div>
              <div class="form-group col-md-6">
               <label>Primer Nombre</label>
-              <input name="PRIMER_NOMBRE_PERSONA_A" id="PRIMER_NOMBRE_PERSONA_A" type="text" class="form-control" placeholder="1er Nombre" required>
+              <input name="PRIMER_NOMBRE_PERSONA_A" id="PRIMER_NOMBRE_PERSONA_A" type="text" class="form-control required" placeholder="1er Nombre" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Segundo Nombre</label>
-              <input name="SEGUNDO_NOMBRE_PERSONA_A" id="SEGUNDO_NOMBRE_PERSONA_A" type="text" class="form-control" placeholder="2do Nombre" required>
+              <input name="SEGUNDO_NOMBRE_PERSONA_A" id="SEGUNDO_NOMBRE_PERSONA_A" type="text" class="form-control required" placeholder="2do Nombre" required>
             </div>
             <div class="form-group col-md-6">
               <label>Primer Apellido</label>
-              <input name="PRIMER_APELLIDO_PERSONA_A" id="PRIMER_APELLIDO_PERSONA_A" type="text" class="form-control" placeholder="1er Apellido" required>
+              <input name="PRIMER_APELLIDO_PERSONA_A" id="PRIMER_APELLIDO_PERSONA_A" type="text" class="form-control required" placeholder="1er Apellido" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Segundo Apellido</label>
-              <input name="SEGUNDO_APELLIDO_PERSONA_A" id="SEGUNDO_APELLIDO_PERSONA_A" type="text" class="form-control" placeholder="2do Apellido" required>
+              <input name="SEGUNDO_APELLIDO_PERSONA_A" id="SEGUNDO_APELLIDO_PERSONA_A" type="text" class="form-control required" placeholder="2do Apellido" required>
             </div>
             <div class="form-group col-md-6">
               <label>Sexo</label>
-              <select name="SEXO_A" id="SEXO_A" class="custom-select" style="font-size: 1rem;" required>
+              <select name="SEXO_A" id="SEXO_A" class="custom-select required" style="font-size: 1rem;" required>
               </select>
             </div>
           </div>
           <div class="form-row">
            <div class="form-group col-md-6">
             <label>Número de DUI</label>
-            <input name="DUI_A" id="DUI_A" type="text" onblur="valD()" class="form-control" placeholder="00000000-0" required>
+            <input name="DUI_A" id="DUI_A" type="text" onblur="valD()" class="form-control required" placeholder="00000000-0" required>
           </div>
           <div class="form-group col-md-6">
             <label>Número de NIT</label>
-            <input name="NIT_A" id="NIT_A" type="text" onblur="valN()" class="form-control" placeholder="0000-000000-000-0" required>
+            <input name="NIT_A" id="NIT_A" type="text" onblur="valN()" class="form-control required" placeholder="0000-000000-000-0" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Fecha de nacimiento</label>
+            <input name="FECHA_NACIMIENTO_A" id="FECHA_NACIMIENTO_A" type="date"  class="form-control required"  required>
           </div>
         </div>
         <!--Aquí termina la Información de Personal-->
@@ -75,30 +90,30 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Correo Personal</label>
-            <input name="CORREO_PERSONAL_A" id="CORREO_PERSONAL_A" type="email" onblur="valCP()" class="form-control" placeholder="personal@mail.com">
+            <input name="CORREO_PERSONAL_A" id="CORREO_PERSONAL_A" type="email" onblur="valCP()" class="form-control required" placeholder="personal@mail.com">
           </div>
           <div class="form-group col-md-6">
             <label>Correo Institucional</label>
-            <input name="CORREO_INSTITUCIONAL_A" id="CORREO_INSTITUCIONAL_A"  onblur="valCI()" type="text" class="form-control" placeholder="eje: estudiante@liveusam.edu.sv" required>
+            <input name="CORREO_INSTITUCIONAL_A" id="CORREO_INSTITUCIONAL_A"  onblur="valCI()" type="text" class="form-control required" placeholder="eje: estudiante@liveusam.edu.sv" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>N&uacute;mero de Tel&eacute;fono Fijo</label>
-            <input name="TELEFONO_FIJO_A" id="TELEFONO_FIJO_A" type="tel" class="form-control" placeholder="Telefono Fijo" required>
+            <input name="TELEFONO_FIJO_A" id="TELEFONO_FIJO_A" type="tel" class="form-control required" placeholder="Telefono Fijo" required>
           </div>
           <div class="form-group col-md-6">
             <label>N&uacute;mero de Tel&eacute;fono Movil</label>
-            <input name="TELEFONO_MOVIL_A" id="TELEFONO_MOVIL_A" type="tel" class="form-control" placeholder="Telefono Movil" required>
+            <input name="TELEFONO_MOVIL_A" id="TELEFONO_MOVIL_A" type="tel" class="form-control required" placeholder="Telefono Movil" required>
           </div>
         </div>
-         <div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-6">
             <label>Carrera</label>
-              <select name="CARRERA_A" id="CARRERA_A" class="custom-select" style="font-size: 1rem;" required>
-              </select>
-            </div>
-         </div>
+            <select name="CARRERA_A" id="CARRERA_A" class="custom-select required" style="font-size: 1rem;" required>
+            </select>
+          </div>
+        </div>
       </div>
       <!--Aquí termina la Información de Contacto-->
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -106,23 +121,24 @@
         <div class="form-row ">
           <div class="form-group col-md-8 offset-md-2">
             <label>Departamento</label>
-            <select name="DEPARTAMENTO_A" id="DEPARTAMENTO_A" class="custom-select" style="font-size: 1rem;" required>
+            <select name="DEPARTAMENTO_A" id="DEPARTAMENTO_A" class="custom-select required" style="font-size: 1rem;" required>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-8 offset-md-2">
             <label>Direcci&oacute;n</label>
-            <textarea name="DIRECCION_A" id="DIRECCION_A" rows="5" cols="50" class="form-control" required></textarea>
+            <textarea name="DIRECCION_A" id="DIRECCION_A" rows="5" cols="50" class="form-control required" required></textarea>
           </div>
         </div>
+
         <!--Aquí termina la Información de Residencia-->
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary pull-left btn-sm" data-dismiss="modal">Cerrar</button>
-    <button  type="submit" class="btn btn-success btn-sm" onclick="obtAlumn()">Guardar</button> 
+  <div class="modal-footer" >
+    <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="limpiar()" id="cancelBtnId"  data-dismiss="modal">Cerrar</button>   
+    <button  type="submit" class="btn btn-success btn-sm toggle-disabled"  disabled >Guardar</button> 
   </div>
 </div>
 </div>

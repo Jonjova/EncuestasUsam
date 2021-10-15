@@ -28,7 +28,7 @@ class ProyectoModel extends CI_Model
 	//Llenado Select Grupo Alumnos
 	public function obtGA()
 	{
-		$datos = $this->db->get('tbl_grupo_alumno');
+		$datos = $this->db->get('tbl_grupo');
 		return $datos->result_array();
 	}
 
@@ -55,5 +55,7 @@ class ProyectoModel extends CI_Model
 		$datos = $this->db->get();
 		return $datos->result_array();
 	}
+
+	
 }
 ?>

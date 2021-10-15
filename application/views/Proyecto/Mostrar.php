@@ -12,7 +12,7 @@
 						<th>Asignatura</th>
 						<th>Diseño</th>
 						<th>Fecha Asignación</th>
-						<th>Grupo</th>
+						<!--<th>Grupo</th>-->
 						<th>Cod Ciclo</th>
 						<th>Estado</th>		
 					</tr>

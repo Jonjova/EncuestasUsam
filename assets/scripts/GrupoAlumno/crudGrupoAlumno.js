@@ -1,34 +1,33 @@
 jQuery(document).ready(function($) {
   obtA();
 });
-//llenar select de Sexo 
 
-$(document).ready(function() {
-  $("ID_ALUMNO_GA").tooltip('show');
-});
 function obtA() {
+
   $.ajax({
     url: url + "GrupoAlumno/Alumno",
     type: 'post',
     dataType: 'json',
-    async:true,
-    cache:false,
+    cache: false, 
     success: function(data) {
 
-     var json = JSON.parse(JSON.stringify(data));
-     console.log(json);
-     var select = $('<select>');
-     $('#ID_ALUMNO_GA').empty().append("");
-     $.each(json, function(id, name) {
-      select.append('<option value=' + id.ID_ALUMNO + '>' + 
-                                       name.CARNET + " "+
-                                       name.PRIMER_NOMBRE_PERSONA + " "+
-                                       name.PRIMER_APELLIDO_PERSONA +
-
-                                        '</option>');
+     //var json = JSON.parse(JSON.stringify(data));
+     var options;
+     $.each(data, function(index, object) {
+      options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET +" "+ object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA +'</option>';
     });
-     $('#ID_ALUMNO_GA').append(select.html());
-      $('.bootstrap-select').selectpicker('refresh');
+
+     $('#ID_ALUMNO_GA').html(options);
+     $('.bootstrap-select').selectpicker('refresh');
+
+     $("#ID_ALUMNO_GA").change(function(){
+
+      valGrupoAlumno();
+     // alert("hola");
+     
+   });
+     console.log(data);
+
    }
  })
 }
@@ -39,20 +38,70 @@ $("#createForm").submit(function(event) {
     url: url+'GrupoAlumno/Guardar',  
     data: $("#createForm").serialize(),
     type: "post",
-    async: false,
+    //async: false,
     cache:false,
     dataType: 'json',
     success: function(response){
 
-      $('#createModal').modal('hide');
-      $('#createForm')[0].reset();
-      alert('Datos guardados correctamente!'); 
+
+      if (response == true) {
+        alert('Datos guardados correctamente!');
+      }
 
     },
-    error: function()
+    error: function(xhr, status)
     {
-      alert("error");
+
+      if (xhr.status == 200) {
+       $('#createForm').trigger("reset");
+       Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Datos guardados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      //$('#ID_ALUMNO_GA').prop('selectedIndex',0);
+      $('#createModal').modal('hide');  
     }
-  });
+    
+  }
+});
 }); 
+
+//limpiar 
+function limpiar2() {
+
+  $('#createForm').trigger("reset");
+}
+
+
+//Validación de si ya existe en un grupo 
+function valGrupoAlumno(){
+  //var grupo =$('#ID_ALUMNO_GA').val();
+  var grupo = $('#ID_ALUMNO_GA :selected').val();
+  if(grupo){
+    $.ajax({
+      url: url+ 'GrupoAlumno/validarGrupoAlumno',
+      data:'ID_ALUMNO_GA='+grupo,
+      type:'post',
+      success: function(data){
+
+        if (data==1) {
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Datos de grupo',
+            text: 'Este alumno ya existe en un grupo!'
+          })
+          $("#ID_ALUMNO_GA option:selected").prop("selected", false);
+          
+          //$('#CARNET_A').val('');   
+          //$('#CARNET_A').removeClass('is-valid');
+
+        } 
+      }
+    });
+  }
+}
 

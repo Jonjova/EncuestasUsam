@@ -39,6 +39,7 @@ class Proyectos extends CI_Controller
 			$this->load->view('Layout/Header',$data);
 			//Body
 			$this->load->view('Layout/Sidebar');
+			//$dato['product'] = $this->gam->get_products();
 			$this->load->view('Proyecto/insertar');
 			$this->load->view('GrupoAlumno/insertar');
 			$this->load->view('Alumno/insertarAlumno');
@@ -109,7 +110,7 @@ class Proyectos extends CI_Controller
 				$value['NOMBRE_ASIGNATURA'],
 				$value['NOMBRE_DISENIO'],
 				$value['FECHA_ASIGNACION'],
-				$value['NOMBRE_GRUPO'],
+				//$value['item_alumno']. ' Items',
 				$value['COD_CICLO'],
 				$estado
 				);
@@ -127,7 +128,9 @@ class Proyectos extends CI_Controller
 						'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
 						'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
 						'CICLO' => $this->input->post('CICLO'),
-						'ESTADO_PROYECTO' => true	
+						'ESTADO_PROYECTO' => true,
+						'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
+						'FECHA_CREA' => date('Y-m-d H:m:s')	
 		 );
 
 		//Datos de tabla  "Proyectos"

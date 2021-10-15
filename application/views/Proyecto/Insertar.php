@@ -59,20 +59,32 @@
                                        <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Tipo Investigaci&oacute;n</label>
+<<<<<<< HEAD
                                             <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="form-control"  id-data="validationCustom03"></select>
+=======
+                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="custom-select" required id-data="validationCustom03"></select>
+>>>>>>> 9562fe41950eedf968c7bcb3ae12a98ee790c6f8
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Materia</label>
+<<<<<<< HEAD
                                             <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="form-control" style="font-size: 1rem;" >
+=======
+                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="custom-select" style="font-size: 1rem;" required>
+>>>>>>> 9562fe41950eedf968c7bcb3ae12a98ee790c6f8
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Diseño de Investigaci&oacute;n</label>
+<<<<<<< HEAD
                                             <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="form-control"  style="font-size: 1rem;" >
+=======
+                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="custom-select"  style="font-size: 1rem;" required>
+>>>>>>> 9562fe41950eedf968c7bcb3ae12a98ee790c6f8
                                             </select>
                                         </div>
                                     </div>  
@@ -97,7 +109,11 @@
                                     <div class="col-sm-10">
                                       <div class="form-group">
                                         <label>Ciclo</label>
+<<<<<<< HEAD
                                         <select name="CICLO" id="CICLO" class="form-control" style="font-size: 1rem;" >
+=======
+                                        <select name="CICLO" id="CICLO" class="custom-select" style="font-size: 1rem;" required>
+>>>>>>> 9562fe41950eedf968c7bcb3ae12a98ee790c6f8
                                         </select>
                                     </div>
                                 </div>
@@ -105,8 +121,13 @@
                                 <div class="col-sm-6">
                                  <div class="form-group">
                                     <label>Grupo de Alumno</label>
+<<<<<<< HEAD
                                     <select name="ID_GRUPO_ALUMNO" id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" >
                                        <option selected disabled value=''>Seleccionar... </option>
+=======
+                                    <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO" class="custom-select"  style="font-size: 1rem;" required>
+                                      
+>>>>>>> 9562fe41950eedf968c7bcb3ae12a98ee790c6f8
                                    </select>
                                </div>
                            </div>
@@ -128,6 +149,7 @@
                          </button>
                      </div>
                  </div>
+
                  <div class="col-sm-6" >
                     
 
@@ -157,7 +179,9 @@
 <!-- wizard container -->
 
 </div>
+
 </div>
+
 <!-- end row -->
 </div>
 <!--aqui termina tu contenido de desarrollo-->

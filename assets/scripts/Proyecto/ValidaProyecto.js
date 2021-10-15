@@ -9,10 +9,13 @@ jQuery.validator.setDefaults({
 
     highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
+        jQuery(element).closest('.custom-select').addClass('is-invalid');
     },
     unhighlight: function(element) {
         jQuery(element).closest('.form-control').removeClass('is-invalid');
         jQuery(element).closest('.form-control').addClass('is-valid');
+        jQuery(element).closest('.custom-select').removeClass('is-invalid');
+        jQuery(element).closest('.custom-select').addClass('is-valid');
     },
 
     errorElement: 'div',
