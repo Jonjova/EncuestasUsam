@@ -78,6 +78,10 @@ a:hover {
     width: 328px;
 }
 
+.right {
+    margin-top: 2vh;
+}
+
 .danger-message {
     background-color: #F8D7DA;
     padding: 0.5rem;

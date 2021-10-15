@@ -3,7 +3,6 @@
 ****************************************************************************/
 $(document).ready(function() {
     llenarDropdowns();
-    llenarTablaDocente();
 
     // MASCARAS DE CAMPOS
     $('#DUI').mask('99999999-9');
@@ -18,17 +17,6 @@ $(document).ready(function() {
         mostrarPersona($('#ID_PERSONA_UPDATE').val());
     }
 });
-
-/****************************************************************************
-                        LLENAR TABLA DE DOCENTES
-****************************************************************************/
-function llenarTablaDocente() {
-    $('#Docentes').DataTable({
-        "ajax": url + "Docente/mostrarDocentes",
-        "order": [],
-        "language": idioma_espanol
-    });
-}
 
 /****************************************************************************
                             CARGAR DROPDOWNS
@@ -59,7 +47,7 @@ function validaSelect(select) {
 // LLENAR SELECT SEXO
 function sexo() {
     $.ajax({
-        url: url + "DatosComunes/dropSexo",
+        url: url + 'DatosComunes/dropSexo',
         type: 'POST',
         success: function(respuesta) {
             $('#SEXO').html(respuesta);
@@ -70,7 +58,7 @@ function sexo() {
 // LLENAR SELECT DEPARTAMENTO
 function departamento() {
     $.ajax({
-        url: url + "DatosComunes/dropDepartamento",
+        url: url + 'DatosComunes/dropDepartamento',
         type: 'POST',
         success: function(respuesta) {
             $('#DEPARTAMENTO').html(respuesta);
@@ -81,7 +69,7 @@ function departamento() {
 // LLENAR SELECT PROFESION
 function profesion() {
     $.ajax({
-        url: url + "DatosComunes/dropProfesion",
+        url: url + 'DatosComunes/dropProfesion',
         type: 'POST',
         success: function(respuesta) {
             $('#PROFESION').html(respuesta);
@@ -92,7 +80,7 @@ function profesion() {
 // LLENAR SELECT COORDINACIÓN
 function coordinacion() {
     $.ajax({
-        url: url + "DatosComunes/dropCoordinacion",
+        url: url + 'DatosComunes/dropCoordinacion',
         type: 'POST',
         success: function(respuesta) {
             $('#COORDINACION').html(respuesta);
@@ -103,7 +91,7 @@ function coordinacion() {
 // LLENAR SELECT COORDINADOR
 function coordinador() {
     $.ajax({
-        url: url + "DatosComunes/dropCoordinador",
+        url: url + 'DatosComunes/dropCoordinador',
         type: 'POST',
         success: function(respuesta) {
             $('#COORDINADOR').html(respuesta);
@@ -114,10 +102,10 @@ function coordinador() {
 // LLENAR SELECT ASIGNATURA
 function asignatura() {
     $.ajax({
-        url: url + "DatosComunes/dropAsignatura",
+        url: url + 'DatosComunes/dropAsignatura',
         type: 'POST',
         success: function(respuesta) {
-            $('#ID_ASIGNATURA').html(respuesta);
+            $('#ASIGNATURA').html(respuesta);
         }
     })
 }
@@ -125,7 +113,7 @@ function asignatura() {
 // LLENAR SELECT DOCENTE
 function docente() {
     $.ajax({
-        url: url + "DatosComunes/dropDocente",
+        url: url + 'DatosComunes/dropDocente',
         type: 'POST',
         success: function(respuesta) {
             $('#ID_DOCENTE').html(respuesta);
@@ -139,8 +127,8 @@ function docente() {
 // VALIDAR DUI
 $('#DUI').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarDUI",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarDUI',
         data: { 'DUI': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -158,8 +146,8 @@ $('#DUI').change(function() {
 // VALIDAR NIT
 $('#NIT').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarNIT",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarNIT',
         data: { 'NIT': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -170,7 +158,6 @@ $('#NIT').change(function() {
                 $('#NIT').val('');
                 $('#NIT').removeClass('is-valid');
             }
-            console.log(msg);
         }
     });
 });
@@ -178,8 +165,8 @@ $('#NIT').change(function() {
 // VALIDAR TELEFONO FIJO
 $('#TELEFONO_FIJO').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarTelFijo",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarTelFijo',
         data: { 'TELEFONO_FIJO': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -197,8 +184,8 @@ $('#TELEFONO_FIJO').change(function() {
 // VALIDAR TELEFONO MOVIL
 $('#TELEFONO_MOVIL').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarTelMovil",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarTelMovil',
         data: { 'TELEFONO_MOVIL': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -217,8 +204,8 @@ $('#TELEFONO_MOVIL').change(function() {
 var email = $('#CORREO_PERSONAL');
 $('#CORREO_PERSONAL').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarEmail",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarEmail',
         data: { 'CORREO_PERSONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -236,8 +223,8 @@ $('#CORREO_PERSONAL').change(function() {
 // VALIDAR CORREO INSTITUCIONAL
 $('#CORREO_INSTITUCIONAL').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarEmailUSAM",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarEmailUSAM',
         data: { 'CORREO_INSTITUCIONAL': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -256,8 +243,8 @@ $('#CORREO_INSTITUCIONAL').change(function() {
 var email = $('#CODIGO_ASIGNATURA');
 $('#CODIGO_ASIGNATURA').change(function() {
     $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/validarCodAsignatura",
+        type: 'POST',
+        url: url + 'ValidarCampos/validarCodAsignatura',
         data: { 'CODIGO_ASIGNATURA': $(this).val() },
         success: function(msg) {
             if (msg == 1) {
@@ -273,55 +260,6 @@ $('#CODIGO_ASIGNATURA').change(function() {
 });
 
 /****************************************************************************
-                        VALIDAR CAMBIAR CONTRASEÑA
-****************************************************************************/
-// VALIDAR CONTRASEÑA ACTUAL
-var oldPassword = $('#OLD_PASSWORD');
-$('#OLD_PASSWORD').change(function() {
-    $.ajax({
-        type: "POST",
-        url: url + "Persona/validarPassword",
-        data: { 'PASSWORD': oldPassword.val() },
-        success: function(msg) {
-            if (msg == 1) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Contrase\u00f1a incorrecta!'
-                })
-                $('#OLD_PASSWORD').val('');
-                $('#OLD_PASSWORD').removeClass('is-valid');
-            }
-        }
-    });
-});
-
-// COMPARAR CONTRASEÑA ACTUAL CON NUEVA CONTRASEÑA
-var password = $('#PASSWORD');
-var rePassword = $('#RE_PASSWORD');
-$('#PASSWORD').change(function() {
-    if (password.val() != rePassword.val() && rePassword.val() != '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Las contrase\u00f1as no coinciden!'
-        })
-        $('#RE_PASSWORD').val('');
-        $('#RE_PASSWORD').removeClass('is-valid');
-    }
-});
-
-// COMPARAR CON NUEVA CONTRASEÑA CONTRASEÑA ACTUAL
-$('#RE_PASSWORD').change(function() {
-    if (password.val() != rePassword.val()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Las contrase\u00f1as no coinciden!'
-        })
-        $('#RE_PASSWORD').val('');
-        $('#RE_PASSWORD').removeClass('is-valid');
-    }
-});
-
-/****************************************************************************
                         CREAR USUARIO Y PASSWORD
 ****************************************************************************/
 function crearUsuarioPass() {
@@ -332,265 +270,3 @@ function crearUsuarioPass() {
     $('#NOMBRE_USUARIO').val(usuario);
     $('#PASSWORD').val(pass);
 }
-
-/****************************************************************************
-                        LLENAR PERSONA PARA ACTUALIZAR
-****************************************************************************/
-function mostrarPersona(PERSONA) {
-    $.ajax({
-        url: url + 'Persona/mostrarPersona/' + PERSONA,
-        method: "post",
-        data: { 'ID_PERSONA': PERSONA },
-        dataType: "json",
-        success: function(response) {
-            $('#TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
-            $('#TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
-            $('#DEPARTAMENTO').val(response.DEPARTAMENTO);
-            $('#CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
-            $('#DIRECCION_UPDATE').val(response.DIRECCION);
-        }
-    })
-}
-
-/****************************************************************************
-                        VALIDAR CAMPOS PARA ACTUALIZAR
-****************************************************************************/
-// VALIDAR CAMBIAR TELEFONO FIJO
-$('#TELEFONO_FIJO_UPDATE').change(function() {
-    $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/cambiarTelFijo",
-        data: { 'TELEFONO_FIJO': $(this).val() },
-        success: function(msg) {
-            if (msg == 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Este Tel\u00e9fono ya Existe!'
-                })
-                $('#TELEFONO_FIJO_UPDATE').val('');
-                $('#TELEFONO_FIJO_UPDATE').removeClass('is-valid');
-            }
-        }
-    });
-});
-
-// VALIDAR CAMBIAR TELEFONO MOVIL
-$('#TELEFONO_MOVIL_UPDATE').change(function() {
-    $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/cambiarTelMovil",
-        data: { 'TELEFONO_MOVIL': $(this).val() },
-        success: function(msg) {
-            if (msg == 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Este Tel\u00e9fono ya Existe!'
-                })
-                $('#TELEFONO_MOVIL_UPDATE').val('');
-                $('#TELEFONO_MOVIL_UPDATE').removeClass('is-valid');
-            }
-        }
-    });
-});
-
-// VALIDAR CAMBIAR CORREO PERSONAL
-$('#CORREO_PERSONAL_UPDATE').change(function() {
-    $.ajax({
-        type: "POST",
-        url: url + "ValidarCampos/cambiarEmail",
-        data: { 'CORREO_PERSONAL': $(this).val() },
-        success: function(msg) {
-            if (msg == 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Este Correo ya Existe!'
-                })
-                $('#CORREO_PERSONAL_UPDATE').val('');
-                $('#CORREO_PERSONAL_UPDATE').removeClass('is-valid');
-            }
-        }
-    });
-});
-
-/****************************************************************************
-                            ACTUALIZAR PERSONA
-****************************************************************************/
-$(function() {
-    $("#UpdatePersona").submit(function(event) {
-        var forms = $("#UpdatePersona");
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === false || $('span').hasClass('text-danger')) {
-                event.preventDefault();
-                event.stopPropagation();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Complete el formulario!'
-                })
-                form.classList.add('was-validated');
-            }
-            if (form.checkValidity() === true && !$('span').hasClass('text-danger')) {
-                if (email.val() === '') {
-                    email.val('-------------------');
-                }
-                $.ajax({
-                    url: url + 'Persona/updatePersona',
-                    data: $("#UpdatePersona").serialize(),
-                    type: "POST",
-                    async: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Datos Actualizados Correctamente',
-                            showConfirmButton: false,
-                            timer: 0
-                        })
-                    }
-                });
-                setTimeout(function() {
-                    location.href = url + 'Dashboard';
-                }, 1400)
-            }
-        });
-    });
-});
-
-/****************************************************************************
-                            CAMBIAR CONTRASEÑA
-****************************************************************************/
-$(function() {
-    $("#UpdatePass").submit(function(event) {
-        var forms = $("#UpdatePass");
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Complete el formulario!'
-                })
-                form.classList.add('was-validated');
-            }
-            if (form.checkValidity() === true) {
-                if (email.val() === '') {
-                    email.val('-------------------');
-                }
-                $.ajax({
-                    url: url + 'Persona/updatePassword',
-                    data: { 'PASSWORD': password.val() },
-                    type: "POST",
-                    async: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Contrase\u00f1a cambiada',
-                            showConfirmButton: false,
-                            timer: 0
-                        })
-                    }
-                });
-                setTimeout(function() {
-                    location.href = url + 'Dashboard';
-                }, 1400)
-            }
-        });
-    });
-});
-
-/****************************************************************************
-                    VALIDAR RESTABLECER CONTRASEÑA
-****************************************************************************/
-// VALIDAR CONTRASEÑA ACTUAL
-$('#CORREO_USUARIO').change(function() {
-    $.ajax({
-        type: "POST",
-        url: url + "Persona/validarUser",
-        data: { 'CORREO_INSTITUCIONAL': $(this).val() },
-        success: function(msg) {
-            if (msg == 1) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Correo de usuario no existe!'
-                })
-                $('#CORREO_USUARIO').val('');
-            }
-        }
-    });
-});
-
-// VALIDAR FECHA DE NACIMIENTO USUARIO
-$('#FECHA_NACIMIENTO_USUARIO').change(function() {
-    if ($('#CORREO_USUARIO').val() != '') {
-        $.ajax({
-            type: "POST",
-            url: url + "Persona/validarFechaUser",
-            data: $("#ResetPass").serialize(),
-            success: function(msg) {
-                if (msg == 1) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'La fecha no coincide!'
-                    })
-                    $('#FECHA_NACIMIENTO_USUARIO').val('');
-                }
-            }
-        });
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Ingrese su correo!'
-        })
-        $('#FECHA_NACIMIENTO_USUARIO').val('');
-    }
-});
-
-$("#btnRecuperar").on("click", function() {
-    $("#ResetPass").validate({
-        rules: {
-            CORREO_INSTITUCIONAL: { required: true },
-            FECHA_NACIMIENTO: { required: true }
-        },
-        messages: {
-            CORREO_INSTITUCIONAL: { required: "Correo Usuario Requerido." },
-            FECHA_NACIMIENTO: { required: "Fecha de Nacimiento Requerida." }
-        }
-    });
-
-});
-
-/****************************************************************************
-                            RESTABLECER CONTRASEÑA
-****************************************************************************/
-$(function() {
-    $("#ResetPass").submit(function(event) {
-        var forms = $("#ResetPass");
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === true) {
-                $.ajax({
-                    url: url + 'Persona/resetPass',
-                    data: $("#ResetPass").serialize(),
-                    type: "POST",
-                    async: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Su contrase\u00f1a se ha restablecido',
-                            showConfirmButton: false,
-                            timer: 0
-                        })
-                    }
-                });
-                // setTimeout(function() {
-                //     location.href = url + 'Dashboard';
-                // }, 1400)
-            }
-        });
-    });
-});

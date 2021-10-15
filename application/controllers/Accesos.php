@@ -120,7 +120,7 @@ class Accesos extends CI_Controller
 				$data = array('title' => 'Recuperar Contraseña' );
 				$this->load->view('Layout/Header', $data);
 		  	   //Body
-				$this->load->view('RestablecerContrasenia');
+				$this->load->view('Cuenta/RestablecerContrasenia');
 		       //Footer
 				$this->load->view('Layout/Footer');
 			}

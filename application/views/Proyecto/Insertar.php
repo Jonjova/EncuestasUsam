@@ -44,12 +44,12 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Nombre Proyecto</label>
-                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO"  type="text" class="form-control" placeholder="Nombre" id-data="validationCustom01" required>
+                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO"  type="text" class="form-control" placeholder="Nombre" id-data="validationCustom01" >
 
                                             </div>
                                             <div class="form-group">
                                                 <label>Descripci&oacute;n</label>
-                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"  rows="2" cols="50" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" required></textarea>
+                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"  rows="2" cols="50" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" ></textarea>
                                             </div>
                                         </div>
 
@@ -59,20 +59,20 @@
                                        <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Tipo Investigaci&oacute;n</label>
-                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="form-control" required id-data="validationCustom03"></select>
+                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="form-control"  id-data="validationCustom03"></select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Materia</label>
-                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="form-control" style="font-size: 1rem;" required>
+                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="form-control" style="font-size: 1rem;" >
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Diseño de Investigaci&oacute;n</label>
-                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="form-control"  style="font-size: 1rem;" required>
+                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="form-control"  style="font-size: 1rem;" >
                                             </select>
                                         </div>
                                     </div>  
@@ -97,7 +97,7 @@
                                     <div class="col-sm-10">
                                       <div class="form-group">
                                         <label>Ciclo</label>
-                                        <select name="CICLO" id="CICLO" class="form-control" style="font-size: 1rem;" required>
+                                        <select name="CICLO" id="CICLO" class="form-control" style="font-size: 1rem;" >
                                         </select>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                 <div class="col-sm-6">
                                  <div class="form-group">
                                     <label>Grupo de Alumno</label>
-                                    <select name="ID_GRUPO_ALUMNO" id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" required>
+                                    <select name="ID_GRUPO_ALUMNO" id="ID_GRUPO_ALUMNO" class="form-control "  style="font-size: 1rem;" >
                                        <option selected disabled value=''>Seleccionar... </option>
                                    </select>
                                </div>

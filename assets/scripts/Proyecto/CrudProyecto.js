@@ -110,6 +110,7 @@ function obtCicl() {
 // Acción de Insertar Proyecto.
 $(function() {
     $("#CrearProyecto").submit(function(event) {
+        $(this).find('.nav-pills a:first').tab('show');
         $.ajax({
             url: url + 'Proyectos/Guardar',
             data: $("#CrearProyecto").serialize(),

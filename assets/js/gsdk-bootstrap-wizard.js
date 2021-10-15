@@ -35,66 +35,6 @@ transparent = true;
 
 $(document).ready(function() {
 
-    // var pass1 = $('[name=PASSWORD]');
-    // var pass2 = $('[name=RePASSWORD]');
-    // var confirmacion = "Las contrase\u00f1as coinciden";
-    // var segura = "Contrase\u00f1a segura";
-    // var insegura = "Contrase\u00f1a insegura";
-    // var negacion = "Las contrase\361as no coinciden";
-
-    // //oculto por defecto el elemento span
-    // var span1 = $('<span></span>').insertAfter(pass1);
-    // var span2 = $('<span></span>').insertAfter(pass2);
-    // span1.hide();
-    // span2.hide();
-
-    // // FUNCION QUE COMPARA LAS CONTRASEÑAS 
-    // function coincidePassword() {
-    //     var valor1 = pass1.val();
-    //     var valor2 = pass2.val();
-
-    //     //muestro el span
-    //     span2.show().removeClass();
-
-    //     //condiciones dentro de la funcion
-    //     if (valor1 != valor2) {
-    //         span2.text(negacion).addClass('text-danger');
-    //         $('input[name=finish]').attr('disabled', 'disabled');
-    //         $('input[name=finish]').css({ 'cursor': 'no-drop' });
-    //     } else if (valor1.length != 0 && valor1 == valor2) {
-    //         span2.text(confirmacion).removeClass('text-danger').addClass('text-success');
-    //         $('input[name=finish]').removeAttr('disabled');
-    //         $('input[name=finish]').css({ 'cursor': 'pointer' });
-    //     }
-    //     if (valor2 == "") {
-    //         span2.hide();
-    //     }
-    // }
-
-    // // FUNCION PARA MENSAJE DE CONTRASEÑA SEGURA
-    // pass1.keyup(function() {
-
-    //     var valor1 = pass1.val(); // VARIABLE QUE TOMA EL VALOR DE PASSWORD
-
-    //     // MOSTRAR MENSAJE
-    //     span1.show().removeClass();
-
-    //     // CONDICIONES PARA ASIGNAR MENSAJE
-    //     if (valor1.length > 10) {
-    //         span1.text(segura).addClass('text-success');
-    //     } else if (valor1.length <= 10) {
-    //         span1.text(insegura).addClass('text-danger');
-    //     }
-    //     if (valor1 == "") {
-    //         span1.hide();
-    //     }
-    // });
-
-    // // FUNCION PARA CONTRASEÑA
-    // pass2.keyup(function() {
-    //     coincidePassword();
-    // });
-
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
 
@@ -106,9 +46,9 @@ $(document).ready(function() {
     var $validator = $('.wizard-card form').validate({
         rules: {
             PRIMER_NOMBRE_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
-            SEGUNDO_NOMBRE_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_NOMBRE_PERSONA: { lettersonly: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
-            SEGUNDO_APELLIDO_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_APELLIDO_PERSONA: { lettersonly: true, minlength: 3, maxlength: 25 },
             FECHA_NACIMIENTO: { required: true },
             SEXO: { required: true },
             DUI: { required: true },
@@ -131,9 +71,9 @@ $(document).ready(function() {
         },
         messages: {
             PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            SEGUNDO_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            SEGUNDO_NOMBRE_PERSONA: { lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
             PRIMER_APELLIDO_PERSONA: { required: "Apellido Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            SEGUNDO_APELLIDO_PERSONA: { required: "Apellido Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
+            SEGUNDO_APELLIDO_PERSONA: { lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
             FECHA_NACIMIENTO: { required: "Fecha de Nacimiento Requerida." },
             SEXO: { required: "Sexo Requerido." },
             DUI: { required: "DUI Requerido." },
