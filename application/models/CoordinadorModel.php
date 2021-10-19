@@ -21,7 +21,7 @@ class CoordinadorModel extends CI_Model
 				'".$datosCoordinador['DUI']."', 
 				'".$datosCoordinador['NIT']."', 
 				'".$datosCoordinador['DIRECCION']."', 
-				".$datosCoordinador['DEPARTAMENTO'].",
+				".$datosCoordinador['DEPARTAMENTO'].", 
 				'".$datosCoordinador['TELEFONO_FIJO']."', 
 				'".$datosCoordinador['TELEFONO_MOVIL']."', 
 				".$datosCoordinador['ID_COORDINADOR'].", 
@@ -29,7 +29,8 @@ class CoordinadorModel extends CI_Model
 				".$datosCoordinador['COORDINACION'].", 
 				".$datosCoordinador['ID_USUARIO'].", 
 				'".$datosCoordinador['NOMBRE_USUARIO']."', 
-				'".$datosCoordinador['PASSWORD']."');";
+				'".$datosCoordinador['PASSWORD']."', 
+				".$datosCoordinador['USUARIO_CREA'].");";
             $result = $this->db->query($sql, $datosCoordinador);
             $this->db->close();
 
@@ -39,5 +40,21 @@ class CoordinadorModel extends CI_Model
         return $result;
     }
 	
+	// MOSTRAR COORDINADORES
+	public function mostrarCoordinadorModel()
+	{
+		$this->db->select('*');
+		$this->db->from('VW_TBL_COORDINADORES');
+		$datos = $this->db->get();
+		return $datos->result_array();
+	}
+
+	// OBTENER COORDINADOR
+    public function datosCoordinadorModel($where)
+    {
+        $query = $this->db->select('*')->from('VW_INFO_COORDINADOR')->where($where)->get();                         
+        return $query->row_array();
+    }
+
 }
 ?>

@@ -1,13 +1,13 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Persona extends CI_Controller {
+    class Cuenta extends CI_Controller {
 
         // CONSTRUCTOR PARA LLAMAR AL MODELO
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('PersonaModel', 'modelPersona', true);
+            $this->load->model('CuentaModel', 'modelCuenta', true);
         }
 
         // VISTA ACTUALIZAR PERSONA
@@ -19,7 +19,7 @@
                 $this->load->view('Layout/Header', $data);
                 //Body
                 $this->load->view('Layout/Sidebar');
-                $this->load->view('ActualizarDatosPersonales');
+                $this->load->view('Cuenta/ActualizarDatosPersonales');
                 //Footer
                 $this->load->view('Layout/Footer');
             }
@@ -39,7 +39,7 @@
                 $this->load->view('Layout/Header', $data);
                 //Body
                 $this->load->view('Layout/Sidebar');
-                $this->load->view('CambiarContrasenia');
+                $this->load->view('Cuenta/CambiarContrasenia');
                 //Footer
                 $this->load->view('Layout/Footer');
             }
@@ -53,7 +53,7 @@
         // OBTENER PERSONA
         public function mostrarPersona($persona)
         {
-            $resultData = $this->modelPersona->mostrarPersonaModel(array('ID_PERSONA' => $persona));
+            $resultData = $this->modelCuenta->mostrarPersonaModel(array('ID_PERSONA' => $persona));
             echo json_encode($resultData);
         }
 
@@ -61,7 +61,7 @@
         public function updatePersona()
         {
             $where = $this->input->post('ID_PERSONA');
-		    $editar = $this->modelPersona->updatePersonaModel('tbl_persona', $_POST, array('ID_PERSONA' => $where));
+		    $editar = $this->modelCuenta->updatePersonaModel('tbl_persona', $_POST, array('ID_PERSONA' => $where));
             if ($editar == TRUE) 
             {
                 echo "true";
@@ -78,7 +78,7 @@
             $iduser = $_SESSION['ID_USUARIO'];
 			$pass = sha1($this->input->post('PASSWORD'));
 
-            if (!$res = $this->modelPersona->findPassword($iduser, $pass))
+            if (!$res = $this->modelCuenta->findPassword($iduser, $pass))
             {
 				echo 1;
 			}
@@ -93,7 +93,7 @@
         {
             $where = $_SESSION['ID_USUARIO'];
             $pass = sha1($this->input->post('PASSWORD'));
-		    $editar = $this->modelPersona->updatePasswordModel('tbl_usuario', array('PASSWORD' => $pass), array('ID_USUARIO' => $where));
+		    $editar = $this->modelCuenta->updatePasswordModel('tbl_usuario', array('PASSWORD' => $pass), array('ID_USUARIO' => $where));
             if ($editar == TRUE) 
             {
                 echo "true";
@@ -104,51 +104,34 @@
             }
         }
 
-        // VALIDAR CORREO USUARIO
-		public function validarUser()
-		{ 
-			$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
-            if (!$res = $this->modelPersona->findUser($correoUsuario))
-            {
-				echo 1;
-			}
-			else
-			{ 
-				echo 0;
-			}
-		}
+        // // VALIDAR CORREO USUARIO
+		// public function validarUser()
+		// { 
+		// 	$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
+        //     if (!$res = $this->modelCuenta->findUser($correoUsuario))
+        //     {
+		// 		echo 1;
+		// 	}
+		// 	else
+		// 	{ 
+		// 		echo 0;
+		// 	}
+		// }
 
-        // VALIDAR FECHA DE NACIMIENTO USUARIO
-		public function validarFechaUser()
-		{ 
-			$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
-            $fechaUser = $this->input->post('FECHA_NACIMIENTO');
-            if (!$res = $this->modelPersona->findFechaUser($correoUsuario, $fechaUser))
-            {
-				echo 1;
-			}
-			else
-			{ 
-				echo 0;
-			}
-		}
-
-        // RESTABLECER CONTRASEÑA
-		public function resetPass()
-		{
-			$datosUsuario = array(
-				'FECHA' => $this->input->post('FECHA_NACIMIENTO'),
-				'CORREO' => $this->input->post('CORREO_INSTITUCIONAL')
-			);
-
-			$insert = $this->modelPersona->resetPassModel($datosUsuario);
-			if ($insert == TRUE) 
-			{
-				echo "true";
-			} else {
-				echo "false";
-			}
-		}
+        // // VALIDAR FECHA DE NACIMIENTO USUARIO
+		// public function validarFechaUser()
+		// { 
+		// 	$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
+        //     $fechaUser = $this->input->post('FECHA_NACIMIENTO');
+        //     if (!$res = $this->modelCuenta->findFechaUser($correoUsuario, $fechaUser))
+        //     {
+		// 		echo 1;
+		// 	}
+		// 	else
+		// 	{ 
+		// 		echo 0;
+		// 	}
+		// }
 
     }
 ?>

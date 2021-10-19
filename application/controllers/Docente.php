@@ -20,7 +20,7 @@
 				$this->load->view('Layout/Header', $data);
 				//Body
 				$this->load->view('Layout/Sidebar');
-				$this->load->view('VistasCoordinador/InsertarDocente');
+				$this->load->view('Docente/InsertarDocente');
 				//Footer
 				$this->load->view('Layout/Footer');
 			}
@@ -40,7 +40,7 @@
 				$this->load->view('Layout/Header', $data);
 				//Body
 				$this->load->view('Layout/Sidebar');
-				$this->load->view('VistasCoordinador/MostrarDocentes');
+				$this->load->view('Docente/MostrarDocentes');
 				//Footer
 				$this->load->view('Layout/Footer');
 			}
@@ -114,7 +114,8 @@
 				'COORDINADOR' => $this->input->post('COORDINADOR'),
 				'ID_USUARIO' => $this->maxUsuario(),
 				'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
-				'PASSWORD' => $this->input->post('PASSWORD')
+				'PASSWORD' => $this->input->post('PASSWORD'),
+				'USUARIO_CREA' => $_SESSION['ID_USUARIO']
 			);
 
 			$insert = $this->modelDocente->crearDocenteModel($datosDocente);
@@ -133,21 +134,36 @@
 			$result = array();
 			$i = 1;
 			foreach ($resultList as $key => $value) {
-
-				$btnestado = ($value['ESTADO_PERMISO'] > 0) ? '<a class="btn btn-success">Activo</a>' : '<a class="btn btn-danger">Inactivo</a>';
-				$btnSwitch = ($value['ESTADO_PERMISO'] > 0) ?
-					'<input type="checkbox" name="ESTADO_PERMISO" id="ESTADO_PERMISO" onchange="cambiarEstado('.$value['ID_USUARIO'].');" checked="checked">' :
-					'<input type="checkbox" name="ESTADO_PERMISO" id="ESTADO_PERMISO" onchange="cambiarEstado('.$value['ID_USUARIO'].');">';
+				$btnInfo = 
+				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoDocente('.$value['ID_PERSONA'].');" 
+					data-toggle="modal" data-target="#InfoDocente">
+					<i class="fas fa-info-circle" title="Información"></i>
+				</a>';
+				$btnestado = ($value['ESTADO_PERMISO'] > 0) ? 
+					'<a class="btn btn-success" title="Estado" style="font-size: x-large;" 
+						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
+						<i class="far fa-check-circle"></i>
+					</a>' : 
+					'<a class="btn btn-danger" title="Estado" style="font-size: x-large;" 
+						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
+						<i class="far fa-times-circle"></i>
+					</a>';
+				// $btnSwitch = ($value['ESTADO_PERMISO'] > 0) ?
+				// 	'<input type="checkbox" style="transform: translateY(13px);" 
+				// 		onclick="cambiarEstado('.$value['ID_USUARIO'].');" checked="checked" title="Desabilitar">' :
+				// 	'<input type="checkbox" style="transform: translateY(13px); 
+				// 		onclick="cambiarEstado('.$value['ID_USUARIO'].');" title="Habilitar">';
 				if ($_SESSION['ID_TIPO_USUARIO'] == 1) 
 				{
 					$result['data'][] = array(
 						$i++,
 						$value['DOCENTE'],
-						$value['CORREO_PERSONAL'],
-						$value['CORREO_INSTITUCIONAL'],
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
 						$value['RESPONSABLE'],
-						$btnestado,
-						$btnSwitch,
+						$btnInfo."&ensp;&ensp;".
+						$btnestado."&ensp;&ensp;"
+						// $btnSwitch
 					);
 				}
 				else
@@ -155,10 +171,11 @@
 					$result['data'][] = array(
 						$i++,
 						$value['DOCENTE'],
-						$value['CORREO_PERSONAL'],
-						$value['CORREO_INSTITUCIONAL'],
-						$btnestado,
-						$btnSwitch,
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
+						$btnInfo."&ensp;&ensp;".
+						$btnestado."&ensp;&ensp;"
+						// $btnSwitch
 					);
 				}
 				
@@ -166,10 +183,16 @@
 			echo json_encode($result);
 		}
 
+		// OBTENER DOCENTE
+        public function datosDocente($persona)
+        {
+            $resultData = $this->modelDocente->datosDocenteModel(array('ID_PERSONA' => $persona));
+            echo json_encode($resultData);
+        }
+
 		// CAMBIAR ESTADO DOCENTES
-		public function cambiarEstado()
+		public function cambiarEstado($where)
 		{
-			$where = $this->input->post('ID_USUARIO');
 			$estado_permiso = $this->modelDocente->getEstadoModel($where);
 			$estado = 0;
 			foreach ($estado_permiso as $e) {

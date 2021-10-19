@@ -67,9 +67,16 @@ class DatosComunesModel extends CI_Model
 	}
 
 	// LLENAR SELECT ASIGNATURA
-	public function dropAsignaturaModel()
+	public function dropAsignaturaModel($coordinador)
 	{
-		$datos = $this->db->get('tbl_asignatura');
+		if ($coordinador >= 1)
+		{
+			$datos = $this->db->query('SELECT * FROM tbl_asignatura WHERE COORDINADOR = '.$coordinador.'');
+		}
+		else
+		{
+			$datos = $this->db->get('tbl_asignatura');
+		}
 		return $datos->result_array();
 	}
 

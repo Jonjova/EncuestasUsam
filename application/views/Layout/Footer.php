@@ -28,8 +28,8 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/gsdk-bootstrap-wizard.js"></script>
 
 <!-- VALIDACION DE CAMPOS-->
-<script  type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
-<script  type="text/javascript" src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
 
 <!--LOGIN -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/Login.js"></script>
@@ -41,8 +41,10 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Coordinador/CrudCoordinador.js"></script>
 <!-- CRUD DOCENTE -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Docente/CrudDocente.js"></script>
-<!-- CRUD MATERIA -->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Materia/CrudMateria.js"></script>
+<!-- DATOS CUENTA -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Cuenta/DatosCuenta.js"></script>
+<!-- CRUD ASIGNATURA -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Asignatura/CrudAsignatura.js"></script>
 
 <!--CRUD PROYECTO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/ValidaProyecto.js"></script>
@@ -55,9 +57,14 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/crudAlumno.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/ValidaAlumno.js"></script>
 
+<<<<<<< HEAD
 <!--CRUD PERMISOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Permisos/crudPermisos.js"></script>
 
+=======
+<!--GESTION USUARIOS-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Usuario/GestionUsuarios.js"></script>
+>>>>>>> 196f76c71e97509cdfe2284e8f7dd96e57ebb531
 
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
@@ -68,16 +75,16 @@
 <!--Select2 y bootstrap-select -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/select2.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" ></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-select.js"></script>
 
 <!-- CHART JS -->
-<script src="<?php echo base_url();?>assets/js/chart.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/chart.js"></script>
 
 <!--custom-->
-<script src="<?php echo base_url();?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <!--sidebar-->
-<script type="text/javascript" src="<?php echo base_url('assets/js/sidebar.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/sidebar.js"></script>
 
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->    
 <script type="text/javascript">

@@ -44,12 +44,12 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Nombre Proyecto</label>
-                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO"  type="text" class="form-control" placeholder="Nombre" id-data="validationCustom01" required>
+                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO"  type="text" class="form-control" placeholder="Nombre" id-data="validationCustom01" >
 
                                             </div>
                                             <div class="form-group">
                                                 <label>Descripci&oacute;n</label>
-                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"  rows="2" cols="50" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" required></textarea>
+                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"  rows="2" cols="50" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" ></textarea>
                                             </div>
                                         </div>
 

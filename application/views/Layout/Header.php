@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
+
 <head>
-	<title><?= $title; ?></title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Icono USAM -->
-	<link rel="icon" href="<?=base_url()?>assets/img/usam.png" type="image/gif">
+    <title><?= $title; ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Icono USAM -->
+	<link rel="icon" type="image/gif" href="<?php echo base_url();?>assets/img/usam.png">
 	<!-- DATATABLES PAPA BUSQUEDA Y PAGINACION AL MOSTRAR LOS DATOS CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
@@ -29,12 +31,9 @@
 	<!-- LIBRERIA DE PDF MPDF -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/pdf.css">
 	<!-- JQUERY 3.5.1 Para evitar cualquier bloqueo al DOM se incluye aqui -->
+	<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 	<!--Barra de progreso -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/formeter.css">
-	
-	<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 	<!-- MASCARA DE CAMPOS -->
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
-	 
 </head>
-

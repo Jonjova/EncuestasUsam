@@ -63,7 +63,7 @@
 		// LLENAR SELECT ASIGNATURA
 		public function dropAsignatura()
 		{
-			$datos = $this->modelDatos->dropAsignaturaModel();
+			$datos = $this->modelDatos->dropAsignaturaModel($_SESSION['COORDINADOR']);
 			echo "<option selected disabled value=''>Seleccione...</option>";
 			foreach ($datos as $i) {
 				echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";

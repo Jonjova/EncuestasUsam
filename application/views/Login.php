@@ -1,5 +1,5 @@
 <!--Recursos Diseño y alertas -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style.css">
 
 <body>
     <div class="split-screen">
@@ -10,7 +10,7 @@
             </section>
         </div>
         <div class="right">
-            <form method="POST" action="<?php echo base_url('Accesos/Validar')?>" id="logForm">
+            <form method="POST" action="<?php echo base_url()?>Accesos/Validar" id="logForm">
                 <div style="text-align:center;">
 
                 </div>
@@ -25,7 +25,6 @@
                     <input ID="txtPassword" type="password" name="password" placeholder="Password"/>
                     <div class="input-group-append">
                         <button id="show_password" class="contra-btn" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
-                        <a href="<?php echo base_url('Accesos/recuperar')?>" style="margin-left: auto;">Recuperar contrase&ntilde;a</a>
                     </div> 
                 </div>
                 

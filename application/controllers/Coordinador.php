@@ -20,7 +20,27 @@
 				$this->load->view('Layout/Header', $data);
 				//Body
 				$this->load->view('Layout/Sidebar');
-				$this->load->view('VistasAdmin/InsertarCoordinador');
+				$this->load->view('Coordinador/InsertarCoordinador');
+				//Footer
+				$this->load->view('Layout/Footer');
+			}
+			else{
+				$this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
+				redirect('/Accesos/');
+				show_404();
+			}
+		}
+
+		// VISTA MOSTRAR COORDINADORES
+		public function coordinadores()
+		{
+			if($this->session->userdata('is_logged')){
+				//header
+				$data = array('title' => 'Coordinadores' );
+				$this->load->view('Layout/Header', $data);
+				//Body
+				$this->load->view('Layout/Sidebar');
+				$this->load->view('Coordinador/MostrarCoordinadores');
 				//Footer
 				$this->load->view('Layout/Footer');
 			}
@@ -36,7 +56,8 @@
 		{
 			$id = $this->modelDatos->maxPersonaModel();
 			foreach ($id as $i) {
-				if ($i['ID_PERSONA'] == null) {
+				if ($i['ID_PERSONA'] == null)
+				{
 					return 1;
 				} else {
 					return $i['ID_PERSONA'];
@@ -49,7 +70,8 @@
 		{
 			$datos = $this->modelDatos->maxCoordinadorModel();
 			foreach ($datos as $i) {
-				if ($i['ID_COORDINADOR'] == null) {
+				if ($i['ID_COORDINADOR'] == null)
+				{
 					return 1;
 				} else {
 					return $i['ID_COORDINADOR'];
@@ -62,7 +84,8 @@
 		{
 			$datos = $this->modelDatos->maxUsuarioModel();
 			foreach ($datos as $i) {
-				if ($i['ID_USUARIO'] == null) {
+				if ($i['ID_USUARIO'] == null)
+				{
 					return 1;
 				} else {
 					return $i['ID_USUARIO'];
@@ -94,7 +117,8 @@
 				'COORDINACION' => $this->input->post('COORDINACION'),
 				'ID_USUARIO' => $this->maxUsuario(),
 				'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
-				'PASSWORD' => $this->input->post('PASSWORD')
+				'PASSWORD' => $this->input->post('PASSWORD'),
+				'USUARIO_CREA' => $_SESSION['ID_USUARIO']
 			);
 
 			$insert = $this->modelCoordinador->crearCoordinadorModel($datosCoordinador);
@@ -105,6 +129,34 @@
 				echo "false";
 			}
 		}
+
+		// MOSTRAR COORDINADORES
+		public function mostrarCoordinadores()
+		{
+			$resultList = $this->modelCoordinador->mostrarCoordinadorModel();
+			$result = array();
+			$i = 1;
+			foreach ($resultList as $key => $value)
+			{
+				$btnInfo = 
+				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" data-toggle="modal" data-target="#InfoCoordinador"><i class="fas fa-info-circle"></i></a>';
+				$result['data'][] = array(
+					$i++,
+					$value['COORDINADOR'],
+					$value['NOMBRE_USUARIO'],
+					$value['TELEFONO_MOVIL'],
+					$btnInfo
+				);
+			}
+			echo json_encode($result);
+		}
+
+		// OBTENER COORDINADOR
+        public function datosCoordinador($persona)
+        {
+            $resultData = $this->modelCoordinador->datosCoordinadorModel(array('ID_PERSONA' => $persona));
+            echo json_encode($resultData);
+        }
 		
 	}
 ?>
