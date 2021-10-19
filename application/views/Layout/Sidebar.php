@@ -125,7 +125,7 @@
                 <?php endif; ?>
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
-<<<<<<< HEAD
+
                     <li>
                         <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
                         <ul class="collapse list-unstyled" id="proyectSubmenu">
@@ -153,22 +153,7 @@
                 </ul>
             </li>
         <?php endif; ?>
-=======
-                <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false"><i
-                            class="fas fa-folder-open"></i> Proyectos</a>
-                    <ul class="collapse list-unstyled" id="proyectSubmenu">
-                        <li>
-                            <a href="<?php echo base_url();?>Proyectos/proyecto"><i class="fas fa-plus-circle"></i>
-                                Registrar</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>Proyectos/index"><i class="fas fa-eye"></i> Mostrar</a>
-                        </li>
-                    </ul>
-                </li>
-                <?php endif; ?>
->>>>>>> 196f76c71e97509cdfe2284e8f7dd96e57ebb531
+
                 <!-- <li>
                     <a href="#">Portafolio</a>
                 </li>

@@ -104,17 +104,12 @@ $('#modalAlumno').on('hidden.bs.modal', function() {
 //limpia imput y select resetea la validación y remueve la clase del modal 
 function limpiar() {
 
-<<<<<<< HEAD
+
   $('#crearAlumno').trigger("reset");
   var validator = $("#crearAlumno").validate();
   validator.resetForm();
   $('.form-control').removeClass('is-valid is-invalid');
   $('.custom-select').removeClass('is-valid is-invalid');
-=======
-    $('#crearAlumno').trigger("reset");
-    var validator = $("#crearAlumno").validate();
-    validator.resetForm();
-    $('.form-control').removeClass('is-valid is-invalid');
->>>>>>> 196f76c71e97509cdfe2284e8f7dd96e57ebb531
+
 
 }

@@ -57,14 +57,14 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/crudAlumno.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/ValidaAlumno.js"></script>
 
-<<<<<<< HEAD
+
 <!--CRUD PERMISOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Permisos/crudPermisos.js"></script>
 
-=======
+
 <!--GESTION USUARIOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Usuario/GestionUsuarios.js"></script>
->>>>>>> 196f76c71e97509cdfe2284e8f7dd96e57ebb531
+
 
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
