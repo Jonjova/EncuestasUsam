@@ -109,5 +109,6 @@ function limpiar() {
   var validator = $("#crearAlumno").validate();
   validator.resetForm();
   $('.form-control').removeClass('is-valid is-invalid');
+  $('.custom-select').removeClass('is-valid is-invalid');
 
 }

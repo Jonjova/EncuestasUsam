@@ -18,14 +18,13 @@ function obtA() {
     });
 
      $('#ID_ALUMNO_GA').html(options);
-     $('.bootstrap-select').selectpicker('refresh');
-
+    
      $("#ID_ALUMNO_GA").change(function(){
+      valGrupoAlumno(); 
 
-      valGrupoAlumno();
-     // alert("hola");
-     
+     //obtA();
    });
+     $('.bootstrap-select').selectpicker('refresh');  
      console.log(data);
 
    }
@@ -78,7 +77,7 @@ function limpiar2() {
 
 //Validación de si ya existe en un grupo 
 function valGrupoAlumno(){
-  //var grupo =$('#ID_ALUMNO_GA').val();
+  
   var grupo = $('#ID_ALUMNO_GA :selected').val();
   if(grupo){
     $.ajax({
@@ -95,10 +94,6 @@ function valGrupoAlumno(){
             text: 'Este alumno ya existe en un grupo!'
           })
           $("#ID_ALUMNO_GA option:selected").prop("selected", false);
-          
-          //$('#CARNET_A').val('');   
-          //$('#CARNET_A').removeClass('is-valid');
-
         } 
       }
     });

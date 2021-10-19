@@ -191,8 +191,12 @@ function valN(){
     });
    
    if(Disabled){
+   
+        //$('.d').css('pointer-events', 'none');
         $('.toggle-disabled').prop("disabled", true);
       }else{
+      
+       //$('.d').css('pointer-events', 'auto');
         $('.toggle-disabled').prop("disabled", false);
       }
  })

@@ -1,5 +1,5 @@
 <style type="text/css">
-  .not-active { 
+  .d { 
             pointer-events: none; 
             cursor: none; 
         } 
@@ -138,7 +138,7 @@
   </div>
   <div class="modal-footer" >
     <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="limpiar()" id="cancelBtnId"  data-dismiss="modal">Cerrar</button>   
-    <button  type="submit" class="btn btn-success btn-sm toggle-disabled"  disabled >Guardar</button> 
+    <button  type="submit" class="btn btn-success btn-sm toggle-disabled "  disabled >Guardar</button> 
   </div>
 </div>
 </div>
