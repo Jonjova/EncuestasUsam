@@ -112,8 +112,8 @@
 				'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
 				'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO'),
 				'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
-				'ID_COORDINADOR' => $this->maxCoordinador(),
 				'PROFESION' => $this->input->post('PROFESION'),
+				'ID_COORDINADOR' => $this->maxCoordinador(),
 				'COORDINACION' => $this->input->post('COORDINACION'),
 				'ID_USUARIO' => $this->maxUsuario(),
 				'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
@@ -139,24 +139,73 @@
 			foreach ($resultList as $key => $value)
 			{
 				$btnInfo = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" data-toggle="modal" data-target="#InfoCoordinador"><i class="fas fa-info-circle"></i></a>';
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#InfoCoordinador">
+						<i class="fas fa-info-circle"></i>
+					</a>';
+				$btnUpdate = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="obtenerCoordinador('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#modalCoordinador">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
 				$result['data'][] = array(
 					$i++,
 					$value['COORDINADOR'],
 					$value['NOMBRE_USUARIO'],
 					$value['TELEFONO_MOVIL'],
-					$btnInfo
+					$value['NOMBRE_COORDINACION'],
+					$btnInfo."&ensp;&ensp;".
+					$btnUpdate
 				);
 			}
 			echo json_encode($result);
 		}
 
-		// OBTENER COORDINADOR
+		// INFORMACION COORDINADOR
         public function datosCoordinador($persona)
         {
             $resultData = $this->modelCoordinador->datosCoordinadorModel(array('ID_PERSONA' => $persona));
             echo json_encode($resultData);
         }
+
+		// OBTENER COORDINADOR PARA ACTUALIZAR
+        public function obtenerCoordinador($persona)
+        {
+            $resultData = $this->modelCoordinador->obtenerCoordinadorModel(array('ID_PERSONA' => $persona));
+            echo json_encode($resultData);
+        }
+
+		// ACTUALIZAR COORDINADOR
+		public function updateCoordinador()
+		{
+			$datosCoordinador = array(
+				'COD_PERSONA' => $this->input->post('ID_PERSONA'),
+				'PRIMER_NOMBRE' => $this->input->post('PRIMER_NOMBRE_PERSONA'),
+				'SEGUNDO_NOMBRE' => $this->input->post('SEGUNDO_NOMBRE_PERSONA'),
+				'PRIMER_APELLIDO' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
+				'SEGUNDO_APELLIDO' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
+				'FECHA_NACIMIENTO_PERSONA' => $this->input->post('FECHA_NACIMIENTO'),
+				'SEXO_PERSONA' => $this->input->post('SEXO'),
+				'CORREO_INSTITUCIONAL_PERSONA' => $this->input->post('CORREO_INSTITUCIONAL'),
+				'CORREO_PERSONAL_PERSONA' => $this->input->post('CORREO_PERSONAL'),
+				'DUI_PERSONA' => $this->input->post('DUI'),
+				'NIT_PERSONA' => $this->input->post('NIT'),
+				'DIRECCION_PERSONA' => $this->input->post('DIRECCION'),
+				'DEPARTAMENTO_PERSONA' => $this->input->post('DEPARTAMENTO'),
+				'TELEFONO_FIJO_PERSONA' => $this->input->post('TELEFONO_FIJO'),
+				'TELEFONO_MOVIL_PERSONA' => $this->input->post('TELEFONO_MOVIL'),
+				'PROFESION_PERSONA' => $this->input->post('PROFESION'),
+				'COORDINACION_PERSONA' => $this->input->post('COORDINACION')
+			);
+
+			$insert = $this->modelCoordinador->updateCoordinadorModel($datosCoordinador);
+			if ($insert == TRUE) 
+			{
+				echo "true";
+			} else {
+				echo "false";
+			}
+		}
 		
 	}
 ?>

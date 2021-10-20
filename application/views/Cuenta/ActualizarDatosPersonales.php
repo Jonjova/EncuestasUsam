@@ -1,11 +1,7 @@
-            <!--Contenido de desarrollo-->
-            <div class="container" id="container">
+            <!-- <div class="container" id="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2" id="col-wizard">
-
-                        <!--      Wizard container        -->
                         <div class="wizard-container">
-
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
                                 <form id="UpdatePersona" class="needs-validation">
 
@@ -25,10 +21,8 @@
                                         </ul>
                                     </div>
 
-                                    <!-- DATOS WIZARD -->
                                     <div class="tab-content" id="tab-content">
 
-                                        <!-- DATOS PERSONALES -->
                                         <div class="tab-pane" id="datosPersonales">
                                             <div class="row" style="display: block;">
                                                 <h4 class="info-text"> Informaci&oacute;n b&aacute;sica</h4>
@@ -44,9 +38,6 @@
                                                 <div class="col-sm-6" id="col_persona">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input name="ID_PERSONA" id="ID_PERSONA_UPDATE"
-                                                                type="hidden"
-                                                                value="<?=$this->session->userdata('PERSONA')?>">
                                                             <label>Primer Nombre:</label>
                                                             <input name="PRIMER_NOMBRE_PERSONA"
                                                                 id="PRIMER_NOMBRE_UPDATE" type="text"
@@ -90,7 +81,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Sexo:</label>
-                                                            <select name="SEXO" id="SEXO" class="custom-select"
+                                                            <select name="SEXO" id="SEXO_UPDATE" class="custom-select"
                                                                 style="font-size: 1rem;" onblur="validaSelect(this);"
                                                                 required>
                                                             </select>
@@ -116,7 +107,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- DATOS DE CONTACTO -->
                                         <div class="tab-pane" id="contacto">
 
                                             <div class="row">
@@ -158,7 +148,6 @@
 
                                         </div>
 
-                                        <!-- DATOS DE DIRECCION -->
                                         <div class="tab-pane" id="direccion">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -174,7 +163,7 @@
                                                 <div class="col-sm-7 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Departamento:</label>
-                                                        <select name="DEPARTAMENTO" id="DEPARTAMENTO"
+                                                        <select name="DEPARTAMENTO" id="DEPARTAMENTO_UPDATE"
                                                             class="custom-select" style="font-size: 1rem;"
                                                             onblur="validaSelect(this);" required>
                                                         </select>
@@ -190,7 +179,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- DATOS LABORALES -->
                                         <div class="tab-pane" id="laboral">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -202,15 +190,15 @@
                                                 <br>
                                                 <br>
 
-                                                <!-- <div class="col-sm-5 col-sm-offset-1">
+                                                <div class="col-sm-5 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Profesi&oacute;n:</label>
-                                                        <select name="PROFESION" id="PROFESION" class="custom-select"
+                                                        <select name="PROFESION" id="PROFESION_UPDATE" class="custom-select"
                                                             style="font-size: 1rem;" onblur="validaSelect(this);"
                                                             required>
                                                         </select>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <div class="col-sm-7 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Correo Institucional:</label>
@@ -223,14 +211,13 @@
                                         </div>
 
                                     </div>
-                                    <!-- FIN DATOS WIZARD -->
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm"
                                                 name="next" value="Siguiente" />
                                             <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
-                                                name="finish" value="Guardar" />
+                                                name="finish" value="Actualizar" />
                                         </div>
 
                                         <div class="pull-left">
@@ -244,12 +231,6 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- wizard container -->
-
                     </div>
                 </div>
-                <!-- end row -->
-            </div>
-            <!--aqui termina tu contenido de desarrollo-->
-
-            </body>
+            </div> -->

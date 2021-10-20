@@ -52,44 +52,7 @@ class Proyectos extends CI_Controller
 			show_404();
 		}
 	}
-	//Obteniendo Tipo de investigación
-	public function obtTipoInvestigacion(){
-		$datos = $this->pm->obtTI();
-		echo "<option selected disabled value=''>Seleccionar...</option>";
-		foreach ($datos as $ti) {
-			echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
-		}
-	}
-	//Obteniendo Materia
-	public function obtMaterias(){
-		$datos = $this->pm->obtM();
-		echo "<option selected disabled value=''>Seleccionar...</option>";
-		foreach ($datos as $m) {
-			echo "<option value='".$m['ID_ASIGNATURA']."'>".$m['NOMBRE_ASIGNATURA']."</option>";
-		}
-	}
 
-	//Obteniendo Diseño de investigación
-	public function obtDisenioInvestigacion(){
-		$datos = $this->pm->obtDI();
-		echo "<option selected disabled value=''>Seleccionar...</option>";
-		foreach ($datos as $di) {
-			echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
-		}
-	}
-	//Obteniendo Grupo de alumno 
-	public function obtGrupoAlumno(){
-		$datos = $this->pm->obtGA();
-		echo json_encode($datos);
-	}
-	//Obteniendo Ciclo
-	public function obtCiclo(){
-		$datos = $this->pm->obtC();
-		echo "<option selected disabled value=''>Seleccionar Ciclo</option>";
-		foreach ($datos as $c) {
-			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
-		}
-	}
 	//Mostrar
 	public function MostrarProyecto()
 	{
@@ -117,6 +80,7 @@ class Proyectos extends CI_Controller
 		}
 		echo json_encode($result);
 	}
+
 	//Guardar Proyecto
 	public function Guardar()
 	{

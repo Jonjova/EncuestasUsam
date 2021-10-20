@@ -24,8 +24,8 @@ class DocenteModel extends CI_Model
 				".$datosDocente['DEPARTAMENTO'].", 
 				'".$datosDocente['TELEFONO_FIJO']."', 
 				'".$datosDocente['TELEFONO_MOVIL']."', 
-				".$datosDocente['ID_DOCENTE'].", 
 				".$datosDocente['PROFESION'].", 
+				".$datosDocente['ID_DOCENTE'].", 
 				".$datosDocente['COORDINADOR'].", 
 				".$datosDocente['ID_USUARIO'].", 
 				'".$datosDocente['NOMBRE_USUARIO']."', 
@@ -45,7 +45,7 @@ class DocenteModel extends CI_Model
 	{
 		if ($idCoodinador != 0)
 		{
-			$datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES WHERE ID_COORDINADOR = '.$idCoodinador.'');
+			$datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES WHERE COORDINADOR = '.$idCoodinador.'');
 		}
 		else
 		{
@@ -56,7 +56,7 @@ class DocenteModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// OBTENER DOCENTE
+	// INFORMACION DOCENTE
     public function datosDocenteModel($where)
     {
         $query = $this->db->select('*')->from('VW_INFO_DOCENTE')->where($where)->get();                         

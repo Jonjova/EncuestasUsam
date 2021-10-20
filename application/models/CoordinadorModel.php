@@ -24,8 +24,8 @@ class CoordinadorModel extends CI_Model
 				".$datosCoordinador['DEPARTAMENTO'].", 
 				'".$datosCoordinador['TELEFONO_FIJO']."', 
 				'".$datosCoordinador['TELEFONO_MOVIL']."', 
-				".$datosCoordinador['ID_COORDINADOR'].", 
 				".$datosCoordinador['PROFESION'].", 
+				".$datosCoordinador['ID_COORDINADOR'].", 
 				".$datosCoordinador['COORDINACION'].", 
 				".$datosCoordinador['ID_USUARIO'].", 
 				'".$datosCoordinador['NOMBRE_USUARIO']."', 
@@ -49,11 +49,50 @@ class CoordinadorModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// OBTENER COORDINADOR
+	// INFORMACION COORDINADOR
     public function datosCoordinadorModel($where)
     {
         $query = $this->db->select('*')->from('VW_INFO_COORDINADOR')->where($where)->get();                         
         return $query->row_array();
+    }
+
+	// OBTENER COORDINADOR PARA ACTUALIZAR
+    public function obtenerCoordinadorModel($where)
+    {
+        $query = $this->db->select('*')->from('VW_UPDATE_COORDINADOR')->where($where)->get();                         
+        return $query->row_array();
+    }
+
+	// ACTUALIZAR COORDINADOR
+	function updateCoordinadorModel($datosCoordinador)
+	{
+        try {
+            $this->db->reconnect();
+            $sql = "CALL `SP_ACTUALIZAR_COORDINADOR`(
+				".$datosCoordinador['COD_PERSONA'].", 
+				'".$datosCoordinador['PRIMER_NOMBRE']."', 
+				'".$datosCoordinador['SEGUNDO_NOMBRE']."', 
+				'".$datosCoordinador['PRIMER_APELLIDO']."', 
+				'".$datosCoordinador['SEGUNDO_APELLIDO']."', 
+				'".$datosCoordinador['FECHA_NACIMIENTO_PERSONA']."', 
+				".$datosCoordinador['SEXO_PERSONA'].", 
+				'".$datosCoordinador['CORREO_INSTITUCIONAL_PERSONA']."', 
+				'".$datosCoordinador['CORREO_PERSONAL_PERSONA']."',  
+				'".$datosCoordinador['DUI_PERSONA']."', 
+				'".$datosCoordinador['NIT_PERSONA']."', 
+				'".$datosCoordinador['DIRECCION_PERSONA']."', 
+				".$datosCoordinador['DEPARTAMENTO_PERSONA'].", 
+				'".$datosCoordinador['TELEFONO_FIJO_PERSONA']."', 
+				'".$datosCoordinador['TELEFONO_MOVIL_PERSONA']."', 
+				".$datosCoordinador['PROFESION_PERSONA'].", 
+				".$datosCoordinador['COORDINACION_PERSONA'].");";
+            $result = $this->db->query($sql, $datosCoordinador);
+            $this->db->close();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
     }
 
 }

@@ -26,21 +26,23 @@
 
 <!--LOGIN -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/Login.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Accesos/ValidaLogin.js"></script>
 
 <!-- DATOS Y VALIDACIONES -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/DatosValidaciones/DatosValidaciones.js"></script>
+
 <!-- CRUD COORDINADOR -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Coordinador/CrudCoordinador.js"></script>
+
 <!-- CRUD DOCENTE -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Docente/CrudDocente.js"></script>
+
 <!-- DATOS CUENTA -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Cuenta/DatosCuenta.js"></script>
+
 <!-- CRUD ASIGNATURA -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Asignatura/CrudAsignatura.js"></script>
 
 <!--CRUD PROYECTO-->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/ValidaProyecto.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/CrudProyecto.js"></script>
 
 <!--CRUD GRUPO ALUMNO-->
@@ -48,7 +50,6 @@
 
 <!--CRUD ALUMNO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/crudAlumno.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/ValidaAlumno.js"></script>
 
 <!--GESTION USUARIOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Usuario/GestionUsuarios.js"></script>
@@ -56,7 +57,6 @@
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
-
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sweetalert2.js"></script> 
 
 <!--Select2 y bootstrap-select -->
@@ -79,6 +79,5 @@
 </script>
 <!--Progreso -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/formeter.js"></script>
-
 
 </html>

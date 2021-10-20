@@ -79,6 +79,54 @@
 				echo "<option value='".$i['ID_DOCENTE']."'>".$i['DOCENTE']."</option>";
 			}
 		}
+
+		// LLENAR SELECT CARRERA
+		public function Carrera()
+		{
+			$datos = $this->modelDatos->obtCarrer();
+			echo "<option selected disabled value=''>Seleccione...</option>";
+			foreach ($datos as $ti) {
+				echo "<option value='".$ti['ID_CARRERA']."'>".$ti['NOMBRE_CARRERA']."</option>";
+			}
+			echo json_encode($datos);
+		}
+
+		// LLENAR SELECT TIPO INVESTIGACION
+		public function obtTipoInvestigacion()
+		{
+			$datos = $this->modelDatos->obtTI();
+			echo "<option selected disabled value=''>Seleccionar...</option>";
+			foreach ($datos as $ti) {
+				echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
+			}
+		}
+
+		// LLENAR SELECT DISEÑO INVESTIGACION
+		public function obtDisenioInvestigacion()
+		{
+			$datos = $this->modelDatos->obtDI();
+			echo "<option selected disabled value=''>Seleccionar...</option>";
+			foreach ($datos as $di) {
+				echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
+			}
+		}
+
+		// LLENAR SELECT GRUPO ALUMNOS
+		public function obtGrupoAlumno()
+		{
+			$datos = $this->modelDatos->obtGA();
+			echo json_encode($datos);
+		}
+
+		// LLENAR SELECT CICLO
+		public function obtCiclo()
+		{
+			$datos = $this->modelDatos->obtC();
+			echo "<option selected disabled value=''>Seleccionar Ciclo</option>";
+			foreach ($datos as $c) {
+				echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+			}
+		}
 		
 	}
 ?>

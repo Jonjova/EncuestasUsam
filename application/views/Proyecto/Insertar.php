@@ -1,4 +1,3 @@
-
 <!--Contenido de desarrollo-->
 <div class="container" id="container">
     <div class="row">
@@ -34,7 +33,8 @@
                                     <h4 class="info-text"> Datos del proyecto </h4>
                                     <div class="col-sm-4 col-sm-offset-1" id="logo_USAM">
                                         <div class="picture-container">
-                                            <img src="<?php echo base_url();?>assets/img/logo_USAM.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                            <img src="<?php echo base_url();?>assets/img/logo_USAM.png"
+                                                class="picture-src" id="wizardPicturePreview" title="" />
                                         </div>
                                     </div>
 
@@ -44,124 +44,139 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Nombre Proyecto</label>
-                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO"  type="text" class="form-control" placeholder="Nombre" id-data="validationCustom01" >
+                                                <input name="NOMBRE_PROYECTO" id="NOMBRE_PROYECTO" type="text"
+                                                    class="form-control" placeholder="Nombre"
+                                                    id-data="validationCustom01">
 
                                             </div>
                                             <div class="form-group">
                                                 <label>Descripci&oacute;n</label>
-                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"  rows="2" cols="50" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" ></textarea>
+                                                <textarea name="DESCRIPCION" id="DESCRIPCION" placeholder="Descripción"
+                                                    rows="2" cols="50" class="form-control mb-2 mr-sm-2 "
+                                                    id-data="validationCustom02"></textarea>
                                             </div>
                                         </div>
 
                                     </div>
 
                                     <div class="col-sm-10 col-sm-offset-1">
-                                       <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Tipo Investigaci&oacute;n</label>
-                                            <select  name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION" class="custom-select" required id-data="validationCustom03"></select>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Tipo Investigaci&oacute;n</label>
+                                                <select name="ID_TIPO_INVESTIGACION" id="ID_TIPO_INVESTIGACION"
+                                                    class="custom-select" required
+                                                    id-data="validationCustom03"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Materia</label>
+                                                <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="custom-select"
+                                                    onblur="validaSelect(this);" style="font-size: 1rem;" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Diseño de Investigaci&oacute;n</label>
+                                                <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION"
+                                                    class="custom-select" onblur="validaSelect(this);"
+                                                    style="font-size: 1rem;" required>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Materia</label>
-                                            <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="custom-select" style="font-size: 1rem;" required>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Diseño de Investigaci&oacute;n</label>
-                                            <select name="ID_DISENIO_INVESTIGACION" id="ID_DISENIO_INVESTIGACION" class="custom-select"  style="font-size: 1rem;" required>
-                                            </select>
-                                        </div>
-                                    </div>  
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- DATOS DE ASIGNACIÓN -->
-                        <div class="tab-pane" id="asignacion">
+                            <!-- DATOS DE ASIGNACIÓN -->
+                            <div class="tab-pane" id="asignacion">
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="info-text"> Informaci&oacute;n de Asignaci&oacute;n </h4>
-                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="info-text"> Informaci&oacute;n de Asignaci&oacute;n </h4>
+                                    </div>
 
-                                <br>
-                                <br>
-                                <br>
-                                <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
 
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="col-sm-10">
-                                      <div class="form-group">
-                                        <label>Ciclo</label>
-                                        <select name="CICLO" id="CICLO" class="custom-select" style="font-size: 1rem;" required>
-                                        </select>
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label>Ciclo</label>
+                                                <select name="CICLO" id="CICLO" class="custom-select"
+                                                    onblur="validaSelect(this);" style="font-size: 1rem;" required>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Grupo de Alumno</label>
+                                                <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO"
+                                                    class="custom-select" onblur="validaSelect(this);"
+                                                    style="font-size: 1rem;" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nuevo Grupo</label><br>
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                    data-target="#createModal">
+                                                    <i class="fas fa-plus-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nuevo Alumno</label><br>
+                                                <button type="button" class="btn btn-success " data-toggle="modal"
+                                                    data-target="#modalAlumno">
+                                                    <i class="fas fa-plus-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+
+
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label>Grupo de Alumno</label>
-                                    <select name="ID_GRUPO_ALUMNO" title="Selecciona.." id="ID_GRUPO_ALUMNO" class="custom-select"  style="font-size: 1rem;" required>
-                                      
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="col-sm-6">
-                             <div class="form-group">
-                              <label>Nuevo Grupo</label><br>
-                              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">
-                                 <i class="fas fa-plus-circle"></i>
-                             </button>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-10 col-sm-offset-1">
-                     <div class="col-sm-6">
-                         <div class="form-group">
-                           <label>Nuevo Alumno</label><br>
-                           <button type="button" class="btn btn-success "  data-toggle="modal" data-target="#modalAlumno">
-                             <i class="fas fa-plus-circle"></i>
-                         </button>
-                     </div>
-                 </div>
+                            </div>
+                        </div>
+                        <!-- FIN DATOS WIZARD -->
 
-                 <div class="col-sm-6" >
-                    
+                        <div class="wizard-footer height-wizard">
+                            <div class="pull-right">
+                                <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next"
+                                    value="Next" />
+                                <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
+                                    name="finish" value="Finish" />
+                            </div>
 
-                 </div>  
-             </div>  
-         </div>
+                            <div class="pull-left">
+                                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm"
+                                    name="previous" value="Previous" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
 
-     </div>
- </div>
- <!-- FIN DATOS WIZARD -->
+                    </form>
+                </div>
+            </div>
+            <!-- wizard container -->
 
- <div class="wizard-footer height-wizard">
-    <div class="pull-right">
-        <input type="button"  class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next" value="Next" />
-        <input type="submit"  class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Finish"/>
+        </div>
+
     </div>
 
-    <div class="pull-left">
-        <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous" />
-    </div>
-    <div class="clearfix"></div>
-</div>
-
-</form>
-</div>
-</div>
-<!-- wizard container -->
-
-</div>
-
-</div>
-
-<!-- end row -->
+    <!-- end row -->
 </div>
 <!--aqui termina tu contenido de desarrollo-->
-

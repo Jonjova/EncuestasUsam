@@ -2,20 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CuentaModel extends CI_Model 
-{	
-    // OBTENER PERSONA
-    public function mostrarPersonaModel($where)
-    {
-        $query = $this->db->select('*')->from('tbl_persona')->where($where)->get();                         
-        return $query->row_array();
-    }
-
-    // ACTUALIZAR PERSONA
-    public function updatePersonaModel($tablename, $data, $where)
-    {
-        $query = $this->db->update($tablename, $data, $where);
-        return $query;
-    }
+{
 
     // VALIDAR PASSWORD
     public function findPassword($iduser, $password)

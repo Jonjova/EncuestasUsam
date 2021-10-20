@@ -5,17 +5,11 @@ $(document).ready(function() {
     llenarDropdowns();
 
     // MASCARAS DE CAMPOS
-    $('#DUI').mask('99999999-9');
-    $('#NIT').mask('9999-999999-999-9');
-    $('#TELEFONO_FIJO').mask('9999-9999');
-    $('#TELEFONO_MOVIL').mask('9999-9999');
-    $('#TELEFONO_FIJO_UPDATE').mask('9999-9999');
-    $('#TELEFONO_MOVIL_UPDATE').mask('9999-9999');
-
-    // CARGAR DATOS PERSONALES
-    if (window.location.href === (url + 'Persona/persona')) {
-        mostrarPersona($('#ID_PERSONA_UPDATE').val());
-    }
+    $("[name='CARNET']").mask('999999');
+    $("[name='DUI']").mask('99999999-9');
+    $("[name='NIT']").mask('9999-999999-999-9');
+    $("[name='TELEFONO_FIJO']").mask('9999-9999');
+    $("[name='TELEFONO_MOVIL']").mask('9999-9999');
 });
 
 /****************************************************************************
@@ -29,6 +23,12 @@ function llenarDropdowns() {
     coordinador();
     asignatura();
     docente();
+
+    obtTipoInvestiga();
+    obtDiseInvestiga();
+    obtCicl();
+    obtCarrera();
+    obtGrupoAlumn();
 }
 
 function validaSelect(select) {
@@ -50,7 +50,7 @@ function sexo() {
         url: url + 'DatosComunes/dropSexo',
         type: 'POST',
         success: function(respuesta) {
-            $('#SEXO').html(respuesta);
+            $("[name='SEXO']").html(respuesta);
         }
     })
 }
@@ -61,7 +61,7 @@ function departamento() {
         url: url + 'DatosComunes/dropDepartamento',
         type: 'POST',
         success: function(respuesta) {
-            $('#DEPARTAMENTO').html(respuesta);
+            $("[name='DEPARTAMENTO']").html(respuesta);
         }
     })
 }
@@ -72,7 +72,7 @@ function profesion() {
         url: url + 'DatosComunes/dropProfesion',
         type: 'POST',
         success: function(respuesta) {
-            $('#PROFESION').html(respuesta);
+            $("[name='PROFESION']").html(respuesta);
         }
     })
 }
@@ -83,7 +83,7 @@ function coordinacion() {
         url: url + 'DatosComunes/dropCoordinacion',
         type: 'POST',
         success: function(respuesta) {
-            $('#COORDINACION').html(respuesta);
+            $("[name='COORDINACION']").html(respuesta);
         }
     })
 }
@@ -94,7 +94,7 @@ function coordinador() {
         url: url + 'DatosComunes/dropCoordinador',
         type: 'POST',
         success: function(respuesta) {
-            $('#COORDINADOR').html(respuesta);
+            $("[name='COORDINADOR']").html(respuesta);
         }
     })
 }
@@ -105,7 +105,7 @@ function asignatura() {
         url: url + 'DatosComunes/dropAsignatura',
         type: 'POST',
         success: function(respuesta) {
-            $('#ASIGNATURA').html(respuesta);
+            $("[name='ID_ASIGNATURA']").html(respuesta);
         }
     })
 }
@@ -116,9 +116,75 @@ function docente() {
         url: url + 'DatosComunes/dropDocente',
         type: 'POST',
         success: function(respuesta) {
-            $('#ID_DOCENTE').html(respuesta);
+            $("[name='ID_DOCENTE']").html(respuesta);
         }
     })
+}
+
+// LLENAR SELECT TIPO INVESTIGACION
+function obtTipoInvestiga() {
+    $.ajax({
+        url: url + "DatosComunes/obtTipoInvestigacion",
+        type: 'post',
+        success: function(respuesta) {
+            $("[name='ID_TIPO_INVESTIGACION']").html(respuesta);
+        }
+    })
+}
+
+// LLENAR SELECT DISENIO INVESTIGACION
+function obtDiseInvestiga() {
+    $.ajax({
+        url: url + "DatosComunes/obtDisenioInvestigacion",
+        type: 'post',
+        success: function(respuesta) {
+            $('#ID_DISENIO_INVESTIGACION').html(respuesta);
+        }
+    })
+}
+
+// LLENAR SELECT CICLO
+function obtCicl() {
+    $.ajax({
+        url: url + "DatosComunes/obtCiclo",
+        type: 'post',
+        success: function(respuesta) {
+            $('#CICLO').html(respuesta);
+        }
+    })
+}
+
+// LLENAR SELECT Carrera 
+function obtCarrera() {
+    $.ajax({
+        url: url + "DatosComunes/Carrera",
+        type: 'post',
+        success: function(data) {
+            $('#CARRERA').html(data);
+        }
+    });
+}
+
+// LLENAR SELECT GRUPO ALUMNO
+function obtGrupoAlumn() {
+    $.ajax({
+        url: url + "DatosComunes/obtGrupoAlumno",
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+            var options = "<option selected disabled value='0'>Seleccionar... </option>";
+
+            $.each(data, function(index, object) {
+                options += '<option value="' + object.ID_GRUPO_ALUMNO + '">' + object.NOMBRE_GRUPO + '</option>';
+            });
+            // $('.bootstrap-select').selectpicker('refresh');
+            $('#ID_GRUPO_ALUMNO').html(options);
+
+            console.log(data);
+        }
+    })
+
 }
 
 /****************************************************************************
@@ -201,7 +267,6 @@ $('#TELEFONO_MOVIL').change(function() {
 });
 
 // VALIDAR CORREO PERSONAL
-var email = $('#CORREO_PERSONAL');
 $('#CORREO_PERSONAL').change(function() {
     $.ajax({
         type: 'POST',
@@ -240,7 +305,6 @@ $('#CORREO_INSTITUCIONAL').change(function() {
 });
 
 // VALIDAR CODIGO ASIGNATURA
-var email = $('#CODIGO_ASIGNATURA');
 $('#CODIGO_ASIGNATURA').change(function() {
     $.ajax({
         type: 'POST',
@@ -254,6 +318,142 @@ $('#CODIGO_ASIGNATURA').change(function() {
                 })
                 $('#CODIGO_ASIGNATURA').val('');
                 $('#CODIGO_ASIGNATURA').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CARNET
+$('#CARNET').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/validarCarnet',
+        data: { 'CARNET': $(this).val() },
+        success: function(msg) {
+            if (msg == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este Carnet ya Existe!'
+                })
+                $('#CARNET').val('');
+                $('#CARNET').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+/****************************************************************************
+                        VALIDAR CAMPOS PARA ACTUALIZAR
+****************************************************************************/
+// VALIDAR CAMBIAR DUI
+$('#DUI_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarDUI',
+        data: { 'DUI': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este DUI ya Existe!'
+                })
+                $('#DUI_UPDATE').val('');
+                $('#DUI_UPDATE').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CAMBIAR NIT
+$('#NIT_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarNIT',
+        data: { 'NIT': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este NIT ya Existe!'
+                })
+                $('#NIT_UPDATE').val('');
+                $('#NIT_UPDATE').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CAMBIAR TELEFONO FIJO
+$('#TELEFONO_FIJO_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarTelFijo',
+        data: { 'TELEFONO_FIJO': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este Tel\u00e9fono ya Existe!'
+                })
+                $('#TELEFONO_FIJO_UPDATE').val('');
+                $('#TELEFONO_FIJO_UPDATE').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CAMBIAR TELEFONO MOVIL
+$('#TELEFONO_MOVIL_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarTelMovil',
+        data: { 'TELEFONO_MOVIL': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este Tel\u00e9fono ya Existe!'
+                })
+                $('#TELEFONO_MOVIL_UPDATE').val('');
+                $('#TELEFONO_MOVIL_UPDATE').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CAMBIAR CORREO PERSONAL
+$('#CORREO_PERSONAL_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarEmail',
+        data: { 'CORREO_PERSONAL': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este Correo ya Existe!'
+                })
+                $('#CORREO_PERSONAL_UPDATE').val('');
+                $('#CORREO_PERSONAL_UPDATE').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR CAMBIAR CORREO INSTITUCIONAL
+$('#CORREO_INSTITUCIONAL_UPDATE').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarEmailUSAM',
+        data: { 'CORREO_INSTITUCIONAL': $(this).val() },
+        success: function(msg) {
+            if (msg == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este Correo ya Existe!'
+                })
+                $('#CORREO_INSTITUCIONAL_UPDATE').val('');
+                $('#CORREO_INSTITUCIONAL_UPDATE').removeClass('is-valid');
             }
         }
     });

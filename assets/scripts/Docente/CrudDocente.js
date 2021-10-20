@@ -118,3 +118,91 @@ function infoDocente(persona) {
         }
     })
 }
+
+/****************************************************************************
+                        OBTENER INFORMACION DOCENTE
+****************************************************************************/
+function obtenerDocente(persona) {
+    $('#UpdateDocente').find('.nav-pills a:first').tab('show');
+    if ($(document).width() <= 992) {
+        $('#UpdateDocente .moving-tab').css('width', '100%');
+    } else {
+        $('#UpdateDocente .moving-tab').css('width', '25%');
+    }
+    $.ajax({
+        url: url + 'Usuario/mostrarPersona/' + persona,
+        method: 'post',
+        data: { 'ID_PERSONA': persona },
+        dataType: 'json',
+        success: function(response) {
+            $('#ID_PERSONA_UPDATE').val(response.ID_PERSONA);
+            $('#PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
+            $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
+            $('#PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
+            $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
+            $('#FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
+            $('#SEXO_UPDATE').val(response.SEXO);
+            $('#DUI_UPDATE').val(response.DUI);
+            $('#NIT_UPDATE').val(response.NIT);
+            $('#CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
+            $('#TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
+            $('#TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
+            $('#DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
+            $('#DIRECCION_UPDATE').val(response.DIRECCION);
+            $('#CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
+            $('#PROFESION_UPDATE').val(response.PROFESION);
+        }
+    })
+}
+
+/****************************************************************************
+                            ACTUALIZAR DOCENTE
+****************************************************************************/
+$(function() {
+    $('#UpdateDocente').submit(function(event) {
+        var forms = $('#UpdateDocente');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Complete el formulario!'
+                })
+                form.classList.add('was-validated');
+                $('.custom-select').addClass('is-invalid');
+            }
+            if (form.checkValidity() === true) {
+                $.ajax({
+                    url: url + 'Usuario/updatePersona',
+                    data: $('#UpdateDocente').serialize(),
+                    type: 'POST',
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('body').removeClass('modal-open');
+                        $('#modalDocente').removeClass('show');
+                        $('.modal-backdrop').removeClass('show');
+                        $('.modal-backdrop').css('display', 'none');
+                        $('#modalDocente').css('display', 'none');
+                        $('#modalDocente').removeAttr('aria-modal', 'true');
+                        $('#modalDocente').removeAttr('role', 'dialog');
+                        $('#modalDocente').attr('aria-hidden', 'true');
+                        $('#Docentes').DataTable().ajax.reload(null, false);
+                        $('#UpdateDocente .form-control').removeClass('is-valid');
+                        $('#UpdateDocente .custom-select').removeClass('is-valid');
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos actualizados correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                });
+
+            }
+        });
+    });
+});

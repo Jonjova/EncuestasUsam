@@ -109,8 +109,8 @@
 				'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
 				'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO'),
 				'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
-				'ID_DOCENTE' => $this->maxDocente(),
 				'PROFESION' => $this->input->post('PROFESION'),
+				'ID_DOCENTE' => $this->maxDocente(),
 				'COORDINADOR' => $this->input->post('COORDINADOR'),
 				'ID_USUARIO' => $this->maxUsuario(),
 				'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
@@ -135,10 +135,10 @@
 			$i = 1;
 			foreach ($resultList as $key => $value) {
 				$btnInfo = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoDocente('.$value['ID_PERSONA'].');" 
-					data-toggle="modal" data-target="#InfoDocente">
-					<i class="fas fa-info-circle" title="Información"></i>
-				</a>';
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoDocente('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#InfoDocente">
+						<i class="fas fa-info-circle" title="Información"></i>
+					</a>';
 				$btnestado = ($value['ESTADO_PERMISO'] > 0) ? 
 					'<a class="btn btn-success" title="Estado" style="font-size: x-large;" 
 						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
@@ -148,42 +148,28 @@
 						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
 						<i class="far fa-times-circle"></i>
 					</a>';
-				// $btnSwitch = ($value['ESTADO_PERMISO'] > 0) ?
-				// 	'<input type="checkbox" style="transform: translateY(13px);" 
-				// 		onclick="cambiarEstado('.$value['ID_USUARIO'].');" checked="checked" title="Desabilitar">' :
-				// 	'<input type="checkbox" style="transform: translateY(13px); 
-				// 		onclick="cambiarEstado('.$value['ID_USUARIO'].');" title="Habilitar">';
-				if ($_SESSION['ID_TIPO_USUARIO'] == 1) 
-				{
-					$result['data'][] = array(
-						$i++,
-						$value['DOCENTE'],
-						$value['NOMBRE_USUARIO'],
-						$value['TELEFONO_MOVIL'],
-						$value['RESPONSABLE'],
-						$btnInfo."&ensp;&ensp;".
-						$btnestado."&ensp;&ensp;"
-						// $btnSwitch
-					);
-				}
-				else
-				{
-					$result['data'][] = array(
-						$i++,
-						$value['DOCENTE'],
-						$value['NOMBRE_USUARIO'],
-						$value['TELEFONO_MOVIL'],
-						$btnInfo."&ensp;&ensp;".
-						$btnestado."&ensp;&ensp;"
-						// $btnSwitch
-					);
-				}
+				$btnUpdate = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="obtenerDocente('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#modalDocente">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
+
+				$result['data'][] = array(
+					$i++,
+					$value['DOCENTE'],
+					$value['NOMBRE_USUARIO'],
+					$value['TELEFONO_MOVIL'],
+					$value['CORREO_PERSONAL'],
+					$btnInfo."&ensp;&ensp;".
+					$btnestado."&ensp;&ensp;".
+					$btnUpdate
+				);
 				
 			}
 			echo json_encode($result);
 		}
 
-		// OBTENER DOCENTE
+		// INFORMACION DOCENTE
         public function datosDocente($persona)
         {
             $resultData = $this->modelDocente->datosDocenteModel(array('ID_PERSONA' => $persona));

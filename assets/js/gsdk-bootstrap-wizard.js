@@ -175,6 +175,14 @@ $(document).ready(function() {
         }
     });
 
+    if ($(document).width() <= 992) {
+        $('#UpdateCoordinador .moving-tab').css('width', '100%');
+        $('#UpdateDocente .moving-tab').css('width', '100%');
+    } else {
+        $('#UpdateCoordinador .moving-tab').css('width', '25%');
+        $('#UpdateDocente .moving-tab').css('width', '25%');
+    }
+
 });
 
 $(window).resize(function() {
@@ -207,6 +215,7 @@ function refreshAnimation($wizard, index) {
             'transition': 'all 0.3s ease-out'
         });
     } else {
+
         $wizard.find('.moving-tab').css('width', step_width);
         $('.wizard-card .wizard-navigation ul li').css('width', width_li + '%');
         $('.moving-tab').css({

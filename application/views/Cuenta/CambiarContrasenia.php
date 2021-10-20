@@ -7,7 +7,7 @@
                         <div class="wizard-container">
 
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
-                                <form id="UpdatePass" class="needs-validation" >
+                                <form id="UpdatePass" class="needs-validation">
 
                                     <div class="wizard-header">
                                         <h3>
@@ -31,17 +31,20 @@
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Contrase&ntilde;a Antigua:</label>
-                                                        <input name="OLD_PASSWORD" id="OLD_PASSWORD" type="password" class="form-control" placeholder="••••••••••••" required>
+                                                        <input name="OLD_PASSWORD" id="OLD_PASSWORD" type="password"
+                                                            class="form-control" placeholder="••••••••••••" required>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Nueva Contrase&ntilde;a:</label>
-                                                        <input name="PASSWORD" id="PASSWORD" type="password" class="form-control" placeholder="••••••••••••" required>
+                                                        <input name="PASSWORD" id="PASSWORD" type="password"
+                                                            class="form-control" placeholder="••••••••••••" required>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Confirmar Contrase&ntilde;a:</label>
-                                                        <input name="RE_PASSWORD" id="RE_PASSWORD" type="password" class="form-control" placeholder="••••••••••••" required>
+                                                        <input name="RE_PASSWORD" id="RE_PASSWORD" type="password"
+                                                            class="form-control" placeholder="••••••••••••" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,7 +55,8 @@
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
-                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar" />
+                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
+                                                name="finish" value="Guardar" />
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

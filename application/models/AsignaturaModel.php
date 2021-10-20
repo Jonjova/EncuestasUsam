@@ -44,7 +44,7 @@
         {
             if ($idCoodinador != 0)
             {
-                $datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES_ASIGNATURAS WHERE ID_COORDINADOR = '.$idCoodinador.'');
+                $datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES_ASIGNATURAS WHERE COORDINADOR = '.$idCoodinador.'');
             }
             else
             {

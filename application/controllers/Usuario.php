@@ -43,38 +43,58 @@
 						<i class="fas fa-info-circle" title="Información"></i>
 					</a>';
 				$btnPass = 
-					'<a class="btn btn-dark" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
 						<i class="fas fa-sync-alt"></i>
 						<i class="fas fa-lock"></i>
 					</a>';
-				$btnestado = ($value['ESTADO_PERMISO'] > 0) ? 
-					'<a class="btn btn-success" title="Estado" style="font-size: x-large;" 
-						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
-						<i class="far fa-check-circle"></i>
-					</a>' : 
-					'<a class="btn btn-danger" title="Estado" style="font-size: x-large;" 
-						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
-						<i class="far fa-times-circle"></i>
+				$btnUpdate = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="obtenerPersona('.$value['PERSONA'].');" 
+						data-toggle="modal" data-target="#modalPersona">
+						<i class="fas fa-pen" title="Actualizar"></i>
 					</a>';
-
+				
 				$result['data'][] = array(
 					$i++,
 					$value['PERSONA_USUARIO'],
 					$value['NOMBRE_USUARIO'],
-					$value['NOMBRE_ROL'],
-					// $btnestado."&ensp;&ensp;".
+					$value['TELEFONO_MOVIL'],
+					$value['CORREO_PERSONAL'],
+					$btnPass."&ensp;&ensp;".
 					$btnInfo."&ensp;&ensp;".
-					$btnPass
+					$btnUpdate
 				);
+				
 			}
 			echo json_encode($result);
 		}
 
-		// OBTENER USUARIO
+		// INFORMACION USUARIO
         public function datosUsuario($persona)
         {
             $resultData = $this->modelUsuario->datosUsuarioModel(array('ID_PERSONA' => $persona));
             echo json_encode($resultData);
+        }
+
+		// OBTENER PERSONA
+        public function mostrarPersona($persona)
+        {
+            $resultData = $this->modelUsuario->mostrarPersonaModel(array('ID_PERSONA' => $persona));
+            echo json_encode($resultData);
+        }
+
+        // ACTUALIZAR PERSONA
+        public function updatePersona()
+        {
+            $where = $this->input->post('ID_PERSONA');
+		    $editar = $this->modelUsuario->updatePersonaModel('tbl_persona', $_POST, array('ID_PERSONA' => $where));
+            if ($editar == TRUE) 
+            {
+                echo "true";
+            }
+            else
+            {
+                echo "false";
+            }
         }
 
 		// RESTABLECER CONTRASEÑA

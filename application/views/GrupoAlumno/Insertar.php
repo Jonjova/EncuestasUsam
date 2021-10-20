@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="form-group">
-    <select name="ID_ALUMNO_GA[]" id="ID_ALUMNO_GA" title="Selecciona.." data-live-search="true" class="bootstrap-select strings show-tick " multiple data-width="100%"   required> 
+    <select name="ID_ALUMNO_GA[]" id="ID_ALUMNO_GA" title="Selecciona.." onblur="validaSelect(this);"  data-live-search="true" class="bootstrap-select strings show-tick " multiple data-width="100%"   required> 
     </select>
   </div>
 

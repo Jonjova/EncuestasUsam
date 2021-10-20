@@ -50,28 +50,6 @@
             }
         }
 
-        // OBTENER PERSONA
-        public function mostrarPersona($persona)
-        {
-            $resultData = $this->modelCuenta->mostrarPersonaModel(array('ID_PERSONA' => $persona));
-            echo json_encode($resultData);
-        }
-
-        // ACTUALIZAR PERSONA
-        public function updatePersona()
-        {
-            $where = $this->input->post('ID_PERSONA');
-		    $editar = $this->modelCuenta->updatePersonaModel('tbl_persona', $_POST, array('ID_PERSONA' => $where));
-            if ($editar == TRUE) 
-            {
-                echo "true";
-            }
-            else
-            {
-                echo "false";
-            }
-        }
-
         // VALIDAR PASSWORD
 		public function validarPassword()
 		{ 

@@ -87,12 +87,56 @@
 			}
 		}
 
+		// VALIDAR CARNET
+		public function validarCarnet()
+		{ 
+			$valor = $this->input->post('CARNET');
+			$resultado = $this->modelValidar->findCarnet($valor);
+			if($resultado)
+			{
+				echo 1;
+			}
+		}
+
+
+		// VALIDAR CAMBIAR DUI
+		public function cambiarDUI()
+		{ 
+			$valor = $this->input->post('DUI');
+			$idPersona = $_SESSION['PERSONA'];
+			$resultado = $this->modelValidar->cambiarDUIModel($valor, $idPersona);
+			if(!$resultado)
+			{
+				echo 1;
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+
+		// VALIDAR CAMBIAR DUI
+		public function cambiarNIT()
+		{ 
+			$valor = $this->input->post('NIT');
+			$idPersona = $_SESSION['PERSONA'];
+			$resultado = $this->modelValidar->cambiarNITModel($valor, $idPersona);
+			if(!$resultado)
+			{
+				echo 1;
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+
 		// VALIDAR CAMBIAR TELEFONO FIJO
 		public function cambiarTelFijo()
 		{ 
-			$telefono = $this->input->post('TELEFONO_FIJO');
+			$valor = $this->input->post('TELEFONO_FIJO');
 			$idPersona = $_SESSION['PERSONA'];
-			$resultado = $this->modelValidar->cambiarTelFijoModel($telefono, $idPersona);
+			$resultado = $this->modelValidar->cambiarTelFijoModel($valor, $idPersona);
 			if(!$resultado)
 			{
 				echo 1;
@@ -106,9 +150,9 @@
 		// VALIDAR CAMBIAR TELEFONO MOVIL
 		public function cambiarTelMovil()
 		{ 
-			$telefono = $this->input->post('TELEFONO_MOVIL');
+			$valor = $this->input->post('TELEFONO_MOVIL');
 			$idPersona = $_SESSION['PERSONA'];
-			$resultado = $this->modelValidar->cambiarTelMovilModel($telefono, $idPersona);
+			$resultado = $this->modelValidar->cambiarTelMovilModel($valor, $idPersona);
 			if(!$resultado)
 			{
 				echo 1;
@@ -122,9 +166,25 @@
 		// VALIDAR CAMBIAR CORREO PERSONAL
 		public function cambiarEmail()
 		{ 
-			$email = $this->input->post('CORREO_PERSONAL');
+			$valor = $this->input->post('CORREO_PERSONAL');
 			$idPersona = $_SESSION['PERSONA'];
-			$resultado = $this->modelValidar->cambiarEmailModel($email, $idPersona);
+			$resultado = $this->modelValidar->cambiarEmailModel($valor, $idPersona);
+			if(!$resultado)
+			{
+				echo 1;
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+
+		// VALIDAR CAMBIAR CORREO INSTITUCIONAL
+		public function cambiarEmailUSAM()
+		{ 
+			$valor = $this->input->post('CORREO_INSTITUCIONAL');
+			$idPersona = $_SESSION['PERSONA'];
+			$resultado = $this->modelValidar->cambiarEmailUSAMModel($valor, $idPersona);
 			if(!$resultado)
 			{
 				echo 1;
