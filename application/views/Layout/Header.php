@@ -11,6 +11,7 @@
 	<link rel="icon" type="image/gif" href="<?php echo base_url();?>assets/img/usam.png">
 	<!-- DATATABLES PAPA BUSQUEDA Y PAGINACION AL MOSTRAR LOS DATOS CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/responsive.bootstrap4.min.css">
 	<!-- BOOTSTRAP WIZARD CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/gsdk-bootstrap-wizard.css">

@@ -1,8 +1,15 @@
 <style type="text/css">
+<<<<<<< HEAD
 .not-active {
     pointer-events: none;
     cursor: none;
 }
+=======
+  .d { 
+            pointer-events: none; 
+            cursor: none; 
+        } 
+>>>>>>> 1e09e048b0b890912c9904b566b1525b01ab7605
 </style>
 <!--Aquí comienza el modal de nuevo de Alumno -->
 <form id="crearAlumno" class="needs-validation">
@@ -164,6 +171,17 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+  </div>
+  <div class="modal-footer" >
+    <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="limpiar()" id="cancelBtnId"  data-dismiss="modal">Cerrar</button>   
+    <button  type="submit" class="btn btn-success btn-sm toggle-disabled "  disabled >Guardar</button> 
+  </div>
+</div>
+</div>
+</div>
+>>>>>>> 1e09e048b0b890912c9904b566b1525b01ab7605
 </form>
 
 <!--Aquí termina el modal de Alumno -->

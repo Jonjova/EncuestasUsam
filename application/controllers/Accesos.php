@@ -57,6 +57,7 @@ class Accesos extends CI_Controller
 			'ID_USUARIO' => $res->ID_USUARIO,
 			'ID_TIPO_USUARIO' => $res->ID_TIPO_USUARIO,
 			'NOMBRE_ROL' => $res->NOMBRE_ROL,
+			'ID_ROL' => $res->ID_ROL,
 			'PERSONA_USUARIO' => $res->PERSONA_USUARIO,
 			'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
 			'ESTADO_PERMISO' => $res->ESTADO_PERMISO,

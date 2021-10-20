@@ -146,25 +146,36 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
-                <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-folder-open"></i> Proyectos
-                    </a>
-                    <ul class="collapse list-unstyled" id="proyectSubmenu">
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+
+                    <li>
+                        <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
+                        <ul class="collapse list-unstyled" id="proyectSubmenu">
+                        <?php if(!isset($permisos->LEER) == 1): ?>
+                            <li>
+                                <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
+                            </li>
+                        <?php endif; ?>
                         <li>
-                            <a href="<?php echo base_url();?>Proyectos/proyecto">
-                                <i class="fas fa-plus-circle"></i> Registrar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>Proyectos/index">
-                                <i class="fas fa-eye"></i> Mostrar
-                            </a>
+                            <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
                         </li>
                     </ul>
                 </li>
-                <?php endif; ?>
+            <?php endif; ?>
+            <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <li>
+                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">Permisos</a>
+                    <ul class="collapse list-unstyled" id="permisosSubmenu">
+                       <li>
+                           <a href="<?php echo base_url();?>Permisos/index">Mostrar</a>
+                       </li>
+                       <li>
+                        <a href="<?php echo base_url();?>Permisos/permisos">Agregar</a>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+
                 <!-- <li>
                     <a href="#">Portafolio</a>
                 </li>
