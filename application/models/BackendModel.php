@@ -17,5 +17,25 @@ class BackendModel extends CI_Model
 		$resultado = $this->db->get("permisos");
 		return $resultado->row();
 	}
+
+	  //-- check user role power
+    function check_permiso($perm){
+        $this->db->select('leer');
+        $this->db->where("leer",$perm);
+        $query = $this->db->get("permisos");
+        $query = $query->row();  
+        return $query;
+    }
+
+    public function check_permi($leer)
+	{
+		$this->db->select('leer');
+		//Traemos los datos a la tabla correspondiente.
+		$this->db->from('permisos');
+		$this->db->where('leer=',$leer);
+		$datos = $this->db->get();
+		return $datos->result_array();
+
+	}
 }
 ?>

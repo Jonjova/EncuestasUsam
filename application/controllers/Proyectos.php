@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Proyectos extends CI_Controller
 {
-	private $permisos;
+	//private $permisos;
 	public function __construct()
 	{
 		parent::__construct();
-		$this->permisos = $this->backend_lib->controles();
+		//$this->permisos = $this->backend_lib->controles();
 		$this->load->model('ProyectoModel','pm',true);
 		$this->load->model('GrupoAlumnoModel','gam',true);
 	}
@@ -18,11 +18,11 @@ class Proyectos extends CI_Controller
 		if($this->session->userdata('is_logged')){
 			
 			$data = array('title' => 'Registro de Proyecto' );
-			$otro  = array('permisos' => $this->permisos );
+			//$otro  = array('permisos' => $this->permisos );
 			//header
 			$this->load->view('Layout/Header',$data);
 		//Body
-			$this->load->view('Layout/Sidebar',$otro,true);
+			$this->load->view('Layout/Sidebar');
 			$this->load->view('Proyecto/Mostrar');
 		 //Footer
 			$this->load->view('Layout/Footer');
@@ -37,13 +37,13 @@ class Proyectos extends CI_Controller
 	public function proyecto(){
 		if($this->session->userdata('is_logged')){
 			$data = array('title' => 'Proyecto' );
-				$otro  = array('permisos' => $this->permisos );
+				//$otro  = array('permisos' => $this->permisos );
 			//header
 			$this->load->view('Layout/Header',$data);
 			//Body
-			$this->load->view('Layout/Sidebar',$otro,true);
-			var_dump($otro);
-			//$dato['product'] = $this->gam->get_products();
+			$this->load->view('Layout/Sidebar');
+			
+			
 			$this->load->view('Proyecto/insertar');
 			$this->load->view('GrupoAlumno/insertar');
 			$this->load->view('Alumno/insertarAlumno');

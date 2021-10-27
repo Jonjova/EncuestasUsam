@@ -151,12 +151,15 @@
                     <li>
                         <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
                         <ul class="collapse list-unstyled" id="proyectSubmenu">
-                        <?php if(!isset($permisos->LEER) == 1): ?>
+                        <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
                             <li>
+
                                 <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
                             </li>
-                        <?php endif; ?>
+                              
+                        <!--</?php endif; ?>-->
                         <li>
+
                             <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
                         </li>
                     </ul>
