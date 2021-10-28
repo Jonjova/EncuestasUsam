@@ -21,6 +21,10 @@ function obtA() {
 
             $("#ID_ALUMNO_GA").change(function() {
                 valGrupoAlumno();
+                // alert("hola");
+
+                $('.bootstrap-select').selectpicker('refresh');
+                console.log(data);
 
                 //obtA();
             });

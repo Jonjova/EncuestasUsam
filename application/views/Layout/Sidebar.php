@@ -170,19 +170,18 @@
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 
                 <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-folder"></i> Proyectos</a>
+                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
                     <ul class="collapse list-unstyled" id="proyectSubmenu">
-                        <?php if(!isset($permisos->LEER) == 1): ?>
-                        <li>
-                            <a href="<?php echo base_url();?>Proyectos/index">
-                                <i class="fas fa-eye"></i> Mostrar</a>
-                        </li>
-                        <?php endif; ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyecto">
                                 <i class="fas fa-plus-circle"></i> Agregar</a>
                         </li>
+                        <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
+                            <li>
+                                <a href="<?php echo base_url();?>Proyectos/index">
+                                    <i class="fas fa-eye"></i> Mostrar</a>
+                            </li>
+                        <!--</?php endif; ?>-->
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -191,10 +190,12 @@
                     <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">Permisos</a>
                     <ul class="collapse list-unstyled" id="permisosSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Permisos/index">Mostrar</a>
+                            <a href="<?php echo base_url();?>Permisos/permisos">
+                                <i class="fas fa-plus-circle"></i> Agregar</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Permisos/permisos">Agregar</a>
+                            <a href="<?php echo base_url();?>Permisos/index">
+                                <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
                     </ul>
                 </li>
