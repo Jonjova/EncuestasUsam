@@ -10,7 +10,7 @@
                         <th>Persona Usuario</th>
                         <th>Nombre Usuario</th>
                         <th>Tel&eacute;fono M&oacute;vil</th>
-                        <th>Correo Personal</th>
+                        <th>Rol</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -83,7 +83,7 @@
 
                                         <div class="wizard-header">
                                             <h3>
-                                                <b>Actualizar</b> PERFIL ADMINISTRADOR<br>
+                                                <b>ACTUALIZAR</b> PERFIL <span id="titulo-rol"></span><br>
                                                 <small>Cambie la informaci&oacute;n que se muestra.</small>
                                             </h3>
                                         </div>

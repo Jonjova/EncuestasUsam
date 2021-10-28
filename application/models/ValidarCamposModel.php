@@ -59,6 +59,13 @@ class ValidarCamposModel extends CI_Model
 		return $this->db->get('tbl_alumnos')->result();
 	}
 
+	// VALIDAR CICLO
+	public function validarCicloModel($valor)
+	{
+		$this->db->where('COD_CICLO', $valor);
+		return $this->db->get('tbl_ciclo')->result();
+	}
+
 
 	// VALIDAR CAMBIAR DUI
 	function cambiarDUIModel($valor, $idPersona)

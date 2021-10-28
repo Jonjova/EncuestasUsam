@@ -31,7 +31,7 @@
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Asignatura:</label>
-                                                        <select name="ID_ASIGNATURA" id="ID_ASIGNATURA"
+                                                        <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" onchange="docente(this.value);"
                                                             class="custom-select" style="font-size: 1rem;"
                                                             onblur="validaSelect(this);" required>
                                                         </select>

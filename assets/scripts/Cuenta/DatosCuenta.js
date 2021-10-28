@@ -89,6 +89,60 @@ $(function() {
     });
 });
 
+/****************************************************************************
+                        CARGAR DATOS PERSONALES
+****************************************************************************/
+$(document).ready(function() {
+    if (window.location.href === (url + 'Cuenta/persona')) {
+        obtenerUsuario(1);
+    }
+});
+
+/****************************************************************************
+                            ACTUALIZAR USUARIO
+****************************************************************************/
+$(function() {
+    $('#UpdatePerfil').submit(function(event) {
+        var forms = $('#UpdatePerfil');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Complete el formulario!'
+                })
+                form.classList.add('was-validated');
+                $('.custom-select').addClass('is-invalid');
+            }
+            if (form.checkValidity() === true) {
+                $.ajax({
+                    url: url + 'Usuario/updatePersona',
+                    data: $('#UpdatePerfil').serialize(),
+                    type: 'POST',
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#UpdatePerfil .form-control').removeClass('is-valid');
+                        $('#UpdatePerfil .custom-select').removeClass('is-valid');
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos actualizados correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                });
+                setTimeout(function() {
+                    location.href = url + 'Dashboard';
+                }, 1200)
+            }
+        });
+    });
+});
+
 // /****************************************************************************
 //                         VALIDAR RESTABLECER CONTRASEÑA
 // ****************************************************************************/

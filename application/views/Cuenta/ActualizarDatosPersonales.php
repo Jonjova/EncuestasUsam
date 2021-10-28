@@ -1,9 +1,9 @@
-            <!-- <div class="container" id="container">
+            <div class="container" id="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2" id="col-wizard">
                         <div class="wizard-container">
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
-                                <form id="UpdatePersona" class="needs-validation">
+                                <form id="UpdatePerfil" class="needs-validation" onload="obtenerUsuario(1);">
 
                                     <div class="wizard-header">
                                         <h3>
@@ -40,14 +40,14 @@
                                                         <div class="form-group">
                                                             <label>Primer Nombre:</label>
                                                             <input name="PRIMER_NOMBRE_PERSONA"
-                                                                id="PRIMER_NOMBRE_UPDATE" type="text"
+                                                                id="PRIMER_NOMBRE_PERSONA_UPDATE" type="text"
                                                                 class="form-control" placeholder="1er Nombre" required>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Segundo Nombre:</label>
                                                             <input name="SEGUNDO_NOMBRE_PERSONA"
-                                                                id="SEGUNDO_NOMBRE_UPDATE" type="text"
+                                                                id="SEGUNDO_NOMBRE_PERSONA_UPDATE" type="text"
                                                                 class="form-control" placeholder="2do Nombre">
                                                         </div>
                                                     </div>
@@ -56,14 +56,14 @@
                                                         <div class="form-group">
                                                             <label>Primer Apellido:</label>
                                                             <input name="PRIMER_APELLIDO_PERSONA"
-                                                                id="PRIMER_APELLIDO_UPDATE" type="text"
+                                                                id="PRIMER_APELLIDO_PERSONA_UPDATE" type="text"
                                                                 class="form-control" placeholder="1er Apellido"
                                                                 required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Segundo Apellido:</label>
                                                             <input name="SEGUNDO_APELLIDO_PERSONA"
-                                                                id="SEGUNDO_APELLIDO_UPDATE" type="text"
+                                                                id="SEGUNDO_APELLIDO_PERSONA_UPDATE" type="text"
                                                                 class="form-control" placeholder="2do Apellido">
                                                         </div>
                                                     </div>
@@ -233,4 +233,4 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>

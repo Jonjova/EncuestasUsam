@@ -2,7 +2,6 @@
                             CARGAR METODOS
 ****************************************************************************/
 $(document).ready(function() {
-    llenarDropdowns();
 
     // MASCARAS DE CAMPOS
     $("[name='CARNET']").mask('999999');
@@ -10,19 +9,24 @@ $(document).ready(function() {
     $("[name='NIT']").mask('9999-999999-999-9');
     $("[name='TELEFONO_FIJO']").mask('9999-9999');
     $("[name='TELEFONO_MOVIL']").mask('9999-9999');
+
+    // DROPDOWNS
+    llenarDropdowns();
 });
 
 /****************************************************************************
                             CARGAR DROPDOWNS
 ****************************************************************************/
 function llenarDropdowns() {
+    // nomCiclo();
     sexo();
     departamento();
     profesion();
+    rol();
     coordinacion();
     coordinador();
     asignatura();
-    docente();
+    // docente();
 
     obtTipoInvestiga();
     obtDiseInvestiga();
@@ -77,6 +81,17 @@ function profesion() {
     })
 }
 
+// LLENAR SELECT ROL
+function rol() {
+    $.ajax({
+        url: url + 'DatosComunes/dropRol',
+        type: 'POST',
+        success: function(respuesta) {
+            $("[name='ID_TIPO_USUARIO']").html(respuesta);
+        }
+    })
+}
+
 // LLENAR SELECT COORDINACIÓN
 function coordinacion() {
     $.ajax({
@@ -110,10 +125,14 @@ function asignatura() {
     })
 }
 
+function valDocenteAsignatura(valor) {
+    console.log(valor)
+}
+
 // LLENAR SELECT DOCENTE
-function docente() {
+function docente(asignatura) {
     $.ajax({
-        url: url + 'DatosComunes/dropDocente',
+        url: url + 'DatosComunes/dropDocente/' + asignatura,
         type: 'POST',
         success: function(respuesta) {
             $("[name='ID_DOCENTE']").html(respuesta);
@@ -337,6 +356,26 @@ $('#CARNET').change(function() {
                 })
                 $('#CARNET').val('');
                 $('#CARNET').removeClass('is-valid');
+            }
+        }
+    });
+});
+
+// VALIDAR NOMBRE CICLO
+$('#COD_CICLO').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/validarCiclo',
+        data: { 'COD_CICLO': $(this).val() },
+        success: function(msg) {
+            console.log(msg);
+            if (msg == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ciclo ya Existe!'
+                })
+                $('#COD_CICLO').val('');
+                $('#COD_CICLO').removeClass('is-valid');
             }
         }
     });

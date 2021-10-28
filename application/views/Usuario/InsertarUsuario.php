@@ -1,19 +1,14 @@
-            <!--Contenido de desarrollo-->
             <div class="container" id="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2" id="col-wizard">
-
-                        <!--      Wizard container        -->
                         <div class="wizard-container">
-
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
-                                <form id="CreateCoordinador" class="needs-validation">
+                                <form id="CreateUser" class="needs-validation">
 
                                     <div class="wizard-header">
                                         <h3>
-                                            <b>CREAR</b> NUEVO PERFIL COORDINADOR<br>
-                                            <small>Ingrese la informaci&oacute;n que se solicita del
-                                                coordinador.</small>
+                                            <b>CREAR</b> PERFIL USUARIO<br>
+                                            <small>Cambie la informaci&oacute;n que se muestra.</small>
                                         </h3>
                                     </div>
 
@@ -26,10 +21,7 @@
                                         </ul>
                                     </div>
 
-                                    <!-- DATOS WIZARD -->
                                     <div class="tab-content" id="tab-content">
-
-                                        <!-- DATOS PERSONALES -->
                                         <div class="tab-pane" id="datosPersonales">
                                             <div class="row" style="display: block;">
                                                 <h4 class="info-text"> Informaci&oacute;n b&aacute;sica</h4>
@@ -114,7 +106,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- DATOS DE CONTACTO -->
                                         <div class="tab-pane" id="contacto">
 
                                             <div class="row">
@@ -156,7 +147,6 @@
 
                                         </div>
 
-                                        <!-- DATOS DE DIRECCION -->
                                         <div class="tab-pane" id="direccion">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -188,7 +178,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- DATOS LABORALES -->
                                         <div class="tab-pane" id="laboral">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -200,17 +189,16 @@
                                                 <br>
                                                 <br>
 
-                                                <div class="col-sm-6 col-sm-offset-1">
+                                                <div class="col-sm-5 col-sm-offset-1">
                                                     <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label>Correo Institucional:</label>
-                                                            <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL"
-                                                                type="text" class="form-control"
-                                                                placeholder="coordinador@liveusam.edu.sv" required>
-                                                        </div>
+                                                        <label>Rol:</label>
+                                                        <select name="ID_TIPO_USUARIO" id="ID_TIPO_USUARIO" class="custom-select"
+                                                            style="font-size: 1rem;" onblur="validaSelect(this);"
+                                                            required>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-5 col-sm-offset-1">
+                                                <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label>Profesi&oacute;n:</label>
                                                         <select name="PROFESION" id="PROFESION" class="custom-select"
@@ -219,13 +207,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-5">
+                                                <div class="col-sm-7 col-sm-offset-1">
                                                     <div class="form-group">
-                                                        <label>Coordinaci&oacute;n:</label><br>
-                                                        <select name="COORDINACION" id="COORDINACION"
-                                                            class="custom-select" style="font-size: 1rem;"
-                                                            onblur="validaSelect(this);" required>
-                                                        </select>
+                                                        <label>Correo Institucional:</label>
+                                                        <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL"
+                                                            type="text" class="form-control"
+                                                            placeholder="usuario@liveusam.edu.sv" required>
                                                         <!-- USUARIO -->
                                                         <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="hidden">
                                                         <input name="PASSWORD" id="PASSWORD" type="hidden">
@@ -233,14 +220,12 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <!-- FIN DATOS WIZARD -->
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm"
-                                                name="next" value="Siguiente" />
+                                                name="next" value="Siguiente" onclick="crearUsuarioPass();"/>
                                             <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
                                                 name="finish" value="Guardar" />
                                         </div>
@@ -256,10 +241,6 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- wizard container -->
-
                     </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!--aqui termina tu contenido de desarrollo-->

@@ -3,10 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CoordinadorModel extends CI_Model 
 {
+
 	// INSERTAR COORDINADOR
 	function crearCoordinadorModel($datosCoordinador)
 	{
-        try {
+        try
+		{
             $this->db->reconnect();
             $sql = "CALL `SP_CREAR_COORDINADOR`(
 				".$datosCoordinador['ID_PERSONA'].", 
@@ -34,7 +36,9 @@ class CoordinadorModel extends CI_Model
             $result = $this->db->query($sql, $datosCoordinador);
             $this->db->close();
 
-        } catch (Exception $e) {
+        }
+		catch (Exception $e)
+		{
             echo $e->getMessage();
         }
         return $result;
@@ -66,7 +70,8 @@ class CoordinadorModel extends CI_Model
 	// ACTUALIZAR COORDINADOR
 	function updateCoordinadorModel($datosCoordinador)
 	{
-        try {
+        try
+		{
             $this->db->reconnect();
             $sql = "CALL `SP_ACTUALIZAR_COORDINADOR`(
 				".$datosCoordinador['COD_PERSONA'].", 
@@ -89,7 +94,9 @@ class CoordinadorModel extends CI_Model
             $result = $this->db->query($sql, $datosCoordinador);
             $this->db->close();
 
-        } catch (Exception $e) {
+        }
+		catch (Exception $e)
+		{
             echo $e->getMessage();
         }
         return $result;

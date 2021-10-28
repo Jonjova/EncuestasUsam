@@ -6,7 +6,8 @@ class DocenteModel extends CI_Model
 	// INSERTAR DOCENTE
 	function crearDocenteModel($datosDocente)
 	{
-        try {
+        try
+		{
             $this->db->reconnect();
             $sql = "CALL `SP_CREAR_DOCENTE`(
 				".$datosDocente['ID_PERSONA'].", 
@@ -34,7 +35,9 @@ class DocenteModel extends CI_Model
             $result = $this->db->query($sql, $datosDocente);
             $this->db->close();
 
-        } catch (Exception $e) {
+        }
+		catch (Exception $e)
+		{
             echo $e->getMessage();
         }
         return $result;
@@ -43,16 +46,9 @@ class DocenteModel extends CI_Model
 	// MOSTRAR DOCENTES
 	public function mostrarDocentesModel($idCoodinador)
 	{
-		if ($idCoodinador != 0)
-		{
-			$datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES WHERE COORDINADOR = '.$idCoodinador.'');
-		}
-		else
-		{
-			$this->db->select('*');
-			$this->db->from('VW_TBL_DOCENTES');
-			$datos = $this->db->get();
-		}
+		$this->db->where('COORDINADOR', $idCoodinador);
+		$this->db->from('VW_TBL_DOCENTES');
+		$datos = $this->db->get();
 		return $datos->result_array();
 	}
 

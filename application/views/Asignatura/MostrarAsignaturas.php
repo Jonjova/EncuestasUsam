@@ -9,10 +9,6 @@
                         <th>#</th>
                         <th>C&oacute;digo Asignatura</th>
                         <th>Nombre Asignatura</th>
-                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
-                            <th>Coordinador</th>
-                            <th>Coordinaci&oacute;n</th>
-                        <?php endif; ?>
                     </tr>
                 </thead>
             </table>

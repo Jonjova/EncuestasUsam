@@ -14,6 +14,56 @@ function llenarTablaUsuarios() {
 }
 
 /****************************************************************************
+                            INSERTAR USUARIO
+****************************************************************************/
+$(function() {
+    $('#CreateUser').submit(function(event) {
+        crearUsuarioPass();
+        var forms = $('#CreateUser');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Complete el formulario!'
+                })
+                form.classList.add('was-validated');
+                $('.custom-select').addClass('is-invalid');
+            }
+            if (form.checkValidity() === true) {
+                $.ajax({
+                    url: url + 'Usuario/crearUsuario',
+                    data: $('#CreateUser').serialize(),
+                    type: 'POST',
+                    async: false,
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        $('#CreateUser').find('.nav-pills a:first').tab('show');
+                        $('#CreateUser')[0].reset();
+                        $('#CreateUser .form-control').removeClass('is-valid');
+                        $('#CreateUser .custom-select').removeClass('is-valid');
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos guardados correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
+
+            }
+        });
+    });
+});
+
+/****************************************************************************
                             RECUPERAR CONTRASENIA
 ****************************************************************************/
 function resetPass(personaUsuario) {
@@ -71,7 +121,7 @@ function infoUsuario(persona) {
 /****************************************************************************
                         OBTENER INFORMACION USUARIO
 ****************************************************************************/
-function obtenerPersona(persona) {
+function obtenerUsuario(persona) {
     $('#UpdatePersona').find('.nav-pills a:first').tab('show');
     if ($(document).width() <= 992) {
         $('#UpdatePersona .moving-tab').css('width', '100%');
@@ -79,11 +129,12 @@ function obtenerPersona(persona) {
         $('#UpdatePersona .moving-tab').css('width', '25%');
     }
     $.ajax({
-        url: url + 'Usuario/mostrarPersona/' + persona,
+        url: url + 'Usuario/mostrarUsuario/' + persona,
         method: 'post',
         data: { 'ID_PERSONA': persona },
         dataType: 'json',
         success: function(response) {
+            $('#titulo-rol').html(response.NOMBRE_ROL.toUpperCase());
             $('#ID_PERSONA_UPDATE').val(response.ID_PERSONA);
             $('#PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
             $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);

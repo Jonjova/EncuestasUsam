@@ -1,15 +1,8 @@
 <style type="text/css">
-<<<<<<< HEAD
-.not-active {
-    pointer-events: none;
-    cursor: none;
-}
-=======
   .d { 
             pointer-events: none; 
             cursor: none; 
         } 
->>>>>>> 1e09e048b0b890912c9904b566b1525b01ab7605
 </style>
 <!--Aquí comienza el modal de nuevo de Alumno -->
 <form id="crearAlumno" class="needs-validation">

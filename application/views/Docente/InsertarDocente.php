@@ -79,7 +79,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Fecha de Nacimiento:</label>
-                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO"
+                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="2000-01-01"
                                                                 type="date" class="form-control" required>
                                                         </div>
                                                     </div>
@@ -214,37 +214,15 @@
                                                         <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL"
                                                             type="text" class="form-control"
                                                             placeholder="docente@liveusam.edu.sv" required>
+                                                        <!-- ID COORDINADOR -->
+                                                        <input type="hidden" name="COORDINADOR"
+                                                            value="<?=$this->session->userdata('COORDINADOR')?>">
+                                                        <!-- USUARIO Y PASSWORD-->
+                                                        <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="hidden">
+                                                        <input name="PASSWORD" id="PASSWORD" type="hidden">
                                                     </div>
                                                 </div>
-                                                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
-                                                <div class="col-sm-8 col-sm-offset-1">
-                                                    <div class="form-group">
-                                                        <label>Coordinador:</label>
-                                                        <select name="COORDINADOR" id="COORDINADOR"
-                                                            class="custom-select" style="font-size: 1rem;"
-                                                            onblur="validaSelect(this);" required>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <?php endif; ?>
-
                                             </div>
-                                        </div>
-
-                                        <!-- DATOS DE LA CUENTA -->
-                                        <div class="tab-pane" id="cuenta">
-                                            <!-- ID COORDINADOR -->
-                                            <?php if($this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
-                                            <span>
-                                                <input type="hidden" name="COORDINADOR"
-                                                    value="<?=$this->session->userdata('COORDINADOR')?>">
-                                            </span>
-                                            <?php endif; ?>
-                                            <!-- USUARIO Y PASSWORD-->
-                                            <span>
-                                                <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="text">
-                                                <input name="PASSWORD" id="PASSWORD" type="text">
-                                            </span>
                                         </div>
 
                                     </div>
