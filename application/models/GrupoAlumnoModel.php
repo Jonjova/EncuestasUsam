@@ -37,12 +37,14 @@ class GrupoAlumnoModel extends CI_Model
 			//Obtener id grupo
 		$grupo_id = $this->db->insert_id();
 		$result = array();
+		$contador = $this->maxIdDGA();
 		foreach($alumno AS $key => $val){
 			$result[] = array(
-				//'ID_DET_GA' =>6,
+				'ID_DET_GA' => $contador,
 				'ID_DET_GRUPO' => $grupo_id,
 				'ID_DET_ALUMNO' => $_POST['ID_ALUMNO_GA'][$key]
 				);
+			$contador++;
 		}      
 			//insercion multiple en la tabla detalle
 		$this->db->insert_batch('tbl_grupo_alumno', $result);
