@@ -82,6 +82,19 @@
                 </li>
                 <?php endif; ?>
 
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                <li>
+                    <a href="#bitacoraSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="fas fa-archive"></i> Bitácora
+                    </a>
+                    <ul class="collapse list-unstyled" id="bitacoraSubmenu">
+                       <li>
+                           <a href="<?php echo base_url();?>Bitacora/verBitacora">Mostrar</a>
+                       </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
                 <li>
                     <a href="#cicloSubmenu" data-toggle="collapse" aria-expanded="false">

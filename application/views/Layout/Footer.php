@@ -67,6 +67,9 @@
 <!--CRUD PERMISOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Permisos/crudPermisos.js"></script>
 
+<!--GESTION BITACORA-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Bitacora/GestionBitacora.js"></script>
+
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
