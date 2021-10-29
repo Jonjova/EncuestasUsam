@@ -170,7 +170,8 @@
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 
                 <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
+                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-folder"></i> Proyectos</a>
                     <ul class="collapse list-unstyled" id="proyectSubmenu">
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyecto">
@@ -187,7 +188,8 @@
                 <?php endif; ?>
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
                 <li>
-                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">Permisos</a>
+                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> Permisos</a>
                     <ul class="collapse list-unstyled" id="permisosSubmenu">
                         <li>
                             <a href="<?php echo base_url();?>Permisos/permisos">
