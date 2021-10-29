@@ -100,17 +100,13 @@ $("#createForm").submit(function(event) {
                         timer: 1500
                     })
                     //$('#ID_ALUMNO_GA').prop('selectedIndex',0);
-<<<<<<< HEAD
+
                     cargaFuncionSelect();
                     $('#createModal').modal('hide');
                 }
 
-=======
-                $('#createModal').modal('hide');
->>>>>>> 3929672716210cd1dba3381c8c5a4f6ca479d053
-            }
 
-        }
+            } 
     });
 });
 
@@ -122,14 +118,10 @@ function limpiar2() {
 
 
 //Validación de si ya existe en un grupo 
-<<<<<<< HEAD
 
-  function valGrupoAlumno() {
-    //var grupo =$('#ID_ALUMNO_GA').val();
-=======
 function valGrupoAlumno() {
 
->>>>>>> 3929672716210cd1dba3381c8c5a4f6ca479d053
+
     var grupo = $('#ID_ALUMNO_GA :selected').val();
     if (grupo) {
         $.ajax({
@@ -150,7 +142,7 @@ function valGrupoAlumno() {
             }
         });
     }
-<<<<<<< HEAD
+
 }
 
 
@@ -232,6 +224,5 @@ function cargaFuncionSelect(){
     //setTimeout(obtA, 5000)
   }
   console.log(contar);
-=======
->>>>>>> 3929672716210cd1dba3381c8c5a4f6ca479d053
+
 }

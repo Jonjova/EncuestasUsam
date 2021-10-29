@@ -77,7 +77,7 @@ class Proyectos extends CI_Controller
 				$value['NOMBRE_ASIGNATURA'],
 				$value['NOMBRE_DISENIO'],
 				$value['FECHA_ASIGNACION'],
-				//$value['item_alumno']. ' Items',
+				$value['Alumnos']. ' Integrantes',
 				$value['COD_CICLO'],
 				$estado
 				);

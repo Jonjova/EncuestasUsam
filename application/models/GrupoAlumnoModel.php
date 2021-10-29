@@ -39,7 +39,7 @@ class GrupoAlumnoModel extends CI_Model
 		$result = array();
 		foreach($alumno AS $key => $val){
 			$result[] = array(
-				'ID_DET_GA' =>$this->maxIdDGA(),
+				//'ID_DET_GA' =>6,
 				'ID_DET_GRUPO' => $grupo_id,
 				'ID_DET_ALUMNO' => $_POST['ID_ALUMNO_GA'][$key]
 				);
