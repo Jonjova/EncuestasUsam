@@ -12,20 +12,24 @@ $(document).ready(function() {
 
     // DROPDOWNS
     llenarDropdowns();
+
+    if (window.location.href === (url + 'Asignatura/asignar')) {
+        asignatura();
+    }
+    if (window.location.href === (url + 'Proyectos/proyecto')) {
+        asignaturaAsignada();
+    }
 });
 
 /****************************************************************************
                             CARGAR DROPDOWNS
 ****************************************************************************/
 function llenarDropdowns() {
-    // nomCiclo();
     sexo();
     departamento();
     profesion();
     rol();
     coordinacion();
-    coordinador();
-    asignatura();
     // docente();
 
     obtTipoInvestiga();
@@ -103,17 +107,6 @@ function coordinacion() {
     })
 }
 
-// LLENAR SELECT COORDINADOR
-function coordinador() {
-    $.ajax({
-        url: url + 'DatosComunes/dropCoordinador',
-        type: 'POST',
-        success: function(respuesta) {
-            $("[name='COORDINADOR']").html(respuesta);
-        }
-    })
-}
-
 // LLENAR SELECT ASIGNATURA
 function asignatura() {
     $.ajax({
@@ -125,8 +118,15 @@ function asignatura() {
     })
 }
 
-function valDocenteAsignatura(valor) {
-    console.log(valor)
+// LLENAR SELECT ASIGNATURA ASIGNADA
+function asignaturaAsignada() {
+    $.ajax({
+        url: url + 'DatosComunes/dropAsignaturaAsignada',
+        type: 'POST',
+        success: function(respuesta) {
+            $("#CrearProyecto [name='ID_ASIGNATURA']").html(respuesta);
+        }
+    })
 }
 
 // LLENAR SELECT DOCENTE

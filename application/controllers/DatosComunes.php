@@ -54,18 +54,7 @@ class DatosComunes extends CI_Controller
 		}
 	}
 
-	// LLENAR SELECT COORDINADOR
-	public function dropCoordinador()
-	{
-		$datos = $this->modelDatos->dropCoordinadorModel();
-		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $i)
-		{
-			echo "<option value='".$i['ID_COORDINADOR']."'>".$i['COORDINADOR'].", ".$i['NOMBRE_COORDINACION']."</option>";
-		}
-	}
-
-	// LLENAR SELECT COORDINADOR
+	// LLENAR SELECT ROL
 	public function dropRol()
 	{
 		$datos = $this->modelDatos->dropRolModel();
@@ -80,6 +69,17 @@ class DatosComunes extends CI_Controller
 	public function dropAsignatura()
 	{
 		$datos = $this->modelDatos->dropAsignaturaModel($_SESSION['COORDINADOR']);
+		echo "<option selected disabled value=''>Seleccione...</option>";
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
+		}
+	}
+
+	// LLENAR SELECT ASIGNATURA ASIGNADA
+	public function dropAsignaturaAsignada()
+	{
+		$datos = $this->modelDatos->dropAsignaturaAsignadaModel($_SESSION['DOCENTE']);
 		echo "<option selected disabled value=''>Seleccione...</option>";
 		foreach ($datos as $i)
 		{

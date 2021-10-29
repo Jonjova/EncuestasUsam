@@ -74,13 +74,6 @@ class DatosComunesModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// LLENAR SELECT COORDINADOR
-	public function dropCoordinadorModel()
-	{
-		$datos = $this->db->get('VW_DROP_COORDINADORES');
-		return $datos->result_array();
-	}
-
 	// LLENAR SELECT ROL
 	public function dropRolModel()
 	{
@@ -91,36 +84,29 @@ class DatosComunesModel extends CI_Model
 	// LLENAR SELECT ASIGNATURA
 	public function dropAsignaturaModel($coordinador)
 	{
-		if ($coordinador >= 1)
-		{
-			$datos = $this->db->query('SELECT * FROM tbl_asignatura WHERE COORDINADOR = '.$coordinador.'');
-		}
-		else
-		{
-			$datos = $this->db->get('tbl_asignatura');
-		}
+		$datos = $this->db->query('SELECT * FROM tbl_asignatura WHERE COORDINADOR = '.$coordinador.'');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT ASIGNATURA ASIGNADA
+	public function dropAsignaturaAsignadaModel($docente)
+	{
+		$datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES_ASIGNATURAS WHERE ID_DOCENTE = '.$docente.'');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT DOCENTE
 	public function dropDocenteModel($coordinador, $asignatura)
 	{
-		if ($coordinador >= 1)
-		{
-			// $datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
-			$datos = $this->db->query(
-				'SELECT * FROM VW_DROP_DOCENTES
-				WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN (SELECT ID_DOCENTE FROM tbl_docente_asignatura WHERE ID_ASIGNATURA = '.$asignatura.')');
-			// $datos = $this->db->query(
-			// 	'SELECT * FROM VW_DROP_DOCENTES
-			// 	WHERE ID_DOCENTE NOT IN (
-			// 	SELECT ID_DOCENTE FROM tbl_docente_asignatura
-			// 	WHERE ID_ASIGNATURA = '.$coordinador.') AND COORDINADOR = 2');
-		}
-		else
-		{
-			$datos = $this->db->get('VW_DROP_DOCENTES');
-		}
+		// $datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
+		$datos = $this->db->query(
+			'SELECT * FROM VW_DROP_DOCENTES
+			WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN (SELECT ID_DOCENTE FROM tbl_docente_asignatura WHERE ID_ASIGNATURA = '.$asignatura.')');
+		// $datos = $this->db->query(
+		// 	'SELECT * FROM VW_DROP_DOCENTES
+		// 	WHERE ID_DOCENTE NOT IN (
+		// 	SELECT ID_DOCENTE FROM tbl_docente_asignatura
+		// 	WHERE ID_ASIGNATURA = '.$coordinador.') AND COORDINADOR = 2');
 		return $datos->result_array();
 	}
 
