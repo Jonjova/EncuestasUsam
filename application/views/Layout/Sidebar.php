@@ -26,9 +26,15 @@
                             <a class="dropdown-item" href="<?php echo base_url();?>Cuenta/cambiar">
                                 <i class="fas fa-key"></i> Cambiar Contrase&ntilde;a
                             </a>
+                            <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                            <a class="dropdown-item" onclick="resetPass(1);">
+                                <i class="fas fa-sync-alt"></i>
+                                <i class="fas fa-lock"></i> Restablecer Contraseña
+                            </a>
                             <a class="dropdown-item" href="<?php echo base_url();?>Cuenta/persona">
                                 <i class="fas fa-user-edit"></i> Editar Perfil
                             </a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="<?php echo base_url()?>Accesos/logout">
                                 <i class="fas fa-user-times"></i> Cerrar Sesion
                             </a>
@@ -63,13 +69,28 @@
                     </a>
                     <ul class="collapse list-unstyled" id="usersSubmenu">
                         <li>
+                            <a href="<?php echo base_url();?>Usuario/usuario">
+                                <i class="fas fa-user-plus"></i> Registrar
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?php echo base_url();?>Usuario/usuarios">
                                 <i class="fas fa-eye"></i> Ver Usuarios
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <li>
+                    <a href="#cicloSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="far fa-calendar-alt"></i> Ciclos
+                    </a>
+                    <ul class="collapse list-unstyled" id="cicloSubmenu">
                         <li>
-                            <a href="#">
-                                <i class="fas fa-user-plus"></i> Registrar
+                            <a href="<?php echo base_url();?>Ciclo/ciclo">
+                                <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                     </ul>
@@ -98,7 +119,7 @@
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
                 <li>
-                    <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false"> 
+                    <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-chalkboard-teacher"></i> Docentes
                     </a>
                     <ul class="collapse list-unstyled" id="DocenteSubmenu">
@@ -148,36 +169,37 @@
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 
-                    <li>
-                        <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
-                        <ul class="collapse list-unstyled" id="proyectSubmenu">
+                <li>
+                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">Proyectos</a>
+                    <ul class="collapse list-unstyled" id="proyectSubmenu">
+                        <li>
+                            <a href="<?php echo base_url();?>Proyectos/proyecto">
+                                <i class="fas fa-plus-circle"></i> Agregar</a>
+                        </li>
                         <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
                             <li>
-
-                                <a href="<?php echo base_url();?>Proyectos/index">Mostrar</a>
+                                <a href="<?php echo base_url();?>Proyectos/index">
+                                    <i class="fas fa-eye"></i> Mostrar</a>
                             </li>
-                              
                         <!--</?php endif; ?>-->
-                        <li>
-
-                            <a href="<?php echo base_url();?>Proyectos/proyecto">Agregar</a>
-                        </li>
                     </ul>
                 </li>
-            <?php endif; ?>
-            <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <?php endif; ?>
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
                 <li>
                     <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">Permisos</a>
                     <ul class="collapse list-unstyled" id="permisosSubmenu">
-                       <li>
-                           <a href="<?php echo base_url();?>Permisos/index">Mostrar</a>
-                       </li>
-                       <li>
-                        <a href="<?php echo base_url();?>Permisos/permisos">Agregar</a>
-                    </li>
-                </ul>
-            </li>
-        <?php endif; ?>
+                        <li>
+                            <a href="<?php echo base_url();?>Permisos/permisos">
+                                <i class="fas fa-plus-circle"></i> Agregar</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>Permisos/index">
+                                <i class="fas fa-eye"></i> Mostrar</a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
 
                 <!-- <li>
                     <a href="#">Portafolio</a>

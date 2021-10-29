@@ -31,7 +31,8 @@
 	<!-- LIBRERIA DE PDF MPDF -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/pdf.css">
 	<!-- JQUERY 3.5.1 Para evitar cualquier bloqueo al DOM se incluye aqui -->
-	<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+	<!-- <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!--Barra de progreso -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/formeter.css">
 	<!-- MASCARA DE CAMPOS -->

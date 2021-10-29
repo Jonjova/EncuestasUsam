@@ -69,7 +69,7 @@
         </div>
 
         <div class="modal fade" id="modalDocente" aria-hidden="true">
-            <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #094f8b; color: #fff;">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -84,7 +84,7 @@
 
                                         <div class="wizard-header">
                                             <h3>
-                                                <b>Actualizar</b> PERFIL DOCENTE<br>
+                                                <b>ACTUALIZAR</b> PERFIL DOCENTE<br>
                                                 <small>Cambie la informaci&oacute;n que se muestra.</small>
                                             </h3>
                                         </div>

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DatosComunesModel extends CI_Model 
 {
+
 	// MAX ID PERSONA
 	public function maxPersonaModel()
 	{
@@ -35,6 +36,13 @@ class DatosComunesModel extends CI_Model
 	public function maxAlumnoModel()
 	{
 		$maxid = $this->db->query('SELECT MAX(ID_ALUMNO + 1) as ID_ALUMNO FROM `tbl_alumnos`');
+		return $maxid->result_array();
+	}
+
+	// MAX ID CICLO
+	public function maxCicloModel()
+	{
+		$maxid = $this->db->query('SELECT MAX(ID_CICLO + 1) as ID_CICLO FROM `tbl_ciclo`');
 		return $maxid->result_array();
 	}
 
@@ -73,6 +81,13 @@ class DatosComunesModel extends CI_Model
 		return $datos->result_array();
 	}
 
+	// LLENAR SELECT ROL
+	public function dropRolModel()
+	{
+		$datos = $this->db->query('SELECT * FROM cat_rol_usuario WHERE ID_ROL NOT IN (1, 3, 4)');
+		return $datos->result_array();
+	}
+
 	// LLENAR SELECT ASIGNATURA
 	public function dropAsignaturaModel($coordinador)
 	{
@@ -88,11 +103,19 @@ class DatosComunesModel extends CI_Model
 	}
 
 	// LLENAR SELECT DOCENTE
-	public function dropDocenteModel($coordinador)
+	public function dropDocenteModel($coordinador, $asignatura)
 	{
 		if ($coordinador >= 1)
 		{
-			$datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
+			// $datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
+			$datos = $this->db->query(
+				'SELECT * FROM VW_DROP_DOCENTES
+				WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN (SELECT ID_DOCENTE FROM tbl_docente_asignatura WHERE ID_ASIGNATURA = '.$asignatura.')');
+			// $datos = $this->db->query(
+			// 	'SELECT * FROM VW_DROP_DOCENTES
+			// 	WHERE ID_DOCENTE NOT IN (
+			// 	SELECT ID_DOCENTE FROM tbl_docente_asignatura
+			// 	WHERE ID_ASIGNATURA = '.$coordinador.') AND COORDINADOR = 2');
 		}
 		else
 		{

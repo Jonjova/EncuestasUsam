@@ -37,6 +37,9 @@
 <!-- DATOS Y VALIDACIONES -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/DatosValidaciones/DatosValidaciones.js"></script>
 
+<!--GESTION USUARIOS-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Usuario/GestionUsuarios.js"></script>
+
 <!-- CRUD COORDINADOR -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Coordinador/CrudCoordinador.js"></script>
 
@@ -49,6 +52,9 @@
 <!-- CRUD ASIGNATURA -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Asignatura/CrudAsignatura.js"></script>
 
+<!-- CRUD CICLO -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Ciclo/crudCiclo.js"></script>
+
 <!--CRUD PROYECTO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/CrudProyecto.js"></script>
 
@@ -58,14 +64,8 @@
 <!--CRUD ALUMNO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/crudAlumno.js"></script>
 
-
 <!--CRUD PERMISOS-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Permisos/crudPermisos.js"></script>
-
-
-<!--GESTION USUARIOS-->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Usuario/GestionUsuarios.js"></script>
-
 
 <!-- ALERTAS JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>

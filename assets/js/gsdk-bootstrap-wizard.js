@@ -67,7 +67,10 @@ $(document).ready(function() {
             ID_DOCENTE: { required: true },
             OLD_PASSWORD: { required: true },
             PASSWORD: { required: true },
-            RE_PASSWORD: { required: true }
+            RE_PASSWORD: { required: true },
+            COD_CICLO: { required: true },
+            FECHA_INICIO: { required: true },
+            FECHA_FIN: { required: true }
         },
         messages: {
             PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
@@ -92,7 +95,10 @@ $(document).ready(function() {
             ID_DOCENTE: { required: "Docente Requerido." },
             OLD_PASSWORD: { required: "Contrase\u00f1a Antigua Requerida." },
             PASSWORD: { required: "Nueva Contrase\u00f1a Requerida." },
-            RE_PASSWORD: { required: "Confirme la Nueva Contrase\u00f1a." }
+            RE_PASSWORD: { required: "Confirme la Nueva Contrase\u00f1a." },
+            COD_CICLO: { required: "Nombre Ciclo Requerido." },
+            FECHA_INICIO: { required: "Fecha Inicio Requerida." },
+            FECHA_FIN: { required: "Fecha Fin Requerida." }
         }
     });
 

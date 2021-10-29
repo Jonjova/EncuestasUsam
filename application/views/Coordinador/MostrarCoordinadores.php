@@ -85,7 +85,7 @@
 
                                         <div class="wizard-header">
                                             <h3>
-                                                <b>Actualizar</b> PERFIL COORDINADOR<br>
+                                                <b>ACTUALIZAR</b> PERFIL COORDINADOR<br>
                                                 <small>Cambie la informaci&oacute;n que se muestra.</small>
                                             </h3>
                                         </div>
