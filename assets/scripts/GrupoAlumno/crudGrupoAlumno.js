@@ -76,8 +76,11 @@ $("#createForm").submit(function(event) {
                         timer: 1500
                     })
                     //$('#ID_ALUMNO_GA').prop('selectedIndex',0);
+
+                cargaFuncionSelect();
                 $('#createModal').modal('hide');
             }
+
 
         }
     });
@@ -91,7 +94,9 @@ function limpiar2() {
 
 
 //Validación de si ya existe en un grupo 
+
 function valGrupoAlumno() {
+
 
     var grupo = $('#ID_ALUMNO_GA :selected').val();
     if (grupo) {
@@ -113,4 +118,87 @@ function valGrupoAlumno() {
             }
         });
     }
+
+}
+
+
+
+//obteniendo Asignatura
+function obtAsignatura() {
+
+    $.ajax({
+        url: url + "GrupoAlumno/Asignatura",
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+
+            //var json = JSON.parse(JSON.stringify(data));
+            var options = " <option selected disabled value='' title='selecciona...' >selecciona... </option>";
+            $.each(data, function(index, object) {
+                options += '<option value="' + object.ID_ASIGNATURA + '">' + object.NOMBRE_ASIGNATURA + '</option>';
+            });
+
+            $('.bootstrap-select').selectpicker('refresh');
+            $('#ID_ASIGNATURA_').html(options);
+            console.log(data);
+            // $('.bootstrap-select').selectpicker('refresh');
+        }
+    })
+}
+
+jQuery(document).ready(function() {
+    $('#ID_ALUMNO_GA').on('change', function() {
+        event.preventDefault();
+        var alumno_id = $(this).val();
+        if (alumno_id == '') {
+            $('#ID_ASIGNATURA_').prop('disabled', true);
+        } else {
+            $('#ID_ASIGNATURA_').prop('disabled', false);
+            $.ajax({
+                url: url + "GrupoAlumno/Asignatura",
+                type: 'POST',
+                data: { alumno_id: alumno_id },
+                success: function(data) {
+
+                    obtAsignatura();
+
+                },
+                error: function() {
+                    alert('error ocurio..!');
+                }
+            });
+
+        }
+        /* Act on the event */
+    });
+});
+
+$(document).ready(function() {
+    function changeNumber() {
+        value = $('#value').text();
+
+        $.ajax({
+            type: "POST",
+            url: "add.php",
+            success: function(data) {
+                $('#value').text(data);
+            }
+        });
+    }
+
+});
+
+//Esta funcion carga una funcion 2 veces en este caso una accion dinamica
+//para el poper del select
+function cargaFuncionSelect() {
+
+    var contar = 0;
+    for (var i = 0; i < 2; i++) {
+        //console.log(i);
+        contar = (contar + setTimeout(obtGrupoAlumn, 5000));
+        //setTimeout(obtA, 5000)
+    }
+    console.log(contar);
+
 }
