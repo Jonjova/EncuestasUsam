@@ -30,12 +30,20 @@ class GrupoAlumno extends CI_Controller
 		$datos = $this->gam->obtAlumno();
 		echo json_encode($datos);
 	}
-
+		//LLenar select con ajax 
+	public function Asignatura()
+	{
+		$datos = $this->gam->obtAdignatura();
+		echo json_encode($datos);
+	
+	}
 	//Validar si ya existe en un Grupo el Alumno
 	public function validarGrupoAlumno(){
 		
 		$ga = $this->input->post('ID_ALUMNO_GA');
 		echo $this->gam->validarGrupo($ga);
 	}
+
+	
 	
 }

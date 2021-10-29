@@ -13,6 +13,15 @@ class GrupoAlumnoModel extends CI_Model
 		return $datos->result_array();
 	}
 
+	//obtener asignatura
+	
+   //llenado Select Modulos
+	public function obtAdignatura()
+	{
+		$datos = $this->db->get('tbl_asignatura');
+		return $datos->result_array();
+	}
+
 	// CREAR
 	public function insertGrupoAlumno($grupo,$alumno){
 		$this->db->trans_start();

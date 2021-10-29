@@ -48,7 +48,13 @@ class Accesos extends CI_Controller
 			$this->output->set_status_header(401);//si no se cumple status 401
 			exit;
 		}
-			
+
+			if (!$res = $this->am->iniciarSession($user, $pass))//condicion de verificacion
+		{
+			echo json_encode(array('msg' => 'Conectando...'));
+			$this->output->set_status_header(200);//si no se cumple status 401
+			exit;
+		}	
 		//si todo esta bien 
 		$data = array(
 			'PERSONA' => $res->PERSONA,
@@ -57,7 +63,7 @@ class Accesos extends CI_Controller
 			'ID_USUARIO' => $res->ID_USUARIO,
 			'ID_TIPO_USUARIO' => $res->ID_TIPO_USUARIO,
 			'NOMBRE_ROL' => $res->NOMBRE_ROL,
-			'ID_ROL' => $res->ID_ROL,
+			//'ID_ROL' => $res->ID_ROL,
 			'PERSONA_USUARIO' => $res->PERSONA_USUARIO,
 			'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
 			'ESTADO_PERMISO' => $res->ESTADO_PERMISO,

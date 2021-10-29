@@ -61,7 +61,7 @@ class Proyectos extends CI_Controller
 	public function MostrarProyecto()
 	{
 
-		$resultList = $this->pm->mostrarProyect('*','tbl_proyecto',array());
+		$resultList = $this->pm->mostrarProyect();
 
 		$result = array();
 		$estado = '';
