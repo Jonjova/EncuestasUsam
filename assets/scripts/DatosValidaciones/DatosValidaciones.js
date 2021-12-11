@@ -36,7 +36,11 @@ function llenarDropdowns() {
     obtDiseInvestiga();
     obtCicl();
     obtCarrera();
-    obtGrupoAlumn();
+    // obtGrupoAlumn();
+    $("#CrearProyecto [name='ID_ASIGNATURA']").change(function() {
+        obtGrupoAlumn($(this).val());
+        obtA($(this).val());
+    });
 }
 
 function validaSelect(select) {
@@ -173,7 +177,7 @@ function obtCicl() {
     })
 }
 
-// LLENAR SELECT Carrera 
+// LLENAR SELECT Carrera
 function obtCarrera() {
     $.ajax({
         url: url + "DatosComunes/Carrera",
@@ -184,10 +188,31 @@ function obtCarrera() {
     });
 }
 
-// LLENAR SELECT GRUPO ALUMNO
-function obtGrupoAlumn() {
+// LLENAR SELECT ALUMNOS
+function obtA(asignatura) {
     $.ajax({
-        url: url + "DatosComunes/obtGrupoAlumno",
+        url: url + "GrupoAlumno/Alumno/" + asignatura,
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+            var options;
+            $.each(data, function(index, object) {
+                options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
+            });
+
+            $('#ID_ALUMNO_GA').html(options);
+
+            $('.bootstrap-select').selectpicker('refresh');
+            console.log(data);
+        }
+    })
+}
+
+// LLENAR SELECT GRUPO ALUMNO
+function obtGrupoAlumn(asignatura) {
+    $.ajax({
+        url: url + "DatosComunes/obtGrupoAlumno/" + asignatura,
         type: 'post',
         dataType: 'json',
         cache: false,

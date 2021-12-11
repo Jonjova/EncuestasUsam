@@ -7,42 +7,54 @@ class DatosComunesModel extends CI_Model
 	// MAX ID PERSONA
 	public function maxPersonaModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_PERSONA + 1) as ID_PERSONA FROM `tbl_persona`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_PERSONA + 1) as ID_PERSONA 
+			FROM `tbl_persona`');
 		return $maxid->result_array();
 	}
 
 	// MAX ID COORDINADOR
 	public function maxCoordinadorModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_COORDINADOR + 1) as ID_COORDINADOR FROM `tbl_coordinador`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_COORDINADOR + 1) as ID_COORDINADOR 
+			FROM `tbl_coordinador`');
 		return $maxid->result_array();
 	}
 
 	// MAX ID DOCENTE
 	public function maxDocenteModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_DOCENTE + 1) as ID_DOCENTE FROM `tbl_docente`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_DOCENTE + 1) as ID_DOCENTE 
+			FROM `tbl_docente`');
 		return $maxid->result_array();
 	}
 
 	// MAX ID USUARIO
 	public function maxUsuarioModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_USUARIO + 1) as ID_USUARIO FROM `tbl_usuario`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_USUARIO + 1) as ID_USUARIO 
+			FROM `tbl_usuario`');
 		return $maxid->result_array();
 	}
 
 	// MAX ID ALUMNO
 	public function maxAlumnoModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_ALUMNO + 1) as ID_ALUMNO FROM `tbl_alumnos`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_ALUMNO + 1) as ID_ALUMNO 
+			FROM `tbl_alumnos`');
 		return $maxid->result_array();
 	}
 
 	// MAX ID CICLO
 	public function maxCicloModel()
 	{
-		$maxid = $this->db->query('SELECT MAX(ID_CICLO + 1) as ID_CICLO FROM `tbl_ciclo`');
+		$maxid = $this->db->query(
+			'SELECT MAX(ID_CICLO + 1) as ID_CICLO 
+			FROM `tbl_ciclo`');
 		return $maxid->result_array();
 	}
 
@@ -77,36 +89,40 @@ class DatosComunesModel extends CI_Model
 	// LLENAR SELECT ROL
 	public function dropRolModel()
 	{
-		$datos = $this->db->query('SELECT * FROM cat_rol_usuario WHERE ID_ROL NOT IN (1, 3, 4)');
+		$datos = $this->db->query(
+			'SELECT * FROM cat_rol_usuario 
+			WHERE ID_ROL NOT IN (1, 3, 4)');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT ASIGNATURA
 	public function dropAsignaturaModel($coordinador)
 	{
-		$datos = $this->db->query('SELECT * FROM tbl_asignatura WHERE COORDINADOR = '.$coordinador.'');
+		$datos = $this->db->query(
+			'SELECT * FROM tbl_asignatura 
+			WHERE COORDINADOR = '.$coordinador.'');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT ASIGNATURA ASIGNADA
 	public function dropAsignaturaAsignadaModel($docente)
 	{
-		$datos = $this->db->query('SELECT * FROM VW_TBL_DOCENTES_ASIGNATURAS WHERE ID_DOCENTE = '.$docente.'');
+		$datos = $this->db->query(
+			'SELECT * FROM VW_TBL_DOCENTES_ASIGNATURAS 
+			WHERE ID_DOCENTE = '.$docente.'');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT DOCENTE
 	public function dropDocenteModel($coordinador, $asignatura)
 	{
-		// $datos = $this->db->query('SELECT * FROM VW_DROP_DOCENTES WHERE COORDINADOR = '.$coordinador.'');
 		$datos = $this->db->query(
 			'SELECT * FROM VW_DROP_DOCENTES
-			WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN (SELECT ID_DOCENTE FROM tbl_docente_asignatura WHERE ID_ASIGNATURA = '.$asignatura.')');
-		// $datos = $this->db->query(
-		// 	'SELECT * FROM VW_DROP_DOCENTES
-		// 	WHERE ID_DOCENTE NOT IN (
-		// 	SELECT ID_DOCENTE FROM tbl_docente_asignatura
-		// 	WHERE ID_ASIGNATURA = '.$coordinador.') AND COORDINADOR = 2');
+			WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN 
+				(
+					SELECT ID_DOCENTE FROM tbl_docente_asignatura 
+					WHERE ID_ASIGNATURA = '.$asignatura.'
+				)');
 		return $datos->result_array();
 	}
 
@@ -131,17 +147,31 @@ class DatosComunesModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGA()
-	{
-		$datos = $this->db->get('tbl_grupo');
-		return $datos->result_array();
-	}
-
 	// LLENAR SELECT CICLO
 	public function obtC()
 	{
-		$datos = $this->db->get('tbl_ciclo');
+		$datos = $this->db->query(
+			'SELECT * FROM tbl_ciclo 
+			WHERE NOW() BETWEEN FECHA_INICIO AND FECHA_FIN');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT GRUPO ALUMNOS
+	public function obtGA($asignatura)
+	{
+		// $datos = $this->db->get('tbl_grupo');
+		$datos = $this->db->query(
+			"SELECT tg.ID_GRUPO_ALUMNO, tg.NOMBRE_GRUPO
+			FROM tbl_grupo AS tg
+			WHERE tg.ID_GRUPO_ALUMNO NOT IN
+				(
+					SELECT tbp.ID_GRUPO_ALUMNO
+					FROM tbl_proyecto AS tbp
+						INNER JOIN tbl_ciclo AS tc ON tc.ID_CICLO = tbp.CICLO
+					WHERE NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN
+						AND tbp.ID_ASIGNATURA = $asignatura
+				)
+			ORDER BY tg.ID_GRUPO_ALUMNO ASC");
 		return $datos->result_array();
 	}
 

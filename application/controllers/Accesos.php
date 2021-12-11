@@ -49,7 +49,7 @@ class Accesos extends CI_Controller
 			exit;
 		}
 
-			if (!$res = $this->am->iniciarSession($user, $pass))//condicion de verificacion
+		if (!$res = $this->am->iniciarSession($user, $pass))//condicion de verificacion
 		{
 			echo json_encode(array('msg' => 'Conectando...'));
 			$this->output->set_status_header(200);//si no se cumple status 401

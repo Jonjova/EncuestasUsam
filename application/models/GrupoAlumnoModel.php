@@ -4,16 +4,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class GrupoAlumnoModel extends CI_Model
 {
 	
-	public function obtAlumno()
+	public function obtAlumno($asignatura)
 	{
-		$this->db->select('a.ID_ALUMNO,a.CARNET, p.PRIMER_NOMBRE_PERSONA, p.SEGUNDO_NOMBRE_PERSONA, p.PRIMER_APELLIDO_PERSONA , p.SEGUNDO_APELLIDO_PERSONA');
-		$this->db->from('tbl_alumnos a');
-		$this->db->join('tbl_persona p', 'a.PERSONA = p.ID_PERSONA');
-		$datos = $this->db->get();
+		// $this->db->select('a.ID_ALUMNO,a.CARNET, p.PRIMER_NOMBRE_PERSONA, p.SEGUNDO_NOMBRE_PERSONA, p.PRIMER_APELLIDO_PERSONA , p.SEGUNDO_APELLIDO_PERSONA');
+		// $this->db->from('tbl_alumnos a');
+		// $this->db->join('tbl_persona p', 'a.PERSONA = p.ID_PERSONA');
+		// $datos = $this->db->get();
+		$datos = $this->db->query(
+			"SELECT ta.ID_ALUMNO, ta.CARNET, tp.PRIMER_NOMBRE_PERSONA, tp.SEGUNDO_NOMBRE_PERSONA,
+				tp.PRIMER_APELLIDO_PERSONA , tp.SEGUNDO_APELLIDO_PERSONA
+			FROM tbl_alumnos AS ta
+				INNER JOIN tbl_persona AS tp ON tp.ID_PERSONA = ta.PERSONA
+			WHERE ta.ID_ALUMNO NOT IN
+				(
+					SELECT tga.ID_DET_ALUMNO
+					FROM tbl_proyecto AS tbp
+						INNER JOIN tbl_ciclo AS tc ON tc.ID_CICLO = tbp.CICLO
+						INNER JOIN tbl_grupo AS tg ON tg.ID_GRUPO_ALUMNO = tbp.ID_GRUPO_ALUMNO
+						INNER JOIN tbl_grupo_alumno AS tga ON tga.ID_DET_GRUPO = tbp.ID_GRUPO_ALUMNO
+					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO)
+						AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN)
+						AND tbp.ID_ASIGNATURA = $asignatura
+				)
+			ORDER BY ta.ID_ALUMNO ASC");
 		return $datos->result_array();
 	}
-
-	//obtener asignatura
 	
    //llenado Select Modulos
 	public function obtAdignatura()
@@ -50,7 +65,6 @@ class GrupoAlumnoModel extends CI_Model
 		$this->db->insert_batch('tbl_grupo_alumno', $result);
 		$this->db->trans_complete();
 	}
-
 	
 	//validar si existe un alumno en un grupo 
 	public function validarGrupo($grupo)
@@ -63,7 +77,6 @@ class GrupoAlumnoModel extends CI_Model
 			return 0;
 		}
 	}
-
 
 	//ID DETALLE GRUPO ALUMNO
 	public function maxIdDGA()
@@ -78,15 +91,12 @@ class GrupoAlumnoModel extends CI_Model
 		}
 	}
 
-
 	// MAX ID DETALLE GRUPO ALUMNO
 	public function maxIdDGAModel()
 	{
 		$maxid = $this->db->query('SELECT MAX(ID_DET_GA + 1) as ID_DET_GA FROM `tbl_grupo_alumno`');
 		return $maxid->result_array();
 	}
-
-
 
 }
 

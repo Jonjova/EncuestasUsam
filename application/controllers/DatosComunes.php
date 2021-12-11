@@ -133,9 +133,9 @@ class DatosComunes extends CI_Controller
 	}
 
 	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGrupoAlumno()
+	public function obtGrupoAlumno($asignatura)
 	{
-		$datos = $this->modelDatos->obtGA();
+		$datos = $this->modelDatos->obtGA($asignatura);
 		echo json_encode($datos);
 	}
 
@@ -147,19 +147,6 @@ class DatosComunes extends CI_Controller
 		foreach ($datos as $c)
 		{
 			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
-		}
-	}
-
-	// LLENAR SELECT NOMBRE CICLO
-	public function nombreCiclo()
-	{
-		if (date('Y-m-d') >= date('Y-01-01') && date('Y-m-d') <= date('Y-06-30'))
-		{
-			echo "<option value='Ciclo Impar ".date('Y')."'>Ciclo Impar ".date('Y')."</option>";
-		} 
-		else 
-		{
-			echo "<option value='Ciclo Par ".date('Y')."'>Ciclo Par ".date('Y')."</option>";
 		}
 	}
 	
