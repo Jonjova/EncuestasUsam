@@ -35,7 +35,6 @@ class CoordinadorModel extends CI_Model
 				".$datosCoordinador['USUARIO_CREA'].");";
             $result = $this->db->query($sql, $datosCoordinador);
             $this->db->close();
-
         }
 		catch (Exception $e)
 		{
@@ -90,10 +89,11 @@ class CoordinadorModel extends CI_Model
 				'".$datosCoordinador['TELEFONO_FIJO_PERSONA']."', 
 				'".$datosCoordinador['TELEFONO_MOVIL_PERSONA']."', 
 				".$datosCoordinador['PROFESION_PERSONA'].", 
-				".$datosCoordinador['COORDINACION_PERSONA'].");";
+				".$datosCoordinador['COORDINACION_PERSONA'].", 
+				'".$datosCoordinador['USUARIO_PERSONA']."', 
+				'".$datosCoordinador['PASSWORD_PERSONA']."');";
             $result = $this->db->query($sql, $datosCoordinador);
             $this->db->close();
-
         }
 		catch (Exception $e)
 		{

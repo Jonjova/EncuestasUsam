@@ -39,21 +39,19 @@ class Alumno extends CI_Controller
 
 	public function Guardar()
 	{
-		
+		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
 		$datosPersona = array(
 			'ID_PERSONA' => $this->maxPersona(),
 			'PRIMER_NOMBRE_PERSONA' => $this->input->post('PRIMER_NOMBRE_PERSONA'),
 			'SEGUNDO_NOMBRE_PERSONA' => $this->input->post('SEGUNDO_NOMBRE_PERSONA'),
 			'PRIMER_APELLIDO_PERSONA' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
 			'SEGUNDO_APELLIDO_PERSONA' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
-			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO'),
+			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO_A'),
 			'SEXO' => $this->input->post('SEXO'),
 			'CORREO_INSTITUCIONAL' => $this->input->post('CORREO_INSTITUCIONAL'),
 			'CORREO_PERSONAL' => $this->input->post('CORREO_PERSONAL'),
 			'DIRECCION' => $this->input->post('DIRECCION'),
 			'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
-			'DUI' => $this->input->post('DUI'),
-			'NIT' => $this->input->post('NIT'),
 			'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO'),
 			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
 			'PROFESION' => null,
@@ -68,10 +66,10 @@ class Alumno extends CI_Controller
 			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
-		//Datos de tabla  "Persona"
+
 		$insertPersona = $this->am->insertPerson($datosPersona);
-		//Datos de tabla  "Alumnos"
 		$insertAlumno = $this->am->insertAlum($datosAlumno);
+
 		if($insertPersona == TRUE && $insertAlumno == TRUE )
 		{
 			echo "true";

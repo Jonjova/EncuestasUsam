@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DocenteModel extends CI_Model 
 {	
+	
 	// INSERTAR DOCENTE
 	function crearDocenteModel($datosDocente)
 	{
@@ -34,7 +35,6 @@ class DocenteModel extends CI_Model
 				".$datosDocente['USUARIO_CREA'].");";
             $result = $this->db->query($sql, $datosDocente);
             $this->db->close();
-
         }
 		catch (Exception $e)
 		{
@@ -46,9 +46,16 @@ class DocenteModel extends CI_Model
 	// MOSTRAR DOCENTES
 	public function mostrarDocentesModel($idCoodinador)
 	{
-		$this->db->where('COORDINADOR', $idCoodinador);
-		$this->db->from('VW_TBL_DOCENTES');
-		$datos = $this->db->get();
+		if ($idCoodinador != 0)
+		{
+			$this->db->where('COORDINADOR', $idCoodinador);
+			$this->db->from('VW_TBL_DOCENTES');
+			$datos = $this->db->get();
+		}
+		else
+		{
+			$datos = $this->db->get('VW_TBL_DOCENTES');
+		}
 		return $datos->result_array();
 	}
 
@@ -72,6 +79,49 @@ class DocenteModel extends CI_Model
 		$query = $this->db->update($tablename, $data, $where);
 		return $query;
 	}
+
+	// OBTENER DOCENTE
+    public function mostrarDocenteModel($where)
+    {
+        $query = $this->db->select('*')->from('VW_UPDATE_DOCENTE')->where($where)->get();                         
+        return $query->row_array();
+    }
+
+	// ACTUALIZAR DOCENTE
+	function updateDocenteModel($datosDocente)
+	{
+        try
+		{
+            $this->db->reconnect();
+            $sql = "CALL `SP_ACTUALIZAR_DOCENTE`(
+				".$datosDocente['COD_PERSONA'].", 
+				'".$datosDocente['PRIMER_NOMBRE']."', 
+				'".$datosDocente['SEGUNDO_NOMBRE']."', 
+				'".$datosDocente['PRIMER_APELLIDO']."', 
+				'".$datosDocente['SEGUNDO_APELLIDO']."', 
+				'".$datosDocente['FECHA_NACIMIENTO_PERSONA']."', 
+				".$datosDocente['SEXO_PERSONA'].", 
+				'".$datosDocente['CORREO_INSTITUCIONAL_PERSONA']."', 
+				'".$datosDocente['CORREO_PERSONAL_PERSONA']."',  
+				'".$datosDocente['DUI_PERSONA']."', 
+				'".$datosDocente['NIT_PERSONA']."', 
+				'".$datosDocente['DIRECCION_PERSONA']."', 
+				".$datosDocente['DEPARTAMENTO_PERSONA'].", 
+				'".$datosDocente['TELEFONO_FIJO_PERSONA']."', 
+				'".$datosDocente['TELEFONO_MOVIL_PERSONA']."', 
+				".$datosDocente['PROFESION_PERSONA'].", 
+				".$datosDocente['COORDINADOR_PERSONA'].", 
+				'".$datosDocente['USUARIO_PERSONA']."', 
+				'".$datosDocente['PASSWORD_PERSONA']."');";
+            $result = $this->db->query($sql, $datosDocente);
+            $this->db->close();
+        }
+		catch (Exception $e)
+		{
+            echo $e->getMessage();
+        }
+        return $result;
+    }
 
 }
 ?>

@@ -4,6 +4,8 @@
     font-size: 16px;
     line-height: 1.5;
     --primary-blue: #094F8B;
+    --secondary-blue: #2b3e78;
+    --third-brown: #923009;
 }
 
 body {
@@ -191,4 +193,3 @@ a:hover {
     width: 100%;
     height: 500px;
 }
-

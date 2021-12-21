@@ -213,9 +213,6 @@
                                                         <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL"
                                                             type="text" class="form-control"
                                                             placeholder="usuario@liveusam.edu.sv" required>
-                                                        <!-- USUARIO -->
-                                                        <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="hidden">
-                                                        <input name="PASSWORD" id="PASSWORD" type="hidden">
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,7 +222,7 @@
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm"
-                                                name="next" value="Siguiente" onclick="crearUsuarioPass();"/>
+                                                name="next" value="Siguiente" />
                                             <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
                                                 name="finish" value="Guardar" />
                                         </div>

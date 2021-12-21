@@ -64,19 +64,13 @@
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                 <li>
-                    <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-users"></i> Usuarios
+                    <a href="#bitacoraSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-archive"></i> Bitácora
                     </a>
-                    <ul class="collapse list-unstyled" id="usersSubmenu">
+                    <ul class="collapse list-unstyled" id="bitacoraSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Usuario/usuario">
-                                <i class="fas fa-user-plus"></i> Registrar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>Usuario/usuarios">
-                                <i class="fas fa-eye"></i> Ver Usuarios
-                            </a>
+                            <a href="<?php echo base_url();?>Bitacora/verBitacora">
+                            <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
                     </ul>
                 </li>
@@ -84,33 +78,62 @@
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                 <li>
-                    <a href="#bitacoraSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fas fa-archive"></i> Bitácora
+                    <a href="#profSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-user-tie"></i> Profesiones
                     </a>
-                    <ul class="collapse list-unstyled" id="bitacoraSubmenu">
-                       <li>
-                           <a href="<?php echo base_url();?>Bitacora/verBitacora">Mostrar</a>
-                       </li>
-                    </ul>
-                </li>
-                <?php endif; ?>
-
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
-                <li>
-                    <a href="#cicloSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="far fa-calendar-alt"></i> Ciclos
-                    </a>
-                    <ul class="collapse list-unstyled" id="cicloSubmenu">
+                    <ul class="collapse list-unstyled" id="profSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Ciclo/ciclo">
+                            <a href="<?php echo base_url();?>Profesion/profesion">
                                 <i class="fas fa-plus-circle"></i> Registrar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>Profesion/profesiones">
+                                <i class="fas fa-eye"></i> Mostrar
                             </a>
                         </li>
                     </ul>
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <li>
+                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> Permisos</a>
+                    <ul class="collapse list-unstyled" id="permisosSubmenu">
+                        <li>
+                            <a href="<?php echo base_url();?>Permisos/permisos">
+                                <i class="fas fa-plus-circle"></i> Agregar</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>Permisos/index">
+                                <i class="fas fa-eye"></i> Mostrar</a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
+                <li>
+                    <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-users"></i> Usuarios
+                    </a>
+                    <ul class="collapse list-unstyled" id="usersSubmenu">
+                        <li>
+                            <a href="<?php echo base_url();?>Usuario/usuario">
+                                <i class="fas fa-plus-circle"></i> Registrar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>Usuario/usuarios">
+                                <i class="fas fa-eye"></i> Ver Registrados
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
                 <li>
                     <a href="#coordinadorSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-user-cog"></i> Coordinadores
@@ -130,7 +153,22 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
+                <li>
+                    <a href="#cicloSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="far fa-calendar-alt"></i> Ciclos
+                    </a>
+                    <ul class="collapse list-unstyled" id="cicloSubmenu">
+                        <li>
+                            <a href="<?php echo base_url();?>Ciclo/ciclo">
+                                <i class="fas fa-plus-circle"></i> Registrar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3): ?>
                 <li>
                     <a href="#DocenteSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-chalkboard-teacher"></i> Docentes
@@ -191,27 +229,11 @@
                                 <i class="fas fa-plus-circle"></i> Agregar</a>
                         </li>
                         <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
-                            <li>
-                                <a href="<?php echo base_url();?>Proyectos/index">
-                                    <i class="fas fa-eye"></i> Mostrar</a>
-                            </li>
-                        <!--</?php endif; ?>-->
-                    </ul>
-                </li>
-                <?php endif; ?>
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
-                <li>
-                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-user-shield"></i> Permisos</a>
-                    <ul class="collapse list-unstyled" id="permisosSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Permisos/permisos">
-                                <i class="fas fa-plus-circle"></i> Agregar</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>Permisos/index">
+                            <a href="<?php echo base_url();?>Proyectos/index">
                                 <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
+                        <!--</?php endif; ?>-->
                     </ul>
                 </li>
                 <?php endif; ?>

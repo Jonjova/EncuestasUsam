@@ -1,9 +1,10 @@
         <h2>Usuarios Registrados</h2>
-        
+
         <br>
-		
+
         <form action="">
-            <table id="Usuarios" class="table table-hover table-striped dt-responsive nowrap" style="width: 100%; margin: auto;">
+            <table id="Usuarios" class="table table-hover table-striped dt-responsive nowrap"
+                style="width: 100%; margin: auto;">
                 <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
                     <tr>
                         <th>#</th>
@@ -54,7 +55,7 @@
                                 <p ID="U_DUI"></p>
                                 <label>NIT:</label>
                                 <p ID="U_NIT"></p>
-                                
+
                                 <label>Nombre Usuario:</label>
                                 <p ID="U_NOMBRE_USUARIO"></p>
                             </div>
@@ -104,7 +105,8 @@
                                                     <div class="col-sm-4 col-sm-offset-1" id="logo_USAM">
                                                         <div class="picture-container">
                                                             <img src="<?php echo base_url();?>assets/img/logo_USAM.png"
-                                                                class="picture-src" id="wizardPicturePreview" title="" />
+                                                                class="picture-src" id="wizardPicturePreview"
+                                                                title="" />
                                                         </div>
                                                     </div>
 
@@ -114,15 +116,17 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Primer Nombre:</label>
-                                                                <input type="hidden" name="ID_PERSONA" id="ID_PERSONA_UPDATE">
-                                                                <input name="PRIMER_NOMBRE_PERSONA"
+                                                                <input type="hidden" name="ID_PERSONA_UPDATE"
+                                                                    id="ID_PERSONA_UPDATE">
+                                                                <input name="PRIMER_NOMBRE_PERSONA_UPDATE"
                                                                     id="PRIMER_NOMBRE_PERSONA_UPDATE" type="text"
-                                                                    class="form-control" placeholder="1er Nombre" required>
+                                                                    class="form-control" placeholder="1er Nombre"
+                                                                    required>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label>Segundo Nombre:</label>
-                                                                <input name="SEGUNDO_NOMBRE_PERSONA"
+                                                                <input name="SEGUNDO_NOMBRE_PERSONA_UPDATE"
                                                                     id="SEGUNDO_NOMBRE_PERSONA_UPDATE" type="text"
                                                                     class="form-control" placeholder="2do Nombre">
                                                             </div>
@@ -131,14 +135,14 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Primer Apellido:</label>
-                                                                <input name="PRIMER_APELLIDO_PERSONA"
+                                                                <input name="PRIMER_APELLIDO_PERSONA_UPDATE"
                                                                     id="PRIMER_APELLIDO_PERSONA_UPDATE" type="text"
                                                                     class="form-control" placeholder="1er Apellido"
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Segundo Apellido:</label>
-                                                                <input name="SEGUNDO_APELLIDO_PERSONA"
+                                                                <input name="SEGUNDO_APELLIDO_PERSONA_UPDATE"
                                                                     id="SEGUNDO_APELLIDO_PERSONA_UPDATE" type="text"
                                                                     class="form-control" placeholder="2do Apellido">
                                                             </div>
@@ -149,16 +153,18 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Fecha de Nacimiento:</label>
-                                                                <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO_UPDATE" type="date" class="form-control" required>
+                                                                <input name="FECHA_NACIMIENTO_UPDATE"
+                                                                    id="FECHA_NACIMIENTO_UPDATE" type="date"
+                                                                    class="form-control" required>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Sexo:</label>
-                                                                <select name="SEXO" id="SEXO_UPDATE" class="custom-select"
-                                                                    style="font-size: 1rem;" onblur="validaSelect(this);"
-                                                                    required>
+                                                                <select name="SEXO_UPDATE" id="SEXO_UPDATE"
+                                                                    class="custom-select" style="font-size: 1rem;"
+                                                                    onblur="validaSelect(this);" required>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -166,16 +172,18 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>N&uacute;mero de DUI:</label>
-                                                                <input name="DUI" id="DUI_UPDATE" type="text" class="form-control"
-                                                                    placeholder="00000000-0" required>
+                                                                <input name="DUI_UPDATE" id="DUI_UPDATE" type="text"
+                                                                    class="form-control" placeholder="00000000-0"
+                                                                    required>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>N&uacute;mero de NIT:</label>
-                                                                <input name="NIT" id="NIT_UPDATE" type="text" class="form-control"
-                                                                    placeholder="0000-000000-000-0" required>
+                                                                <input name="NIT_UPDATE" id="NIT_UPDATE" type="text"
+                                                                    class="form-control" placeholder="0000-000000-000-0"
+                                                                    required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -198,8 +206,9 @@
                                                         <div class="form-group">
                                                             <div class="form-group">
                                                                 <label>Correo Personal(No Obligatorio):</label>
-                                                                <input name="CORREO_PERSONAL" id="CORREO_PERSONAL_UPDATE"
-                                                                    type="email" class="form-control"
+                                                                <input name="CORREO_PERSONAL_UPDATE"
+                                                                    id="CORREO_PERSONAL_UPDATE" type="email"
+                                                                    class="form-control"
                                                                     placeholder="personal@mail.com">
                                                             </div>
                                                         </div>
@@ -208,14 +217,17 @@
                                                     <div class="col-sm-5 col-sm-offset-1">
                                                         <div class="form-group">
                                                             <label>N&uacute;mero de Tel&eacute;fono Fijo:</label>
-                                                            <input name="TELEFONO_FIJO" id="TELEFONO_FIJO_UPDATE" type="tel"
-                                                                class="form-control" placeholder="0000-0000" required>
+                                                            <input name="TELEFONO_FIJO_UPDATE" id="TELEFONO_FIJO_UPDATE"
+                                                                type="tel" class="form-control" placeholder="0000-0000"
+                                                                required>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="form-group">
-                                                            <label>N&uacute;mero de Tel&eacute;fono M&oacute;vil:</label>
-                                                            <input name="TELEFONO_MOVIL" id="TELEFONO_MOVIL_UPDATE" type="tel"
+                                                            <label>N&uacute;mero de Tel&eacute;fono
+                                                                M&oacute;vil:</label>
+                                                            <input name="TELEFONO_MOVIL_UPDATE"
+                                                                id="TELEFONO_MOVIL_UPDATE" type="tel"
                                                                 class="form-control" placeholder="0000-0000" required>
                                                         </div>
                                                     </div>
@@ -238,7 +250,7 @@
                                                     <div class="col-sm-7 col-sm-offset-2">
                                                         <div class="form-group">
                                                             <label>Departamento:</label>
-                                                            <select name="DEPARTAMENTO" id="DEPARTAMENTO_UPDATE"
+                                                            <select name="DEPARTAMENTO_UPDATE" id="DEPARTAMENTO_UPDATE"
                                                                 class="custom-select" style="font-size: 1rem;"
                                                                 onblur="validaSelect(this);" required>
                                                             </select>
@@ -247,8 +259,9 @@
                                                     <div class="col-sm-7 col-sm-offset-2">
                                                         <div class="form-group">
                                                             <label>Direcci&oacute;n:</label>
-                                                            <textarea name="DIRECCION" id="DIRECCION_UPDATE" rows="5" cols="50"
-                                                                class="form-control" required></textarea>
+                                                            <textarea name="DIRECCION_UPDATE" id="DIRECCION_UPDATE"
+                                                                rows="5" cols="50" class="form-control"
+                                                                required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -267,18 +280,29 @@
 
                                                     <div class="col-sm-5 col-sm-offset-1">
                                                         <div class="form-group">
-                                                            <label>Profesi&oacute;n:</label>
-                                                            <select name="PROFESION" id="PROFESION_UPDATE" class="custom-select"
+                                                            <label>Rol:</label>
+                                                            <select name="ID_TIPO_USUARIO_UPDATE"
+                                                                id="ID_TIPO_USUARIO_UPDATE" class="custom-select"
                                                                 style="font-size: 1rem;" onblur="validaSelect(this);"
                                                                 required>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <div class="form-group">
+                                                            <label>Profesi&oacute;n:</label>
+                                                            <select name="PROFESION_UPDATE" id="PROFESION_UPDATE"
+                                                                class="custom-select" style="font-size: 1rem;"
+                                                                onblur="validaSelect(this);" required>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-7 col-sm-offset-1">
                                                         <div class="form-group">
                                                             <label>Correo Institucional:</label>
-                                                            <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL_UPDATE"
-                                                                type="text" class="form-control"
+                                                            <input name="CORREO_INSTITUCIONAL_UPDATE"
+                                                                id="CORREO_INSTITUCIONAL_UPDATE" type="text"
+                                                                class="form-control"
                                                                 placeholder="docente@liveusam.edu.sv" required>
                                                         </div>
                                                     </div>
@@ -288,10 +312,12 @@
 
                                         <div class="wizard-footer height-wizard">
                                             <div class="pull-right">
-                                                <input type="button" class="btn btn-next btn-fill btn-form btn-wd btn-sm"
-                                                    name="next" value="Siguiente" />
-                                                <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
-                                                    name="finish" value="Actualizar" />
+                                                <input type="button"
+                                                    class="btn btn-next btn-fill btn-form btn-wd btn-sm" name="next"
+                                                    value="Siguiente" />
+                                                <input type="submit"
+                                                    class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish"
+                                                    value="Actualizar" />
                                             </div>
 
                                             <div class="pull-left">

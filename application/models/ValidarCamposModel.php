@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ValidarCamposModel extends CI_Model 
 {
+
+	/****************************************************************************
+                        	VALIDAR CAMPOS PARA INSERTAR
+	****************************************************************************/
+	
+	// VALIDAR 	PROFESION
+	function findProf($valor)
+	{
+		$this->db->where('NOMBRE_PROFESION', $valor);
+		return $this->db->get('CAT_PROFESION')->result();
+	}
+	
 	// VALIDAR DUI
 	function findDUI($valor)
 	{
@@ -66,6 +78,20 @@ class ValidarCamposModel extends CI_Model
 		return $this->db->get('tbl_ciclo')->result();
 	}
 
+	/****************************************************************************
+                        	VALIDAR CAMPOS PARA ACTUALIZAR
+	****************************************************************************/
+
+	// VALIDAR CAMBIAR PROFESION
+	function cambiarProfModel($valor, $id)
+	{
+		$query = $this->db->query("SELECT NOMBRE_PROFESION FROM CAT_PROFESION WHERE NOMBRE_PROFESION = '".$valor."' "."AND ID_PROFESION != '".$id."'");
+		if(!$query->result())
+        {
+            return false;
+        }
+        return $query->row();
+	}
 
 	// VALIDAR CAMBIAR DUI
 	function cambiarDUIModel($valor, $idPersona)

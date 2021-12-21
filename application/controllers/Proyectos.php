@@ -80,7 +80,7 @@ class Proyectos extends CI_Controller
 				$value['Alumnos']. ' Integrantes',
 				$value['COD_CICLO'],
 				$estado
-				);
+			);
 		}
 		echo json_encode($result);
 	}
@@ -88,18 +88,20 @@ class Proyectos extends CI_Controller
 	//Guardar Proyecto
 	public function Guardar()
 	{
-		$datos = array('NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
-						'DESCRIPCION' => $this->input->post('DESCRIPCION'),
-						'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION'),
-						'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA'),
-						'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION'),
-						'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
-						'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
-						'CICLO' => $this->input->post('CICLO'),
-						'ESTADO_PROYECTO' => true,
-						'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
-						'FECHA_CREA' => date('Y-m-d H:m:s')	
-		 );
+		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
+		$datos = array(
+			'NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
+			'DESCRIPCION' => $this->input->post('DESCRIPCION'),
+			'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION'),
+			'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA'),
+			'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION'),
+			'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
+			'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
+			'CICLO' => $this->input->post('CICLO'),
+			'ESTADO_PROYECTO' => true,
+			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
+			'FECHA_CREA' => date('Y-m-d H:m:s')
+		);
 
 		//Datos de tabla  "Proyectos"
 		$insert = $this->pm->insertProyecto($datos);

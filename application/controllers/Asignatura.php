@@ -105,11 +105,11 @@ class Asignatura extends CI_Controller
         $insert = $this->modelAsignatura->crearAsignaturaModel($_POST);
         if ($insert == TRUE)
         {
-            echo "true";
+            echo json_encode('Datos guardados!');
         }
         else
         {
-            echo "false";
+            echo json_encode('Error al guardar!');
         }
         
     }
@@ -120,11 +120,11 @@ class Asignatura extends CI_Controller
         $insert = $this->modelAsignatura->asignarAsignaturaModel($_POST);
         if ($insert == TRUE)
         {
-            echo "true";
+            echo json_encode('Datos guardados!');
         }
         else
         {
-            echo "false";
+            echo json_encode('Error al asignar!');
         }
         
     }

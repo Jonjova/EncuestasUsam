@@ -52,40 +52,43 @@ $('#RE_PASSWORD').change(function() {
 ****************************************************************************/
 $(function() {
     $('#UpdatePass').submit(function(event) {
-        var forms = $('#UpdatePass');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Complete el formulario!'
-                })
-                form.classList.add('was-validated');
-            }
-            if (form.checkValidity() === true) {
-                $.ajax({
-                    url: url + 'Cuenta/updatePassword',
-                    data: { 'PASSWORD': password.val() },
-                    type: 'POST',
-                    async: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Contrase\u00f1a cambiada',
-                            showConfirmButton: false,
-                            timer: 0
-                        })
-                    }
-                });
-                setTimeout(function() {
-                    location.href = url + 'Dashboard';
-                }, 1400)
-            }
-        });
+        if (!$(this).valid()) {
+            Swal.fire({
+                icon: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonColor: "#343a40",
+                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+            });
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: url + 'Cuenta/updatePassword',
+                data: { 'PASSWORD': password.val() },
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                success: function(msg) {
+                    Swal.fire({
+                        toast: true,
+                        timer: 1200,
+                        icon: 'success',
+                        position: 'top-end',
+                        iconColor: '#3ca230',
+                        showConfirmButton: false,
+                        title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">' + msg + '</p>'
+                    });
+                    $('#UpdatePass')[0].reset();
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+            setTimeout(function() {
+                location.href = url + 'Dashboard';
+            }, 1200)
+        }
     });
 });
 
@@ -103,43 +106,42 @@ $(document).ready(function() {
 ****************************************************************************/
 $(function() {
     $('#UpdatePerfil').submit(function(event) {
-        var forms = $('#UpdatePerfil');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Complete el formulario!'
-                })
-                form.classList.add('was-validated');
-                $('.custom-select').addClass('is-invalid');
-            }
-            if (form.checkValidity() === true) {
-                $.ajax({
-                    url: url + 'Usuario/updatePersona',
-                    data: $('#UpdatePerfil').serialize(),
-                    type: 'POST',
-                    async: false,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#UpdatePerfil .form-control').removeClass('is-valid');
-                        $('#UpdatePerfil .custom-select').removeClass('is-valid');
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Datos actualizados correctamente',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                });
-                setTimeout(function() {
-                    location.href = url + 'Dashboard';
-                }, 1200)
-            }
-        });
+        if (!$(this).valid()) {
+            Swal.fire({
+                icon: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonColor: "#343a40",
+                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+            });
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: url + 'Usuario/updatePersona',
+                data: $(this).serialize(),
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                success: function(msg) {
+                    Swal.fire({
+                        toast: true,
+                        timer: 1200,
+                        icon: 'success',
+                        position: 'top-end',
+                        iconColor: '#3ca230',
+                        showConfirmButton: false,
+                        title: '<p style="color: #343a40; font-size: 1.3526em; font-weight: 600; line-height: unset; margin: 0;">' + msg + '</p>'
+                    });
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+            setTimeout(function() {
+                location.href = url + 'Dashboard';
+            }, 1200)
+        }
     });
 });
 

@@ -43,17 +43,6 @@ class DatosComunes extends CI_Controller
 		}
 	}
 
-	// LLENAR SELECT COORDINACION
-	public function dropCoordinacion()
-	{
-		$datos = $this->modelDatos->dropCoordinacionModel();
-		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $i)
-		{
-			echo "<option value='".$i['ID_COORDINACION']."'>".$i['NOMBRE_COORDINACION']."</option>";
-		}
-	}
-
 	// LLENAR SELECT ROL
 	public function dropRol()
 	{
@@ -62,6 +51,39 @@ class DatosComunes extends CI_Controller
 		foreach ($datos as $i)
 		{
 			echo "<option value='".$i['ID_ROL']."'>".$i['NOMBRE_ROL']."</option>";
+		}
+	}
+
+	// LLENAR SELECT COORDINADOR
+	public function dropCoordinador()
+	{
+		$datos = $this->modelDatos->dropCoordinadorModel();
+		echo "<option selected disabled value=''>Seleccione...</option>";
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_COORDINADOR']."'>".$i['COORDINADOR'].", ".$i['NOMBRE_COORDINACION']."</option>";
+		}
+	}
+
+	// LLENAR SELECT COORDINADOR
+	public function dropCoordinadores()
+	{
+		$datos = $this->modelDatos->dropCoordinadorModel();
+		echo "<option selected value='0'>Todos...</option>";
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_COORDINADOR']."'>".$i['COORDINADOR'].", ".$i['NOMBRE_COORDINACION']."</option>";
+		}
+	}
+
+	// LLENAR SELECT COORDINACION
+	public function dropCoordinacion()
+	{
+		$datos = $this->modelDatos->dropCoordinacionModel();
+		echo "<option selected disabled value=''>Seleccione...</option>";
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_COORDINACION']."'>".$i['NOMBRE_COORDINACION']."</option>";
 		}
 	}
 

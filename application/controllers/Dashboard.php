@@ -11,7 +11,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged')/* && $this->session->userdata('ESTADO_PERMISO') == true*/)
 		{
 			//header
 			$data = array('title' => 'Bienvenido' );
@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller
 		{
 			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
 			redirect('/Accesos/');
-			show_404();
+			//show_404();
 		}
 	}
 }

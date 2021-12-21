@@ -221,6 +221,10 @@ a.article:hover {
     vertical-align: middle !important;
 }
 
+.table thead th {
+    border-bottom: 3px solid #923009
+}
+
 table.dataTable>thead .sorting::before,
 table.dataTable>thead .sorting::after,
 table.dataTable>thead .sorting_asc::before,
@@ -233,4 +237,8 @@ table.dataTable>thead .sorting_desc_disabled::before,
 table.dataTable>thead .sorting_desc_disabled::after {
     bottom: auto;
     display: inline-block;
+}
+
+.invalid-feedback {
+    font-size: 95%;
 }

@@ -73,6 +73,7 @@ class Ciclo extends CI_Controller
     // INSERTAR CICLO
     public function crearCiclo()
     {
+        date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
         $datos = array(
             'ID_CICLO' => $this->maxCiclo(),
             'COD_CICLO' => $this->input->post('COD_CICLO'),
@@ -84,11 +85,11 @@ class Ciclo extends CI_Controller
         $insert = $this->modelCiclo->crearCicloModel($datos);
         if ($insert == TRUE)
         {
-            echo "true";
+            echo json_encode('Datos guardados!');
         }
         else
         {
-            echo "false";
+            echo json_encode('Error al guardar!');
         }
         
     }

@@ -91,7 +91,7 @@ class Accesos extends CI_Controller
 			'is_logged');
 		$this->session->unset_userdata($vars);
 		$this->session->sess_destroy();
-		redirect('Accesos/index');
+		redirect('/Accesos/');
 	}
 
 	public function home()

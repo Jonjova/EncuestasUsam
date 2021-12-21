@@ -109,8 +109,8 @@ class Usuario extends CI_Controller
 			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
 			'PROFESION' => $this->input->post('PROFESION'),
 			'ID_USUARIO' => $this->maxUsuario(),
-			'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
-			'PASSWORD' => $this->input->post('PASSWORD'),
+			'NOMBRE_USUARIO' => explode("@", $this->input->post('CORREO_INSTITUCIONAL'))[0],
+			'PASSWORD' => strtolower($this->input->post('PRIMER_APELLIDO_PERSONA')),
 			'ID_TIPO_USUARIO' => $this->input->post('ID_TIPO_USUARIO'),
 			'USUARIO_CREA' => $_SESSION['ID_USUARIO']
 		);
@@ -118,11 +118,11 @@ class Usuario extends CI_Controller
 		$insert = $this->modelUsuario->crearUsuarioModel($datosUsuario);
 		if ($insert == TRUE) 
 		{
-			echo "true";
-		}
-		else
-		{
-			echo "false";
+			echo json_encode('Datos guardados!');
+        }
+        else
+        {
+            echo json_encode('Error al guardar!');
 		}
 	}
 	
@@ -134,47 +134,32 @@ class Usuario extends CI_Controller
 		$i = 1;
 		foreach ($resultList as $key => $value) {
 			
-			$btnInfo = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoUsuario('.$value['PERSONA'].');" 
-					data-toggle="modal" data-target="#InfoUsuario">
-					<i class="fas fa-info-circle" title="Información"></i>
-				</a>';
 			$btnPass = 
 				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
 					<i class="fas fa-sync-alt"></i>
 					<i class="fas fa-lock"></i>
 				</a>';
+			$btnInfo = 
+				'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoUsuario('.$value['PERSONA'].');" 
+					data-toggle="modal" data-target="#InfoUsuario">
+					<i class="fas fa-info-circle" title="Información"></i>
+				</a>';
 			$btnUpdate = 
-				'<a class="btn btn-warning" style="font-size: x-large;" onclick="obtenerUsuario('.$value['PERSONA'].');" 
+				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerUsuario('.$value['PERSONA'].');" 
 					data-toggle="modal" data-target="#modalPersona">
 					<i class="fas fa-pen" title="Actualizar"></i>
 				</a>';
 			
-			if ($value['ID_TIPO_USUARIO'] == 2 || $value['ID_TIPO_USUARIO'] == 5 || $value['ID_TIPO_USUARIO'] == 6)
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['PERSONA_USUARIO'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['NOMBRE_ROL'],
-					$btnPass."&ensp;&ensp;".
-					$btnInfo."&ensp;&ensp;".
-					$btnUpdate
-				);
-			}
-			else
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['PERSONA_USUARIO'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['NOMBRE_ROL'],
-					$btnPass."&ensp;&ensp;".
-					$btnInfo
-				);
-			}
+			$result['data'][] = array(
+				$i++,
+				$value['PERSONA_USUARIO'],
+				$value['NOMBRE_USUARIO'],
+				$value['TELEFONO_MOVIL'],
+				$value['NOMBRE_ROL'],
+				$btnPass."&ensp;&ensp;".
+				$btnInfo."&ensp;&ensp;".
+				$btnUpdate
+			);
 		}
 		echo json_encode($result);
 	}
@@ -183,13 +168,6 @@ class Usuario extends CI_Controller
 	public function datosUsuario($persona)
 	{
 		$resultData = $this->modelUsuario->datosUsuarioModel(array('ID_PERSONA' => $persona));
-		echo json_encode($resultData);
-	}
-
-	// OBTENER PERSONA
-	public function mostrarPersona($persona)
-	{
-		$resultData = $this->modelUsuario->mostrarPersonaModel(array('ID_PERSONA' => $persona));
 		echo json_encode($resultData);
 	}
 
@@ -203,15 +181,36 @@ class Usuario extends CI_Controller
 	// ACTUALIZAR PERSONA
 	public function updatePersona()
 	{
-		$where = $this->input->post('ID_PERSONA');
-		$editar = $this->modelUsuario->updatePersonaModel('tbl_persona', $_POST, array('ID_PERSONA' => $where));
+		$where = $this->input->post('ID_PERSONA_UPDATE');
+		$datosUsuario = array(
+			'COD_PERSONA' => $this->input->post('ID_PERSONA_UPDATE'),
+			'PRIMER_NOMBRE' => $this->input->post('PRIMER_NOMBRE_PERSONA_UPDATE'),
+			'SEGUNDO_NOMBRE' => $this->input->post('SEGUNDO_NOMBRE_PERSONA_UPDATE'),
+			'PRIMER_APELLIDO' => $this->input->post('PRIMER_APELLIDO_PERSONA_UPDATE'),
+			'SEGUNDO_APELLIDO' => $this->input->post('SEGUNDO_APELLIDO_PERSONA_UPDATE'),
+			'FECHA_NACIMIENTO_PERSONA' => $this->input->post('FECHA_NACIMIENTO_UPDATE'),
+			'SEXO_PERSONA' => $this->input->post('SEXO_UPDATE'),
+			'CORREO_INSTITUCIONAL_PERSONA' => $this->input->post('CORREO_INSTITUCIONAL_UPDATE'),
+			'CORREO_PERSONAL_PERSONA' => $this->input->post('CORREO_PERSONAL_UPDATE'),
+			'DUI_PERSONA' => $this->input->post('DUI_UPDATE'),
+			'NIT_PERSONA' => $this->input->post('NIT_UPDATE'),
+			'DIRECCION_PERSONA' => $this->input->post('DIRECCION_UPDATE'),
+			'DEPARTAMENTO_PERSONA' => $this->input->post('DEPARTAMENTO_UPDATE'),
+			'TELEFONO_FIJO_PERSONA' => $this->input->post('TELEFONO_FIJO_UPDATE'),
+			'TELEFONO_MOVIL_PERSONA' => $this->input->post('TELEFONO_MOVIL_UPDATE'),
+			'PROFESION_PERSONA' => $this->input->post('PROFESION_UPDATE'),
+			'USUARIO_PERSONA' => explode("@", $this->input->post('CORREO_INSTITUCIONAL_UPDATE'))[0],
+			'PASSWORD_PERSONA' => strtolower($this->input->post('PRIMER_APELLIDO_PERSONA_UPDATE')),
+			'TIPO_USUARIO' => $this->input->post('ID_TIPO_USUARIO_UPDATE'),
+		);
+		$editar = $this->modelUsuario->updatePersonaModel($datosUsuario);
 		if ($editar == TRUE)
 		{
-			echo "true";
-		}
-		else
-		{
-			echo "false";
+			echo json_encode('Datos actualizados!');
+        }
+        else
+        {
+            echo json_encode('Error al actualizar!');
 		}
 	}
 

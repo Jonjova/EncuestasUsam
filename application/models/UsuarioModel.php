@@ -52,32 +52,54 @@ class UsuarioModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// OBTENER USUARIO
+	// INFO USUARIO
     public function datosUsuarioModel($where)
     {
         $query = $this->db->select('*')->from('VW_INFO_USUARIO')->where($where)->get();                         
         return $query->row_array();
     }
 
-	// OBTENER PERSONA
-    public function mostrarPersonaModel($where)
-    {
-        $query = $this->db->select('*')->from('tbl_persona')->where($where)->get();                         
-        return $query->row_array();
-    }
-
-	// OBTENER USUARIO
+	// OBTENER USUARIO 
     public function mostrarUserioModel($where)
     {
         $query = $this->db->select('*')->from('VW_UPDATE_USUARIO')->where($where)->get();                         
         return $query->row_array();
     }
 
-    // ACTUALIZAR PERSONA
-    public function updatePersonaModel($tablename, $data, $where)
-    {
-        $query = $this->db->update($tablename, $data, $where);
-        return $query;
+    // ACTUALIZAR USUARIO
+	function updatePersonaModel($datosUsuario)
+	{
+        try
+		{
+            $this->db->reconnect();
+            $sql = "CALL `SP_ACTUALIZAR_USUARIO`(
+				".$datosUsuario['COD_PERSONA'].", 
+				'".$datosUsuario['PRIMER_NOMBRE']."', 
+				'".$datosUsuario['SEGUNDO_NOMBRE']."', 
+				'".$datosUsuario['PRIMER_APELLIDO']."', 
+				'".$datosUsuario['SEGUNDO_APELLIDO']."', 
+				'".$datosUsuario['FECHA_NACIMIENTO_PERSONA']."', 
+				".$datosUsuario['SEXO_PERSONA'].", 
+				'".$datosUsuario['CORREO_INSTITUCIONAL_PERSONA']."', 
+				'".$datosUsuario['CORREO_PERSONAL_PERSONA']."',  
+				'".$datosUsuario['DUI_PERSONA']."', 
+				'".$datosUsuario['NIT_PERSONA']."', 
+				'".$datosUsuario['DIRECCION_PERSONA']."', 
+				".$datosUsuario['DEPARTAMENTO_PERSONA'].", 
+				'".$datosUsuario['TELEFONO_FIJO_PERSONA']."', 
+				'".$datosUsuario['TELEFONO_MOVIL_PERSONA']."', 
+				".$datosUsuario['PROFESION_PERSONA'].", 
+				'".$datosUsuario['USUARIO_PERSONA']."', 
+				'".$datosUsuario['PASSWORD_PERSONA']."', 
+				".$datosUsuario['TIPO_USUARIO'].");";
+            $result = $this->db->query($sql, $datosUsuario);
+            $this->db->close();
+        }
+		catch (Exception $e)
+		{
+            echo $e->getMessage();
+        }
+        return $result;
     }
 
 	// RESTABLECER CONTRASEÑA

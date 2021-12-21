@@ -79,8 +79,13 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Fecha de Nacimiento:</label>
-                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="2000-01-01"
-                                                                type="date" class="form-control" required>
+                                                            <?php
+                                                                date_default_timezone_set("America/El_Salvador");
+                                                                $age = date("Y-m-d",strtotime(date("Y-m-d")."- 18 year"));
+                                                                echo 
+                                                                '<input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="'.$age.'"
+                                                                    type="date" class="form-control" required>';
+                                                            ?>
                                                         </div>
                                                     </div>
 
@@ -131,7 +136,7 @@
                                                         <div class="form-group">
                                                             <label>Correo Personal(No Obligatorio):</label>
                                                             <input name="CORREO_PERSONAL" id="CORREO_PERSONAL"
-                                                                type="email" class="form-control"
+                                                                type="text" class="form-control"
                                                                 placeholder="personal@mail.com">
                                                         </div>
                                                     </div>
@@ -214,14 +219,23 @@
                                                         <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL"
                                                             type="text" class="form-control"
                                                             placeholder="docente@liveusam.edu.sv" required>
-                                                        <!-- ID COORDINADOR -->
-                                                        <input type="hidden" name="COORDINADOR"
-                                                            value="<?=$this->session->userdata('COORDINADOR')?>">
-                                                        <!-- USUARIO Y PASSWORD-->
-                                                        <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="hidden">
-                                                        <input name="PASSWORD" id="PASSWORD" type="hidden">
                                                     </div>
                                                 </div>
+                                                <!-- ID COORDINADOR -->
+                                                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1):?>
+                                                    <div class="col-sm-7 col-sm-offset-1">
+                                                        <div class="form-group">
+                                                        <label>Coordinador:</label>
+                                                            <select name="COORDINADOR" id="COORDINADOR" class="custom-select"
+                                                                style="font-size: 1rem;" onblur="validaSelect(this);"
+                                                                required>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                <?php else:?>
+                                                    <input type="hidden" name="COORDINADOR"
+                                                        value="<?=$this->session->userdata('COORDINADOR')?>">
+                                                <?php endif;?>
                                             </div>
                                         </div>
 

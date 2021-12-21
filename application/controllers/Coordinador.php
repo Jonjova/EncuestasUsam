@@ -128,19 +128,19 @@ class Coordinador extends CI_Controller
 			'ID_COORDINADOR' => $this->maxCoordinador(),
 			'COORDINACION' => $this->input->post('COORDINACION'),
 			'ID_USUARIO' => $this->maxUsuario(),
-			'NOMBRE_USUARIO' => $this->input->post('NOMBRE_USUARIO'),
-			'PASSWORD' => $this->input->post('PASSWORD'),
+			'NOMBRE_USUARIO' => explode("@", $this->input->post('CORREO_INSTITUCIONAL'))[0],
+			'PASSWORD' => strtolower($this->input->post('PRIMER_APELLIDO_PERSONA')),
 			'USUARIO_CREA' => $_SESSION['ID_USUARIO']
 		);
 
 		$insert = $this->modelCoordinador->crearCoordinadorModel($datosCoordinador);
 		if ($insert == TRUE) 
 		{
-			echo "true";
-		}
-		else
-		{
-			echo "false";
+			echo json_encode('Datos guardados!');
+        }
+        else
+        {
+            echo json_encode('Error al guardar!');
 		}
 	}
 
@@ -152,25 +152,48 @@ class Coordinador extends CI_Controller
 		$i = 1;
 		foreach ($resultList as $key => $value)
 		{
+			$btnPass = 
+				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
+					<i class="fas fa-sync-alt"></i>
+					<i class="fas fa-lock"></i>
+				</a>';
 			$btnInfo = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" 
+				'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" 
 					data-toggle="modal" data-target="#InfoCoordinador">
 					<i class="fas fa-info-circle"></i>
 				</a>';
 			$btnUpdate = 
-				'<a class="btn btn-warning" style="font-size: x-large;" onclick="obtenerCoordinador('.$value['ID_PERSONA'].');" 
+				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerCoordinador('.$value['ID_PERSONA'].');" 
 					data-toggle="modal" data-target="#modalCoordinador">
 					<i class="fas fa-pen" title="Actualizar"></i>
 				</a>';
-			$result['data'][] = array(
-				$i++,
-				$value['COORDINADOR'],
-				$value['NOMBRE_USUARIO'],
-				$value['TELEFONO_MOVIL'],
-				$value['NOMBRE_COORDINACION'],
-				$btnInfo."&ensp;&ensp;".
-				$btnUpdate
-			);
+
+			if ($_SESSION['ID_TIPO_USUARIO'] != 1)
+			{
+				$result['data'][] = array(
+					$i++,
+					$value['COORDINADOR'],
+					$value['NOMBRE_USUARIO'],
+					$value['TELEFONO_MOVIL'],
+					$value['NOMBRE_COORDINACION'],
+					$btnInfo."&ensp;&ensp;".
+					$btnUpdate
+				);
+			}
+			else
+			{
+				$result['data'][] = array(
+					$i++,
+					$value['COORDINADOR'],
+					$value['NOMBRE_USUARIO'],
+					$value['TELEFONO_MOVIL'],
+					$value['NOMBRE_COORDINACION'],
+					$btnPass."&ensp;&ensp;".
+					$btnInfo."&ensp;&ensp;".
+					$btnUpdate
+				);
+			}
+			
 		}
 		echo json_encode($result);
 	}
@@ -193,33 +216,35 @@ class Coordinador extends CI_Controller
 	public function updateCoordinador()
 	{
 		$datosCoordinador = array(
-			'COD_PERSONA' => $this->input->post('ID_PERSONA'),
-			'PRIMER_NOMBRE' => $this->input->post('PRIMER_NOMBRE_PERSONA'),
-			'SEGUNDO_NOMBRE' => $this->input->post('SEGUNDO_NOMBRE_PERSONA'),
-			'PRIMER_APELLIDO' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
-			'SEGUNDO_APELLIDO' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
-			'FECHA_NACIMIENTO_PERSONA' => $this->input->post('FECHA_NACIMIENTO'),
-			'SEXO_PERSONA' => $this->input->post('SEXO'),
-			'CORREO_INSTITUCIONAL_PERSONA' => $this->input->post('CORREO_INSTITUCIONAL'),
-			'CORREO_PERSONAL_PERSONA' => $this->input->post('CORREO_PERSONAL'),
-			'DUI_PERSONA' => $this->input->post('DUI'),
-			'NIT_PERSONA' => $this->input->post('NIT'),
-			'DIRECCION_PERSONA' => $this->input->post('DIRECCION'),
-			'DEPARTAMENTO_PERSONA' => $this->input->post('DEPARTAMENTO'),
-			'TELEFONO_FIJO_PERSONA' => $this->input->post('TELEFONO_FIJO'),
-			'TELEFONO_MOVIL_PERSONA' => $this->input->post('TELEFONO_MOVIL'),
-			'PROFESION_PERSONA' => $this->input->post('PROFESION'),
-			'COORDINACION_PERSONA' => $this->input->post('COORDINACION')
+			'COD_PERSONA' => $this->input->post('ID_PERSONA_UPDATE'),
+			'PRIMER_NOMBRE' => $this->input->post('PRIMER_NOMBRE_PERSONA_UPDATE'),
+			'SEGUNDO_NOMBRE' => $this->input->post('SEGUNDO_NOMBRE_PERSONA_UPDATE'),
+			'PRIMER_APELLIDO' => $this->input->post('PRIMER_APELLIDO_PERSONA_UPDATE'),
+			'SEGUNDO_APELLIDO' => $this->input->post('SEGUNDO_APELLIDO_PERSONA_UPDATE'),
+			'FECHA_NACIMIENTO_PERSONA' => $this->input->post('FECHA_NACIMIENTO_UPDATE'),
+			'SEXO_PERSONA' => $this->input->post('SEXO_UPDATE'),
+			'CORREO_INSTITUCIONAL_PERSONA' => $this->input->post('CORREO_INSTITUCIONAL_UPDATE'),
+			'CORREO_PERSONAL_PERSONA' => $this->input->post('CORREO_PERSONAL_UPDATE'),
+			'DUI_PERSONA' => $this->input->post('DUI_UPDATE'),
+			'NIT_PERSONA' => $this->input->post('NIT_UPDATE'),
+			'DIRECCION_PERSONA' => $this->input->post('DIRECCION_UPDATE'),
+			'DEPARTAMENTO_PERSONA' => $this->input->post('DEPARTAMENTO_UPDATE'),
+			'TELEFONO_FIJO_PERSONA' => $this->input->post('TELEFONO_FIJO_UPDATE'),
+			'TELEFONO_MOVIL_PERSONA' => $this->input->post('TELEFONO_MOVIL_UPDATE'),
+			'PROFESION_PERSONA' => $this->input->post('PROFESION_UPDATE'),
+			'COORDINACION_PERSONA' => $this->input->post('COORDINACION_UPDATE'),
+			'USUARIO_PERSONA' => explode("@", $this->input->post('CORREO_INSTITUCIONAL_UPDATE'))[0],
+			'PASSWORD_PERSONA' => strtolower($this->input->post('PRIMER_APELLIDO_PERSONA_UPDATE'))
 		);
 
 		$insert = $this->modelCoordinador->updateCoordinadorModel($datosCoordinador);
 		if ($insert == TRUE) 
 		{
-			echo "true";
-		}
-		else
-		{
-			echo "false";
+			echo json_encode('Datos actualizados!');
+        }
+        else
+        {
+            echo json_encode('Error al actualizar!');
 		}
 	}
 	

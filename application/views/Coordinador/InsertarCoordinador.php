@@ -80,8 +80,13 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Fecha de Nacimiento:</label>
-                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="2000-01-01"
-                                                                type="date" class="form-control" required>
+                                                            <?php
+                                                                date_default_timezone_set("America/El_Salvador");
+                                                                $age = date("Y-m-d",strtotime(date("Y-m-d")."- 18 year"));
+                                                                echo 
+                                                                '<input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="'.$age.'"
+                                                                    type="date" class="form-control" required>';
+                                                            ?>
                                                         </div>
                                                     </div>
 
@@ -132,7 +137,7 @@
                                                         <div class="form-group">
                                                             <label>Correo Personal(No Obligatorio):</label>
                                                             <input name="CORREO_PERSONAL" id="CORREO_PERSONAL"
-                                                                type="email" class="form-control"
+                                                                type="text" class="form-control"
                                                                 placeholder="personal@mail.com">
                                                         </div>
                                                     </div>
@@ -226,9 +231,6 @@
                                                             class="custom-select" style="font-size: 1rem;"
                                                             onblur="validaSelect(this);" required>
                                                         </select>
-                                                        <!-- USUARIO -->
-                                                        <input name="NOMBRE_USUARIO" id="NOMBRE_USUARIO" type="hidden">
-                                                        <input name="PASSWORD" id="PASSWORD" type="hidden">
                                                     </div>
                                                 </div>
                                             </div>

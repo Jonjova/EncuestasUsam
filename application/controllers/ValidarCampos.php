@@ -10,7 +10,26 @@ class ValidarCampos extends CI_Controller
 		$this->load->model('ValidarCamposModel', 'modelValidar', true);
 	}
 
-	// VALIDAR DUI
+	/****************************************************************************
+                        	VALIDAR CAMPOS PARA INSERTAR
+	****************************************************************************/
+
+	// VALIDAR PROFESION EXISTENTE
+	public function validarProf()
+	{ 
+		$valor = $this->input->post('NOMBRE_PROFESION');
+		$resultado = $this->modelValidar->findProf($valor);
+		if($resultado)
+		{
+			echo 1;
+		}
+		else
+		{
+			echo 0;
+		}
+	}
+
+	// VALIDAR DUI EXISTENTE
 	public function validarDUI()
 	{ 
 		$valor = $this->input->post('DUI');
@@ -19,9 +38,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR NIT
+	// VALIDAR NIT EXISTENTE
 	public function validarNIT()
 	{ 
 		$valor = $this->input->post('NIT');
@@ -30,9 +53,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR TELEFONO FIJO
+	// VALIDAR TELEFONO FIJO EXISTENTE
 	public function validarTelFijo()
 	{ 
 		$valor = $this->input->post('TELEFONO_FIJO');
@@ -41,9 +68,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR TELEFONO MOVIL
+	// VALIDAR TELEFONO MOVIL EXISTENTE
 	public function validarTelMovil()
 	{ 
 		$valor = $this->input->post('TELEFONO_MOVIL');
@@ -52,9 +83,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CORREO PERSONAL
+	// VALIDAR CORREO PERSONAL EXISTENTE
 	public function validarEmail()
 	{ 
 		$valor = $this->input->post('CORREO_PERSONAL');
@@ -63,9 +98,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CORREO INSTITUCIONAL
+	// VALIDAR CORREO INSTITUCIONAL EXISTENTE
 	public function validarEmailUSAM()
 	{ 
 		$valor = $this->input->post('CORREO_INSTITUCIONAL');
@@ -74,9 +113,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CODIGO ASIGNATURA
+	// VALIDAR CODIGO ASIGNATURA EXISTENTE
 	public function validarCodAsignatura()
 	{ 
 		$valor = $this->input->post('CODIGO_ASIGNATURA');
@@ -85,9 +128,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CARNET
+	// VALIDAR CARNET EXISTENTE
 	public function validarCarnet()
 	{ 
 		$valor = $this->input->post('CARNET');
@@ -96,9 +143,13 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CICLO
+	// VALIDAR CICLO EXISTENTE
 	public function validarCiclo()
 	{
 		$valor = $this->input->post('COD_CICLO');
@@ -107,15 +158,37 @@ class ValidarCampos extends CI_Controller
 		{
 			echo 1;
 		}
+		else
+		{
+			echo 0;
+		}
 	}
 
-	// VALIDAR CAMBIAR DUI
-	public function cambiarDUI()
+	/****************************************************************************
+                        	VALIDAR CAMPOS PARA ACTUALIZAR
+	****************************************************************************/
+
+	// VALIDAR CAMBIAR PROFESION EXISTENTE
+	public function cambiarProf($id)
 	{ 
-		$valor = $this->input->post('DUI');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('NOMBRE_PROFESION_UPDATE');
+		$resultado = $this->modelValidar->cambiarProfModel($valor, $id);
+		if($resultado)
+		{
+			echo 1;
+		}
+		else
+		{
+			echo 0;
+		}
+	}
+
+	// VALIDAR CAMBIAR DUI EXISTENTE
+	public function cambiarDUI($idPersona)
+	{ 
+		$valor = $this->input->post('DUI_UPDATE');
 		$resultado = $this->modelValidar->cambiarDUIModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}
@@ -125,13 +198,12 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	// VALIDAR CAMBIAR DUI
-	public function cambiarNIT()
+	// VALIDAR CAMBIAR NIT EXISTENTE
+	public function cambiarNIT($idPersona)
 	{ 
-		$valor = $this->input->post('NIT');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('NIT_UPDATE');
 		$resultado = $this->modelValidar->cambiarNITModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}
@@ -141,13 +213,12 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	// VALIDAR CAMBIAR TELEFONO FIJO
-	public function cambiarTelFijo()
+	// VALIDAR CAMBIAR TELEFONO FIJO EXISTENTE
+	public function cambiarTelFijo($idPersona)
 	{ 
-		$valor = $this->input->post('TELEFONO_FIJO');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('TELEFONO_FIJO_UPDATE');
 		$resultado = $this->modelValidar->cambiarTelFijoModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}
@@ -157,13 +228,12 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	// VALIDAR CAMBIAR TELEFONO MOVIL
-	public function cambiarTelMovil()
+	// VALIDAR CAMBIAR TELEFONO MOVIL EXISTENTE
+	public function cambiarTelMovil($idPersona)
 	{ 
-		$valor = $this->input->post('TELEFONO_MOVIL');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('TELEFONO_MOVIL_UPDATE');
 		$resultado = $this->modelValidar->cambiarTelMovilModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}
@@ -173,13 +243,12 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	// VALIDAR CAMBIAR CORREO PERSONAL
-	public function cambiarEmail()
+	// VALIDAR CAMBIAR CORREO PERSONAL EXISTENTE
+	public function cambiarEmail($idPersona)
 	{ 
-		$valor = $this->input->post('CORREO_PERSONAL');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('CORREO_PERSONAL_UPDATE');
 		$resultado = $this->modelValidar->cambiarEmailModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}
@@ -189,13 +258,12 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	// VALIDAR CAMBIAR CORREO INSTITUCIONAL
-	public function cambiarEmailUSAM()
+	// VALIDAR CAMBIAR CORREO INSTITUCIONAL EXISTENTE
+	public function cambiarEmailUSAM($idPersona)
 	{ 
-		$valor = $this->input->post('CORREO_INSTITUCIONAL');
-		$idPersona = $_SESSION['PERSONA'];
+		$valor = $this->input->post('CORREO_INSTITUCIONAL_UPDATE');
 		$resultado = $this->modelValidar->cambiarEmailUSAMModel($valor, $idPersona);
-		if(!$resultado)
+		if($resultado)
 		{
 			echo 1;
 		}

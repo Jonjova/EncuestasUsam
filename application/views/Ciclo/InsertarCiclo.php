@@ -10,7 +10,8 @@
                                     <div class="wizard-header">
                                         <h3>
                                             <b>CREAR</b> NUEVO CICLO<br>
-                                            <small>Ingrese la informaci&oacute;n que se solicita de la asignatura.</small>
+                                            <small>Ingrese la informaci&oacute;n que se solicita de la
+                                                asignatura.</small>
                                         </h3>
                                     </div>
 
@@ -29,36 +30,53 @@
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Nombre del ciclo:</label>
-                                                        <select name="COD_CICLO" id="COD_CICLO"
-                                                            class="custom-select" required>
+                                                        <select name="COD_CICLO" id="COD_CICLO" class="custom-select"
+                                                            required>
                                                             <option selected disabled value="">Seleccionar...</option>
-                                                            <option value="Ciclo Impar <?php echo date('Y')?>">Ciclo Impar <?php echo date('Y')?></option>
-                                                            <option value="Ciclo Par <?php echo date('Y')?>">Ciclo Par <?php echo date('Y')?></option>
+                                                            <?php if(date('Y-m-d') <= date('Y-06-30')): ?>
+                                                            <option value="Ciclo Impar <?php echo date('Y')?>">Ciclo
+                                                                Impar <?php echo date('Y')?></option>
+                                                            <?php else: ?>
+                                                            <option value="Ciclo Par <?php echo date('Y')?>">Ciclo Par
+                                                                <?php echo date('Y')?></option>
+                                                            <?php endif; ?>
                                                         </select>
                                                     </div>
-                                                    
+
                                                     <?php if(date('Y-m-d') > date('Y-01-01') && date('Y-m-d') < date('Y-06-30')): ?>
-                                                        <div class="form-group">
-                                                            <label>Fecha Inicio:</label>
-                                                            <input name="FECHA_INICIO" id="FECHA_INICIO" value="<?php echo date('Y-01-10')?>"
-                                                                type="date" class="form-control" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Fecha Fin:</label>
-                                                            <input name="FECHA_FIN" id="FECHA_FIN" value="<?php echo date('Y-06-25')?>"
-                                                                type="date" class="form-control" required>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label>Fecha Inicio:</label>
+                                                        <input name="FECHA_INICIO" id="FECHA_INICIO"
+                                                            type="date" value="<?php echo date('Y-01-10')?>"
+                                                            min="<?php echo date('Y-01-01')?>"
+                                                            max="<?php echo date('Y-01-30')?>"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Fecha Fin:</label>
+                                                        <input name="FECHA_FIN" id="FECHA_FIN"
+                                                            type="date" value="<?php echo date('Y-06-25')?>"
+                                                            min="<?php echo date('Y-06-01')?>"
+                                                            max="<?php echo date('Y-06-30')?>"
+                                                            class="form-control" required>
+                                                    </div>
                                                     <?php else: ?>
-                                                        <div class="form-group">
-                                                            <label>Fecha Inicio:</label>
-                                                            <input name="FECHA_INICIO" id="FECHA_INICIO" value="<?php echo date('Y-07-10')?>"
-                                                                type="date" class="form-control" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Fecha Fin:</label>
-                                                            <input name="FECHA_FIN" id="FECHA_FIN" value="<?php echo date('Y-12-15')?>"
-                                                                type="date" class="form-control" required>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label>Fecha Inicio:</label>
+                                                        <input name="FECHA_INICIO" id="FECHA_INICIO"
+                                                            type="date" value="<?php echo date('Y-07-10')?>"
+                                                            min="<?php echo date('Y-07-01')?>"
+                                                            max="<?php echo date('Y-07-30')?>"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Fecha Fin:</label>
+                                                        <input name="FECHA_FIN" id="FECHA_FIN"
+                                                            type="date" value="<?php echo date('Y-12-15')?>"
+                                                            min="<?php echo date('Y-12-01')?>"
+                                                            max="<?php echo date('Y-12-22')?>"
+                                                            class="form-control" required>
+                                                    </div>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>

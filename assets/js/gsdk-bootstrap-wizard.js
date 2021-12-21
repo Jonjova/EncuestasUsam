@@ -38,67 +38,220 @@ $(document).ready(function() {
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
 
-    // VALIDACION DE CAMPOS
-    $.extend(jQuery.validator.messages, {
-        email: "Ingrese un Correo V\u00e1lido."
-    });
-
     var $validator = $('.wizard-card form').validate({
         rules: {
-            PRIMER_NOMBRE_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
-            SEGUNDO_NOMBRE_PERSONA: { lettersonly: true, minlength: 3, maxlength: 25 },
-            PRIMER_APELLIDO_PERSONA: { required: true, lettersonly: true, minlength: 3, maxlength: 25 },
-            SEGUNDO_APELLIDO_PERSONA: { lettersonly: true, minlength: 3, maxlength: 25 },
-            FECHA_NACIMIENTO: { required: true },
+            // INSERTAR
+            NOMBRE_PROFESION: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15, inProf: true },
+            PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
+            PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
+            SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
+            SEGUNDO_APELLIDO_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
+            FECHA_NACIMIENTO: { required: true, min: false, max: false, minEdad: true, maxEdad: true },
             SEXO: { required: true },
-            DUI: { required: true },
-            NIT: { required: true },
-            TELEFONO_FIJO: { required: true },
-            TELEFONO_MOVIL: { required: true },
+            DUI: { required: true, isDUI: false, inDUI: true },
+            NIT: { required: true, isNIT: false, inNIT: true },
+            TELEFONO_FIJO: { required: true, telF: true, inTelF: true },
+            TELEFONO_MOVIL: { required: true, telM: true, inTelM: true },
             DEPARTAMENTO: { required: true },
             DIRECCION: { required: true },
-            CORREO_INSTITUCIONAL: { required: true },
+            CORREO_PERSONAL: { correo: true, correoP: true, inMailPer: true },
+            CORREO_INSTITUCIONAL: { required: true, correo: true, correoU: true, inMailIns: true },
             PROFESION: { required: true },
             COORDINACION: { required: true },
             COORDINADOR: { required: true },
-            CODIGO_ASIGNATURA: { required: true },
-            NOMBRE_ASIGNATURA: { required: true },
+            CODIGO_ASIGNATURA: { required: true, codAsignatura: true, inCodAsig: true },
+            NOMBRE_ASIGNATURA: { required: true, nomAsig: true },
             ID_ASIGNATURA: { required: true },
             ID_DOCENTE: { required: true },
             OLD_PASSWORD: { required: true },
             PASSWORD: { required: true },
             RE_PASSWORD: { required: true },
-            COD_CICLO: { required: true },
+            COD_CICLO: { required: true, inCiclo: true },
             FECHA_INICIO: { required: true },
-            FECHA_FIN: { required: true }
+            FECHA_FIN: { required: true },
+            // ACTUALIZAR
+            NOMBRE_PROFESION_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15, upProf: true },
+            PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
+            PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_NOMBRE_PERSONA_UPDATE: { alfaOespacio: true, minlength: 3, maxlength: 25 },
+            SEGUNDO_APELLIDO_PERSONA_UPDATE: { alfaOespacio: true, minlength: 3, maxlength: 25 },
+            FECHA_NACIMIENTO_UPDATE: { required: true, min: false, max: false, minEdad: true, maxEdad: true },
+            SEXO_UPDATE: { required: true },
+            DUI_UPDATE: { required: true, isDUI: false, upDUI: true },
+            NIT_UPDATE: { required: true, isNIT: false, upNIT: true },
+            TELEFONO_FIJO_UPDATE: { required: true, telF: true, upTelF: true },
+            TELEFONO_MOVIL_UPDATE: { required: true, telM: true, upTelM: true },
+            DEPARTAMENTO_UPDATE: { required: true },
+            DIRECCION_UPDATE: { required: true },
+            CORREO_PERSONAL_UPDATE: { correo: true, correoP: true, upMailPer: true },
+            CORREO_INSTITUCIONAL_UPDATE: { required: true, correo: true, correoU: true, upMailIns: true },
+            PROFESION_UPDATE: { required: true },
+            COORDINACION_UPDATE: { required: true }
         },
         messages: {
-            PRIMER_NOMBRE_PERSONA: { required: "Nombre Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            SEGUNDO_NOMBRE_PERSONA: { lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            PRIMER_APELLIDO_PERSONA: { required: "Apellido Requerido.", lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            SEGUNDO_APELLIDO_PERSONA: { lettersonly: 'S\u00f3lo letras.', minlength: 'El m\u00ednimo permitido son 3 caracteres', maxlength: 'El m\u00e1ximo permitido son 25 caracteres.' },
-            FECHA_NACIMIENTO: { required: "Fecha de Nacimiento Requerida." },
-            SEXO: { required: "Sexo Requerido." },
-            DUI: { required: "DUI Requerido." },
-            NIT: { required: "NIT Requerido." },
-            TELEFONO_FIJO: { required: "Tel\u00f3fono Fijo Requerido." },
-            TELEFONO_MOVIL: { required: "Tel\u00f3fono M\u00f3vil Requerido." },
-            DEPARTAMENTO: { required: "Departamento Requerido." },
-            DIRECCION: { required: "Direcci\u00f3n Requerida." },
-            CORREO_INSTITUCIONAL: { required: "Correo Institucional Requerido." },
-            PROFESION: { required: "Profesi\u00f3n Requerida." },
-            COORDINACION: { required: "Coordinaci\u00f3n Requerida." },
-            COORDINADOR: { required: "Coordinador Requerido." },
-            CODIGO_ASIGNATURA: { required: "C\u00f3digo Requerido." },
-            NOMBRE_ASIGNATURA: { required: "Nombre Requerido." },
-            ID_ASIGNATURA: { required: "Asignatura Requerida." },
-            ID_DOCENTE: { required: "Docente Requerido." },
-            OLD_PASSWORD: { required: "Contrase\u00f1a Antigua Requerida." },
-            PASSWORD: { required: "Nueva Contrase\u00f1a Requerida." },
-            RE_PASSWORD: { required: "Confirme la Nueva Contrase\u00f1a." },
-            COD_CICLO: { required: "Nombre Ciclo Requerido." },
-            FECHA_INICIO: { required: "Fecha Inicio Requerida." },
-            FECHA_FIN: { required: "Fecha Fin Requerida." }
+            // INSERTAR
+            NOMBRE_PROFESION: {
+                required: "Nombre requerido.",
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 15 caracteres.',
+                inProf: 'Profesi\u00f3n ya existe!'
+            },
+            PRIMER_NOMBRE_PERSONA: {
+                required: "Nombre requerido.",
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 15 caracteres.'
+            },
+            PRIMER_APELLIDO_PERSONA: {
+                required: "Apellido requerido.",
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 15 caracteres.'
+            },
+            SEGUNDO_NOMBRE_PERSONA: {
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 15 caracteres.'
+            },
+            SEGUNDO_APELLIDO_PERSONA: {
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 15 caracteres.'
+            },
+            FECHA_NACIMIENTO: {
+                required: "Fecha de nacimiento requerida.",
+                minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
+                maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
+            },
+            SEXO: { required: "Sexo requerido." },
+            DUI: {
+                required: "DUI requerido.",
+                isDUI: "DUI inv\u00e1lido.",
+                inDUI: "Este DUI ya existe!"
+            },
+            NIT: {
+                required: "NIT requerido.",
+                isNIT: "NIT inv\u00e1lido.",
+                inNIT: "Este NIT ya existe!"
+            },
+            TELEFONO_FIJO: {
+                required: "Tel\u00f3fono fijo requerido.",
+                telF: "Ingrese un tel\u00e9fono fijo",
+                inTelF: "Este tel\u00e9fono ya existe!"
+            },
+            TELEFONO_MOVIL: {
+                required: "Tel\u00f3fono m\u00f3vil requerido.",
+                telM: "Ingrese un tel\u00e9fono m\u00f3vil",
+                inTelM: "Este tel\u00e9fono ya existe!"
+            },
+            DEPARTAMENTO: { required: "Departamento requerido." },
+            DIRECCION: { required: "Direcci\u00f3n requerida." },
+            CORREO_PERSONAL: {
+                correo: "Ingrese un correo v\u00e1lido.",
+                correoP: "Ingrese un correo personal.",
+                inMailPer: "Este correo ya existe!"
+            },
+            CORREO_INSTITUCIONAL: {
+                required: "Correo institucional requerido.",
+                correo: "Ingrese un correo v\u00e1lido.",
+                correoU: "Ingrese un correo institucional.",
+                inMailIns: "Este correo ya existe!"
+            },
+            PROFESION: { required: "Profesi\u00f3n requerida." },
+            COORDINACION: { required: "Coordinaci\u00f3n requerida." },
+            COORDINADOR: { required: "Coordinador requerido." },
+            CODIGO_ASIGNATURA: {
+                required: "C\u00f3digo requerido.",
+                codAsignatura: "S\u00f3lo letras sin tilde, números o espacios.",
+                inCodAsig: "Este c\u00f3digo ya existe"
+            },
+            NOMBRE_ASIGNATURA: {
+                required: "Nombre requerido.",
+                nomAsig: "S\u00f3lo letras o espacios."
+            },
+            ID_ASIGNATURA: { required: "Asignatura requerida." },
+            ID_DOCENTE: { required: "Docente requerido." },
+            OLD_PASSWORD: { required: "Contrase\u00f1a antigua requerida." },
+            PASSWORD: { required: "Nueva contrase\u00f1a requerida." },
+            RE_PASSWORD: { required: "Confirme la nueva contrase\u00f1a." },
+            COD_CICLO: {
+                required: "Nombre ciclo requerido.",
+                inCiclo: "Ciclo ya existe!"
+            },
+            FECHA_INICIO: { required: "Fecha inicio requerida." },
+            FECHA_FIN: { required: "Fecha fin requerida." },
+            // ACTUALIZAR
+            NOMBRE_PROFESION_UPDATE: {
+                required: "Nombre requerido.",
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 25 caracteres.',
+                upProf: 'Profesi\u00f3n ya existe!'
+            },
+            PRIMER_NOMBRE_PERSONA_UPDATE: {
+                required: "Nombre requerido.",
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 25 caracteres.'
+            },
+            PRIMER_APELLIDO_PERSONA_UPDATE: {
+                required: "Apellido requerido.",
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 25 caracteres.'
+            },
+            SEGUNDO_NOMBRE_PERSONA_UPDATE: {
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 25 caracteres.'
+            },
+            SEGUNDO_APELLIDO_PERSONA_UPDATE: {
+                alfaOespacio: 'S\u00f3lo letras.',
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 25 caracteres.'
+            },
+            FECHA_NACIMIENTO_UPDATE: {
+                required: "Fecha de nacimiento requerida.",
+                minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
+                maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
+            },
+            SEXO_UPDATE: { required: "Sexo requerido." },
+            DUI_UPDATE: {
+                required: "DUI requerido.",
+                isDUI: "DUI inv\u00e1lido.",
+                upDUI: "Este DUI ya existe!"
+            },
+            NIT_UPDATE: {
+                required: "NIT requerido.",
+                isNIT: "NIT inv\u00e1lido.",
+                upNIT: "Este NIT ya existe!"
+            },
+            TELEFONO_FIJO_UPDATE: {
+                required: "Tel\u00f3fono fijo requerido.",
+                telF: "Ingrese un tel\u00e9fono fijo",
+                upTelF: "Este tel\u00e9fono ya existe!"
+            },
+            TELEFONO_MOVIL_UPDATE: {
+                required: "Tel\u00f3fono m\u00f3vil requerido.",
+                telM: "Ingrese un tel\u00e9fono m\u00f3vil",
+                upTelM: "Este tel\u00e9fono ya existe!"
+            },
+            DEPARTAMENTO_UPDATE: { required: "Departamento requerido." },
+            DIRECCION_UPDATE: { required: "Direcci\u00f3n requerida." },
+            CORREO_PERSONAL_UPDATE: {
+                correo: "Ingrese un correo v\u00e1lido.",
+                correoP: "Ingrese un correo personal.",
+                upMailPer: "Este correo ya existe!"
+            },
+            CORREO_INSTITUCIONAL_UPDATE: {
+                required: "Correo institucional requerido.",
+                correo: "Ingrese un correo v\u00e1lido.",
+                correoU: "Ingrese un correo institucional.",
+                upMailIns: "Este correo ya existe!"
+            },
+            PROFESION_UPDATE: { required: "Profesi\u00f3n requerida." },
+            COORDINACION_UPDATE: { required: "Coordinaci\u00f3n requerida." }
         }
     });
 
@@ -110,14 +263,15 @@ $(document).ready(function() {
 
         onNext: function(tab, navigation, index) {
             var $valid = $('.wizard-card form').valid();
-            if (!$valid || $('span').hasClass('text-danger')) {
+            if (!$valid) {
                 $validator.focusInvalid();
-                $('#CreateCoordinador').addClass('was-validated');
-                $('#CreateDocente').addClass('was-validated');
+                //$('#CreateCoordinador').removeClass('was-validated');
+                //$('#CreateDocente').removeClass('was-validated');
                 return false;
             }
-            $('#CreateCoordinador').removeClass('was-validated');
-            $('#CreateDocente').removeClass('was-validated');
+            //$('#CreateCoordinador').addClass('was-validated');
+            //$('#CreateDocente').addClass('was-validated');
+
         },
 
         onInit: function(tab, navigation, index) {

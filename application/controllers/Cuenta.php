@@ -78,11 +78,11 @@ class Cuenta extends CI_Controller
         $editar = $this->modelCuenta->updatePasswordModel('tbl_usuario', array('PASSWORD' => $pass), array('ID_USUARIO' => $where));
         if ($editar == TRUE) 
         {
-            echo "true";
+            echo json_encode('Contraseña cambiada!');
         }
         else
         {
-            echo "false";
+            echo json_encode('Error al cambiar!');
         }
     }
 

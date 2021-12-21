@@ -65,24 +65,17 @@ class DatosComunesModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// LLENAR SELECT Departamento
+	// LLENAR SELECT DEPARTAMENTO
 	public function dropDepartamentoModel()
 	{
 		$datos = $this->db->get('cat_departamento');
 		return $datos->result_array();
 	}
 
-	// LLENAR SELECT Profesion
+	// LLENAR SELECT PROFESION
 	public function dropProfesionModel()
 	{
 		$datos = $this->db->get('cat_profesion');
-		return $datos->result_array();
-	}
-
-	// LLENAR SELECT Coordinacion
-	public function dropCoordinacionModel()
-	{
-		$datos = $this->db->get('cat_coordinacion');
 		return $datos->result_array();
 	}
 
@@ -92,6 +85,20 @@ class DatosComunesModel extends CI_Model
 		$datos = $this->db->query(
 			'SELECT * FROM cat_rol_usuario 
 			WHERE ID_ROL NOT IN (1, 3, 4)');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT COORDINADOR
+	public function dropCoordinadorModel()
+	{
+		$datos = $this->db->get('VW_DROP_COORDINADORES');
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT COORDINACION
+	public function dropCoordinacionModel()
+	{
+		$datos = $this->db->get('cat_coordinacion');
 		return $datos->result_array();
 	}
 

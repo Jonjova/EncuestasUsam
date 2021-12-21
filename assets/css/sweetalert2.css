@@ -7,6 +7,7 @@
     overflow-y: hidden;
     background: #fff;
     box-shadow: 0 0 0.625em #d9d9d9;
+    border: 3px solid rgba(60, 162, 48, 0.5);
 }
 
 .swal2-popup.swal2-toast>* {
@@ -114,7 +115,8 @@
 }
 
 .swal2-popup.swal2-toast .swal2-styled {
-    margin: 0.25em 0.5em;
+    /* margin: 0.25em 0.5em; */
+    margin: 0.25em 1em;
     padding: 0.4em 0.6em;
     font-size: 1em;
 }
@@ -338,6 +340,7 @@
     background: #fff;
     font-family: inherit;
     font-size: 1rem;
+    border: 5px solid rgba(100, 150, 200, 0.5);
 }
 
 .swal2-popup:focus {
@@ -538,7 +541,9 @@
     justify-content: center;
     margin: 0;
     padding: 1em 1.6em 0.3em;
-    color: #545454;
+    /* color: #545454; */
+    /* color: #fff; */
+    color: #343a40;
     font-size: 1.125em;
     font-weight: normal;
     line-height: normal;
