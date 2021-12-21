@@ -88,6 +88,9 @@
 <!--CRUD PROYECTO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/CrudProyecto.js"></script>
 
+<!--Filtro PROYECTO-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Proyecto/filtroReporte.js"></script>
+
 <!--CRUD GRUPO ALUMNO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/GrupoAlumno/CrudGrupoAlumno.js"></script>
 

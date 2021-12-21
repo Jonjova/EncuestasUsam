@@ -96,8 +96,8 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
-                <li>
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?> 
+                <!-- <li> 
                     <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-user-shield"></i> Permisos</a>
                     <ul class="collapse list-unstyled" id="permisosSubmenu">
@@ -110,8 +110,8 @@
                                 <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
                     </ul>
-                </li>
-                <?php endif; ?>
+                </li> -->
+                <?php endif; ?> 
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                 <li>
@@ -233,6 +233,22 @@
                             <a href="<?php echo base_url();?>Proyectos/index">
                                 <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
+                        <!--</?php endif; ?>-->
+                    </ul>
+                </li>
+                <?php endif; ?>
+
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 5):  ?>
+
+                <li>
+                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-folder"></i> Proyectos</a>
+                    <ul class="collapse list-unstyled" id="proyectSubmenu">
+                        <li>
+                                <a href="<?php echo base_url();?>Proyectos/index">
+                                    <i class="fas fa-eye"></i> Ver Proyectos</a>
+                            </li>
                         <!--</?php endif; ?>-->
                     </ul>
                 </li>

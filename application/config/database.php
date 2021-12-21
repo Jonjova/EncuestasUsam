@@ -94,3 +94,10 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$mysqli = new mysqli(
+	"localhost", 
+	"root", 
+	"root",
+	 "encuestasusam"
+);
