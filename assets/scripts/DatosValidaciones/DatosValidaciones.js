@@ -1,7 +1,7 @@
 /****************************************************************************
                             CARGAR METODOS
-****************************************************************************/
-$(document).ready(function() {
+                            ****************************************************************************/
+                            $(document).ready(function() {
 
     // MASCARAS DE CAMPOS
     $('#CARNET').mask('999999');
@@ -28,18 +28,18 @@ $(document).ready(function() {
 
 /****************************************************************************
                             CARGAR DROPDOWNS
-****************************************************************************/
-function llenarDropdowns() {
-    sexo();
-    departamento();
-    profesion();
-    rol();
-    coordinador();
-    $('#ID_COORDINADOR').change(function() {
-        $('#Docentes').dataTable().fnDestroy();
-        llenarTablaDocente($(this).val());
-    });
-    coordinacion();
+                            ****************************************************************************/
+                            function llenarDropdowns() {
+                                sexo();
+                                departamento();
+                                profesion();
+                                rol();
+                                coordinador();
+                                $('#ID_COORDINADOR').change(function() {
+                                    $('#Docentes').dataTable().fnDestroy();
+                                    llenarTablaDocente($(this).val());
+                                });
+                                coordinacion();
     //docente();
     $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
 
@@ -66,7 +66,7 @@ function validaSelect(select) {
 
 /****************************************************************************
                             LLENAR DROPDOWNS
-****************************************************************************/
+                            ****************************************************************************/
 // LLENAR SELECT SEXO
 function sexo() {
     $.ajax({
@@ -271,7 +271,7 @@ function obtGrupoAlumn(asignatura) {
 
 /****************************************************************************
                             VALIDAR CAMPOS PARA INSERTAR
-****************************************************************************/
+                            ****************************************************************************/
 
 // NOMBRES Y APELLIDOS VALIDOS (LETRAS, LETRAS CON TILDE, SIN ESPACIO)
 jQuery.validator.addMethod("alfaOespacio", function(value, element) {
@@ -281,10 +281,10 @@ jQuery.validator.addMethod("alfaOespacio", function(value, element) {
 // FECHA DE NACIMIENTO VALIDA
 function f_MinEdad(value) {
     var now = new Date(),
-        fecha = new Date(now.setFullYear(now.getFullYear() - 60)),
-        anio = fecha.getFullYear(),
-        mes = fecha.getMonth() + 1,
-        dia = fecha.getDate();
+    fecha = new Date(now.setFullYear(now.getFullYear() - 60)),
+    anio = fecha.getFullYear(),
+    mes = fecha.getMonth() + 1,
+    dia = fecha.getDate();
 
     if (mes < 10)
         mes = '0' + mes.toString();
@@ -300,10 +300,10 @@ function f_MinEdad(value) {
 
 function f_MaxEdad(value) {
     var now = new Date(),
-        fecha = new Date(now.setFullYear(now.getFullYear() - 18)),
-        anio = fecha.getFullYear(),
-        mes = fecha.getMonth() + 1,
-        dia = fecha.getDate();
+    fecha = new Date(now.setFullYear(now.getFullYear() - 18)),
+    anio = fecha.getFullYear(),
+    mes = fecha.getMonth() + 1,
+    dia = fecha.getDate();
 
     if (mes < 10)
         mes = '0' + mes.toString();
@@ -333,11 +333,11 @@ jQuery.validator.addMethod("maxEdad", function(value, element) {
 // DUI VALIDO
 jQuery.validator.addMethod("isDUI", function(value) {
     var regex = /(^\d{8})-(\d$)/,
-        parts = value.match(regex);
+    parts = value.match(regex);
     if (parts !== null) {
         var digits = parts[1],
-            dig_ve = parseInt(parts[2], 10),
-            sum = 0;
+        dig_ve = parseInt(parts[2], 10),
+        sum = 0;
         for (var i = 0, l = digits.length; i < l; i++) {
             var d = parseInt(digits[i], 10);
             sum += (9 - i) * d;
@@ -470,7 +470,7 @@ $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').keyup(function() {
 
 /****************************************************************************
                     VALIDAR DATOS EXISTENTES PARA INSERTAR
-****************************************************************************/
+                    ****************************************************************************/
 
 // VALIDAR PROFESION EXISTENTE
 jQuery.validator.addMethod("inProf", function(value) {
@@ -649,45 +649,127 @@ jQuery.validator.addMethod("inCiclo", function(value) {
 
 // VALIDAR CARNET EXISTENTE
 jQuery.validator.addMethod("inCarnet", function(value) {
-    var resp = false;
-    $.ajax({
-        type: 'POST',
-        url: url + 'ValidarCampos/validarCarnet',
-        data: { 'CARNET': value },
-        async: false,
-        success: function(msg) {
-            if (msg != 0) {
-                resp = false;
-            } else {
-                resp = true;
-            }
-        }
-    });
-    return resp;
+   // var resp = false;
+   $.ajax({
+    type: 'POST',
+    url: url + 'ValidarCampos/validarCarnet',
+    data: { 'CARNET': value },
+    //dataType: 'json',
+    async: false,
+    success: function(msg) {
+       // console.log(msg);
+
+       if (msg != 0) {
+        resp = false;
+    } else {
+        resp = true;
+    }
+}
+});
+   return resp;
 });
 
+
 // VALIDAR CARNET EXISTENTE
-/*$('#CARNET').change(function() {
+$('#CARNET').change(function() {
     $.ajax({
         type: 'POST',
-        url: url + 'ValidarCampos/validarCarnet',
+        url: url + 'ValidarCampos/ObtenerInfoAlumno',
+        dataType: 'json',
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
-            if (msg == 1) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Este Carnet ya Existe!'
-                })
-                $('#CARNET').val('');
-                $('#CARNET').removeClass('is-valid');
-            }
-        }
-    });
-});*/
+
+            if (msg != null) {
+                var contador =0; 
+                $.each(msg, function (index, elem) { 
+                    contador += 1;
+
+                    if (contador == 2) {
+                     $('#PRIMER_NOMBRE_PERSONA').val(elem).attr('readonly', true);
+
+                 }
+                 if (contador == 3) {
+                     $('#SEGUNDO_NOMBRE_PERSONA').val(elem).attr('readonly', true);
+
+                 }
+                 if (contador == 4) {
+                     $('#PRIMER_APELLIDO_PERSONA').val(elem).attr('readonly', true);
+                 }
+
+                 if (contador == 5) {
+                     $('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
+            
+                }
+                 if (contador == 6) {
+                     $('#FECHA_NACIMIENTO_A').val(elem).attr('readonly', true);
+                  
+                }
+
+                 if (contador == 7) {
+                    $('#SEXO option:not(:selected)').attr('disabled', true);
+                     $('#SEXO option:selected').text(elem).attr("disabled", true); 
+                 }
+                 if (contador == 8) {
+                    $('#CORREO_PERSONAL').val(elem).attr('readonly', true);
+                   
+                 }
+                  if (contador == 9) {
+                    $('#TELEFONO_FIJO').val(elem).attr('readonly', true);
+                  
+                 }
+                 if (contador == 10) {
+                    $('#CARRERA option:not(:selected)').attr('disabled', true);
+                     $('#CARRERA option:selected').text(elem).attr("disabled", true)
+                  
+                 }
+                 if (contador == 11) {
+                      $('#CORREO_INSTITUCIONAL').val(elem).attr('readonly', true);
+                 
+                 }
+                 if (contador == 12) {
+                     $('#TELEFONO_MOVIL').val(elem).attr('readonly', true);
+                   
+                 }
+                 if (contador == 13) {
+                    
+                      $('#DEPARTAMENTO option:not(:selected)').attr('disabled', true);
+                     $('#DEPARTAMENTO option:selected').text(elem).attr("disabled", true)
+                   
+                 }
+                 if (contador == 14) {
+                     $('#DIRECCION').val(elem).attr('readonly', true);
+                  // console.log(elem);
+                 }
+                 
+            });
+            }else{
+
+               infoAlumnosLimpiar();
+           }
+       }
+   });
+});
+
+function infoAlumnosLimpiar(){
+   $('#PRIMER_NOMBRE_PERSONA').val('').attr('readonly', false);
+   $('#SEGUNDO_NOMBRE_PERSONA').val('').attr('readonly', false);
+   $('#PRIMER_APELLIDO_PERSONA').val('').attr('readonly', false);
+   $('#SEGUNDO_APELLIDO_PERSONA').val('').attr('readonly', false);
+   $('#FECHA_NACIMIENTO_A').val('').attr('readonly', false);
+   $('#SEXO option').attr('disabled', false);
+   $('#CORREO_PERSONAL').val('').attr('readonly', false);
+   $('#TELEFONO_FIJO').val('').attr('readonly', false);
+   $('#CARRERA option').attr('disabled', false);
+   $('#CORREO_INSTITUCIONAL').val('').attr('readonly', false);
+   $('#CORREO_INSTITUCIONAL').val('').attr('readonly', false);
+   $('#TELEFONO_MOVIL').val('').attr('readonly', false);
+   $('#DEPARTAMENTO option').attr('disabled', false);
+   $('#DIRECCION').val('').attr('readonly', false);
+}
 
 /****************************************************************************
                 VALIDAR CAMPOS EXISTENTES PARA ACTUALIZAR
-****************************************************************************/
+                ****************************************************************************/
 
 // VALIDAR PROFESION EXISTENTE
 jQuery.validator.addMethod("upProf", function(value) {

@@ -69,6 +69,23 @@ class ValidarCamposModel extends CI_Model
 	{
 		$this->db->where('CARNET', $valor);
 		return $this->db->get('tbl_alumnos')->result();
+	
+	}
+
+	public function obtenerInfoAlumno($valor)
+	{
+		$this->db->select('a.carnet, b.primer_nombre_persona, b.segundo_nombre_persona, b.primer_apellido_persona, 
+							b.segundo_apellido_persona, b.fecha_nacimiento, c.nombre_sexo, b.correo_personal, b.telefono_fijo, d.nombre_carrera, b.correo_institucional, b.telefono_movil, e.nombre_departamento, b.direccion');
+
+		$this->db->from('tbl_alumnos a');
+		$this->db->join('tbl_persona b', 'a.persona = b.id_persona');
+		$this->db->join('cat_sexo c', 'b.sexo = c.id_sexo');
+		$this->db->join('cat_carrera d', 'a.carrera = d.id_carrera');
+		$this->db->join('cat_departamento e', 'a.persona = b.id_persona');
+
+		$this->db->like('CARNET', $valor); 
+		
+		return $this->db->get()->row_array();
 	}
 
 	// VALIDAR CICLO

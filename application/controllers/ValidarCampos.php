@@ -139,14 +139,23 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CARNET');
 		$resultado = $this->modelValidar->findCarnet($valor);
+		
 		if($resultado)
 		{
+
 			echo 1;
 		}
 		else
 		{
 			echo 0;
 		}
+	}
+
+	public function ObtenerInfoAlumno()
+	{
+		$valor = $this->input->post('CARNET');
+		$resultado = $this->modelValidar->obtenerInfoAlumno($valor);
+		echo json_encode($resultado);
 	}
 
 	// VALIDAR CICLO EXISTENTE
