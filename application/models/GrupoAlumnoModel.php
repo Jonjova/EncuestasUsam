@@ -69,9 +69,9 @@ class GrupoAlumnoModel extends CI_Model
 	//validar si existe un alumno en un grupo 
 	public function validarGrupo($grupo)
 	{
-		$this->db->where('ID_DET_GRUPO',$grupo);
+		$this->db->where('ID_DET_ALUMNO',$grupo);
 		$resultado = $this->db->get('tbl_grupo_alumno');
-		if($resultado->num_rows()>0){
+		if($resultado->row_array()>0){
 			return 1;
 		}else{
 			return 0;

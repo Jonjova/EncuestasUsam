@@ -57,7 +57,7 @@ function valGrupoAlumno() {
             data: 'ID_ALUMNO_GA=' + grupo,
             type: 'post',
             success: function(data) {
-
+console.log(data);
                 if (data == 1) {
 
                     Swal.fire({
@@ -66,6 +66,7 @@ function valGrupoAlumno() {
                         text: 'Este alumno ya existe en un grupo!'
                     })
                     $("#ID_ALUMNO_GA option:selected").prop("selected", false);
+                    
                 }
             }
         });
@@ -114,6 +115,7 @@ jQuery(document).ready(function() {
                 success: function(data) {
 
                     obtAsignatura();
+                    valGrupoAlumno();
 
                 },
                 error: function() {
@@ -148,7 +150,7 @@ function cargaFuncionSelect() {
     var contar = 0;
     for (var i = 0; i < 2; i++) {
         //console.log(i);
-        contar = (contar + setTimeout(obtGrupoAlumn, 5000));
+        contar = (contar + setTimeout(obtGrupoAlumn, 1000));
         //setTimeout(obtA, 5000)
     }
     console.log(contar);

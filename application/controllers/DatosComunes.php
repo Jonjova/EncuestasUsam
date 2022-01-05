@@ -155,9 +155,9 @@ class DatosComunes extends CI_Controller
 	}
 
 	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGrupoAlumno($asignatura)
+	public function obtGrupoAlumno()
 	{
-		$datos = $this->modelDatos->obtGA($asignatura);
+		$datos = $this->modelDatos->obtGA();
 		echo json_encode($datos);
 	}
 

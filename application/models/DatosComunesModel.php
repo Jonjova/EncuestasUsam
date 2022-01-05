@@ -164,10 +164,10 @@ class DatosComunesModel extends CI_Model
 	}
 
 	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGA($asignatura)
+	public function obtGA()
 	{
-		// $datos = $this->db->get('tbl_grupo');
-		$datos = $this->db->query(
+		 $datos = $this->db->get('tbl_grupo');
+		/*$datos = $this->db->query(
 			"SELECT tg.ID_GRUPO_ALUMNO, tg.NOMBRE_GRUPO
 			FROM tbl_grupo AS tg
 			WHERE tg.ID_GRUPO_ALUMNO NOT IN
@@ -176,9 +176,9 @@ class DatosComunesModel extends CI_Model
 					FROM tbl_proyecto AS tbp
 						INNER JOIN tbl_ciclo AS tc ON tc.ID_CICLO = tbp.CICLO
 					WHERE NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN
-						AND tbp.ID_ASIGNATURA = $asignatura
+						AND tbp.ID_ASIGNATURA = ".$asignatura."
 				)
-			ORDER BY tg.ID_GRUPO_ALUMNO ASC");
+			ORDER BY tg.ID_GRUPO_ALUMNO ASC");*/
 		return $datos->result_array();
 	}
 

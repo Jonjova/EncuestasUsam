@@ -134,7 +134,7 @@
                                     <div class="col-sm-10 col-sm-offset-1">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Nuevo Alumno</label><br>
+                                                <label>Agregar Estudiante</label><br>
                                                 <button type="button" class="btn btn-success " data-toggle="modal"
                                                     data-target="#modalAlumno">
                                                     <i class="fas fa-plus-circle"></i>
