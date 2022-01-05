@@ -1,9 +1,7 @@
-
-		<h2>Registro de Proyecto</h2><br>
+<h2>Registro de Proyecto</h2><br>
 		<!--Aquí se listan las Cliente.-->
 
-
-		<?php if($this->session->userdata('ID_TIPO_USUARIO') == 5):
+		<?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 5):
 
 			require 'application/config/database.php';		
 
@@ -15,25 +13,29 @@
 
 			$sql_f = "SELECT * FROM vw_facultad";
 			$resultado_f = $mysqli->query($sql_f);
-
 		?>
 
-	<select name="select" id="Selectfiltro" class="form-control" required="required">
+    <div class="row">
+    <div class="col-sm-4">
+	<label>Filtrar Información</label>
+	<select name="select" id="Selectfiltro" class="custom-select" required="required">
 					<option value="1">Filtrar Asignatura</option>
 					<option value="2">Filtrar Coordinador</option>
 					<option value="3">Filtrar Facultad</option>
 	</select>
+	</div>
 	<br />
-
+	<div class="col-sm-8">
 	<div id="asig">
 		<form action="<?php echo base_url();?>Reportes/reporte" method="post" autocomplete="off">
 		<label>Asignatura: </label>
-		<select class="form-select" id="asignaturaR" name="asignaturaR" required="required"> 
+		<select class="custom-select" id="asignaturaR" name="asignaturaR" required="required"> 
             <option value="">Selecciona una opción</option>
             <?php while ($fila = $resultado->fetch_assoc()) { ?>
                 <option value="<?php echo $fila['id_asignatura']; ?>"><?php echo $fila['nombre_asignatura']; ?></option>
             <?php } ?>
         </select>
+		<br /><br />
 		<button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Asignatura</button>
     	</form>
 	</div>
@@ -41,12 +43,13 @@
 	<div id="coord">
 		<form action="<?php echo base_url();?>Reportes/reporteC" method="post" autocomplete="off">		
 		<label>Coordinador: </label>
-		<select class="form-select" id="coordinadorR" name="coordinadorR" required="required">
+		<select class="custom-select" id="coordinadorR" name="coordinadorR" required="required">
             <option value="">Selecciona una opción</option>
             <?php while ($fila = $resultado_c->fetch_assoc()) { ?>
                 <option value="<?php echo $fila['coordinador']; ?>"><?php echo $fila['n_coordinador']; ?></option>
             <?php } ?>
-        </select>		
+        </select>
+		<br /><br />		
 		<button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Coordinador</button>
     	</form>
 	</div>
@@ -54,14 +57,17 @@
 	<div id="fac">
 		<form action="<?php echo base_url();?>Reportes/reporteF" method="post" autocomplete="off">		
 		<label>Facultad: </label>
-		<select class="form-select" id="facultadR" name="facultadR" required="required">
+		<select class="custom-select" id="facultadR" name="facultadR" required="required">
             <option value="">Selecciona una opción</option>
             <?php while ($fila = $resultado_f->fetch_assoc()) { ?>
                 <option value="<?php echo $fila['id_facultad']; ?>"><?php echo $fila['nombre_facultad']; ?></option>
             <?php } ?>
-        </select>				
+        </select>
+		<br /><br />				
 		<button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Facultad</button>
     	</form>
+	</div>
+	</div>
 	</div>
         <br />
 
@@ -87,4 +93,3 @@
 			</table>
 		
 		<!--Aqui termina la lista de tabla de Cliente-->
-
