@@ -80,15 +80,20 @@ $(document).ready(function() {
         }, 'copy', 'csv', 'excel']
     });
 
-    $.ajax({
-        url: url + "Proyectos/MostrarProyecto",
-        type: 'post',
-        success: function(d) {
-           // console.log(d);
-        }
-    });
-
 });
+
+function limpiarAlumno() {
+
+ 
+    $('#CrearProyecto').trigger("reset");
+    var validator = $("#CrearProyecto").validate();
+    validator.resetForm();
+    $('.form-control').removeClass('is-valid is-invalid');
+    $('.custom-select').removeClass('is-valid is-invalid');
+    infoAlumnosLimpiar();
+
+}
+
 
 // Acción de Insertar Proyecto.
 $(function() {
@@ -113,8 +118,7 @@ $(function() {
                     })
 
                     $('#CrearProyecto')[0].reset();
-
-
+                    limpiarAlumno()
                 } else {
                     alert('ingrese datos');
                 }
