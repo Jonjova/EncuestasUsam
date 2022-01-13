@@ -24,6 +24,7 @@ class Proyectos extends CI_Controller
 		//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Proyecto/Mostrar');
+			$this->load->view('Alumno/MostrarGrupoAlumno');
 		 //Footer
 			$this->load->view('Layout/Footer');
 		}
@@ -47,6 +48,7 @@ class Proyectos extends CI_Controller
 			$this->load->view('Proyecto/insertar');
 			$this->load->view('GrupoAlumno/insertar');
 			$this->load->view('Alumno/insertarAlumno');
+
 		    //Footer
 			$this->load->view('Layout/Footer');
 		}
@@ -56,7 +58,12 @@ class Proyectos extends CI_Controller
 			show_404();
 		}
 	}
-
+// INFORMACION COORDINADOR
+	public function datosInfoGrupo($persona)
+	{
+		$resultData = $this->pm->datosGrupoAlumnoModel(array('ID_PROYECTO' => $persona));
+		echo json_encode($resultData);
+	}
 	//Mostrar
 	public function MostrarProyecto()
 	{
@@ -69,25 +76,28 @@ class Proyectos extends CI_Controller
 		foreach ($resultList as $key => $value) {
 
 			$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
-			$result['data'][] = array(
-				$i++,
-				$value['NOMBRE_PROYECTO'],
-				$value['DESCRIPCION'],
-				$value['NOMBRE_TIPO_INVESTIGACION'],
-				$value['NOMBRE_ASIGNATURA'],
-				$value['NOMBRE_DISENIO'],
-				$value['FECHA_ASIGNACION'],
-				$value['Alumnos']. ' Integrantes',
-				$value['COD_CICLO'],
-				$estado
+			$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');" ><i class="fas fa-info-circle"></i></a>';
+				$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';	
+		$result['data'][] = array(
+			$i++,
+			$value['NOMBRE_PROYECTO'],
+			$value['DESCRIPCION'],
+			$value['NOMBRE_TIPO_INVESTIGACION'],
+			$value['NOMBRE_ASIGNATURA'],
+			$value['NOMBRE_DISENIO'],
+			$value['FECHA_ASIGNACION'],
+				//$value['Alumnos']. ' Integrantes',
+			$btnInfo,
+			$value['COD_CICLO'],
+			$estado
 			);
-		}
-		echo json_encode($result);
 	}
+	echo json_encode($result);
+}
 
 	//Guardar Proyecto
-	public function Guardar()
-	{
+public function Guardar()
+{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
 		$datos = array(
 			'NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
@@ -101,7 +111,7 @@ class Proyectos extends CI_Controller
 			'ESTADO_PROYECTO' => true,
 			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
-		);
+			);
 
 		//Datos de tabla  "Proyectos"
 		$insert = $this->pm->insertProyecto($datos);

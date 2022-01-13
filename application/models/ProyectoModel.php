@@ -23,5 +23,12 @@ class ProyectoModel extends CI_Model
 		return $datos->result_array();
 	}
 
+		// INFORMACION grupo alumno
+    public function datosGrupoAlumnoModel($where)
+    {
+        $query = $this->db->select('*')->from('vw_proyecto')->where($where)->get();                         
+        return $query->row_array();
+    }
+
 }
 ?>

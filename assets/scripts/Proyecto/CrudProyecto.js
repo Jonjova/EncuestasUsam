@@ -84,7 +84,7 @@ $(document).ready(function() {
         url: url + "Proyectos/MostrarProyecto",
         type: 'post',
         success: function(d) {
-            console.log(d);
+           // console.log(d);
         }
     });
 
@@ -190,3 +190,24 @@ $("#CrearProyecto").validate({
         CICLO: { required: 'Ciclo es requerido.' }
     }
 });
+
+
+/****************************************************************************
+                        LLENAR INFORMACION GRUPO
+****************************************************************************/
+function infoGrupo(grupo) {
+    $.ajax({
+        url: url + 'Proyectos/datosInfoGrupo/' + grupo,
+        method: 'post',
+        data: { 'ID_PROYECTO': grupo },
+        dataType: 'json',
+        success: function(r) {
+            //$('#CO_NOMBRES').html(response.NOMBRES);
+            console.log(r);
+             $('#InfoGrupoAlumno').modal({
+              backdrop:"static",
+             keyboard:false
+            });
+        }
+    })
+}

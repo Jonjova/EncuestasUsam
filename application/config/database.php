@@ -98,6 +98,6 @@ $db['default'] = array(
 $mysqli = new mysqli(
 	"localhost", 
 	"root", 
-	"root",
+	"0000",
 	 "encuestasusam"
 );
