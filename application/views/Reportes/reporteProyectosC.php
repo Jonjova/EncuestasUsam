@@ -4,15 +4,9 @@ require 'application/config/database.php';
 
 $coordinadorR = mysqli_escape_string($mysqli, $_POST['coordinadorR']);
 
-$name = "SELECT concat(p.primer_nombre_persona,' ',p.primer_apellido_persona) as coordinador
-        FROM tbl_coordinador as c inner join tbl_persona as p on p.id_persona = c.persona
-        where c.id_coordinador = $coordinadorR";
+$name = "SELECT * FROM vw_reporteProyectosC  where id_coordinador = $coordinadorR";
 
-$sql = "SELECT p.id_proyecto, p.nombre_proyecto, a.nombre_asignatura, p.fecha_asignacion, c.cod_ciclo 
-        FROM tbl_proyecto as p
-        inner join tbl_asignatura as a on a.id_asignatura = p.id_asignatura
-        inner join tbl_ciclo as c on c.id_ciclo = p.ciclo
-        where a.coordinador = $coordinadorR";
+$sql = "SELECT * FROM vw_reporteProC  where coordinador = $coordinadorR";
 
 $resultado = $mysqli->query($sql);
 $resultado_n = $mysqli->query($name);

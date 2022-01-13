@@ -6,13 +6,7 @@ $facultadR = mysqli_escape_string($mysqli, $_POST['facultadR']);
 
 $name = "SELECT nombre_facultad FROM cat_facultad where id_facultad = $facultadR";
 
-$sql = "SELECT p.id_proyecto, p.nombre_proyecto, a.nombre_asignatura, p.fecha_asignacion, c.cod_ciclo 
-        FROM tbl_proyecto as p
-        inner join tbl_asignatura as a on a.id_asignatura = p.id_asignatura
-        inner join tbl_ciclo as c on c.id_ciclo = p.ciclo
-        inner join tbl_coordinador as co on co.id_coordinador = a.coordinador
-        inner join cat_coordinacion as cr on cr.id_coordinacion = co.id_coordinador
-        where cr.facultad = $facultadR";
+$sql = "SELECT * FROM vw_reporteProF  where facultad = $facultadR";
 
 $resultado = $mysqli->query($sql);
 $resultado_n = $mysqli->query($name);

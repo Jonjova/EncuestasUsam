@@ -6,12 +6,7 @@ if (!empty($_POST)) {
 
 $asignaturaR = mysqli_escape_string($mysqli, $_POST['asignaturaR']);
 
-$sql = "SELECT p.id_proyecto, p.nombre_proyecto,a.nombre_asignatura, p.fecha_asignacion, c.cod_ciclo FROM tbl_proyecto as p
-        inner join tbl_asignatura as a on a.id_asignatura = p.id_asignatura
-        inner join tbl_ciclo as c on c.id_ciclo = p.ciclo where a.id_asignatura = $asignaturaR";
-$resultado = $mysqli->query($sql);
-
-
+$sql = "SELECT * FROM vw_reporteAsignatura  where id_asignatura = $asignaturaR";
 $resultado = $mysqli->query($sql);
 
 $pdf = new FPDF("L", "mm", "letter");
