@@ -10,22 +10,22 @@
 
 		public function reportes()
 		{
-			$this->load->view('Reportes/reporteGeneralProy');			
+			$this->load->view('Reportes/reporteGeneralProy');
 		}
 	
 		public function reporte()
 		{
-			$this->load->view('Reportes/reporteProyectos');			
+			$this->load->view('Reportes/reporteProyectos');
 		}
 		
 		public function reporteC()
 		{
-			$this->load->view('Reportes/reporteProyectosC');			
+			$this->load->view('Reportes/reporteProyectosC');
 		} 
 		
 		public function reporteF()
 		{
-			$this->load->view('Reportes/reporteProyectosF');			
+			$this->load->view('Reportes/reporteProyectosF');		
 		}
 	}
 ?>
