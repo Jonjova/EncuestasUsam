@@ -83,15 +83,12 @@ $(document).ready(function() {
 });
 
 function limpiarAlumno() {
-
- 
     $('#CrearProyecto').trigger("reset");
     var validator = $("#CrearProyecto").validate();
     validator.resetForm();
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
     infoAlumnosLimpiar();
-
 }
 
 
@@ -184,8 +181,16 @@ $("#CrearProyecto").validate({
         CICLO: { required: true }
     },
     messages: {
-        NOMBRE_PROYECTO: { required: 'Nombre de Proyecto es requerido.', minlength: 'El mínimo permitido son 6 caracteres.', maxlength: 'El máximo permitido son 50 caracteres.' },
-        DESCRIPCION: { required: 'Descripción es requerido.', minlength: 'El mínimo permitido son 6 caracteres', maxlength: 'El máximo permitido son 50 caracteres.' },
+        NOMBRE_PROYECTO: {
+            required: 'Nombre de Proyecto es requerido.',
+            minlength: 'El mínimo permitido son 6 caracteres.',
+            maxlength: 'El máximo permitido son 50 caracteres.'
+        },
+        DESCRIPCION: {
+            required: 'Descripción es requerido.',
+            minlength: 'El mínimo permitido son 6 caracteres',
+            maxlength: 'El máximo permitido son 50 caracteres.'
+        },
         ID_TIPO_INVESTIGACION: { required: 'Tipo de investigación es requerido.' },
         ID_ASIGNATURA: { required: 'Asignatura es requerido.' },
         ID_DISENIO_INVESTIGACION: { required: 'Diseño de investigación es requerido.' },
@@ -199,18 +204,25 @@ $("#CrearProyecto").validate({
 /****************************************************************************
                         LLENAR INFORMACION GRUPO
 ****************************************************************************/
-function infoGrupo(grupo) {
+function infoGrupo(proyecto) {
     $.ajax({
-        url: url + 'Proyectos/datosInfoGrupo/' + grupo,
+        url: url + 'Proyectos/datosInfoGrupo/' + proyecto,
         method: 'post',
-        data: { 'ID_PROYECTO': grupo },
+        data: { 'ID_PROYECTO': proyecto },
         dataType: 'json',
+        cache: false,
         success: function(r) {
-            //$('#CO_NOMBRES').html(response.NOMBRES);
-            console.log(r);
-             $('#InfoGrupoAlumno').modal({
-              backdrop:"static",
-             keyboard:false
+            var nombreProyecto = '';
+            var integrantes = '<h4>Integrantes:</h4>';
+            $.each(r, function(index, object) {
+                nombreProyecto = '<h3>Proyecto:</h3><p>' + object.NOMBRE_PROYECTO + '</p>';
+                integrantes += '<p>#' + object.CARNET + ' ' + object.ALUMNO + '</p>';
+            });
+            $('#NOMBRE_PROYECTO').html(nombreProyecto);
+            $('#INTEGRANTES').html(integrantes);
+            $('#InfoGrupoAlumno').modal({
+                backdrop: "static",
+                keyboard: false
             });
         }
     })

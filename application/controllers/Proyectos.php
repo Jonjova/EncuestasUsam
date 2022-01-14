@@ -15,8 +15,8 @@ class Proyectos extends CI_Controller
 	public function index()
 	{
 
-		if($this->session->userdata('is_logged')){
-			
+		if($this->session->userdata('is_logged'))
+		{
 			$data = array('title' => 'Registro de Proyecto' );
 			//$otro  = array('permisos' => $this->permisos );
 			//header
@@ -28,15 +28,18 @@ class Proyectos extends CI_Controller
 		 //Footer
 			$this->load->view('Layout/Footer');
 		}
-		else{
+		else
+		{
 			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
 			redirect('/Accesos/');
 			show_404();
 		}
 	}
 
-	public function proyecto(){
-		if($this->session->userdata('is_logged')){
+	public function proyecto()
+	{
+		if($this->session->userdata('is_logged'))
+		{
 			$data = array('title' => 'Proyecto' );
 				//$otro  = array('permisos' => $this->permisos );
 			//header
@@ -52,18 +55,21 @@ class Proyectos extends CI_Controller
 		    //Footer
 			$this->load->view('Layout/Footer');
 		}
-		else{
+		else
+		{
 			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
 			redirect('/Accesos/');
 			show_404();
 		}
 	}
-// INFORMACION COORDINADOR
-	public function datosInfoGrupo($persona)
+
+	// INFORMACION COORDINADOR
+	public function datosInfoGrupo($proyecto)
 	{
-		$resultData = $this->pm->datosGrupoAlumnoModel(array('ID_PROYECTO' => $persona));
+		$resultData = $this->pm->datosGrupoAlumnoModel(array('ID_PROYECTO' => $proyecto));
 		echo json_encode($resultData);
 	}
+
 	//Mostrar
 	public function MostrarProyecto()
 	{
@@ -77,27 +83,27 @@ class Proyectos extends CI_Controller
 
 			$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
 			$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');" ><i class="fas fa-info-circle"></i></a>';
-				$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';	
-		$result['data'][] = array(
-			$i++,
-			$value['NOMBRE_PROYECTO'],
-			$value['DESCRIPCION'],
-			$value['NOMBRE_TIPO_INVESTIGACION'],
-			$value['NOMBRE_ASIGNATURA'],
-			$value['NOMBRE_DISENIO'],
-			$value['FECHA_ASIGNACION'],
-				//$value['Alumnos']. ' Integrantes',
-			$btnInfo,
-			$value['COD_CICLO'],
-			$estado
-			);
+			$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';
+			$result['data'][] = array(
+				$i++,
+				$value['NOMBRE_PROYECTO'],
+				$value['DESCRIPCION'],
+				$value['NOMBRE_TIPO_INVESTIGACION'],
+				$value['NOMBRE_ASIGNATURA'],
+				$value['NOMBRE_DISENIO'],
+				$value['FECHA_ASIGNACION'],
+				$value['Alumnos']. ' Integrantes &nbsp;'.
+				$btnInfo,
+				$value['COD_CICLO'],
+				$estado
+				);
+		}
+		echo json_encode($result);
 	}
-	echo json_encode($result);
-}
 
 	//Guardar Proyecto
-public function Guardar()
-{
+	public function Guardar()
+	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
 		$datos = array(
 			'NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO'),
