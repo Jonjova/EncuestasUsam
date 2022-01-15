@@ -49,6 +49,13 @@ class Accesos extends CI_Controller
 			exit;
 		}
 
+		if($res->ESTADO_PERMISO == 0) {
+			echo json_encode(array('msg' => '¡Usuario Inhabilitado!'));
+			$this->output->set_status_header(401);//si no se cumple status 401
+			exit;
+		}
+		
+
 		if (!$res = $this->am->iniciarSession($user, $pass))//condicion de verificacion
 		{
 			echo json_encode(array('msg' => 'Conectando...'));
