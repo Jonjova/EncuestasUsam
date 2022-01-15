@@ -13,7 +13,7 @@ class Cuenta extends CI_Controller
     // VISTA ACTUALIZAR PERSONA
     public function persona()
     {
-        if($this->session->userdata('is_logged'))
+        if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
             //header
             $data = array('title' => 'Actualizar Mis Datos' );

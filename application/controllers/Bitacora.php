@@ -13,7 +13,7 @@
 		// VISTA MOSTRAR BITACORA
 		public function verBitacora()
 		{
-			if($this->session->userdata('is_logged')){
+			if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1){
 				$data = array('title' => 'Bitacora' );
 				//header
 				$this->load->view('Layout/Header', $data);

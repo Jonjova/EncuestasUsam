@@ -10,7 +10,7 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
-    
+
     /*$.ajax({
         url: url + "Permisos/MostrarPermisos",
         type: 'post',
@@ -23,9 +23,9 @@ $(document).ready(function() {
 
 //llenado de todos los select
 $(document).ready(function($) {
-    obtR();
-    obtM();
-    
+    //obtR();
+    //obtM();
+
 });
 //llenar select Rol. 
 function obtR() {
@@ -60,7 +60,7 @@ $(function() {
         $.ajax({
             url: url + 'Permisos/Guardar',
             data: $("#CrearPermiso").serialize(),
-            type: "post", 
+            type: "post",
             dataType: 'json',
             success: function(data) {
 

@@ -70,7 +70,7 @@
                     <ul class="collapse list-unstyled" id="bitacoraSubmenu">
                         <li>
                             <a href="<?php echo base_url();?>Bitacora/verBitacora">
-                            <i class="fas fa-eye"></i> Mostrar</a>
+                                <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
                     </ul>
                 </li>
@@ -96,7 +96,7 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?> 
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
                 <!-- <li> 
                     <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-user-shield"></i> Permisos</a>
@@ -111,7 +111,7 @@
                         </li>
                     </ul>
                 </li> -->
-                <?php endif; ?> 
+                <?php endif; ?>
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                 <li>
@@ -218,51 +218,25 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
-
                 <li>
                     <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-folder"></i> Proyectos
                     </a>
                     <ul class="collapse list-unstyled" id="proyectSubmenu">
-                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4):  ?>
+                        <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyecto">
-                                <i class="fas fa-plus-circle"></i> Agregar</a>
+                                <i class="fas fa-plus-circle"></i> Agregar
+                            </a>
                         </li>
-                    <?php endif; ?>
-                        <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
+                        <?php endif; ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/index">
-                                <i class="fas fa-eye"></i> Mostrar</a>
+                                <i class="fas fa-eye"></i> Ver Proyectos
+                            </a>
                         </li>
-                        <!--</?php endif; ?>-->
                     </ul>
                 </li>
-                <?php endif; ?>
-
-
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 5):  ?>
-
-                <li>
-                    <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-folder"></i> Proyectos</a>
-                    <ul class="collapse list-unstyled" id="proyectSubmenu">
-                        <li>
-                                <a href="<?php echo base_url();?>Proyectos/index">
-                                    <i class="fas fa-eye"></i> Ver Proyectos</a>
-                            </li>
-                        <!--</?php endif; ?>-->
-                    </ul>
-                </li>
-                <?php endif; ?>
-
-                <!-- <li>
-                    <a href="#">Portafolio</a>
-                </li>
-                <li>
-                    <a href="#">Contacto</a>
-                </li> -->
             </ul>
 
         </nav>

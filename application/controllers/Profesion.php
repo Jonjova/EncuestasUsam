@@ -13,7 +13,7 @@ class Profesion extends CI_Controller
 
     public function profesion()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
             $data = array('title' => 'Nueva Profesión' );
             $this->load->view('Layout/Header', $data);
@@ -31,7 +31,7 @@ class Profesion extends CI_Controller
 
     public function profesiones()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
             $data = array('title' => 'Profesiones' );
             $this->load->view('Layout/Header', $data);

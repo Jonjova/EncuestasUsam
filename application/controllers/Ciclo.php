@@ -14,7 +14,7 @@ class Ciclo extends CI_Controller
     // VISTA INSERTAR CICLO
     public function ciclo()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 2)
         {
             //header
             $data = array('title' => 'Nueva Ciclo' );
@@ -36,7 +36,7 @@ class Ciclo extends CI_Controller
     // VISTA MOSTRAR CICLO
     public function ciclos()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 2)
         {
             //header
             $data = array('title' => 'Asignaturas' );

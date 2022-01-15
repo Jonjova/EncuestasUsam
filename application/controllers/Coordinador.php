@@ -14,7 +14,7 @@ class Coordinador extends CI_Controller
 	// VISTA INSERTAR COORDINADOR
 	public function coordinador()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2))
 		{
 			//header
 			$data = array('title' => 'Nuevo Coordinador' );
@@ -36,7 +36,7 @@ class Coordinador extends CI_Controller
 	// VISTA MOSTRAR COORDINADORES
 	public function coordinadores()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2))
 		{
 			//header
 			$data = array('title' => 'Coordinadores' );

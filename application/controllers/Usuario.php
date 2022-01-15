@@ -14,7 +14,7 @@ class Usuario extends CI_Controller
 	// VISTA INSERTAR USUARIOS
 	public function usuario()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
 			$data = array('title' => 'Nuevo Usuario' );
 			//header
@@ -36,7 +36,7 @@ class Usuario extends CI_Controller
 	// VISTA MOSTRAR USUARIOS
 	public function usuarios()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
 			$data = array('title' => 'Usuarios' );
 			//header

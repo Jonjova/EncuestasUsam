@@ -14,7 +14,7 @@ class Docente extends CI_Controller
 	// VISTA INSERTAR DOCENTE
 	public function docente()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
 			//header
 			$data = array('title' => 'Nuevo Docente' );
@@ -36,7 +36,7 @@ class Docente extends CI_Controller
 	// VISTA MOSTRAR DOCENTES
 	public function docentes()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
 			$data = array('title' => 'Docentes' );
 			//header

@@ -14,7 +14,7 @@ class Asignatura extends CI_Controller
     // VISTA INSERTAR ASIGNATURA
     public function asignatura()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
             $data = array('title' => 'Nueva Asignatura' );
@@ -36,7 +36,7 @@ class Asignatura extends CI_Controller
     // VISTA ASIGNAR MATERIA
     public function asignar()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
             $data = array('title' => 'Nueva Asignación' );
@@ -58,7 +58,7 @@ class Asignatura extends CI_Controller
     // VISTA MOSTRAR ASIGNATURAS
     public function asignaturas()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
             $data = array('title' => 'Asignaturas' );
@@ -80,7 +80,7 @@ class Asignatura extends CI_Controller
     // VISTA MOSTRAR ASIGNATURAS ASIGNADAS
     public function asignadas()
     {
-        if ($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
             $data = array('title' => 'Asignadas' );

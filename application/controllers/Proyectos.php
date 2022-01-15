@@ -38,7 +38,7 @@ class Proyectos extends CI_Controller
 
 	public function proyecto()
 	{
-		if($this->session->userdata('is_logged'))
+		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 4)
 		{
 			$data = array('title' => 'Proyecto' );
 				//$otro  = array('permisos' => $this->permisos );
