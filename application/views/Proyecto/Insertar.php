@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Materia</label>
+                                                <label>Asignatura:</label>
                                                 <select name="ID_ASIGNATURA" id="ID_ASIGNATURA" class="custom-select"
                                                     onblur="validaSelect(this);" style="font-size: 1rem;" required>
                                                 </select>
@@ -125,7 +125,7 @@
                                             <div class="form-group">
                                                 <label>Nuevo Grupo</label><br>
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
-                                                    data-target="#createModal">
+                                                    data-target="#createModal" onclick="grupoAC();">
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
                                             </div>

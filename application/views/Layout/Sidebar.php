@@ -222,12 +222,15 @@
 
                 <li>
                     <a href="#proyectSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-folder"></i> Proyectos</a>
+                        <i class="fas fa-folder"></i> Proyectos
+                    </a>
                     <ul class="collapse list-unstyled" id="proyectSubmenu">
+                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4):  ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyecto">
                                 <i class="fas fa-plus-circle"></i> Agregar</a>
                         </li>
+                    <?php endif; ?>
                         <!--</?php if(is_null($permisos) || $permisos['leer'] == 0): ?>-->
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/index">

@@ -13,8 +13,11 @@ class GrupoAlumno extends CI_Controller
 	//CREAR
 	function Guardar(){
 		$grupo = $this->input->post('NOMBRE_GRUPO',TRUE);
+		$asignatura = $this->input->post('ID_ASIGNATURA_G',TRUE);
+		$ciclo = $this->input->post('CICLO_G',TRUE);
 		$alumno = $this->input->post('ID_ALUMNO_GA',TRUE);
-		$insert = $this->gam->insertGrupoAlumno($grupo,$alumno);
+		
+		$insert = $this->gam->insertGrupoAlumno($grupo, $asignatura, $ciclo, $alumno);
 
 		if($insert == TRUE )
 		{

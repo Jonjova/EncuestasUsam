@@ -155,9 +155,9 @@ class DatosComunes extends CI_Controller
 	}
 
 	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGrupoAlumno()
+	public function obtGrupoAlumno($asignatura)
 	{
-		$datos = $this->modelDatos->obtGA();
+		$datos = $this->modelDatos->obtGA($asignatura);
 		echo json_encode($datos);
 	}
 
@@ -165,7 +165,7 @@ class DatosComunes extends CI_Controller
 	public function obtCiclo()
 	{
 		$datos = $this->modelDatos->obtC();
-		echo "<option selected disabled value=''>Seleccionar Ciclo</option>";
+		// echo "<option selected disabled value=''>Seleccionar Ciclo</option>";
 		foreach ($datos as $c)
 		{
 			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";

@@ -13,20 +13,17 @@ class GrupoAlumnoModel extends CI_Model
 		$datos = $this->db->query(
 			"SELECT ta.ID_ALUMNO, ta.CARNET, tp.PRIMER_NOMBRE_PERSONA, tp.SEGUNDO_NOMBRE_PERSONA,
 				tp.PRIMER_APELLIDO_PERSONA , tp.SEGUNDO_APELLIDO_PERSONA
-			FROM tbl_alumnos AS ta
-				INNER JOIN tbl_persona AS tp ON tp.ID_PERSONA = ta.PERSONA
+			FROM TBL_ALUMNOS AS ta
+				INNER JOIN TBL_PERSONA AS tp ON tp.ID_PERSONA = ta.PERSONA
 			WHERE ta.ID_ALUMNO NOT IN
 				(
 					SELECT tga.ID_DET_ALUMNO
-					FROM tbl_proyecto AS tbp
-						INNER JOIN tbl_ciclo AS tc ON tc.ID_CICLO = tbp.CICLO
-						INNER JOIN tbl_grupo AS tg ON tg.ID_GRUPO_ALUMNO = tbp.ID_GRUPO_ALUMNO
-						INNER JOIN tbl_grupo_alumno AS tga ON tga.ID_DET_GRUPO = tbp.ID_GRUPO_ALUMNO
-					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO)
-						AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN)
-						AND tbp.ID_ASIGNATURA = $asignatura
+					FROM TBL_GRUPO_ALUMNO AS tga
+						INNER JOIN TBL_GRUPO AS tg ON tg.ID_GRUPO_ALUMNO = tga.ID_DET_GRUPO
+						INNER JOIN TBL_CICLO AS tc ON tc.ID_CICLO = tg.CICLO
+					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO) AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN) AND tg.ID_ASIGNATURA = $asignatura
 				)
-			ORDER BY ta.ID_ALUMNO ASC");
+			ORDER BY ta.ID_ALUMNO ASC;");
 		return $datos->result_array();
 	}
 	
@@ -38,13 +35,15 @@ class GrupoAlumnoModel extends CI_Model
 	}
 
 	// CREAR
-	public function insertGrupoAlumno($grupo,$alumno){
+	public function insertGrupoAlumno($grupo, $asignatura, $ciclo, $alumno){
 		$this->db->trans_start();
 			//Insertar grupo
 		date_default_timezone_set("America/El_Salvador");
-		$data  = array(
+		$data = array(
 			//'ID_GRUPO_ALUMNO' => $this->maxIdGrupo(),
 			'NOMBRE_GRUPO' => $grupo,
+			'ID_ASIGNATURA' => $asignatura,
+			'CICLO' => $ciclo,
 			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);

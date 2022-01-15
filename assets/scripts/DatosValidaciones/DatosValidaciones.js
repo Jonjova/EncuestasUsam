@@ -244,7 +244,7 @@ function obtA(asignatura) {
             });
             $('#ID_ALUMNO_GA').html(options);
             $('.bootstrap-select').selectpicker('refresh');
-            console.log(data);
+            //console.log(data);
         }
     })
 }
@@ -263,7 +263,7 @@ function obtGrupoAlumn(asignatura) {
             });
             // $('.bootstrap-select').selectpicker('refresh');
             $('#ID_GRUPO_ALUMNO').html(options);
-            console.log(data);
+            //console.log(data);
         }
     })
 
