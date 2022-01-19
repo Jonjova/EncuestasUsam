@@ -16,8 +16,8 @@
                                   class="form-control mb-2 mr-sm-2 " required>
                           </div>
 
-                          <input type="text" name="ID_ASIGNATURA_G" id="ID_ASIGNATURA_G">
-                          <input type="text" name="CICLO_G" id="CICLO_G">
+                          <input  type="hidden"  name="ID_ASIGNATURA_G" id="ID_ASIGNATURA_G">
+                          <input type="hidden"  name="CICLO_G" id="CICLO_G">
 
                           <div class="form-group">
                               <label>Alumno</label>

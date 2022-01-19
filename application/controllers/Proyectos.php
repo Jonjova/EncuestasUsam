@@ -79,24 +79,28 @@ class Proyectos extends CI_Controller
 		$result = array();
 		$estado = '';
 		$i = 1;
-		foreach ($resultList as $key => $value) {
+		if (!empty($resultList)) {
+			foreach ($resultList as $key => $value) {
 
-			$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
-			$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');" ><i class="fas fa-info-circle"></i></a>';
-			$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';
-			$result['data'][] = array(
-				$i++,
-				$value['NOMBRE_PROYECTO'],
-				$value['DESCRIPCION'],
-				$value['NOMBRE_TIPO_INVESTIGACION'],
-				$value['NOMBRE_ASIGNATURA'],
-				$value['NOMBRE_DISENIO'],
-				$value['FECHA_ASIGNACION'],
-				$value['Alumnos']. ' Integrantes &nbsp;'.
-				$btnInfo,
-				$value['COD_CICLO'],
-				$estado
-				);
+				$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
+				$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');" ><i class="fas fa-info-circle"></i></a>';
+				$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';
+				$result['data'][] = array(
+					$i++,
+					$value['NOMBRE_PROYECTO'],
+					$value['DESCRIPCION'],
+					$value['NOMBRE_TIPO_INVESTIGACION'],
+					$value['NOMBRE_ASIGNATURA'],
+					$value['NOMBRE_DISENIO'],
+					$value['FECHA_ASIGNACION'],
+					$value['Alumnos']. ' Integrantes &nbsp;'.
+					$btnInfo,
+					$value['COD_CICLO'],
+					$estado
+					);
+			}
+		}else{
+			$result['data']= array();
 		}
 		echo json_encode($result);
 	}

@@ -232,6 +232,7 @@ function obtCarrera() {
 
 // LLENAR SELECT ALUMNOS
 function obtA(asignatura) {
+    $('#ID_ALUMNO_GA').html('');
     $.ajax({
         url: url + "GrupoAlumno/Alumno/" + asignatura,
         type: 'post',
