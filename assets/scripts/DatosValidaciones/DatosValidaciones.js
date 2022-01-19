@@ -451,7 +451,7 @@ jQuery.validator.addMethod("correo", function(value, element) {
 
 // CORREO PERSONAL VALIDO
 jQuery.validator.addMethod("correoP", function(value) {
-    if (value.split('@liveusam')[1]) {
+    if (value.split('@liveusam')[1] || value.split('@usam')[1]) {
         return false;
     } else {
         return true;
@@ -460,7 +460,7 @@ jQuery.validator.addMethod("correoP", function(value) {
 
 // CORREO INSTITUCIONAL VALIDO
 jQuery.validator.addMethod("correoU", function(value) {
-    if (value.split('@')[1] != 'liveusam.edu.sv') {
+    if (value.split('@')[1] != 'liveusam.edu.sv' || value.split('@')[1] != 'usam.edu.sv') {
         return false;
     } else {
         return true;
