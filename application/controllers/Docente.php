@@ -148,7 +148,8 @@ class Docente extends CI_Controller
 		$resultList = $this->modelDocente->mostrarDocentesModel($coordinador);
 		$result = array();
 		$i = 1;
-		foreach ($resultList as $key => $value)
+		if (!empty($resultList)) {
+			foreach ($resultList as $key => $value)
 		{
 			$btnPass = 
 				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
@@ -201,8 +202,10 @@ class Docente extends CI_Controller
 					$btnInfo."&ensp;&ensp;".
 					$btnUpdate
 				);
-			}
-			
+			}		
+		  }
+		}else{
+			$result['data'] = array();
 		}
 		echo json_encode($result);
 	}

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Asignatura extends CI_Controller
 {
-    
+
     // CONSTRUCTOR PARA LLAMAR AL MODELO
     public function __construct()
     {
@@ -141,7 +141,7 @@ class Asignatura extends CI_Controller
                 $i++,
                 $value['CODIGO_ASIGNATURA'],
                 $value['NOMBRE_ASIGNATURA']
-            );
+                );
         }
         echo json_encode($result);
     }
@@ -152,14 +152,18 @@ class Asignatura extends CI_Controller
         $resultList = $this->modelAsignatura->mostrarDocenteAsignaturaModel($_SESSION['COORDINADOR']);
         $result = array();
         $i = 1;
-        foreach ($resultList as $key => $value)
-        {
-            $result['data'][] = array(
-                $i++,
-                $value['CODIGO_ASIGNATURA'],
-                $value['NOMBRE_ASIGNATURA'],
-                $value['DOCENTE']
-            );
+        if (!empty($resultList)) {
+            foreach ($resultList as $key => $value)
+            {
+                $result['data'][] = array(
+                    $i++,
+                    $value['CODIGO_ASIGNATURA'],
+                    $value['NOMBRE_ASIGNATURA'],
+                    $value['DOCENTE']
+                    );
+            }
+        }else{
+              $result['data']= array();
         }
         echo json_encode($result);
     }

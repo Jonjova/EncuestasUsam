@@ -132,6 +132,7 @@ class Usuario extends CI_Controller
 		$resultList = $this->modelUsuario->mostrarUsuariosModel();
 		$result = array();
 		$i = 1;
+	if (!empty($resultList)) {
 		foreach ($resultList as $key => $value) {
 			
 			$btnPass = 
@@ -161,6 +162,9 @@ class Usuario extends CI_Controller
 				$btnUpdate
 			);
 		}
+	}else{
+	    $result['data'] = array();
+	}
 		echo json_encode($result);
 	}
 

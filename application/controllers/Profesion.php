@@ -66,18 +66,22 @@ class Profesion extends CI_Controller
         $resultList = $this->modelProf->mostrarProfesionModel();
         $result = array();
         $i = 1;
-        foreach ($resultList as $key => $value)
-        {
+        if (!empty($resultList)) {
+            foreach ($resultList as $key => $value)
+          {
             $btnUpdate = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerProfesion('.$value['ID_PROFESION'].');" 
-					data-toggle="modal" data-target="#modalProfesion">
-					<i class="fas fa-pen" title="Actualizar"></i>
-				</a>';
+                '<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerProfesion('.$value['ID_PROFESION'].');" 
+                    data-toggle="modal" data-target="#modalProfesion">
+                    <i class="fas fa-pen" title="Actualizar"></i>
+                </a>';
             $result['data'][] = array(
                 $i++,
                 $value['NOMBRE_PROFESION'],
                 $btnUpdate
             );
+         }
+        }else{
+            $result['data'] = array();
         }
         echo json_encode($result);
     }
