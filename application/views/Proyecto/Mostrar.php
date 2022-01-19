@@ -34,6 +34,9 @@
 
 				$sql_f = "SELECT * FROM vw_facultad";
 				$resultado_f = $mysqli->query($sql_f);
+
+				$sql_ci = "SELECT id_ciclo, cod_ciclo FROM encuestasusam.tbl_ciclo;";
+				$resultado_ci = $mysqli->query($sql_ci);
 			?>
 
 			<div class="row">
@@ -42,7 +45,8 @@
 			        <select name="select" id="Selectfiltro" class="custom-select" required="required">
 			            <option value="1">Filtrar Asignatura</option>
 			            <option value="2">Filtrar Coordinador</option>
-			            <option value="3">Filtrar Facultad</option>
+			            <option value="3">Filtrar Facultad</option>						
+						<option value="4">Filtrar Ciclo</option>
 			        </select>
 			    </div>
 			    <br />
@@ -93,6 +97,22 @@
 			                <button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Facultad</button>
 			            </form>
 			        </div>
+
+					<div id="cic">
+			            <form action="<?php echo base_url();?>Reportes/reporteCI" method="post" autocomplete="off">
+			                <label>Ciclo: </label>
+			                <select class="custom-select" id="cicloR" name="cicloR" required="required">
+			                    <option value="">Selecciona una opción</option>
+			                    <?php while ($fila = $resultado_ci->fetch_assoc()) { ?>
+			                    <option value="<?php echo $fila['id_ciclo']; ?>"><?php echo $fila['cod_ciclo']; ?>
+			                    </option>
+			                    <?php } ?>
+			                </select>
+			                <br /><br />
+			                <button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Ciclo</button>
+			            </form>
+			        </div>
+					
 			    </div>
 			</div>
 			<br />

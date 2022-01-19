@@ -2,14 +2,12 @@
 require 'application/libraries/fpdf/fpdf.php';
 require 'application/config/database.php';
 
-$facultadR = mysqli_escape_string($mysqli, $_POST['facultadR']);
+$cicloR = mysqli_escape_string($mysqli, $_POST['cicloR']);
 
-$name = "SELECT nombre_facultad FROM cat_facultad where id_facultad = $facultadR";
-
-$sql = "SELECT * FROM vw_reporte_general  where id_facultad = $facultadR";
+$sql = "SELECT * FROM vw_reporte_general where id_ciclo = $cicloR";
 
 $resultado = $mysqli->query($sql);
-$resultado_n = $mysqli->query($name);
+$nameC = $mysqli->query($sql);
 
 $pdf = new FPDF("P", "mm", "letter");
 $pdf->AddPage();
@@ -17,11 +15,13 @@ $pdf->SetFont("Times", "B", 14);
 $pdf->Image("assets/img/logo-reporte.jpg", 10, 10, 25);
 $pdf->Cell(195, 6, "UNIVERSIDAD SALVADORE".utf8_decode('Ñ')."A ALBERTO MASFERRER", 0, 1, "C");
 $pdf->Cell(195, 6, "REPORTE DE PROYECTOS", 0, 1, "C");
-while ($fila = $resultado_n->fetch_assoc()) {
-$pdf->Cell(195, 6, "FACULTAD ".utf8_decode(strtoupper($fila['nombre_facultad'])), 0, 1, "C");
+while ($fila = $nameC->fetch_assoc()) {
+$pdf->Cell(195, 6, strtoupper(utf8_decode($fila['cod_ciclo'])), 0, 1, "C");
 }
 $pdf->Image("assets/img/CDA.png", 190, 10, 12, 20);
 $pdf->Ln(15);
+
+
 
 while ($fila = $resultado->fetch_assoc()) {
     $pdf->SetFont("Times", "B", 12);
@@ -59,5 +59,4 @@ while ($fila = $resultado->fetch_assoc()) {
  $pdf->AliasNbPages();
 
  $pdf->Output();
-
 ?>

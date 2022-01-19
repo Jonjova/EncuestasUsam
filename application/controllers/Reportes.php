@@ -27,5 +27,10 @@
 		{
 			$this->load->view('Reportes/reporteProyectosF');		
 		}
+
+		public function reporteCI()
+		{
+			$this->load->view('Reportes/reporteProyectosCI');		
+		}
 	}
 ?>
