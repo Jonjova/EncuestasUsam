@@ -259,6 +259,7 @@ $(function() {
                 text: 'Campos vac\u00edos o inv\u00e1lidos!',
                 title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
             });
+            $('#ID_DOCENTE-error').css({ 'position': 'absolute', 'margin-top': '2.25rem' });
         } else {
             event.preventDefault();
             $.ajax({
@@ -268,7 +269,6 @@ $(function() {
                 async: false,
                 dataType: 'json',
                 success: function(msg) {
-                    console.log(msg);
                     Swal.fire({
                         toast: true,
                         timer: 3000,
@@ -286,6 +286,10 @@ $(function() {
                     console.log(response);
                 }
             });
+            $('#ID_DOCENTE').select2();
+            $('.select2-container--default').addClass('custom-select');
+            $('.select2-container--default .select2-selection').css('border', 'none');
+            $('.select2-container--default .select2-selection__arrow').css('display', 'none');
         }
     });
 });

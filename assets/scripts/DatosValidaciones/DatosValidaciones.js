@@ -18,11 +18,15 @@ $(document).ready(function() {
     // DROPDOWNS
     llenarDropdowns();
 
-    if (window.location.href === (url + 'Asignatura/asignar')) {
-        asignatura();
-    }
-    if (window.location.href === (url + 'Proyectos/proyecto')) {
-        asignaturaAsignada();
+    if (window.location.href != url) {
+        if (window.location.href != (url + 'Accesos/')) {
+            if (cod_coordinador != 0) {
+                asignatura();
+            }
+            if (cod_docente != 0) {
+                asignaturaAsignada();
+            }
+        }
     }
 });
 
@@ -34,24 +38,49 @@ function llenarDropdowns() {
     departamento();
     profesion();
     rol();
-    coordinador();
-    $('#ID_COORDINADOR').change(function() {
-        $('#Docentes').dataTable().fnDestroy();
-        llenarTablaDocente($(this).val());
-    });
     coordinacion();
+    coordinador();
     //docente();
-    $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
-
     obtTipoInvestiga();
     obtDiseInvestiga();
     obtCicl();
     obtCarrera();
     // obtGrupoAlumn();
+    var cod_asignatura = $('#ASIGNATURA_PROY').val(),
+        cod_ciclo = $('#CICLO_PROY').val();
     $("#CrearProyecto [name='ID_ASIGNATURA']").change(function() {
         obtGrupoAlumn($(this).val());
         obtA($(this).val());
     });
+    $('#ID_COORDINADOR').change(function() {
+        $('#Docentes').dataTable().fnDestroy();
+        llenarTablaDocente($(this).val());
+    });
+    $('#ASIGNATURA_PROY').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto($(this).val(), cod_ciclo, cod_coordinador, 0);
+    });
+    $('#CICLO_PROY').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto(cod_asignatura, $(this).val(), cod_coordinador, 0);
+    });
+    $('#asignaturaR').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto($(this).val(), 0, cod_coordinador, 0);
+    });
+    $('#coordinadorR').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto(0, 0, $(this).val(), 0);
+    });
+    $('#facultadR').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto(0, 0, 0, $(this).val());
+    });
+    $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
+    $('#ID_DOCENTE').select2();
+    $('.select2-container--default').addClass('custom-select');
+    $('.select2-container--default .select2-selection').css('border', 'none');
+    $('.select2-container--default .select2-selection__arrow').css('display', 'none');
 }
 
 function validaSelect(select) {
@@ -153,9 +182,15 @@ function asignatura() {
         type: 'POST',
         success: function(respuesta) {
             $('#ID_ASIGNATURA').html(respuesta);
-            //$("[name='ID_ASIGNATURA']").html(respuesta);
         }
-    })
+    });
+    $.ajax({
+        url: url + 'DatosComunes/dropAsignaturaProy',
+        type: 'POST',
+        success: function(respuesta) {
+            $('#ASIGNATURA_PROY').html(respuesta);
+        }
+    });
 }
 
 // LLENAR SELECT ASIGNATURA ASIGNADA
@@ -165,9 +200,15 @@ function asignaturaAsignada() {
         type: 'POST',
         success: function(respuesta) {
             $('#CrearProyecto #ID_ASIGNATURA').html(respuesta);
-            //$("#CrearProyecto [name='ID_ASIGNATURA']").html(respuesta);
         }
-    })
+    });
+    $.ajax({
+        url: url + 'DatosComunes/dropAsignaturaAsignadaProy',
+        type: 'POST',
+        success: function(respuesta) {
+            $('#ASIGNATURA_PROY').html(respuesta);
+        }
+    });
 }
 
 // LLENAR SELECT DOCENTE
@@ -215,7 +256,14 @@ function obtCicl() {
             $('#CICLO').html(respuesta);
             //$('#CICLO').html(respuesta);
         }
-    })
+    });
+    $.ajax({
+        url: url + "DatosComunes/cicloProy",
+        type: 'post',
+        success: function(respuesta) {
+            $('#CICLO_PROY').html(respuesta);
+        }
+    });
 }
 
 // LLENAR SELECT CARRERA
@@ -232,6 +280,7 @@ function obtCarrera() {
 
 // LLENAR SELECT ALUMNOS
 function obtA(asignatura) {
+    $('#ID_ALUMNO_GA').html('');
     $.ajax({
         url: url + "GrupoAlumno/Alumno/" + asignatura,
         type: 'post',
@@ -244,7 +293,6 @@ function obtA(asignatura) {
             });
             $('#ID_ALUMNO_GA').html(options);
             $('.bootstrap-select').selectpicker('refresh');
-            //console.log(data);
         }
     })
 }
@@ -263,7 +311,6 @@ function obtGrupoAlumn(asignatura) {
             });
             // $('.bootstrap-select').selectpicker('refresh');
             $('#ID_GRUPO_ALUMNO').html(options);
-            //console.log(data);
         }
     })
 
@@ -678,72 +725,54 @@ $('#CARNET').change(function() {
         dataType: 'json',
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
-
             if (msg != null) {
                 var contador = 0;
                 $.each(msg, function(index, elem) {
                     contador += 1;
-
                     if (contador == 2) {
                         $('#PRIMER_NOMBRE_PERSONA').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 3) {
                         $('#SEGUNDO_NOMBRE_PERSONA').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 4) {
                         $('#PRIMER_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
-
                     if (contador == 5) {
                         $('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 6) {
                         $('#FECHA_NACIMIENTO_A').val(elem).attr('readonly', true);
-
                     }
-
                     if (contador == 7) {
                         $('#SEXO option:not(:selected)').attr('disabled', true);
                         $('#SEXO option:selected').text(elem).attr("disabled", true);
                     }
                     if (contador == 8) {
                         $('#CORREO_PERSONAL').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 9) {
                         $('#TELEFONO_FIJO').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 10) {
                         $('#CARRERA option:not(:selected)').attr('disabled', true);
                         $('#CARRERA option:selected').text(elem).attr("disabled", true)
-
                     }
                     if (contador == 11) {
                         $('#CORREO_INSTITUCIONAL').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 12) {
                         $('#TELEFONO_MOVIL').val(elem).attr('readonly', true);
-
                     }
                     if (contador == 13) {
-
                         $('#DEPARTAMENTO option:not(:selected)').attr('disabled', true);
                         $('#DEPARTAMENTO option:selected').text(elem).attr("disabled", true)
-
                     }
                     if (contador == 14) {
                         $('#DIRECCION').val(elem).attr('readonly', true);
-                        // console.log(elem);
                     }
-
                 });
             } else {
-
                 infoAlumnosLimpiar();
             }
         }

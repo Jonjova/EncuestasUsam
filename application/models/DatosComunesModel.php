@@ -125,11 +125,12 @@ class DatosComunesModel extends CI_Model
 	{
 		$datos = $this->db->query(
 			'SELECT * FROM VW_DROP_DOCENTES
-			WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN 
+			WHERE ID_DOCENTE NOT IN 
+			-- WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN 
 				(
 					SELECT ID_DOCENTE FROM tbl_docente_asignatura 
 					WHERE ID_ASIGNATURA = '.$asignatura.'
-				)');
+				);');
 		return $datos->result_array();
 	}
 
@@ -158,8 +159,13 @@ class DatosComunesModel extends CI_Model
 	public function obtC()
 	{
 		$datos = $this->db->query(
-			'SELECT * FROM tbl_ciclo 
+			'SELECT * FROM TBL_CICLO 
 			WHERE NOW() BETWEEN FECHA_INICIO AND FECHA_FIN');
+		return $datos->result_array();
+	}
+	public function cicloProy()
+	{
+		$datos = $this->db->get('TBL_CICLO');
 		return $datos->result_array();
 	}
 

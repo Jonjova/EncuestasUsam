@@ -97,12 +97,30 @@ class DatosComunes extends CI_Controller
 			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
 		}
 	}
+	public function dropAsignaturaProy()
+	{
+		echo "<option selected value='0'>Todas...</option>";
+		$datos = $this->modelDatos->dropAsignaturaModel($_SESSION['COORDINADOR']);
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
+		}
+	}
 
 	// LLENAR SELECT ASIGNATURA ASIGNADA
 	public function dropAsignaturaAsignada()
 	{
 		$datos = $this->modelDatos->dropAsignaturaAsignadaModel($_SESSION['DOCENTE']);
 		echo "<option selected disabled value=''>Seleccione...</option>";
+		foreach ($datos as $i)
+		{
+			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
+		}
+	}
+	public function dropAsignaturaAsignadaProy()
+	{
+		echo "<option selected value='0'>Todas...</option>";
+		$datos = $this->modelDatos->dropAsignaturaAsignadaModel($_SESSION['DOCENTE']);
 		foreach ($datos as $i)
 		{
 			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
@@ -165,7 +183,15 @@ class DatosComunes extends CI_Controller
 	public function obtCiclo()
 	{
 		$datos = $this->modelDatos->obtC();
-		// echo "<option selected disabled value=''>Seleccionar Ciclo</option>";
+		foreach ($datos as $c)
+		{
+			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+		}
+	}
+	public function cicloProy()
+	{
+		$datos = $this->modelDatos->cicloProy();
+		echo "<option selected value='0'>Todos...</option>";
 		foreach ($datos as $c)
 		{
 			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";

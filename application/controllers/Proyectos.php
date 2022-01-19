@@ -71,32 +71,99 @@ class Proyectos extends CI_Controller
 	}
 
 	//Mostrar
-	public function MostrarProyecto()
+	public function MostrarProyecto($asignatura, $ciclo, $coordinador, $facultad)
 	{
-
-		$resultList = $this->pm->mostrarProyect();
+		$resultList = $this->pm->mostrarProyect($asignatura, $ciclo, $coordinador, $_SESSION['DOCENTE'], $_SESSION['ID_TIPO_USUARIO'], $facultad);
 
 		$result = array();
-		$estado = '';
-		$i = 1;
+		// $i = 1;
 		foreach ($resultList as $key => $value) {
-
-			$estado = ($value['ESTADO_PROYECTO'] > 0) ? 'Activo' : 'Inactivo';
-			$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');" ><i class="fas fa-info-circle"></i></a>';
-			$ver = '<a  onclick="infoGrupo('.$value['ID_PROYECTO'].')"  ><i class="far fa-eye"></i> </a> ';
-			$result['data'][] = array(
-				$i++,
-				$value['NOMBRE_PROYECTO'],
-				$value['DESCRIPCION'],
-				$value['NOMBRE_TIPO_INVESTIGACION'],
-				$value['NOMBRE_ASIGNATURA'],
-				$value['NOMBRE_DISENIO'],
-				$value['FECHA_ASIGNACION'],
-				$value['Alumnos']. ' Integrantes &nbsp;'.
-				$btnInfo,
-				$value['COD_CICLO'],
-				$estado
-				);
+			switch ($value['ESTADO_PROYECTO'])
+			{
+				case "Iniciado":
+					$estado = '<a class="btn btn-info" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
+					$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
+								class="custom-select" style="width: auto;">
+								<option value="Iniciado">Iniciado</option>
+								<option value="En proceso">En Proceso</option>
+								<option value="Finalizado">Finalizado</option>
+								<option value="Incompleto">Incompleto</option>
+								<option value="No entregado">No entregado</option>
+							</select>';
+					break;
+				case "En proceso":
+					$estado = '<a class="btn btn-warning" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
+					$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
+								class="custom-select" style="width: auto;">
+								<option value="En proceso">En Proceso</option>
+								<option value="Finalizado">Finalizado</option>
+								<option value="Incompleto">Incompleto</option>
+								<option value="No entregado">No entregado</option>
+							</select>';
+					break;
+				case "Finalizado":
+					$estado = '<a class="btn btn-success" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
+					$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
+							class="custom-select" style="width: auto;">
+								<option value="Finalizado">Finalizado</option>
+							</select>';
+					break;
+				case "Incompleto":
+					$estado = '<a class="btn btn-dark" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
+					$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
+							class="custom-select" style="width: auto;">
+								<option value="Incompleto">Incompleto</option>
+							</select>';
+					break;
+				case "No entregado":
+					$estado = '<a class="btn btn-danger" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
+					$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
+							class="custom-select" style="width: auto;">
+								<option value="No entregado">No entregado</option>
+							</select>';
+					break;
+			}
+			
+			$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" 
+							style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value);">
+							<i class="fas fa-info-circle"></i>
+						</a>';
+			$ver = '<a onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value)">
+						<i class="far fa-eye"></i>
+					</a> ';
+			if ($_SESSION['ID_TIPO_USUARIO'] != 4)
+			{
+				$result['data'][] = array(
+					// $i++,
+					$value['NOMBRE_PROYECTO'],
+					$value['NOMBRE_TIPO_INVESTIGACION'],
+					$value['NOMBRE_ASIGNATURA'],
+					$value['NOMBRE_DISENIO'],
+					$value['Alumnos']. ' Integrantes &nbsp;'.
+					$btnInfo,
+					$estado,
+					$value['COD_CICLO'],
+					$value['DESCRIPCION'],
+					$value['FECHA_ASIGNACION']
+					);
+			}
+			else
+			{
+				$result['data'][] = array(
+					// $i++,
+					$value['NOMBRE_PROYECTO'],
+					$value['NOMBRE_TIPO_INVESTIGACION'],
+					$value['NOMBRE_ASIGNATURA'],
+					$value['NOMBRE_DISENIO'],
+					$value['Alumnos']. ' Integrantes &nbsp;'.
+					$btnInfo,
+					$selectEstado,
+					$value['COD_CICLO'],
+					$value['DESCRIPCION'],
+					$value['FECHA_ASIGNACION']
+					);
+			}
+			
 		}
 		echo json_encode($result);
 	}
@@ -114,7 +181,7 @@ class Proyectos extends CI_Controller
 			'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
 			'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
 			'CICLO' => $this->input->post('CICLO'),
-			'ESTADO_PROYECTO' => true,
+			'ESTADO_PROYECTO' => "Iniciado",
 			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
@@ -125,7 +192,22 @@ class Proyectos extends CI_Controller
 		{
 			echo "true";
 		}
-
 	}
+
+	// CAMBIAR ESTADO
+	public function cambiarEstado($where)
+	{
+		$estado = $this->input->post('ESTADO_PROY');
+		$editar = $this->pm->cambiarEstadoModel('TBL_PROYECTO', array('ESTADO_PROYECTO' => $estado), array('ID_PROYECTO' => $where));
+		if ($editar == TRUE)
+		{
+			echo "true";
+		}
+		else
+		{
+			echo "false";
+		}
+	}
+
 }
 ?>

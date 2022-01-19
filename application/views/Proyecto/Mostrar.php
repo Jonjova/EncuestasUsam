@@ -1,7 +1,28 @@
 			<h2>Proyectos Registrados</h2><br>
+			<?php if($this->session->userdata('ID_TIPO_USUARIO') == 3 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+			<div class="row">
+			    <div class="col-sm-4">
+			        <div class="form-group">
+			            <label>Filtrar por Asignatura:</label>
+			            <select name="ASIGNATURA_PROY" id="ASIGNATURA_PROY" class="custom-select"
+			                style="font-size: 1rem;">
+			            </select>
+			        </div>
+			    </div>
+				<div class="col-sm-4">
+			        <div class="form-group">
+			            <label>Filtrar por Ciclo:</label>
+			            <select name="CICLO_PROY" id="CICLO_PROY" class="custom-select"
+			                style="font-size: 1rem;">
+			            </select>
+			        </div>
+			    </div>
+			</div>
+			<?php endif ?>
+			
 			<!--Aquí se listan las Cliente.-->
 
-			<?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 5):
+			<?php if($this->session->userdata('ID_TIPO_USUARIO') != 3 || $this->session->userdata('ID_TIPO_USUARIO') == 4):
 
 				require 'application/config/database.php';		
 
@@ -25,7 +46,7 @@
 			        </select>
 			    </div>
 			    <br />
-			    <div class="col-sm-8">
+			    <div class="col-sm-4">
 			        <div id="asig">
 			            <form action="<?php echo base_url();?>Reportes/reporte" method="post" autocomplete="off">
 			                <label>Asignatura: </label>
@@ -80,18 +101,18 @@
 			<?php endif; ?>
 			<br>
 			<table id="Proyecto" class="table table-hover table-striped dt-responsive nowrap" style="width:100%">
-				<thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
+			    <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
 			        <tr>
-			            <th>Id</th>
+			            <!-- <th>Id</th> -->
 			            <th>Nombre Proyecto </th>
-			            <th>Descripción</th>
 			            <th>Tipo de investigación</th>
 			            <th>Asignatura</th>
 			            <th>Diseño</th>
-			            <th>Fecha Asignación</th>
 			            <th>Alumnos</th>
-			            <th>Cod Ciclo</th>
 			            <th>Estado</th>
+						<th>Cod Ciclo</th>
+						<th>Descripción</th>
+						<th>Fecha Asignación</th>
 			        </tr>
 			    </thead>
 			</table>

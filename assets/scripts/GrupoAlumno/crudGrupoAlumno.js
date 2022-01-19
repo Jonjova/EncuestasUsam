@@ -1,11 +1,6 @@
-$('#CrearProyecto #ID_ASIGNATURA').change(function() {
-
-});
-
 function grupoAC() {
     $('#ID_ASIGNATURA_G').val($('#CrearProyecto #ID_ASIGNATURA').val());
     $('#CICLO_G').val($('#CrearProyecto #CICLO').val());
-    //$('.bootstrap-select').selectpicker('refresh');
 }
 
 //Guardamos un nuevo Grupo de alumno.
@@ -27,13 +22,13 @@ $("#createForm").submit(function(event) {
             if (xhr.status == 200) {
                 $('#createForm').trigger("reset");
                 Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Datos guardados correctamente',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    //$('#ID_ALUMNO_GA').prop('selectedIndex',0);
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Datos guardados correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                //$('#ID_ALUMNO_GA').prop('selectedIndex',0);
                 cargaFuncionSelect();
                 $('#createModal').modal('hide');
             }
@@ -71,7 +66,6 @@ function valGrupoAlumno() {
 
 //obteniendo Asignatura
 function obtAsignatura() {
-
     $.ajax({
         url: url + "GrupoAlumno/Asignatura",
         type: 'post',
@@ -136,7 +130,7 @@ function cargaFuncionSelect() {
     var contar = 0;
     for (var i = 0; i < 2; i++) {
         //console.log(i);
-        contar = (contar + setTimeout(obtGrupoAlumn, 1000));
+        contar = (contar + setTimeout(obtGrupoAlumn($('#CrearProyecto #ID_ASIGNATURA').val()), 1000));
         //setTimeout(obtA, 5000)
     }
     //console.log(contar);

@@ -25,7 +25,15 @@
 
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->    
 <script type="text/javascript">
-	var url = '<?php echo base_url();?>';
+	var url = '<?php echo base_url();?>',
+        cod_coordinador = '<?php echo  $this->session->userdata('COORDINADOR');?>',
+        cod_docente = '<?php echo $this->session->userdata('DOCENTE');?>';
+    if (cod_coordinador == "") {
+        cod_coordinador = 0;
+    }
+    if (cod_docente == "") {
+        cod_docente = 0;
+    }
 </script>
 
 <!-- ALERTAS JS -->
