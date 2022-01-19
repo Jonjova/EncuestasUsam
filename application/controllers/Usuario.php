@@ -132,34 +132,41 @@ class Usuario extends CI_Controller
 		$resultList = $this->modelUsuario->mostrarUsuariosModel();
 		$result = array();
 		$i = 1;
-		foreach ($resultList as $key => $value) {
-			
-			$btnPass = 
-				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
-					<i class="fas fa-sync-alt"></i>
-					<i class="fas fa-lock"></i>
-				</a>';
-			$btnInfo = 
-				'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoUsuario('.$value['PERSONA'].');" 
-					data-toggle="modal" data-target="#InfoUsuario">
-					<i class="fas fa-info-circle" title="Información"></i>
-				</a>';
-			$btnUpdate = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerUsuario('.$value['PERSONA'].');" 
-					data-toggle="modal" data-target="#modalPersona">
-					<i class="fas fa-pen" title="Actualizar"></i>
-				</a>';
-			
-			$result['data'][] = array(
-				$i++,
-				$value['PERSONA_USUARIO'],
-				$value['NOMBRE_USUARIO'],
-				$value['TELEFONO_MOVIL'],
-				$value['NOMBRE_ROL'],
-				$btnPass."&ensp;&ensp;".
-				$btnInfo."&ensp;&ensp;".
-				$btnUpdate
-			);
+		if (!empty($resultList))
+			{
+			foreach ($resultList as $key => $value) {
+				
+				$btnPass = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
+						<i class="fas fa-sync-alt"></i>
+						<i class="fas fa-lock"></i>
+					</a>';
+				$btnInfo = 
+					'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoUsuario('.$value['PERSONA'].');" 
+						data-toggle="modal" data-target="#InfoUsuario">
+						<i class="fas fa-info-circle" title="Información"></i>
+					</a>';
+				$btnUpdate = 
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerUsuario('.$value['PERSONA'].');" 
+						data-toggle="modal" data-target="#modalPersona">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
+				
+				$result['data'][] = array(
+					$i++,
+					$value['PERSONA_USUARIO'],
+					$value['NOMBRE_USUARIO'],
+					$value['TELEFONO_MOVIL'],
+					$value['NOMBRE_ROL'],
+					$btnPass."&ensp;&ensp;".
+					$btnInfo."&ensp;&ensp;".
+					$btnUpdate
+				);
+			}
+		}
+		else
+		{
+	    	$result['data'] = array();
 		}
 		echo json_encode($result);
 	}

@@ -9,6 +9,9 @@ function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
         "ajax": url + "Proyectos/MostrarProyecto/" + asignatura + '/' + ciclo + '/' + cod_coordinador + '/' + facultad,
         "order": [],
         "language": idioma_espanol
+            /*,
+                    dom: 'Bfrtip',
+                    "buttons": ['excel', 'csv', 'pdf', 'copy'],*/
     });
 }
 

@@ -148,61 +148,66 @@ class Docente extends CI_Controller
 		$resultList = $this->modelDocente->mostrarDocentesModel($coordinador);
 		$result = array();
 		$i = 1;
-		foreach ($resultList as $key => $value)
-		{
-			$btnPass = 
-				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
-					<i class="fas fa-sync-alt"></i>
-					<i class="fas fa-lock"></i>
-				</a>';
-			$btnestado = ($value['ESTADO_PERMISO'] > 0) ? 
-				'<a class="btn btn-success" title="Estado" style="font-size: x-large;" 
-					onclick="cambiarEstado('.$value['ID_USUARIO'].');">
-					<i class="far fa-check-circle"></i>
-				</a>' : 
-				'<a class="btn btn-danger" title="Estado" style="font-size: x-large;" 
-					onclick="cambiarEstado('.$value['ID_USUARIO'].');">
-					<i class="far fa-times-circle"></i>
-				</a>';
-			$btnInfo = 
-				'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoDocente('.$value['ID_PERSONA'].');" 
-					data-toggle="modal" data-target="#InfoDocente">
-					<i class="fas fa-info-circle" title="Información"></i>
-				</a>';
-			$btnUpdate = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerDocente('.$value['ID_PERSONA'].');" 
-					data-toggle="modal" data-target="#modalDocente">
-					<i class="fas fa-pen" title="Actualizar"></i>
-				</a>';
+		if (!empty($resultList)) {
+			foreach ($resultList as $key => $value)
+			{
+				$btnPass = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
+						<i class="fas fa-sync-alt"></i>
+						<i class="fas fa-lock"></i>
+					</a>';
+				$btnestado = ($value['ESTADO_PERMISO'] > 0) ? 
+					'<a class="btn btn-success" title="Estado" style="font-size: x-large;" 
+						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
+						<i class="far fa-check-circle"></i>
+					</a>' : 
+					'<a class="btn btn-danger" title="Estado" style="font-size: x-large;" 
+						onclick="cambiarEstado('.$value['ID_USUARIO'].');">
+						<i class="far fa-times-circle"></i>
+					</a>';
+				$btnInfo = 
+					'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoDocente('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#InfoDocente">
+						<i class="fas fa-info-circle" title="Información"></i>
+					</a>';
+				$btnUpdate = 
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerDocente('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#modalDocente">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
 
-			if ($_SESSION['ID_TIPO_USUARIO'] != 1)
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['DOCENTE'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['CORREO_PERSONAL'],
-					$btnestado."&ensp;&ensp;".
-					$btnInfo."&ensp;&ensp;".
-					$btnUpdate
-				);
+				if ($_SESSION['ID_TIPO_USUARIO'] != 1)
+				{
+					$result['data'][] = array(
+						$i++,
+						$value['DOCENTE'],
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
+						$value['CORREO_PERSONAL'],
+						$btnestado."&ensp;&ensp;".
+						$btnInfo."&ensp;&ensp;".
+						$btnUpdate
+					);
+				}
+				else
+				{
+					$result['data'][] = array(
+						$i++,
+						$value['DOCENTE'],
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
+						$value['CORREO_PERSONAL'],
+						$btnPass."&ensp;&ensp;".
+						$btnestado."&ensp;&ensp;".
+						$btnInfo."&ensp;&ensp;".
+						$btnUpdate
+					);
+				}		
 			}
-			else
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['DOCENTE'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['CORREO_PERSONAL'],
-					$btnPass."&ensp;&ensp;".
-					$btnestado."&ensp;&ensp;".
-					$btnInfo."&ensp;&ensp;".
-					$btnUpdate
-				);
-			}
-			
+		}
+		else
+		{
+			$result['data'] = array();
 		}
 		echo json_encode($result);
 	}

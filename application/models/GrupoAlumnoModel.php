@@ -23,7 +23,7 @@ class GrupoAlumnoModel extends CI_Model
 						INNER JOIN TBL_CICLO AS tc ON tc.ID_CICLO = tg.CICLO
 					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO) AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN) AND tg.ID_ASIGNATURA = $asignatura
 				)
-			ORDER BY ta.ID_ALUMNO ASC;");
+			ORDER BY ta.ID_ALUMNO DESC;");
 		return $datos->result_array();
 	}
 	

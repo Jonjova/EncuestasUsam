@@ -1,43 +1,44 @@
 <?php
-	defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Bitacora extends CI_Controller {
+class Bitacora extends CI_Controller {
 
 		// CONSTRUCTOR PARA LLAMAR AL MODELO
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->model('BitacoraModel', 'modelBitacora', true);
-		}
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('BitacoraModel', 'modelBitacora', true);
+	}
 
 		// VISTA MOSTRAR BITACORA
-		public function verBitacora()
-		{
-			if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1){
-				$data = array('title' => 'Bitacora' );
+	public function verBitacora()
+	{
+		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1){
+			$data = array('title' => 'Bitacora' );
 				//header
-				$this->load->view('Layout/Header', $data);
+			$this->load->view('Layout/Header', $data);
 				//Body
-				$this->load->view('Layout/Sidebar');
-				$this->load->view('Bitacora/MostrarBitacora');
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('Bitacora/MostrarBitacora');
 				//Footer
-				$this->load->view('Layout/Footer');
-			}
-			else{
-				$this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
-				redirect('/Accesos/');
-				show_404();
-			}
+			$this->load->view('Layout/Footer');
 		}
+		else{
+			$this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
+	}
 
         // MOSTRAR USUARIOS
-		public function mostrarBitacora()
+	public function mostrarBitacora()
+	{
+		$resultList = $this->modelBitacora->mostrarBitacoraModel();
+		$result = array();
+		$i = 1;
+		if (!empty($resultList))
 		{
-			$resultList = $this->modelBitacora->mostrarBitacoraModel();
-			$result = array();
-			$i = 1;
 			foreach ($resultList as $key => $value) {				
-				
 				$result['data'][] = array(
 					/*$i++,
 					$value['ID_REGISTRO'],*/
@@ -48,10 +49,14 @@
 					$value['INFORMACION_ACTUAL'],
 					$value['INFORMACION_ANTERIOR']
 					
-				);
-				
+					);
 			}
-			echo json_encode($result);
 		}
+		else
+		{
+			$result['data'] = array();
+		}
+		echo json_encode($result);
 	}
+}
 ?>

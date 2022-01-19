@@ -130,7 +130,7 @@ function cargaFuncionSelect() {
     var contar = 0;
     for (var i = 0; i < 2; i++) {
         //console.log(i);
-        contar = (contar + setTimeout(obtGrupoAlumn($('#CrearProyecto #ID_ASIGNATURA').val()), 1000));
+        contar = (contar + setTimeout(obtGrupoAlumn($("#CrearProyecto [name='ID_ASIGNATURA']").val()), 1000));
         //setTimeout(obtA, 5000)
     }
     //console.log(contar);

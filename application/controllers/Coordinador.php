@@ -150,50 +150,56 @@ class Coordinador extends CI_Controller
 		$resultList = $this->modelCoordinador->mostrarCoordinadorModel();
 		$result = array();
 		$i = 1;
-		foreach ($resultList as $key => $value)
+		if (!empty($resultList))
 		{
-			$btnPass = 
-				'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
-					<i class="fas fa-sync-alt"></i>
-					<i class="fas fa-lock"></i>
-				</a>';
-			$btnInfo = 
-				'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" 
-					data-toggle="modal" data-target="#InfoCoordinador">
-					<i class="fas fa-info-circle"></i>
-				</a>';
-			$btnUpdate = 
-				'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerCoordinador('.$value['ID_PERSONA'].');" 
-					data-toggle="modal" data-target="#modalCoordinador">
-					<i class="fas fa-pen" title="Actualizar"></i>
-				</a>';
+			foreach ($resultList as $key => $value)
+			{
+				$btnPass = 
+					'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['ID_PERSONA'].');">
+						<i class="fas fa-sync-alt"></i>
+						<i class="fas fa-lock"></i>
+					</a>';
+				$btnInfo = 
+					'<a class="btn btn-secondary" style="font-size: x-large;" onclick="infoCoordinador('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#InfoCoordinador">
+						<i class="fas fa-info-circle"></i>
+					</a>';
+				$btnUpdate = 
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerCoordinador('.$value['ID_PERSONA'].');" 
+						data-toggle="modal" data-target="#modalCoordinador">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
 
-			if ($_SESSION['ID_TIPO_USUARIO'] != 1)
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['COORDINADOR'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['NOMBRE_COORDINACION'],
-					$btnInfo."&ensp;&ensp;".
-					$btnUpdate
-				);
+				if ($_SESSION['ID_TIPO_USUARIO'] != 1)
+				{
+					$result['data'][] = array(
+						$i++,
+						$value['COORDINADOR'],
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
+						$value['NOMBRE_COORDINACION'],
+						$btnInfo."&ensp;&ensp;".
+						$btnUpdate
+					);
+				}
+				else
+				{
+					$result['data'][] = array(
+						$i++,
+						$value['COORDINADOR'],
+						$value['NOMBRE_USUARIO'],
+						$value['TELEFONO_MOVIL'],
+						$value['NOMBRE_COORDINACION'],
+						$btnPass."&ensp;&ensp;".
+						$btnInfo."&ensp;&ensp;".
+						$btnUpdate
+					);
+				}	
 			}
-			else
-			{
-				$result['data'][] = array(
-					$i++,
-					$value['COORDINADOR'],
-					$value['NOMBRE_USUARIO'],
-					$value['TELEFONO_MOVIL'],
-					$value['NOMBRE_COORDINACION'],
-					$btnPass."&ensp;&ensp;".
-					$btnInfo."&ensp;&ensp;".
-					$btnUpdate
-				);
-			}
-			
+		}
+		else
+		{
+			$result['data'] = array();
 		}
 		echo json_encode($result);
 	}
