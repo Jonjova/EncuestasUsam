@@ -7,25 +7,22 @@ class Proyectos extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->permisos = $this->backend_lib->controles();
 		$this->load->model('ProyectoModel','pm',true);
 		$this->load->model('GrupoAlumnoModel','gam',true);
 	}
 
 	public function index()
 	{
-
-		if($this->session->userdata('is_logged'))
+		if ($this->session->userdata('is_logged'))
 		{
-			$data = array('title' => 'Registro de Proyecto' );
-			//$otro  = array('permisos' => $this->permisos );
+			$data = array('title' => 'Proyectos' );
 			//header
-			$this->load->view('Layout/Header',$data);
-		//Body
+			$this->load->view('Layout/Header', $data);
+			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Proyecto/Mostrar');
 			$this->load->view('Alumno/MostrarGrupoAlumno');
-		 //Footer
+		 	//Footer
 			$this->load->view('Layout/Footer');
 		}
 		else
@@ -38,20 +35,16 @@ class Proyectos extends CI_Controller
 
 	public function proyecto()
 	{
-		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 4)
+		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 4)
 		{
-			$data = array('title' => 'Proyecto' );
-				//$otro  = array('permisos' => $this->permisos );
+			$data = array('title' => 'Nuevo Proyecto' );
 			//header
-			$this->load->view('Layout/Header',$data);
+			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
-			
-			
 			$this->load->view('Proyecto/insertar');
 			$this->load->view('GrupoAlumno/insertar');
 			$this->load->view('Alumno/insertarAlumno');
-
 		    //Footer
 			$this->load->view('Layout/Footer');
 		}
@@ -76,9 +69,9 @@ class Proyectos extends CI_Controller
 		$resultList = $this->pm->mostrarProyect($asignatura, $ciclo, $coordinador, $_SESSION['DOCENTE'], $_SESSION['ID_TIPO_USUARIO'], $facultad);
 
 		$result = array();
-		// $i = 1;
 		if (!empty($resultList))
 		{
+			$var = 0;
 			foreach ($resultList as $key => $value) {
 				switch ($value['ESTADO_PROYECTO'])
 				{
@@ -127,16 +120,17 @@ class Proyectos extends CI_Controller
 				}
 				
 				$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" 
-								style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value);">
-								<i class="fas fa-info-circle"></i>
-							</a>';
+							style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].', 
+							'.$value['ID_DET_GA'].', '.$var.', '.$value['ID_ASIGNATURA'].', '.$value['CICLO'].');">
+							<i class="fas fa-info-circle"></i>
+						</a>';
 				$ver = '<a onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value)">
 							<i class="far fa-eye"></i>
 						</a> ';
+				
 				if ($_SESSION['ID_TIPO_USUARIO'] != 4)
 				{
 					$result['data'][] = array(
-						// $i++,
 						$value['NOMBRE_PROYECTO'],
 						$value['NOMBRE_TIPO_INVESTIGACION'],
 						$value['NOMBRE_ASIGNATURA'],
@@ -152,7 +146,6 @@ class Proyectos extends CI_Controller
 				else
 				{
 					$result['data'][] = array(
-						// $i++,
 						$value['NOMBRE_PROYECTO'],
 						$value['NOMBRE_TIPO_INVESTIGACION'],
 						$value['NOMBRE_ASIGNATURA'],
@@ -165,7 +158,6 @@ class Proyectos extends CI_Controller
 						$value['FECHA_ASIGNACION']
 						);
 				}
-				
 			}
 		}
 		else

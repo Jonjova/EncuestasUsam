@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class GrupoAlumno extends CI_Controller
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -11,14 +11,27 @@ class GrupoAlumno extends CI_Controller
 	}
 	
 	//CREAR
-	function Guardar(){
-		$grupo = $this->input->post('NOMBRE_GRUPO',TRUE);
-		$asignatura = $this->input->post('ID_ASIGNATURA_G',TRUE);
-		$ciclo = $this->input->post('CICLO_G',TRUE);
-		$alumno = $this->input->post('ID_ALUMNO_GA',TRUE);
+	function Guardar()
+	{
+		$grupo = $this->input->post('NOMBRE_GRUPO', TRUE);
+		$asignatura = $this->input->post('ID_ASIGNATURA_G', TRUE);
+		$ciclo = $this->input->post('CICLO_G', TRUE);
+		$alumno = $this->input->post('ID_ALUMNO_GA', TRUE);
 		
 		$insert = $this->gam->insertGrupoAlumno($grupo, $asignatura, $ciclo, $alumno);
 
+		if($insert == TRUE )
+		{
+			echo "true";
+		}
+	}
+
+	//CREAR
+	function agregar()
+	{
+		$grupo = $this->input->post('GRUPO_GA',TRUE);
+		$alumno = $this->input->post('ID_ALUMNO_GA',TRUE);
+		$insert = $this->gam->agregarGrupoAlumno($grupo, $alumno);
 		if($insert == TRUE )
 		{
 			echo "true";
@@ -37,14 +50,19 @@ class GrupoAlumno extends CI_Controller
 	{
 		$datos = $this->gam->obtAdignatura();
 		echo json_encode($datos);
-	
 	}
 
 	//Validar si ya existe en un Grupo el Alumno
-	public function validarGrupoAlumno(){
-		
+	public function validarGrupoAlumno()
+	{
 		$ga = $this->input->post('ID_ALUMNO_GA');
 		echo $this->gam->validarGrupo($ga);
+	}
+
+	//Eliminar
+	public function eliminarGrupoAlumno($id)
+	{
+		return $this->gam->EliminarGA($id);
 	}
 	
 }

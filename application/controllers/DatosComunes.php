@@ -130,7 +130,7 @@ class DatosComunes extends CI_Controller
 	// LLENAR SELECT DOCENTE
 	public function dropDocente($asignatura)
 	{
-		$datos = $this->modelDatos->dropDocenteModel($_SESSION['COORDINADOR'], $asignatura);
+		$datos = $this->modelDatos->dropDocenteModel($asignatura);
 		echo "<option selected disabled value=''>Seleccione...</option>";
 		foreach ($datos as $i)
 		{

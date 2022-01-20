@@ -1,6 +1,4 @@
-//Versión datatable y ajax.
 $(document).ready(function() {
-    //Mostrar campos de la tabla Proyecto.
     llenarTablaProyecto(0, 0, cod_coordinador, 0);
 });
 
@@ -9,9 +7,6 @@ function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
         "ajax": url + "Proyectos/MostrarProyecto/" + asignatura + '/' + ciclo + '/' + cod_coordinador + '/' + facultad,
         "order": [],
         "language": idioma_espanol
-            /*,
-                    dom: 'Bfrtip',
-                    "buttons": ['excel', 'csv', 'pdf', 'copy'],*/
     });
 }
 
@@ -24,19 +19,30 @@ function limpiarAlumno() {
     infoAlumnosLimpiar();
 }
 
-
-// Acción de Insertar Proyecto.
+/****************************************************************************
+                            GUARDAR PROYECTO
+****************************************************************************/
 $(function() {
     $("#CrearProyecto").submit(function(event) {
-        $(this).find('.nav-pills a:first').tab('show');
-        $.ajax({
-            url: url + 'Proyectos/Guardar',
-            data: $("#CrearProyecto").serialize(),
-            type: "post",
-            async: false,
-            dataType: 'json',
-            success: function(data) {
-                if (data !== '') {
+        if (!$(this).valid()) {
+            Swal.fire({
+                icon: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonColor: "#343a40",
+                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+            });
+        } else {
+            event.preventDefault();
+            $(this).find('.nav-pills a:first').tab('show');
+            $.ajax({
+                url: url + 'Proyectos/Guardar',
+                data: $("#CrearProyecto").serialize(),
+                type: "post",
+                async: false,
+                dataType: 'json',
+                success: function(data) {
                     Swal.fire({
                         toast: true,
                         timer: 1500,
@@ -45,29 +51,27 @@ $(function() {
                         iconColor: '#3ca230',
                         showConfirmButton: false,
                         title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos guardados!</p>'
-                    })
-
+                    });
                     $('#CrearProyecto')[0].reset();
-                    limpiarAlumno()
-                } else {
-                    alert('ingrese datos');
+                    limpiarAlumno();
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "#343a40",
+                        title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error al guardar</p>'
+                    });
                 }
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Algunos campos son requeridos!'
-                })
-            }
-        });
-        event.preventDefault();
+            });
+        }
     });
 
 });
 
 /****************************************************************************
-                        VALIDACIONES PROYECTO
+                            VALIDACIONES PROYECTO
 ****************************************************************************/
 //efecto en los input de la case needs-validation
 jQuery.validator.setDefaults({
@@ -94,7 +98,6 @@ jQuery.validator.setDefaults({
     errorPlacement: function(error, element) {
         if (element.parent('.input-group-prepend').length) {
             $(element).siblings(".invalid-feedback").append(error);
-            //error.insertAfter(element.parent());
         } else {
             error.insertAfter(element);
         }
@@ -137,7 +140,11 @@ $("#CrearProyecto").validate({
 /****************************************************************************
                         LLENAR INFORMACION GRUPO
 ****************************************************************************/
-function infoGrupo(proyecto) {
+function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
+    $('#agregarAlumnoG').show();
+    $('#cont-agregarAlumnoG').hide();
+    $('#ASIGNATURA_AL').val(asignatura);
+    $('#GRUPO_GA').val(ciclo);
     $.ajax({
         url: url + 'Proyectos/datosInfoGrupo/' + proyecto,
         method: 'post',
@@ -146,20 +153,117 @@ function infoGrupo(proyecto) {
         cache: false,
         success: function(r) {
             var nombreProyecto = '';
+            var nombreGrupo = '';
             var integrantes = '<h4>Integrantes:</h4>';
+            var eliminar = '';
             $.each(r, function(index, object) {
                 nombreProyecto = '<h3>Proyecto:</h3><p>' + object.NOMBRE_PROYECTO + '</p>';
-                integrantes += '<p>#' + object.CARNET + ' ' + object.ALUMNO + '</p>';
+                nombreGrupo = object.NOMBRE_GRUPO;
+                eliminar =
+                    '<a class="btn btn-danger" ' +
+                    'onclick="eliminarGA(' + proyecto + ',' + id_grupo_alumno + ',' + object.ID_DET_GA + ',' + asignatura + ',' + ciclo + ');">' +
+                    '<i class="fas fa-user-times"></i> ' +
+                    '</a>';
+                if (object.ESTADO_PROYECTO == "Finalizado" || object.ESTADO_PROYECTO == "Incompleto" || object.ESTADO_PROYECTO == "No entregado" || cod_coordinador != 0) {
+                    eliminar = '';
+                    $('#agregarAlumnoG').hide();
+                }
+                integrantes += '<p>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</p>';
             });
             $('#NOMBRE_PROYECTO').html(nombreProyecto);
+            $('#NOMBRE_GRUPO_ALUMNO').val(nombreGrupo);
             $('#INTEGRANTES').html(integrantes);
             $('#InfoGrupoAlumno').modal({
                 backdrop: "static",
                 keyboard: false
             });
         }
-    })
+    });
 }
+
+/****************************************************************************
+                        ELIMINAR ALUMNO DE UN GRUPO
+****************************************************************************/
+function eliminarGA(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
+    $.ajax({
+        url: url + 'GrupoAlumno/eliminarGrupoAlumno/' + id,
+        method: 'post',
+        cache: false,
+        success: function(r) {
+            infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo);
+            $('#ASIGNATURA_AL').val(asignatura);
+            $('#GRUPO_GA').val(ciclo);
+            $('#Proyecto').DataTable().ajax.reload(null, false);
+        }
+    });
+}
+
+/****************************************************************************
+                   LLENAR AGREGAR NUEVO ALUMNO A UN GRUPO
+****************************************************************************/
+function agregarAlumnoGA() {
+    $('#NOMBRE_PROYECTO').html('');
+    $('#INTEGRANTES').html('');
+    $('#agregarAlumnoG').hide();
+    $('#cont-agregarAlumnoG').show();
+    $('#ALUMNO_GA').html('');
+    $.ajax({
+        url: url + "GrupoAlumno/Alumno/" + $('#ASIGNATURA_AL').val(),
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+            var options;
+            $.each(data, function(index, object) {
+                options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
+            });
+            $('#ALUMNO_GA').html(options);
+            $('.bootstrap-select').selectpicker('refresh');
+        }
+    });
+}
+
+/****************************************************************************
+                    AGREGAR NUEVO ALUMNO A UN GRUPO
+****************************************************************************/
+$("#agregarGAForm").submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: url + 'GrupoAlumno/agregar',
+        data: $(this).serialize(),
+        type: "post",
+        cache: false,
+        dataType: 'json',
+        success: function(response) {
+            Swal.fire({
+                toast: true,
+                timer: 1500,
+                icon: 'success',
+                position: 'top-end',
+                iconColor: '#3ca230',
+                showConfirmButton: false,
+                title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos guardados!</p>'
+            });
+        },
+        error: function(xhr, status) {
+            if (xhr.status == 200) {
+                $('#agregarGAForm').trigger("reset");
+                Swal.fire({
+                    toast: true,
+                    timer: 1500,
+                    icon: 'success',
+                    position: 'top-end',
+                    iconColor: '#3ca230',
+                    showConfirmButton: false,
+                    title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos guardados!</p>'
+                });
+                $('#InfoGrupoAlumno').modal('hide');
+                $('#agregarGAForm').trigger("reset");
+                $('#Proyecto').DataTable().ajax.reload(null, false);
+            }
+        }
+    });
+});
 
 /****************************************************************************
                             CAMBIAR ESTADO
@@ -189,7 +293,6 @@ function cambiarEstadoProyecto(proyecto, estado) {
                 allowEscapeKey: false,
                 allowOutsideClick: false,
                 confirmButtonColor: "#343a40",
-                text: 'Campos vac\u00edos o inv\u00e1lidos!',
                 title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error al cambiar</p>'
             });
         }

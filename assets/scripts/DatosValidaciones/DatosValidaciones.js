@@ -9,7 +9,6 @@ $(document).ready(function() {
     $('#NIT').mask('9999-999999-999-9');
     $('#TELEFONO_FIJO').mask('9999-9999');
     $('#TELEFONO_MOVIL').mask('9999-9999');
-    //$('#CARNET_UPDATE').mask('999999');
     $('#DUI_UPDATE').mask('99999999-9');
     $('#NIT_UPDATE').mask('9999-999999-999-9');
     $('#TELEFONO_FIJO_UPDATE').mask('9999-9999');
@@ -40,12 +39,11 @@ function llenarDropdowns() {
     rol();
     coordinacion();
     coordinador();
-    //docente();
     obtTipoInvestiga();
     obtDiseInvestiga();
     obtCicl();
     obtCarrera();
-    // obtGrupoAlumn();
+
     var cod_asignatura = $('#ASIGNATURA_PROY').val(),
         cod_ciclo = $('#CICLO_PROY').val();
     $("#CrearProyecto [name='ID_ASIGNATURA']").change(function() {
@@ -60,10 +58,10 @@ function llenarDropdowns() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto($(this).val(), cod_ciclo, cod_coordinador, 0);
     });
-    $('#CICLO_PROY').change(function() {
+    /*$('#CICLO_PROY').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto(cod_asignatura, $(this).val(), cod_coordinador, 0);
-    });
+    });*/
     $('#asignaturaR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto($(this).val(), 0, cod_coordinador, 0);
@@ -74,7 +72,11 @@ function llenarDropdowns() {
     });
     $('#facultadR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
-        llenarTablaProyecto(0, 0, 0, $(this).val());
+        llenarTablaProyecto(0, 0, cod_coordinador, $(this).val());
+    });
+    $('#cicloR').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto(0, $(this).val(), cod_coordinador, 0);
     });
     $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
     $('#ID_DOCENTE').select2();
@@ -218,7 +220,6 @@ function docente(asignatura) {
         type: 'POST',
         success: function(respuesta) {
             $('#ID_DOCENTE').html(respuesta);
-            //$('#ID_DOCENTE').html(respuesta);
         }
     })
 }
@@ -230,7 +231,6 @@ function obtTipoInvestiga() {
         type: 'post',
         success: function(respuesta) {
             $('#ID_TIPO_INVESTIGACION').html(respuesta);
-            //$('#ID_TIPO_INVESTIGACION').html(respuesta);
         }
     })
 }
@@ -242,7 +242,6 @@ function obtDiseInvestiga() {
         type: 'post',
         success: function(respuesta) {
             $('#ID_DISENIO_INVESTIGACION').html(respuesta);
-            //$('#ID_DISENIO_INVESTIGACION').html(respuesta);
         }
     })
 }
@@ -254,7 +253,6 @@ function obtCicl() {
         type: 'post',
         success: function(respuesta) {
             $('#CICLO').html(respuesta);
-            //$('#CICLO').html(respuesta);
         }
     });
     $.ajax({
@@ -273,7 +271,6 @@ function obtCarrera() {
         type: 'post',
         success: function(data) {
             $('#CARRERA').html(data);
-            //$('#CARRERA').html(data);
         }
     });
 }
@@ -294,7 +291,7 @@ function obtA(asignatura) {
             $('#ID_ALUMNO_GA').html(options);
             $('.bootstrap-select').selectpicker('refresh');
         }
-    })
+    });
 }
 
 // LLENAR SELECT GRUPO ALUMNO
@@ -309,16 +306,14 @@ function obtGrupoAlumn(asignatura) {
             $.each(data, function(index, object) {
                 options += '<option value="' + object.ID_GRUPO_ALUMNO + '">' + object.NOMBRE_GRUPO + '</option>';
             });
-            // $('.bootstrap-select').selectpicker('refresh');
             $('#ID_GRUPO_ALUMNO').html(options);
         }
     })
-
 }
 
 /****************************************************************************
                             VALIDAR CAMPOS PARA INSERTAR
-                            ****************************************************************************/
+****************************************************************************/
 
 // NOMBRES Y APELLIDOS VALIDOS (LETRAS, LETRAS CON TILDE, SIN ESPACIO)
 jQuery.validator.addMethod("alfaOespacio", function(value, element) {
@@ -451,7 +446,7 @@ jQuery.validator.addMethod("correo", function(value, element) {
 
 // CORREO PERSONAL VALIDO
 jQuery.validator.addMethod("correoP", function(value) {
-    if (value.split('@liveusam')[1] || value.split('@usam')[1]) {
+    if (value.split('@liveusam')[1] && value.split('@usam')[1]) {
         return false;
     } else {
         return true;
@@ -460,7 +455,7 @@ jQuery.validator.addMethod("correoP", function(value) {
 
 // CORREO INSTITUCIONAL VALIDO
 jQuery.validator.addMethod("correoU", function(value) {
-    if (value.split('@')[1] != 'liveusam.edu.sv' || value.split('@')[1] != 'usam.edu.sv') {
+    if (value.split('@')[1] != 'liveusam.edu.sv' && value.split('@')[1] != 'usam.edu.sv') {
         return false;
     } else {
         return true;

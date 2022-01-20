@@ -6,10 +6,6 @@ class GrupoAlumnoModel extends CI_Model
 	
 	public function obtAlumno($asignatura)
 	{
-		// $this->db->select('a.ID_ALUMNO,a.CARNET, p.PRIMER_NOMBRE_PERSONA, p.SEGUNDO_NOMBRE_PERSONA, p.PRIMER_APELLIDO_PERSONA , p.SEGUNDO_APELLIDO_PERSONA');
-		// $this->db->from('tbl_alumnos a');
-		// $this->db->join('tbl_persona p', 'a.PERSONA = p.ID_PERSONA');
-		// $datos = $this->db->get();
 		$datos = $this->db->query(
 			"SELECT ta.ID_ALUMNO, ta.CARNET, tp.PRIMER_NOMBRE_PERSONA, tp.SEGUNDO_NOMBRE_PERSONA,
 				tp.PRIMER_APELLIDO_PERSONA , tp.SEGUNDO_APELLIDO_PERSONA
@@ -64,6 +60,28 @@ class GrupoAlumnoModel extends CI_Model
 		$this->db->insert_batch('tbl_grupo_alumno', $result);
 		$this->db->trans_complete();
 	}
+
+	// CREAR
+	public function agregarGrupoAlumno($grupo, $alumno){
+		$this->db->trans_start();
+			//Insertar grupo
+		date_default_timezone_set("America/El_Salvador");
+			//Obtener id grupo
+		$grupo_id = $grupo;
+		$result = array();
+		$contador = $this->maxIdDGA();
+		foreach($alumno AS $key => $val){
+			$result[] = array(
+				'ID_DET_GA' => $contador,
+				'ID_DET_GRUPO' => $grupo_id,
+				'ID_DET_ALUMNO' => $_POST['ID_ALUMNO_GA'][$key]
+				);
+			$contador++;
+		}      
+			//insercion multiple en la tabla detalle
+		$this->db->insert_batch('tbl_grupo_alumno', $result);
+		$this->db->trans_complete();
+	}
 	
 	//validar si existe un alumno en un grupo 
 	public function validarGrupo($grupo)
@@ -95,6 +113,13 @@ class GrupoAlumnoModel extends CI_Model
 	{
 		$maxid = $this->db->query('SELECT MAX(ID_DET_GA + 1) as ID_DET_GA FROM `tbl_grupo_alumno`');
 		return $maxid->result_array();
+	}
+
+	public function EliminarGA($id)
+	{
+		$this->db->where('ID_DET_GA',$id);	
+		$this->db->delete('tbl_grupo_alumno');
+		
 	}
 
 }

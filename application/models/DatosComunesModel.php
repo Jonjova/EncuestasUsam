@@ -121,12 +121,11 @@ class DatosComunesModel extends CI_Model
 	}
 
 	// LLENAR SELECT DOCENTE
-	public function dropDocenteModel($coordinador, $asignatura)
+	public function dropDocenteModel($asignatura)
 	{
 		$datos = $this->db->query(
 			'SELECT * FROM VW_DROP_DOCENTES
 			WHERE ID_DOCENTE NOT IN 
-			-- WHERE COORDINADOR = '.$coordinador.' AND ID_DOCENTE NOT IN 
 				(
 					SELECT ID_DOCENTE FROM tbl_docente_asignatura 
 					WHERE ID_ASIGNATURA = '.$asignatura.'
