@@ -1,6 +1,23 @@
 $(document).ready(function() {
     llenarTablaProyecto(0, 0, cod_coordinador, 0);
+   CargaContenidoProyecto();
+
 });
+
+function CargaContenidoProyecto(){
+    
+  
+   $('#carga').show();
+    function cargaContenido() {
+       $("#contenido").show();
+    }
+    setTimeout(function() {
+        cargaContenido()
+          $('#carga').hide();
+
+    }, 2000);
+
+}
 
 function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
     $('#Proyecto').DataTable({

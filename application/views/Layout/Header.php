@@ -17,6 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/gsdk-bootstrap-wizard.css">
 	<!-- BOOTSTRAP 4 -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css" >
+	<!--PreCargas-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/preCarga.css">
 	<!--custom-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/jquery.mCustomScrollbar.min.css">
 	<!-- SIDEBAR CSS -->
@@ -36,4 +38,5 @@
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/all.js"></script>
 	<!-- MASCARA DE CAMPOS -->
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
+
 </head>

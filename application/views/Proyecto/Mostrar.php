@@ -1,3 +1,13 @@
+			<style type="text/css">
+		
+  
+			</style>
+ <div id="carga" class="double" style="display: none;">
+       <div class="double-bounce1"></div>
+       <div class="double-bounce2"></div>
+ </div>
+ 
+<div id="contenido" style="display: none">
 			<h2>Proyectos Registrados</h2><br>
 			<!--<?php if($this->session->userdata('ID_TIPO_USUARIO') == 3 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 			<div class="row">
@@ -35,7 +45,9 @@
 				$sql_ci = "SELECT id_ciclo, cod_ciclo FROM encuestasusam.tbl_ciclo;";
 				$resultado_ci = $mysqli->query($sql_ci);
 			?>
+ <!-- begin dots modal -->
 
+	
 			<div class="row">
 			    <div class="col-sm-4">
 			        <label>Filtrar Información</label>
@@ -120,6 +132,8 @@
 
 			    </div>
 			</div>
+
+			</div>
 			<br />
 
 			<?php if($this->session->userdata('ID_TIPO_USUARIO') != 3 && $this->session->userdata('ID_TIPO_USUARIO') != 4): ?>
@@ -128,6 +142,7 @@
 			<?php endif ?>
 
 			<br>
+
 			<table id="Proyecto" class="table table-hover table-striped dt-responsive nowrap" style="width:100%">
 			    <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
 			        <tr>
