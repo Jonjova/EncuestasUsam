@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'root',
+	'password' => '0000',
 	'database' => 'encuestasusam',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -98,6 +98,6 @@ $db['default'] = array(
 $mysqli = new mysqli(
 	"localhost", 
 	"root", 
-	"root",
+	"0000",
 	 "encuestasusam"
 );

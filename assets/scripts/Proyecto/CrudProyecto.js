@@ -15,9 +15,20 @@ function CargaContenidoProyecto(){
         cargaContenido()
           $('#carga').hide();
 
-    }, 2000);
-
+    }, 1000);
+cargaresto();
 }
+
+function cargaresto() {
+      $('#Proyecto').on('init.dt',function() {
+        $("#Proyecto").removeClass('table-loader').show();
+      });
+  setTimeout(function(){
+    $('#Proyecto').DataTable();
+  }, 4000);
+}
+
+    
 
 function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
     $('#Proyecto').DataTable({

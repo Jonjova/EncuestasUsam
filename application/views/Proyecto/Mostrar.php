@@ -1,7 +1,4 @@
-			<style type="text/css">
-		
-  
-			</style>
+	
  <div id="carga" class="double" style="display: none;">
        <div class="double-bounce1"></div>
        <div class="double-bounce2"></div>
@@ -143,7 +140,7 @@
 
 			<br>
 
-			<table id="Proyecto" class="table table-hover table-striped dt-responsive nowrap" style="width:100%">
+			<table id="Proyecto" class=" table-loader table table-hover table-striped dt-responsive nowrap" style="width:100%;"  >
 			    <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
 			        <tr>
 			            <th>Nombre Proyecto </th>
