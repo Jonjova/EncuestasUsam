@@ -4,8 +4,17 @@ $(document).ready(function() {
     //obtA($('#ID_ASIGNATURA').val());
 });
 
-//Guardamos un nuevo alumno.
-$("#crearAlumno").submit(function(event) {
+/****************************************************************************
+                    AGREGAR NUEVO ALUMNO
+****************************************************************************/
+//var actualizar = $("#editAlumno");
+const actualizar = document.querySelector("#editAlumno");
+//var guardar = $("#addAlumno");
+const guardar = document.querySelector("#addAlumno");
+var addEdit = $("#crearAlumno");
+guardar.addEventListener("click", function(evento){
+    // Aquí todo el código que se ejecuta cuando se da click al botón
+   addEdit.submit(function(event) {
     event.preventDefault();
     $.ajax({
         url: url + 'Alumno/Guardar',
@@ -37,6 +46,36 @@ $("#crearAlumno").submit(function(event) {
         }
     });
 });
+
+});
+/****************************************************************************
+                    EDITAR ALUMNO
+****************************************************************************/
+actualizar.addEventListener("click", function(evento){
+    addEdit.submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: url + 'Alumno/Actualizar',
+        data: $("#crearAlumno").serialize(),
+        type: "post",
+        dataType: 'json',
+        success: function(response) {
+
+        },
+        error: function() {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Datos actualizados correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+});
+    
+});
+
 //Esta funcion carga una funcion 2 veces en este caso una accion dinamica
 //para el poper del select
 function cargaFuncion() {
@@ -72,6 +111,8 @@ $('#modalAlumno').on('hidden.bs.modal', function() {
 
 //limpia imput y select resetea la validación y remueve la clase del modal 
 function limpiar() {
+    $('#addAlumno').show();
+    $('#editAlumno').hide();
     $('#crearAlumno').trigger("reset");
     var validator = $("#crearAlumno").validate();
     validator.resetForm();

@@ -24,6 +24,20 @@ class AlumnoModel extends CI_Model
 		}
 	}
 
+	//Actualizar
+	public function actualizarPerson($tablename,$data,$where)
+	{
+		$query = $this->db->update($tablename,$data,$where);
+		return $query;
+	}
+
+	//Actualizar
+	public function actualizarAlum($tablename,$data,$where)
+	{
+		$query = $this->db->update($tablename,$data,$where);
+		return $query;
+	}
+
 }
 
 ?>

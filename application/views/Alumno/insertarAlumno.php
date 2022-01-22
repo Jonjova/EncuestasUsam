@@ -15,7 +15,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Alumno</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Estudiante</h5>
                     <!-- <div class="meter" style="left: 120px;">
                         <div id="percentage"></div>
                     </div>-->
@@ -24,6 +24,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                 <input  type="hidden" name="ID_PERSONA" id="ID_PERSONA">
+                <input type="hidden" name="ID_ALUMNO" id="ID_ALUMNO">
                     <nav>
                         <ul class="nav nav-tabs" id="myTab" role="tablist" style="font-size: 13px;">
                             <li class="nav-item" role="presentation">
@@ -150,9 +152,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="limpiar()"
                         id="cancelBtnId" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success btn-sm toggle-disabled" disabled>Guardar</button>
+                    <button type="submit" id="addAlumno" class="btn btn-success btn-sm toggle-disabled" disabled>Guardar</button>
+                     <button type="submit" id="editAlumno" class="btn btn-primary btn-sm " style="display: none;" >Actualizar</button>
                 </div>
             </div>
         </div>

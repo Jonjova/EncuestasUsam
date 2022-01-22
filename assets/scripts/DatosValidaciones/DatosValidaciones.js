@@ -721,53 +721,80 @@ $('#CARNET').change(function() {
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
             if (msg != null) {
+                console.log(msg);
+                $('#addAlumno').hide();
+                $('#editAlumno').show();
                 var contador = 0;
                 $.each(msg, function(index, elem) {
                     contador += 1;
+
                     if (contador == 2) {
-                        $('#PRIMER_NOMBRE_PERSONA').val(elem).attr('readonly', true);
+                        $('#PRIMER_NOMBRE_PERSONA').val(elem);
+                        //$('#PRIMER_NOMBRE_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 3) {
-                        $('#SEGUNDO_NOMBRE_PERSONA').val(elem).attr('readonly', true);
+                        $('#SEGUNDO_NOMBRE_PERSONA').val(elem);
+                        //$('#SEGUNDO_NOMBRE_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 4) {
-                        $('#PRIMER_APELLIDO_PERSONA').val(elem).attr('readonly', true);
+                        $('#PRIMER_APELLIDO_PERSONA').val(elem);
+                        //$('#PRIMER_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 5) {
-                        $('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
+                        $('#SEGUNDO_APELLIDO_PERSONA').val(elem);
+                        //$('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 6) {
                         $('#FECHA_NACIMIENTO_A').val(elem).attr('readonly', true);
                     }
                     if (contador == 7) {
-                        $('#SEXO option:not(:selected)').attr('disabled', true);
-                        $('#SEXO option:selected').text(elem).attr("disabled", true);
+                      $('#SEXO option:selected').text(elem);
+                      //  $('#SEXO option:not(:selected)').attr('disabled', true);
+                        //$('#SEXO option:selected').text(elem).attr("disabled", true);
                     }
                     if (contador == 8) {
                         $('#CORREO_PERSONAL').val(elem).attr('readonly', true);
                     }
                     if (contador == 9) {
-                        $('#TELEFONO_FIJO').val(elem).attr('readonly', true);
+                       $('#TELEFONO_FIJO').val(elem);
+                       //$('#TELEFONO_FIJO').val(elem).attr('readonly', true);
                     }
                     if (contador == 10) {
-                        $('#CARRERA option:not(:selected)').attr('disabled', true);
-                        $('#CARRERA option:selected').text(elem).attr("disabled", true)
+                       ('#CARRERA option:selected').text(elem);    
+                       // $('#CARRERA option:not(:selected)').attr('disabled', true);
+                       // $('#CARRERA option:selected').text(elem).attr("disabled", true)
                     }
                     if (contador == 11) {
                         $('#CORREO_INSTITUCIONAL').val(elem).attr('readonly', true);
                     }
                     if (contador == 12) {
-                        $('#TELEFONO_MOVIL').val(elem).attr('readonly', true);
+                        $('#TELEFONO_MOVIL').val(elem);
+                       // $('#TELEFONO_MOVIL').val(elem).attr('readonly', true);
                     }
                     if (contador == 13) {
-                        $('#DEPARTAMENTO option:not(:selected)').attr('disabled', true);
-                        $('#DEPARTAMENTO option:selected').text(elem).attr("disabled", true)
+                        $('#DEPARTAMENTO option:selected').text(elem);
+                       // $('#DEPARTAMENTO option:not(:selected)').attr('disabled', true);
+                        //$('#DEPARTAMENTO option:selected').text(elem).attr("disabled", true)
                     }
                     if (contador == 14) {
-                        $('#DIRECCION').val(elem).attr('readonly', true);
+                        $('#DIRECCION').val(elem);
+                        //$('#DIRECCION').val(elem).attr('readonly', true);
+                    }
+                    if (contador == 15) {
+                        console.log(elem);
+                         $('#ID_PERSONA').val(elem);
+                        //$('#ID_PERSONA').val(elem).attr('readonly', true);
+                    }
+                    if (contador == 16) {
+                        console.log(elem);
+                        $('#ID_ALUMNO').val(elem);
+                        //$('#ID_PERSONA').val(elem).attr('readonly', true);
                     }
                 });
+
             } else {
+                 $('#addAlumno').show();
+                  $('#editAlumno').hide();
                 infoAlumnosLimpiar();
             }
         }
@@ -775,12 +802,14 @@ $('#CARNET').change(function() {
 });
 
 function infoAlumnosLimpiar() {
+
     $('#PRIMER_NOMBRE_PERSONA').val('').attr('readonly', false);
     $('#SEGUNDO_NOMBRE_PERSONA').val('').attr('readonly', false);
     $('#PRIMER_APELLIDO_PERSONA').val('').attr('readonly', false);
     $('#SEGUNDO_APELLIDO_PERSONA').val('').attr('readonly', false);
-    $('#FECHA_NACIMIENTO_A').val('').attr('readonly', false);
     $('#SEXO option').attr('disabled', false);
+    $('#FECHA_NACIMIENTO_A').val('').attr('readonly', false); 
+    $('#SEXO option:selected').text('Seleccione...').attr("disabled", true);
     $('#CORREO_PERSONAL').val('').attr('readonly', false);
     $('#TELEFONO_FIJO').val('').attr('readonly', false);
     $('#CARRERA option').attr('disabled', false);

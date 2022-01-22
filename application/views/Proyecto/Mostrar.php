@@ -129,7 +129,11 @@
 
 			    </div>
 			</div>
-
+			  <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+				 <label>Agregar Estudiante</label><br>
+                 <button type="button" class="btn btn-success " data-toggle="modal" data-target="#modalAlumno"><i class="fas fa-plus-circle"></i>
+                 </button>
+              <?php endif ?>
 			</div>
 			<br />
 

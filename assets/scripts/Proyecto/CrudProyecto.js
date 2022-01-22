@@ -15,7 +15,7 @@ function CargaContenidoProyecto(){
         cargaContenido()
           $('#carga').hide();
 
-    }, 1000);
+    }, 2000);
 cargaresto();
 }
 
@@ -25,7 +25,7 @@ function cargaresto() {
       });
   setTimeout(function(){
     $('#Proyecto').DataTable();
-  }, 4000);
+  }, 2000);
 }
 
     
@@ -135,8 +135,8 @@ jQuery.validator.setDefaults({
 //aqui se agrega el campo del name
 $("#CrearProyecto").validate({
     rules: {
-        NOMBRE_PROYECTO: { required: true, minlength: 6, maxlength: 50 },
-        DESCRIPCION: { required: true, minlength: 6, maxlength: 50 },
+        NOMBRE_PROYECTO: { required: true, minlength: 6, maxlength: 150 },
+        DESCRIPCION: { required: true, minlength: 6, maxlength: 250 },
         ID_TIPO_INVESTIGACION: { required: true },
         ID_ASIGNATURA: { required: true },
         ID_DISENIO_INVESTIGACION: { required: true },
@@ -148,12 +148,12 @@ $("#CrearProyecto").validate({
         NOMBRE_PROYECTO: {
             required: 'Nombre de Proyecto es requerido.',
             minlength: 'El mínimo permitido son 6 caracteres.',
-            maxlength: 'El máximo permitido son 50 caracteres.'
+            maxlength: 'El máximo permitido son 150 caracteres.'
         },
         DESCRIPCION: {
             required: 'Descripción es requerido.',
             minlength: 'El mínimo permitido son 6 caracteres',
-            maxlength: 'El máximo permitido son 50 caracteres.'
+            maxlength: 'El máximo permitido son 250 caracteres.'
         },
         ID_TIPO_INVESTIGACION: { required: 'Tipo de investigación es requerido.' },
         ID_ASIGNATURA: { required: 'Asignatura es requerido.' },
