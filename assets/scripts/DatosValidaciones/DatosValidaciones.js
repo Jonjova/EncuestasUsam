@@ -721,7 +721,7 @@ $('#CARNET').change(function() {
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
             if (msg != null) {
-                console.log(msg);
+               // console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
                 var contador = 0;
@@ -745,33 +745,41 @@ $('#CARNET').change(function() {
                         //$('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 6) {
-                        $('#FECHA_NACIMIENTO_A').val(elem).attr('readonly', true);
+                        $('#FECHA_NACIMIENTO_A').val(elem);
                     }
                     if (contador == 7) {
+
+                     // $('#SEXO_').val(elem);
                       $('#SEXO option:selected').text(elem);
                       //  $('#SEXO option:not(:selected)').attr('disabled', true);
                         //$('#SEXO option:selected').text(elem).attr("disabled", true);
                     }
                     if (contador == 8) {
-                        $('#CORREO_PERSONAL').val(elem).attr('readonly', true);
+                        $('#CORREO_PERSONAL').val(elem);
                     }
                     if (contador == 9) {
                        $('#TELEFONO_FIJO').val(elem);
+
                        //$('#TELEFONO_FIJO').val(elem).attr('readonly', true);
                     }
                     if (contador == 10) {
-                       ('#CARRERA option:selected').text(elem);    
+                      //console.log(elem);
+                       //$('#CARRERA_').val(elem);
+                        $('#CARRERA option:selected').text(elem);  
                        // $('#CARRERA option:not(:selected)').attr('disabled', true);
                        // $('#CARRERA option:selected').text(elem).attr("disabled", true)
                     }
                     if (contador == 11) {
-                        $('#CORREO_INSTITUCIONAL').val(elem).attr('readonly', true);
+                        $('#CORREO_INSTITUCIONAL').val(elem);
+                        //$('#CORREO_INSTITUCIONAL').val(elem).attr('readonly', true);
                     }
                     if (contador == 12) {
+                         //console.log(elem);
                         $('#TELEFONO_MOVIL').val(elem);
                        // $('#TELEFONO_MOVIL').val(elem).attr('readonly', true);
                     }
                     if (contador == 13) {
+                         //$('#DEPARTAMENTO_').val(elem);
                         $('#DEPARTAMENTO option:selected').text(elem);
                        // $('#DEPARTAMENTO option:not(:selected)').attr('disabled', true);
                         //$('#DEPARTAMENTO option:selected').text(elem).attr("disabled", true)
@@ -781,12 +789,12 @@ $('#CARNET').change(function() {
                         //$('#DIRECCION').val(elem).attr('readonly', true);
                     }
                     if (contador == 15) {
-                        console.log(elem);
+                        
                          $('#ID_PERSONA').val(elem);
                         //$('#ID_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 16) {
-                        console.log(elem);
+                        //console.log(elem);
                         $('#ID_ALUMNO').val(elem);
                         //$('#ID_PERSONA').val(elem).attr('readonly', true);
                     }
@@ -802,7 +810,7 @@ $('#CARNET').change(function() {
 });
 
 function infoAlumnosLimpiar() {
-
+   
     $('#PRIMER_NOMBRE_PERSONA').val('').attr('readonly', false);
     $('#SEGUNDO_NOMBRE_PERSONA').val('').attr('readonly', false);
     $('#PRIMER_APELLIDO_PERSONA').val('').attr('readonly', false);
