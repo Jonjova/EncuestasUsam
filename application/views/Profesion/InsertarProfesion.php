@@ -5,7 +5,7 @@
                         <div class="wizard-container">
 
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
-                                <form id="CreateProfesion" class="needs-validation" >
+                                <form id="CreateProfesion" class="needs-validation">
 
                                     <div class="wizard-header">
                                         <h3>
@@ -28,7 +28,8 @@
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Nombre de la profesión:</label>
-                                                        <input name="NOMBRE_PROFESION" id="NOMBRE_PROFESION" type="text" class="form-control" placeholder="Ingrese nombre" required>
+                                                        <input name="NOMBRE_PROFESION" id="NOMBRE_PROFESION" type="text"
+                                                            class="form-control" placeholder="Ingrese nombre" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -38,7 +39,8 @@
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
-                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm" name="finish" value="Guardar" />
+                                            <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
+                                                name="finish" value="Guardar" />
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

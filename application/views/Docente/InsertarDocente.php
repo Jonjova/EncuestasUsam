@@ -223,18 +223,18 @@
                                                 </div>
                                                 <!-- ID COORDINADOR -->
                                                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1):?>
-                                                    <div class="col-sm-7 col-sm-offset-1">
-                                                        <div class="form-group">
+                                                <div class="col-sm-7 col-sm-offset-1">
+                                                    <div class="form-group">
                                                         <label>Coordinador:</label>
-                                                            <select name="COORDINADOR" id="COORDINADOR" class="custom-select"
-                                                                style="font-size: 1rem;" onblur="validaSelect(this);"
-                                                                required>
-                                                            </select>
-                                                        </div>
+                                                        <select name="COORDINADOR" id="COORDINADOR"
+                                                            class="custom-select" style="font-size: 1rem;"
+                                                            onblur="validaSelect(this);" required>
+                                                        </select>
                                                     </div>
+                                                </div>
                                                 <?php else:?>
-                                                    <input type="hidden" name="COORDINADOR"
-                                                        value="<?=$this->session->userdata('COORDINADOR')?>">
+                                                <input type="hidden" name="COORDINADOR"
+                                                    value="<?=$this->session->userdata('COORDINADOR')?>">
                                                 <?php endif;?>
                                             </div>
                                         </div>
