@@ -29,9 +29,12 @@
                                         </button>
                                         <div id="cont-agregarAlumnoG" style="margin-bottom: 80px;">
                                             <div class="form-group">
-                                                <label>Nombre del Grupo:</label>
+                                                <div id="NOMBRE_GRUPO_ALUMNO"
+                                                    style="width: fit-content; margin: auto; margin-top: 30px; margin-bottom: 50px;">
+                                                </div>
+                                                <!-- <label>Nombre del Grupo:</label>
                                                 <input type="text" id="NOMBRE_GRUPO_ALUMNO"
-                                                    class="form-control mb-2 mr-sm-2 " readonly>
+                                                    class="form-control mb-2 mr-sm-2 " readonly> -->
                                                 <label>Alumno:</label>
                                                 <select name="ID_ALUMNO_GA[]" id="ALUMNO_GA" title="Selecciona.."
                                                     onblur="validaSelect(this);" data-live-search="true"

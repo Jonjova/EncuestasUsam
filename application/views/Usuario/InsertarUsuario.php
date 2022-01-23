@@ -72,8 +72,9 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Fecha de Nacimiento:</label>
-                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO" value="2000-01-01"
-                                                                type="date" class="form-control" required>
+                                                            <input name="FECHA_NACIMIENTO" id="FECHA_NACIMIENTO"
+                                                                value="2000-01-01" type="date" class="form-control"
+                                                                required>
                                                         </div>
                                                     </div>
 
@@ -192,9 +193,9 @@
                                                 <div class="col-sm-5 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Rol:</label>
-                                                        <select name="ID_TIPO_USUARIO" id="ID_TIPO_USUARIO" class="custom-select"
-                                                            style="font-size: 1rem;" onblur="validaSelect(this);"
-                                                            required>
+                                                        <select name="ID_TIPO_USUARIO" id="ID_TIPO_USUARIO"
+                                                            class="custom-select" style="font-size: 1rem;"
+                                                            onblur="validaSelect(this);" required>
                                                         </select>
                                                     </div>
                                                 </div>

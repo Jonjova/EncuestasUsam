@@ -1,34 +1,35 @@
 $(document).ready(function() {
     llenarTablaProyecto(0, 0, cod_coordinador, 0);
-   CargaContenidoProyecto();
+    CargaContenidoProyecto();
 
 });
 
-function CargaContenidoProyecto(){
-    
-  
-   $('#carga').show();
+function CargaContenidoProyecto() {
+
+
+    $('#carga').show();
+
     function cargaContenido() {
-       $("#contenido").show();
+        $("#contenido").show();
     }
     setTimeout(function() {
         cargaContenido()
-          $('#carga').hide();
+        $('#carga').hide();
 
     }, 2000);
-cargaresto();
+    cargaresto();
 }
 
 function cargaresto() {
-      $('#Proyecto').on('init.dt',function() {
+    $('#Proyecto').on('init.dt', function() {
         $("#Proyecto").removeClass('table-loader').show();
-      });
-  setTimeout(function(){
-    $('#Proyecto').DataTable();
-  }, 2000);
+    });
+    setTimeout(function() {
+        $('#Proyecto').DataTable();
+    }, 2000);
 }
 
-    
+
 
 function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
     $('#Proyecto').DataTable({
@@ -185,21 +186,24 @@ function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
             var integrantes = '<h4>Integrantes:</h4>';
             var eliminar = '';
             $.each(r, function(index, object) {
-                nombreProyecto = '<h3>Proyecto:</h3><p>' + object.NOMBRE_PROYECTO + '</p>';
-                nombreGrupo = object.NOMBRE_GRUPO;
+                nombreProyecto = '<h4>Proyecto:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_PROYECTO + '"</b></h4>';
+                nombreGrupo = '<br><h4>Nombre del grupo:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_GRUPO + '"</b></h4>';
                 eliminar =
                     '<a class="btn btn-danger" ' +
                     'onclick="eliminarGA(' + proyecto + ',' + id_grupo_alumno + ',' + object.ID_DET_GA + ',' + asignatura + ',' + ciclo + ');">' +
                     '<i class="fas fa-user-times"></i> ' +
                     '</a>';
-                if (object.ESTADO_PROYECTO == "Finalizado" || object.ESTADO_PROYECTO == "Incompleto" || object.ESTADO_PROYECTO == "No entregado" || cod_coordinador != 0) {
+                if (r.length <= 1) {
+                    eliminar = '';
+                }
+                if (object.ESTADO_PROYECTO == "Finalizado" || object.ESTADO_PROYECTO == "Incompleto" || object.ESTADO_PROYECTO == "No entregado" || cod_docente == 0) {
                     eliminar = '';
                     $('#agregarAlumnoG').hide();
                 }
-                integrantes += '<p>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</p>';
+                integrantes += '<h5 style="color: #999;"><b>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</b></h5>';
             });
             $('#NOMBRE_PROYECTO').html(nombreProyecto);
-            $('#NOMBRE_GRUPO_ALUMNO').val(nombreGrupo);
+            $('#NOMBRE_GRUPO_ALUMNO').html(nombreProyecto + '' + nombreGrupo);
             $('#INTEGRANTES').html(integrantes);
             $('#InfoGrupoAlumno').modal({
                 backdrop: "static",

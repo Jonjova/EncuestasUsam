@@ -46,36 +46,36 @@
                                                     <?php if(date('Y-m-d') > date('Y-01-01') && date('Y-m-d') < date('Y-06-30')): ?>
                                                     <div class="form-group">
                                                         <label>Fecha Inicio:</label>
-                                                        <input name="FECHA_INICIO" id="FECHA_INICIO"
-                                                            type="date" value="<?php echo date('Y-01-10')?>"
+                                                        <input name="FECHA_INICIO" id="FECHA_INICIO" type="date"
+                                                            value="<?php echo date('Y-01-10')?>"
                                                             min="<?php echo date('Y-01-01')?>"
-                                                            max="<?php echo date('Y-01-30')?>"
-                                                            class="form-control" required>
+                                                            max="<?php echo date('Y-01-30')?>" class="form-control"
+                                                            required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Fecha Fin:</label>
-                                                        <input name="FECHA_FIN" id="FECHA_FIN"
-                                                            type="date" value="<?php echo date('Y-06-25')?>"
+                                                        <input name="FECHA_FIN" id="FECHA_FIN" type="date"
+                                                            value="<?php echo date('Y-06-25')?>"
                                                             min="<?php echo date('Y-06-01')?>"
-                                                            max="<?php echo date('Y-06-30')?>"
-                                                            class="form-control" required>
+                                                            max="<?php echo date('Y-06-30')?>" class="form-control"
+                                                            required>
                                                     </div>
                                                     <?php else: ?>
                                                     <div class="form-group">
                                                         <label>Fecha Inicio:</label>
-                                                        <input name="FECHA_INICIO" id="FECHA_INICIO"
-                                                            type="date" value="<?php echo date('Y-07-10')?>"
+                                                        <input name="FECHA_INICIO" id="FECHA_INICIO" type="date"
+                                                            value="<?php echo date('Y-07-10')?>"
                                                             min="<?php echo date('Y-07-01')?>"
-                                                            max="<?php echo date('Y-07-30')?>"
-                                                            class="form-control" required>
+                                                            max="<?php echo date('Y-07-30')?>" class="form-control"
+                                                            required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Fecha Fin:</label>
-                                                        <input name="FECHA_FIN" id="FECHA_FIN"
-                                                            type="date" value="<?php echo date('Y-12-15')?>"
+                                                        <input name="FECHA_FIN" id="FECHA_FIN" type="date"
+                                                            value="<?php echo date('Y-12-15')?>"
                                                             min="<?php echo date('Y-12-01')?>"
-                                                            max="<?php echo date('Y-12-22')?>"
-                                                            class="form-control" required>
+                                                            max="<?php echo date('Y-12-22')?>" class="form-control"
+                                                            required>
                                                     </div>
                                                     <?php endif; ?>
                                                 </div>

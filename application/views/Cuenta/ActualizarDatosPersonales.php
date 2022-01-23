@@ -91,16 +91,17 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Número de DUI:</label>
-                                                            <input name="DUI" id="DUI_UPDATE" type="text" class="form-control"
-                                                                placeholder="00000000-0" required>
+                                                            <input name="DUI" id="DUI_UPDATE" type="text"
+                                                                class="form-control" placeholder="00000000-0" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Número de NIT:</label>
-                                                            <input name="NIT" id="NIT_UPDATE" type="text" class="form-control"
-                                                                placeholder="0000-000000-000-0" required>
+                                                            <input name="NIT" id="NIT_UPDATE" type="text"
+                                                                class="form-control" placeholder="0000-000000-000-0"
+                                                                required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -140,8 +141,9 @@
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label>N&uacute;mero de Tel&eacute;fono M&oacute;vil:</label>
-                                                        <input name="TELEFONO_MOVIL" id="TELEFONO_MOVIL_UPDATE" type="tel"
-                                                            class="form-control" placeholder="0000-0000" required>
+                                                        <input name="TELEFONO_MOVIL" id="TELEFONO_MOVIL_UPDATE"
+                                                            type="tel" class="form-control" placeholder="0000-0000"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,8 +174,8 @@
                                                 <div class="col-sm-7 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Direcci&oacute;n:</label>
-                                                        <textarea name="DIRECCION" id="DIRECCION_UPDATE" rows="5" cols="50"
-                                                            class="form-control" required></textarea>
+                                                        <textarea name="DIRECCION" id="DIRECCION_UPDATE" rows="5"
+                                                            cols="50" class="form-control" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -193,18 +195,19 @@
                                                 <div class="col-sm-5 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Profesi&oacute;n:</label>
-                                                        <select name="PROFESION" id="PROFESION_UPDATE" class="custom-select"
-                                                            style="font-size: 1rem;" onblur="validaSelect(this);"
-                                                            required>
+                                                        <select name="PROFESION" id="PROFESION_UPDATE"
+                                                            class="custom-select" style="font-size: 1rem;"
+                                                            onblur="validaSelect(this);" required>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-7 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Correo Institucional:</label>
-                                                        <input name="CORREO_INSTITUCIONAL" id="CORREO_INSTITUCIONAL_UPDATE"
-                                                            type="text" class="form-control"
-                                                            placeholder="docente@liveusam.edu.sv" required>
+                                                        <input name="CORREO_INSTITUCIONAL"
+                                                            id="CORREO_INSTITUCIONAL_UPDATE" type="text"
+                                                            class="form-control" placeholder="docente@liveusam.edu.sv"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>
