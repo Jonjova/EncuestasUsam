@@ -113,6 +113,12 @@ class Alumno extends CI_Controller
 		//$actualizarPersona = $this->am->actualizarPerson($datosPersona);
 		$actualizarAlumno = $this->am->actualizarAlum('tbl_alumnos',$datosAlumno,array('ID_ALUMNO'=>$whereAlumno));
 		//$actualizarAlumno = $this->am->actualizarAlum($datosAlumno);
+		if ($actualizarPersona == TRUE ||  $actualizarAlumno == TRUE) 
+		{
+			echo "true";
+		}else{
+			echo "false";
+		}
 	}
 
 }

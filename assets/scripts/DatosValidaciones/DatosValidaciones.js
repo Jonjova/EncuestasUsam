@@ -720,6 +720,7 @@ $('#CARNET').change(function() {
         dataType: 'json',
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
+            console.log(msg);
             if (msg != null) {
                // console.log(msg);
                 $('#addAlumno').hide();
@@ -741,6 +742,7 @@ $('#CARNET').change(function() {
                         //$('#PRIMER_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
                     if (contador == 5) {
+
                         $('#SEGUNDO_APELLIDO_PERSONA').val(elem);
                         //$('#SEGUNDO_APELLIDO_PERSONA').val(elem).attr('readonly', true);
                     }
@@ -748,8 +750,7 @@ $('#CARNET').change(function() {
                         $('#FECHA_NACIMIENTO_A').val(elem);
                     }
                     if (contador == 7) {
-
-                     // $('#SEXO_').val(elem);
+                       
                       $('#SEXO option:selected').text(elem);
                       //  $('#SEXO option:not(:selected)').attr('disabled', true);
                         //$('#SEXO option:selected').text(elem).attr("disabled", true);
