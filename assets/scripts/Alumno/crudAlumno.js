@@ -61,19 +61,28 @@ actualizar.addEventListener("click", function(evento){
         dataType: 'json',
         success: function(response) {
 
+            if (response == 1) {
+               
+                //alert('Actualizado correctamente');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } 
         },
         error: function() {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Datos actualizados correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algunos campos son requeridos!'
+            })
         }
     });
 });
-    
+ /*NOTA PARA ACTUALIZAR EN LA TABLA DE ALUMNOS SE NESECITA TRAER LA REFERNCIA Y LAS DEMAS */   
 });
 
 //Esta funcion carga una funcion 2 veces en este caso una accion dinamica

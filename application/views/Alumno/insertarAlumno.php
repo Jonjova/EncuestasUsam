@@ -50,12 +50,12 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Carnet</label>
-                                                <input type="text" placeholder="Ingrese Carnet" id="CARNET"
+                                                <input type="text" placeholder="Ingrese Carnet" id="CARNET" 
                                                     name="CARNET" class="form-control mb-2 mr-sm-2 required" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Primer Nombre</label>
-                                                <input name="PRIMER_NOMBRE_PERSONA" id="PRIMER_NOMBRE_PERSONA"
+                                                <input name="PRIMER_NOMBRE_PERSONA" id="PRIMER_NOMBRE_PERSONA" 
                                                     type="text" class="form-control required" placeholder="1er Nombre"
                                                     required>
                                             </div>
@@ -82,6 +82,7 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Sexo</label>
+                                               
                                                 <select name="SEXO" id="SEXO" class="custom-select required"
                                                     onblur="validaSelect(this);" style="font-size: 1rem;" required>
                                                 </select>

@@ -75,7 +75,7 @@ class ValidarCamposModel extends CI_Model
 	public function obtenerInfoAlumno($valor)
 	{
 		$this->db->select('a.carnet, b.primer_nombre_persona, b.segundo_nombre_persona, b.primer_apellido_persona, 
-							b.segundo_apellido_persona, b.fecha_nacimiento, c.nombre_sexo, b.correo_personal, b.telefono_fijo, d.nombre_carrera, b.correo_institucional, b.telefono_movil, e.nombre_departamento, b.direccion,b.ID_PERSONA,a.ID_ALUMNO,');
+							b.segundo_apellido_persona, b.fecha_nacimiento, c.nombre_sexo, b.correo_personal, b.telefono_fijo, d.nombre_carrera, b.correo_institucional, b.telefono_movil, e.nombre_departamento, b.direccion,b.ID_PERSONA,a.ID_ALUMNO,b.SEXO,a.CARRERA,b.DEPARTAMENTO');
 
 		$this->db->from('tbl_alumnos a');
 		$this->db->join('tbl_persona b', 'a.persona = b.id_persona');
