@@ -723,7 +723,7 @@ $('#CARNET').change(function() {
             //var ob = JSON.parse(msg);
            
             if (msg != null) {
-               // console.log(msg);
+                console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
                
@@ -734,7 +734,7 @@ $('#CARNET').change(function() {
                 $('#FECHA_NACIMIENTO_A').val(msg.fecha_nacimiento);
                 $('#SEXO').val(msg.SEXO);
                 $('#CORREO_PERSONAL').val(msg.correo_personal);
-                $('#TELEFONO_FIJO').val(msg.correo_institucional);
+                $('#TELEFONO_FIJO').val(msg.telefono_fijo);
                 $('#CARRERA').val(msg.CARRERA);
                 $('#CORREO_INSTITUCIONAL').val(msg.correo_institucional);
                 $('#TELEFONO_MOVIL').val(msg.telefono_movil);
@@ -747,7 +747,14 @@ $('#CARNET').change(function() {
                  $('#addAlumno').show();
                   $('#editAlumno').hide();
                 infoAlumnosLimpiar();
-                 limpiar();
+                  $('#addAlumno').show();
+             $('#editAlumno').hide();
+            
+            var validator = $("#crearAlumno").validate();
+            validator.resetForm();
+            $('.form-control').removeClass('is-valid is-invalid');
+            $('.custom-select').removeClass('is-valid is-invalid');
+            $('.toggle-disabled').prop("disabled", true);
             }
         }
     });
@@ -755,21 +762,22 @@ $('#CARNET').change(function() {
 
 function infoAlumnosLimpiar() {
    
-    $('#PRIMER_NOMBRE_PERSONA').val('').attr('readonly', false);
-    $('#SEGUNDO_NOMBRE_PERSONA').val('').attr('readonly', false);
-    $('#PRIMER_APELLIDO_PERSONA').val('').attr('readonly', false);
-    $('#SEGUNDO_APELLIDO_PERSONA').val('').attr('readonly', false);
-    $('#SEXO option').attr('disabled', false);
-    $('#FECHA_NACIMIENTO_A').val('').attr('readonly', false); 
+    $('#PRIMER_NOMBRE_PERSONA').val('');
+    $('#SEGUNDO_NOMBRE_PERSONA').val('');
+    $('#PRIMER_APELLIDO_PERSONA').val('');
+    $('#SEGUNDO_APELLIDO_PERSONA').val('');
+    $('#FECHA_NACIMIENTO_A').val(''); 
+    $('#SEXO').val('');
    // $('#SEXO option:selected').text('Seleccione...').attr("disabled", false);
-    $('#CORREO_PERSONAL').val('').attr('readonly', false);
-    $('#TELEFONO_FIJO').val('').attr('readonly', false);
-    $('#CARRERA option').attr('disabled', false);
-    $('#CORREO_INSTITUCIONAL').val('').attr('readonly', false);
-    $('#CORREO_INSTITUCIONAL').val('').attr('readonly', false);
-    $('#TELEFONO_MOVIL').val('').attr('readonly', false);
-    $('#DEPARTAMENTO option').attr('disabled', false);
-    $('#DIRECCION').val('').attr('readonly', false);
+    $('#CORREO_PERSONAL').val('');
+    $('#TELEFONO_FIJO').val('');
+    $('#CARRERA').val('');
+    $('#CORREO_INSTITUCIONAL').val('');
+    $('#TELEFONO_MOVIL').val('');
+    $('#DEPARTAMENTO').val('');
+    $('#DIRECCION').val('');
+    $('#ID_PERSONA').val('');
+    $('#ID_ALUMNO').val('');
 }
 
 /****************************************************************************
