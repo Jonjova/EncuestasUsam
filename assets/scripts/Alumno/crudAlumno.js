@@ -71,6 +71,12 @@ actualizar.addEventListener("click", function(evento){
                     showConfirmButton: false,
                     timer: 1500
                 })
+                $(this).find('.nav-tabs a:first').tab('show');
+
+            $('#modalAlumno').modal('hide');
+            limpiar();
+
+            cargaFuncion();
             } 
         },
         error: function() {
