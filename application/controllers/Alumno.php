@@ -89,11 +89,11 @@ class Alumno extends CI_Controller
 			'PRIMER_APELLIDO_PERSONA' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
 			'SEGUNDO_APELLIDO_PERSONA' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
 			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO_A'),
-			//'SEXO' => $this->input->post('SEXO'),
+			'SEXO' => $this->input->post('SEXO'),
 			'CORREO_INSTITUCIONAL' => $this->input->post('CORREO_INSTITUCIONAL'),
 			'CORREO_PERSONAL' => $this->input->post('CORREO_PERSONAL'),
 			'DIRECCION' => $this->input->post('DIRECCION'),
-			//'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
+			'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
 			'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO'),
 			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
 			'PROFESION' => null,
@@ -103,10 +103,10 @@ class Alumno extends CI_Controller
 		$datosAlumno = array( 
 			//'ID_ALUMNO' => $this->maxAlumno(),
 			'CARNET' => $this->input->post('CARNET'),
-			'PERSONA' => $this->maxPersona(),
-			//'CARRERA' => $this->input->post('CARRERA'),
+			//'PERSONA' => $this->maxPersona(),
+			'CARRERA' => $this->input->post('CARRERA'),
 			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
-			'FECHA_CREA' => date('Y-m-d H:m:s')
+			//'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
         $actualizarPersona = $this->am->actualizarPerson('tbl_persona',$datosPersona,array('ID_PERSONA'=>$wherePersona));

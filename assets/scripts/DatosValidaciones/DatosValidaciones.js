@@ -744,10 +744,10 @@ $('#CARNET').change(function() {
                 $('#ID_ALUMNO').val(msg.ID_PERSONA);
 
             } else {
-                 $('#addAlumno').show();
-                  $('#editAlumno').hide();
-                infoAlumnosLimpiar();
-                  $('#addAlumno').show();
+             $('#addAlumno').show();
+             $('#editAlumno').hide();
+             infoAlumnosLimpiar();
+             $('#addAlumno').show();
              $('#editAlumno').hide();
             
             var validator = $("#crearAlumno").validate();
