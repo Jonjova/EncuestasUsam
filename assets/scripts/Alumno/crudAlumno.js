@@ -75,6 +75,7 @@ actualizar.addEventListener("click", function(evento){
 
             $('#modalAlumno').modal('hide');
             limpiar();
+             $('.d').css('pointer-events', 'none');
              $('.toggle-disabled').prop("disabled", true);
             cargaFuncion();
             } 
@@ -133,6 +134,8 @@ function limpiar() {
     validator.resetForm();
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
+    $('.toggle-disabled').prop("disabled", true);
+     $('.d').css('pointer-events', 'none');
     infoAlumnosLimpiar();
 }
 
@@ -232,11 +235,11 @@ $(document).on('change keyup', '.required', function(e) {
 
     if (Disabled) {
 
-        //$('.d').css('pointer-events', 'none');
+        $('.d').css('pointer-events', 'none');
         $('.toggle-disabled').prop("disabled", true);
     } else {
 
-        //$('.d').css('pointer-events', 'auto');
+        $('.d').css('pointer-events', 'auto');
         $('.toggle-disabled').prop("disabled", false);
     }
 })

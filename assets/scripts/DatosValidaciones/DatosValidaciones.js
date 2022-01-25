@@ -754,6 +754,7 @@ $('#CARNET').change(function() {
             $('.form-control').removeClass('is-valid is-invalid');
             $('.custom-select').removeClass('is-valid is-invalid');
             $('.toggle-disabled').prop("disabled", true);
+             $('.d').css('pointer-events', 'none');
             }
         }
     });
