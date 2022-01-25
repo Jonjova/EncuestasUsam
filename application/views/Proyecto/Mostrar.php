@@ -53,7 +53,7 @@
 			                <option value="2">Filtrar Coordinador</option>
 			                <option value="3">Filtrar Facultad</option>
 			                <?php endif; ?>
-			                <option value="4">Filtrar Ciclo</option>
+			                <!-- <option value="4">Filtrar Ciclo</option> -->
 			            </select>
 			        </div>
 			        <br />
@@ -64,6 +64,11 @@
 			                    <?php if($this->session->userdata('ID_TIPO_USUARIO') == 3 || $this->session->userdata('ID_TIPO_USUARIO') == 4):?>
 			                    <select name="asignaturaR" id="ASIGNATURA_PROY" class="custom-select" style="font-size: 1rem;">
 			                    </select>
+
+								</select>
+								<label>Ciclo: </label>
+								<select name="cicloR" id="CICLO_PROY" class="custom-select" style="font-size: 1rem;" required>
+			               		</select>
 			                    <?php endif; ?>
 			                    <?php if($this->session->userdata('ID_TIPO_USUARIO') != 3 && $this->session->userdata('ID_TIPO_USUARIO') != 4):?>
 			                    <select class="custom-select" id="asignaturaR" name="asignaturaR" required="required">
@@ -74,6 +79,15 @@
 			                        </option>
 			                        <?php } ?>
 			                    </select>
+								<br/><br/>
+							<label>Ciclo: </label>
+			                <select class="custom-select" id="cicloR" name="cicloR" required>
+			                    <option value="0">Selecciona una opción</option>
+			                    <?php while ($fila = $resultado_ci->fetch_assoc()) { ?>
+			                    <option value="<?php echo $fila['id_ciclo']; ?>"><?php echo $fila['cod_ciclo']; ?>
+			                    </option>
+			                    <?php } ?>
+			                </select>
 			                    <?php endif; ?>
 			                    <br /><br />
 			                    <button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte
@@ -112,7 +126,7 @@
 			                        Facultad</button>
 			                </form>
 			            </div>
-
+<!-- 
 			            <div id="cic">
 			                <form action="<?php echo base_url();?>Reportes/reporteCI" method="post" autocomplete="off">
 			                    <label>Ciclo: </label>
@@ -126,7 +140,7 @@
 			                    <br /><br />
 			                    <button type="submit" class="btn btn-info"><i class="fas fa-file-pdf"></i> Reporte Ciclo</button>
 			                </form>
-			            </div>
+			            </div> -->
 
 			        </div>
 			    </div>

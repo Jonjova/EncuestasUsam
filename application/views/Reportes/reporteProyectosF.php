@@ -4,6 +4,8 @@ require 'application/config/database.php';
 
 $facultadR = mysqli_escape_string($mysqli, $_POST['facultadR']);
 
+if (!empty($_POST['facultadR'])) {
+
 $name = "SELECT nombre_facultad FROM cat_facultad where id_facultad = $facultadR";
 $sql = "SELECT * FROM vw_reporte_general  where id_facultad = $facultadR";
 $resultado = $mysqli->query($sql);
@@ -70,4 +72,8 @@ while ($fila = $resultado->fetch_assoc()) {
  $pdf->AliasNbPages();
 
  $pdf->Output();
+ 
+} else {
+    echo "¡No ha seleccionado una facultad!";
+}
 ?>

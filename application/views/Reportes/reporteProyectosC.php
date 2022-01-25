@@ -4,6 +4,8 @@ require 'application/config/database.php';
 
 $coordinadorR = mysqli_escape_string($mysqli, $_POST['coordinadorR']);
 
+if (!empty($_POST['coordinadorR'])) {
+
 $name = "SELECT * FROM vw_reporteProyectosC  where id_coordinador = $coordinadorR";
 $sql = "SELECT * FROM vw_reporte_general  where id_coordinador = $coordinadorR";
 $resultado = $mysqli->query($sql);
@@ -70,4 +72,9 @@ while ($fila = $resultado->fetch_assoc()) {
  $pdf->AliasNbPages();
 
  $pdf->Output();
+
+
+} else {
+    echo "¡No ha seleccionado un coordinador!";
+}
 ?>
