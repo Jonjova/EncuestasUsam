@@ -270,6 +270,7 @@ function obtCarrera() {
         url: url + "DatosComunes/Carrera",
         type: 'post',
         success: function(data) {
+           // console.log(data);
             $('#CARRERA').html(data);
         }
     });
@@ -735,21 +736,19 @@ $('#CARNET').change(function() {
                 $('#SEXO').val(msg.SEXO);
                 $('#CORREO_PERSONAL').val(msg.correo_personal);
                 $('#TELEFONO_FIJO').val(msg.telefono_fijo);
-                $('#CARRERA').val(msg.CARRERA);
+                $('#CARRERA').val(msg.carrera);
                 $('#CORREO_INSTITUCIONAL').val(msg.correo_institucional);
                 $('#TELEFONO_MOVIL').val(msg.telefono_movil);
                 $('#DEPARTAMENTO').val(msg.DEPARTAMENTO);
                 $('#DIRECCION').val(msg.direccion);
                 $('#ID_PERSONA').val(msg.ID_PERSONA);
-                $('#ID_ALUMNO').val(msg.ID_PERSONA);
+                $('#ID_ALUMNO').val(msg.ID_ALUMNO);
 
             } else {
-             $('#addAlumno').show();
-             $('#editAlumno').hide();
+            
              infoAlumnosLimpiar();
              $('#addAlumno').show();
              $('#editAlumno').hide();
-            
             var validator = $("#crearAlumno").validate();
             validator.resetForm();
             $('.form-control').removeClass('is-valid is-invalid');

@@ -147,7 +147,7 @@ class DatosComunes extends CI_Controller
 		{
 			echo "<option value='".$ti['ID_CARRERA']."'>".$ti['NOMBRE_CARRERA']."</option>";
 		}
-		echo json_encode($datos);
+		//echo json_encode($datos);
 	}
 
 	// LLENAR SELECT TIPO INVESTIGACION

@@ -105,7 +105,7 @@ class Alumno extends CI_Controller
 			'CARNET' => $this->input->post('CARNET'),
 			//'PERSONA' => $this->maxPersona(),
 			'CARRERA' => $this->input->post('CARRERA'),
-			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
+			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO')
 			//'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
@@ -116,8 +116,6 @@ class Alumno extends CI_Controller
 		if ($actualizarPersona == TRUE ||  $actualizarAlumno == TRUE) 
 		{
 			echo "true";
-		}else{
-			echo "false";
 		}
 	}
 
