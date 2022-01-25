@@ -75,7 +75,7 @@ actualizar.addEventListener("click", function(evento){
 
             $('#modalAlumno').modal('hide');
             limpiar();
-
+             $('.toggle-disabled').prop("disabled", true);
             cargaFuncion();
             } 
         },
