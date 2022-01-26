@@ -1,9 +1,9 @@
-			<div id="carga" class="double" style="display: none;">
+			<!--<div id="carga" class="double" style="display: none;">
 			    <div class="double-bounce1"></div>
 			    <div class="double-bounce2"></div>
-			</div>
+			</div>-->
 
-			<div id="contenido" style="display: none">
+			
 			    <h2>Proyectos Registrados</h2><br>
 			    <!--<?php if($this->session->userdata('ID_TIPO_USUARIO') == 3 || $this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 			<div class="row">
@@ -150,7 +150,7 @@
 			            class="fas fa-plus-circle"></i>
 			    </button>
 			    <?php endif ?>
-			</div>
+			
 			<br />
 
 			<?php if($this->session->userdata('ID_TIPO_USUARIO') != 3 && $this->session->userdata('ID_TIPO_USUARIO') != 4): ?>
@@ -160,7 +160,7 @@
 
 			<br>
 
-			<table id="Proyecto" class=" table-loader table table-hover table-striped dt-responsive nowrap" style="width:100%;">
+			<table id="Proyecto" class="table table-hover table-striped dt-responsive nowrap" style="width:100%;">
 			    <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
 			        <tr>
 			            <th>Nombre Proyecto </th>

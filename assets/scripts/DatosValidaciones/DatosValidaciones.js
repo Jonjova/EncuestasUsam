@@ -719,7 +719,7 @@ $('#CARNET').change(function() {
         type: 'POST',
         url: url + 'ValidarCampos/ObtenerInfoAlumno',
         dataType: 'json',
-        data: { 'CARNET': $(this).val() },
+        data: JSON.stringify({ 'CARNET': $(this).val() }),
         success: function(msg) {
             //var ob = JSON.parse(msg);
 
@@ -727,20 +727,20 @@ $('#CARNET').change(function() {
                 console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
-
-                $('#PRIMER_NOMBRE_PERSONA').val(msg.primer_nombre_persona);
-                $('#SEGUNDO_NOMBRE_PERSONA').val(msg.segundo_nombre_persona);
-                $('#PRIMER_APELLIDO_PERSONA').val(msg.primer_apellido_persona);
-                $('#SEGUNDO_APELLIDO_PERSONA').val(msg.segundo_apellido_persona);
-                $('#FECHA_NACIMIENTO_A').val(msg.fecha_nacimiento);
+           console.log(msg.PRIMER_NOMBRE_PERSONA);
+                $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);
+                $('#SEGUNDO_NOMBRE_PERSONA').val(msg.SEGUNDO_NOMBRE_PERSONA);
+                $('#PRIMER_APELLIDO_PERSONA').val(msg.PRIMER_APELLIDO_PERSONA);
+                $('#SEGUNDO_APELLIDO_PERSONA').val(msg.SEGUNDO_APELLIDO_PERSONA);
+                $('#FECHA_NACIMIENTO_A').val(msg.FECHA_NACIMIENTO_A);
                 $('#SEXO').val(msg.SEXO);
-                $('#CORREO_PERSONAL').val(msg.correo_personal);
-                $('#TELEFONO_FIJO').val(msg.telefono_fijo);
-                $('#CARRERA').val(msg.carrera);
-                $('#CORREO_INSTITUCIONAL').val(msg.correo_institucional);
-                $('#TELEFONO_MOVIL').val(msg.telefono_movil);
+                $('#CORREO_PERSONAL').val(msg.CORREO_PERSONAL);
+                $('#TELEFONO_FIJO').val(msg.TELEFONO_FIJO);
+                $('#CARRERA').val(msg.CARRERA);
+                $('#CORREO_INSTITUCIONAL').val(msg.CORREO_INSTITUCIONAL);
+                $('#TELEFONO_MOVIL').val(msg.TELEFONO_MOVIL);
                 $('#DEPARTAMENTO').val(msg.DEPARTAMENTO);
-                $('#DIRECCION').val(msg.direccion);
+                $('#DIRECCION').val(msg.DIRECCION);
                 $('#ID_PERSONA').val(msg.ID_PERSONA);
                 $('#ID_ALUMNO').val(msg.ID_ALUMNO);
 
