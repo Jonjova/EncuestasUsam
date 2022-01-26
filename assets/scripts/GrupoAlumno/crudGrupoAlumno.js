@@ -50,7 +50,7 @@ function valGrupoAlumno() {
             data: 'ID_ALUMNO_GA=' + grupo,
             type: 'post',
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 if (data == 1) {
                     Swal.fire({
                         icon: 'error',

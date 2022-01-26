@@ -719,7 +719,7 @@ $('#CARNET').change(function() {
         type: 'POST',
         url: url + 'ValidarCampos/ObtenerInfoAlumno',
         dataType: 'json',
-        data: JSON.stringify({ 'CARNET': $(this).val() }),
+        data: { 'CARNET': $(this).val() },
         success: function(msg) {
             //var ob = JSON.parse(msg);
 
@@ -727,12 +727,11 @@ $('#CARNET').change(function() {
                 console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
-           console.log(msg.PRIMER_NOMBRE_PERSONA);
                 $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);
                 $('#SEGUNDO_NOMBRE_PERSONA').val(msg.SEGUNDO_NOMBRE_PERSONA);
                 $('#PRIMER_APELLIDO_PERSONA').val(msg.PRIMER_APELLIDO_PERSONA);
                 $('#SEGUNDO_APELLIDO_PERSONA').val(msg.SEGUNDO_APELLIDO_PERSONA);
-                $('#FECHA_NACIMIENTO_A').val(msg.FECHA_NACIMIENTO_A);
+                $('#FECHA_NACIMIENTO_A').val(msg.FECHA_NACIMIENTO);
                 $('#SEXO').val(msg.SEXO);
                 $('#CORREO_PERSONAL').val(msg.CORREO_PERSONAL);
                 $('#TELEFONO_FIJO').val(msg.TELEFONO_FIJO);
