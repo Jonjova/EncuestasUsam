@@ -13,7 +13,7 @@ class Cuenta extends CI_Controller
     // VISTA ACTUALIZAR PERSONA
     public function persona()
     {
-        if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
+        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
             //header
             $data = array('title' => 'Actualizar Mis Datos' );
@@ -35,7 +35,7 @@ class Cuenta extends CI_Controller
     // VISTA CAMBIAR CONTRASEÑA
     public function cambiar()
     {
-        if($this->session->userdata('is_logged'))
+        if ($this->session->userdata('is_logged'))
         {
             //header
             $data = array('title' => 'Contraseña' );
@@ -85,35 +85,6 @@ class Cuenta extends CI_Controller
             echo json_encode('Error al cambiar!');
         }
     }
-
-    // // VALIDAR CORREO USUARIO
-    // public function validarUser()
-    // { 
-    // 	$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
-    //     if (!$res = $this->modelCuenta->findUser($correoUsuario))
-    //     {
-    // 		echo 1;
-    // 	}
-    // 	else
-    // 	{ 
-    // 		echo 0;
-    // 	}
-    // }
-
-    // // VALIDAR FECHA DE NACIMIENTO USUARIO
-    // public function validarFechaUser()
-    // { 
-    // 	$correoUsuario = $this->input->post('CORREO_INSTITUCIONAL');
-    //     $fechaUser = $this->input->post('FECHA_NACIMIENTO');
-    //     if (!$res = $this->modelCuenta->findFechaUser($correoUsuario, $fechaUser))
-    //     {
-    // 		echo 1;
-    // 	}
-    // 	else
-    // 	{ 
-    // 		echo 0;
-    // 	}
-    // }
 
 }
 ?>

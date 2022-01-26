@@ -1,5 +1,12 @@
 <body>
 
+    <div class="lds-ring loader" id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
 

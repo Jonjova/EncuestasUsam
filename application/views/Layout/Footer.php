@@ -25,6 +25,9 @@
 
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->    
 <script type="text/javascript">
+    window.addEventListener('load', function() {
+        document.getElementById('loader').classList.toggle('loader2');
+    });
 	var url = '<?php echo base_url();?>',
         cod_coordinador = '<?php echo  $this->session->userdata('COORDINADOR');?>',
         cod_docente = '<?php echo $this->session->userdata('DOCENTE');?>';

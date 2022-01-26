@@ -19,69 +19,73 @@ class ValidarCamposModel extends CI_Model
 	function findDUI($valor)
 	{
 		$this->db->where('DUI', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
 	// VALIDAR NIT
 	function findNIT($valor)
 	{
 		$this->db->where('NIT', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
 	// VALIDAR TELEFONO FIJO
 	function findTelFijo($valor)
 	{
 		$this->db->where('TELEFONO_FIJO', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
 	// VALIDAR TELEFONO MOVIL
 	function findTelMovil($valor)
 	{
 		$this->db->where('TELEFONO_MOVIL', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
 	// VALIDAR CORREO PERSONAL
 	function findEmail($valor)
 	{
 		$this->db->where('CORREO_PERSONAL', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
     // VALIDAR CORREO INSTITUCIONAL
 	function findEmailUSAM($valor)
 	{
 		$this->db->where('CORREO_INSTITUCIONAL', $valor);
-		return $this->db->get('tbl_persona')->result();
+		return $this->db->get('TBL_PERSONA')->result();
 	}
 
 	// VALIDAR CODIGO ASIGNATURA
 	function findCodAsignatura($valor)
 	{
 		$this->db->where('CODIGO_ASIGNATURA', $valor);
-		return $this->db->get('tbl_asignatura')->result();
+		return $this->db->get('TBL_ASIGNATURA')->result();
 	}
 
 	// VALIDAR CARNET
 	public function findCarnet($valor)
 	{
 		$this->db->where('CARNET', $valor);
-		return $this->db->get('tbl_alumnos')->result();
+		return $this->db->get('TBL_ALUMNOS')->result();
 	
 	}
 
 	public function obtenerInfoAlumno($valor)
 	{
-		$this->db->select('a.carnet, b.primer_nombre_persona, b.segundo_nombre_persona, b.primer_apellido_persona, 
-							b.segundo_apellido_persona, b.fecha_nacimiento, c.nombre_sexo, b.correo_personal, b.telefono_fijo, d.nombre_carrera, b.correo_institucional, b.telefono_movil, e.nombre_departamento, b.direccion,b.ID_PERSONA,a.ID_ALUMNO,b.SEXO,a.CARRERA,b.DEPARTAMENTO');
+		$this->db->select(
+							'a.CARNET, b.PRIMER_NOMBRE_PERSONA, b.SEGUNDO_NOMBRE_PERSONA, b.PRIMER_APELLIDO_PERSONA, 
+							b.SEGUNDO_APELLIDO_PERSONA, b.FECHA_NACIMIENTO, c.NOMBRE_SEXO, b.CORREO_PERSONAL, b.TELEFONO_FIJO, 
+							d.NOMBRE_CARRERA, b.CORREO_INSTITUCIONAL, b.TELEFONO_MOVIL, e.NOMBRE_DEPARTAMENTO, b.DIRECCION, 
+							b.ID_PERSONA, a.ID_ALUMNO, b.SEXO, a.CARRERA, b.DEPARTAMENTO'
+						);
 
-		$this->db->from('tbl_alumnos a');
-		$this->db->join('tbl_persona b', 'a.persona = b.id_persona');
-		$this->db->join('cat_sexo c', 'b.sexo = c.id_sexo');
-		$this->db->join('cat_carrera d', 'a.carrera = d.id_carrera');
-		$this->db->join('cat_departamento e', 'a.persona = b.id_persona');
+		$this->db->from('TBL_ALUMNOS a');
+		$this->db->join('TBL_PERSONA b', 'a.PERSONA = b.ID_PERSONA');
+		$this->db->join('CAT_SEXO c', 'b.SEXO = c.ID_SEXO');
+		$this->db->join('CAT_CARRERA d', 'a.CARRERA = d.ID_CARRERA');
+		$this->db->join('CAT_DEPARTAMENTO e', 'a.PERSONA = b.ID_PERSONA');
 
 		$this->db->like('CARNET', $valor); 
 		
@@ -92,7 +96,7 @@ class ValidarCamposModel extends CI_Model
 	public function validarCicloModel($valor)
 	{
 		$this->db->where('COD_CICLO', $valor);
-		return $this->db->get('tbl_ciclo')->result();
+		return $this->db->get('TBL_CICLO')->result();
 	}
 
 	/****************************************************************************
@@ -103,7 +107,7 @@ class ValidarCamposModel extends CI_Model
 	function cambiarProfModel($valor, $id)
 	{
 		$query = $this->db->query("SELECT NOMBRE_PROFESION FROM CAT_PROFESION WHERE NOMBRE_PROFESION = '".$valor."' "."AND ID_PROFESION != '".$id."'");
-		if(!$query->result())
+		if (!$query->result())
         {
             return false;
         }
@@ -113,8 +117,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR DUI
 	function cambiarDUIModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT DUI FROM tbl_persona WHERE DUI = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT DUI FROM TBL_PERSONA WHERE DUI = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }
@@ -124,8 +128,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR NIT
 	function cambiarNITModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT NIT FROM tbl_persona WHERE NIT = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT NIT FROM TBL_PERSONA WHERE NIT = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }
@@ -135,8 +139,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR TELEFONO FIJO
 	function cambiarTelFijoModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT TELEFONO_FIJO FROM tbl_persona WHERE TELEFONO_FIJO = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT TELEFONO_FIJO FROM TBL_PERSONA WHERE TELEFONO_FIJO = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }
@@ -146,8 +150,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR TELEFONO MOVIL
 	function cambiarTelMovilModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT TELEFONO_MOVIL FROM tbl_persona WHERE TELEFONO_MOVIL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT TELEFONO_MOVIL FROM TBL_PERSONA WHERE TELEFONO_MOVIL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }
@@ -157,8 +161,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR CORREO PERSONAL
 	function cambiarEmailModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT CORREO_PERSONAL FROM tbl_persona WHERE CORREO_PERSONAL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT CORREO_PERSONAL FROM TBL_PERSONA WHERE CORREO_PERSONAL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }
@@ -168,8 +172,8 @@ class ValidarCamposModel extends CI_Model
 	// VALIDAR CAMBIAR CORREO INSTITUCIONAL
 	function cambiarEmailUSAMModel($valor, $idPersona)
 	{
-		$query = $this->db->query("SELECT CORREO_INSTITUCIONAL FROM tbl_persona WHERE CORREO_INSTITUCIONAL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
-		if(!$query->result())
+		$query = $this->db->query("SELECT CORREO_INSTITUCIONAL FROM TBL_PERSONA WHERE CORREO_INSTITUCIONAL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
         {
             return false;
         }

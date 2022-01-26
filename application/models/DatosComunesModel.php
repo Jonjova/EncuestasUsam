@@ -9,7 +9,7 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_PERSONA + 1) as ID_PERSONA 
-			FROM `tbl_persona`');
+			FROM `TBL_PERSONA`');
 		return $maxid->result_array();
 	}
 
@@ -18,7 +18,7 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_COORDINADOR + 1) as ID_COORDINADOR 
-			FROM `tbl_coordinador`');
+			FROM `TBL_COORDINADOR`');
 		return $maxid->result_array();
 	}
 
@@ -27,7 +27,7 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_DOCENTE + 1) as ID_DOCENTE 
-			FROM `tbl_docente`');
+			FROM `TBL_DOCENTE`');
 		return $maxid->result_array();
 	}
 
@@ -36,7 +36,7 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_USUARIO + 1) as ID_USUARIO 
-			FROM `tbl_usuario`');
+			FROM `TBL_USUARIO`');
 		return $maxid->result_array();
 	}
 
@@ -45,7 +45,7 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_ALUMNO + 1) as ID_ALUMNO 
-			FROM `tbl_alumnos`');
+			FROM `TBL_ALUMNOS`');
 		return $maxid->result_array();
 	}
 
@@ -54,28 +54,28 @@ class DatosComunesModel extends CI_Model
 	{
 		$maxid = $this->db->query(
 			'SELECT MAX(ID_CICLO + 1) as ID_CICLO 
-			FROM `tbl_ciclo`');
+			FROM `TBL_CICLO`');
 		return $maxid->result_array();
 	}
 
 	// LLENAR SELECT SEXO
 	public function dropSexoModel()
 	{
-		$datos = $this->db->get('cat_sexo');
+		$datos = $this->db->get('CAT_SEXO');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT DEPARTAMENTO
 	public function dropDepartamentoModel()
 	{
-		$datos = $this->db->get('cat_departamento');
+		$datos = $this->db->get('CAT_DEPARTAMENTO');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT PROFESION
 	public function dropProfesionModel()
 	{
-		$datos = $this->db->get('cat_profesion');
+		$datos = $this->db->get('CAT_PROFESION');
 		return $datos->result_array();
 	}
 
@@ -83,7 +83,7 @@ class DatosComunesModel extends CI_Model
 	public function dropRolModel()
 	{
 		$datos = $this->db->query(
-			'SELECT * FROM cat_rol_usuario 
+			'SELECT * FROM CAT_ROL_USUARIO 
 			WHERE ID_ROL NOT IN (1, 3, 4)');
 		return $datos->result_array();
 	}
@@ -98,7 +98,7 @@ class DatosComunesModel extends CI_Model
 	// LLENAR SELECT COORDINACION
 	public function dropCoordinacionModel()
 	{
-		$datos = $this->db->get('cat_coordinacion');
+		$datos = $this->db->get('CAT_COORDINACION');
 		return $datos->result_array();
 	}
 
@@ -106,7 +106,7 @@ class DatosComunesModel extends CI_Model
 	public function dropAsignaturaModel($coordinador)
 	{
 		$datos = $this->db->query(
-			'SELECT * FROM tbl_asignatura 
+			'SELECT * FROM TBL_ASIGNATURA 
 			WHERE COORDINADOR = '.$coordinador.'');
 		return $datos->result_array();
 	}
@@ -136,21 +136,21 @@ class DatosComunesModel extends CI_Model
 	// LLENAR SELECT CARRERA
 	public function obtCarrer()
 	{
-		$datos = $this->db->get('cat_carrera');
+		$datos = $this->db->get('CAT_CARRERA');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT TIPO INVESTIGACION
 	public function obtTI()
 	{
-		$datos = $this->db->get('cat_tipo_investigacion');
+		$datos = $this->db->get('CAT_TIPO_INVESTIGACION');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT DISEÑO INVESTIGACION
 	public function obtDI()
 	{
-		$datos = $this->db->get('cat_disenio_investigacion');
+		$datos = $this->db->get('CAT_DISENIO_INVESTIGACION');
 		return $datos->result_array();
 	}
 

@@ -11,11 +11,11 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('is_logged')/* && $this->session->userdata('ESTADO_PERMISO') == true*/)
+		if ($this->session->userdata('is_logged'))
 		{
 			//header
 			$data = array('title' => 'Bienvenido' );
-			$this->load->view('Layout/Header',$data);
+			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');

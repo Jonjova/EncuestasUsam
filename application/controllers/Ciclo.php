@@ -64,7 +64,9 @@ class Ciclo extends CI_Controller
             if ($i['ID_CICLO'] == null)
             {
                 return 1;
-            } else {
+            }
+            else
+            {
                 return $i['ID_CICLO'];
             }
         }

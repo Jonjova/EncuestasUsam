@@ -26,7 +26,7 @@ class GrupoAlumnoModel extends CI_Model
    //llenado Select Modulos
 	public function obtAdignatura()
 	{
-		$datos = $this->db->get('tbl_asignatura');
+		$datos = $this->db->get('TBL_ASIGNATURA');
 		return $datos->result_array();
 	}
 
@@ -40,7 +40,7 @@ class GrupoAlumnoModel extends CI_Model
 			'NOMBRE_GRUPO' => $grupo,
 			'ID_ASIGNATURA' => $asignatura,
 			'CICLO' => $ciclo,
-			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
+			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 		$this->db->insert('tbl_grupo', $data);
@@ -48,7 +48,8 @@ class GrupoAlumnoModel extends CI_Model
 		$grupo_id = $this->db->insert_id();
 		$result = array();
 		$contador = $this->maxIdDGA();
-		foreach($alumno AS $key => $val){
+		foreach($alumno AS $key => $val)
+		{
 			$result[] = array(
 				'ID_DET_GA' => $contador,
 				'ID_DET_GRUPO' => $grupo_id,
@@ -61,8 +62,9 @@ class GrupoAlumnoModel extends CI_Model
 		$this->db->trans_complete();
 	}
 
-	// CREAR
-	public function agregarGrupoAlumno($grupo, $alumno){
+	// AGREGAR ALUMNO A UN GRUPO
+	public function agregarGrupoAlumno($grupo, $alumno)
+	{
 		$this->db->trans_start();
 			//Insertar grupo
 		date_default_timezone_set("America/El_Salvador");
@@ -70,7 +72,8 @@ class GrupoAlumnoModel extends CI_Model
 		$grupo_id = $grupo;
 		$result = array();
 		$contador = $this->maxIdDGA();
-		foreach($alumno AS $key => $val){
+		foreach($alumno AS $key => $val)
+		{
 			$result[] = array(
 				'ID_DET_GA' => $contador,
 				'ID_DET_GRUPO' => $grupo_id,
@@ -90,7 +93,9 @@ class GrupoAlumnoModel extends CI_Model
 		$resultado = $this->db->get('tbl_grupo_alumno');
 		if($resultado->row_array()>0){
 			return 1;
-		}else{
+		}
+		else
+		{
 			return 0;
 		}
 	}
@@ -99,10 +104,14 @@ class GrupoAlumnoModel extends CI_Model
 	public function maxIdDGA()
 	{
 		$id = $this->maxIdDGAModel();
-		foreach ($id as $i) {
-			if ($i['ID_DET_GA'] == null) {
+		foreach ($id as $i)
+		{
+			if ($i['ID_DET_GA'] == null)
+			{
 				return 1;
-			} else {
+			}
+			else
+			{
 				return $i['ID_DET_GA'];
 			}
 		}
@@ -119,9 +128,7 @@ class GrupoAlumnoModel extends CI_Model
 	{
 		$this->db->where('ID_DET_GA',$id);	
 		$this->db->delete('tbl_grupo_alumno');
-		
 	}
 
 }
-
 ?>

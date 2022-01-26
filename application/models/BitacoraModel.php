@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class BitacoraModel extends CI_Model 
 {	
-// MOSTRAR BITACORA
+	
+	// MOSTRAR BITACORA
 	public function mostrarBitacoraModel()
 	{
 		$this->db->select('*');

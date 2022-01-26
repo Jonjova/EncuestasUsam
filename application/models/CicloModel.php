@@ -7,7 +7,7 @@ class CicloModel extends CI_Model
     // INSERTAR CICLO
     public function crearCicloModel($datos)
     {
-        if ($this->db->insert('tbl_ciclo', $datos))
+        if ($this->db->insert('TBL_CICLO', $datos))
         {
             return true;
         }

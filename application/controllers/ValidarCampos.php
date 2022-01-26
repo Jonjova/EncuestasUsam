@@ -19,7 +19,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('NOMBRE_PROFESION');
 		$resultado = $this->modelValidar->findProf($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -34,7 +34,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('DUI');
 		$resultado = $this->modelValidar->findDUI($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -49,7 +49,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('NIT');
 		$resultado = $this->modelValidar->findNIT($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -64,7 +64,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('TELEFONO_FIJO');
 		$resultado = $this->modelValidar->findTelFijo($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -79,7 +79,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('TELEFONO_MOVIL');
 		$resultado = $this->modelValidar->findTelMovil($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -94,7 +94,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CORREO_PERSONAL');
 		$resultado = $this->modelValidar->findEmail($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -109,7 +109,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CORREO_INSTITUCIONAL');
 		$resultado = $this->modelValidar->findEmailUSAM($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -124,7 +124,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CODIGO_ASIGNATURA');
 		$resultado = $this->modelValidar->findCodAsignatura($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -139,8 +139,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CARNET');
 		$resultado = $this->modelValidar->findCarnet($valor);
-		
-		if($resultado)
+		if ($resultado)
 		{
 
 			echo 1;
@@ -164,7 +163,7 @@ class ValidarCampos extends CI_Controller
 	{
 		$valor = $this->input->post('COD_CICLO');
 		$resultado = $this->modelValidar->validarCicloModel($valor);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -183,7 +182,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('NOMBRE_PROFESION_UPDATE');
 		$resultado = $this->modelValidar->cambiarProfModel($valor, $id);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -198,7 +197,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('DUI_UPDATE');
 		$resultado = $this->modelValidar->cambiarDUIModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -213,7 +212,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('NIT_UPDATE');
 		$resultado = $this->modelValidar->cambiarNITModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -228,7 +227,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('TELEFONO_FIJO_UPDATE');
 		$resultado = $this->modelValidar->cambiarTelFijoModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -243,7 +242,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('TELEFONO_MOVIL_UPDATE');
 		$resultado = $this->modelValidar->cambiarTelMovilModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -258,7 +257,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CORREO_PERSONAL_UPDATE');
 		$resultado = $this->modelValidar->cambiarEmailModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}
@@ -273,7 +272,7 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CORREO_INSTITUCIONAL_UPDATE');
 		$resultado = $this->modelValidar->cambiarEmailUSAMModel($valor, $idPersona);
-		if($resultado)
+		if ($resultado)
 		{
 			echo 1;
 		}

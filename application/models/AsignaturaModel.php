@@ -7,7 +7,7 @@ class AsignaturaModel extends CI_Model
     // INSERTAR ASIGNATURA
     public function crearAsignaturaModel($datosAsignatura)
     {
-        if ($this->db->insert('tbl_asignatura', $datosAsignatura))
+        if ($this->db->insert('TBL_ASIGNATURA', $datosAsignatura))
         {
             return true;
         }
@@ -20,7 +20,7 @@ class AsignaturaModel extends CI_Model
     // ASIGNAR ASIGNATURA
     public function asignarAsignaturaModel($datosAsignatura)
     {
-        if ($this->db->insert('tbl_docente_asignatura', $datosAsignatura))
+        if ($this->db->insert('TBL_DOCENTE_ASIGNATURA', $datosAsignatura))
         {
             return true;
         }

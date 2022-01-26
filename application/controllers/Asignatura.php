@@ -138,9 +138,9 @@ class Asignatura extends CI_Controller
         foreach ($resultList as $key => $value)
         {
             $result['data'][] = array(
-                $i++,
-                $value['CODIGO_ASIGNATURA'],
-                $value['NOMBRE_ASIGNATURA']
+                    $i++,
+                    $value['CODIGO_ASIGNATURA'],
+                    $value['NOMBRE_ASIGNATURA']
                 );
         }
         echo json_encode($result);
@@ -157,16 +157,16 @@ class Asignatura extends CI_Controller
             foreach ($resultList as $key => $value)
             {
                 $result['data'][] = array(
-                    $i++,
-                    $value['CODIGO_ASIGNATURA'],
-                    $value['NOMBRE_ASIGNATURA'],
-                    $value['DOCENTE']
+                        $i++,
+                        $value['CODIGO_ASIGNATURA'],
+                        $value['NOMBRE_ASIGNATURA'],
+                        $value['DOCENTE']
                     );
             }
         }
         else
         {
-              $result['data']= array();
+            $result['data']= array();
         }
         echo json_encode($result);
     }

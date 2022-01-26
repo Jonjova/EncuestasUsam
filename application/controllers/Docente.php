@@ -14,7 +14,7 @@ class Docente extends CI_Controller
 	// VISTA INSERTAR DOCENTE
 	public function docente()
 	{
-		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
+		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
 			//header
 			$data = array('title' => 'Nuevo Docente' );
@@ -36,7 +36,7 @@ class Docente extends CI_Controller
 	// VISTA MOSTRAR DOCENTES
 	public function docentes()
 	{
-		if($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
+		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
 			$data = array('title' => 'Docentes' );
 			//header
@@ -59,7 +59,8 @@ class Docente extends CI_Controller
 	public function maxPersona()
 	{
 		$id = $this->modelDatos->maxPersonaModel();
-		foreach ($id as $i) {
+		foreach ($id as $i)
+		{
 			if ($i['ID_PERSONA'] == null)
 			{
 				return 1;
@@ -75,7 +76,8 @@ class Docente extends CI_Controller
 	public function maxDocente()
 	{
 		$datos = $this->modelDatos->maxDocenteModel();
-		foreach ($datos as $i) {
+		foreach ($datos as $i)
+		{
 			if ($i['ID_DOCENTE'] == null)
 			{
 				return 1;
@@ -91,7 +93,8 @@ class Docente extends CI_Controller
 	public function maxUsuario()
 	{
 		$datos = $this->modelDatos->maxUsuarioModel();
-		foreach ($datos as $i) {
+		foreach ($datos as $i)
+		{
 			if ($i['ID_USUARIO'] == null)
 			{
 				return 1;

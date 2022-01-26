@@ -196,7 +196,7 @@ function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
                 if (r.length <= 1) {
                     eliminar = '';
                 }
-                if (object.ESTADO_PROYECTO == "Finalizado" || object.ESTADO_PROYECTO == "Incompleto" || object.ESTADO_PROYECTO == "No entregado" || cod_docente == 0) {
+                if (object.ESTADO_PROYECTO != "Iniciado" && object.ESTADO_PROYECTO != "En proceso" || cod_docente == 0) {
                     eliminar = '';
                     $('#agregarAlumnoG').hide();
                 }

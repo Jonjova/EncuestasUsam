@@ -19,6 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css" >
 	<!--PreCargas-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/preCarga.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/loader.css">
 	<!--custom-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/jquery.mCustomScrollbar.min.css">
 	<!-- SIDEBAR CSS -->

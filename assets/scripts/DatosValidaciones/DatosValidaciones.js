@@ -468,7 +468,7 @@ jQuery.validator.addMethod("codAsignatura", function(value, element) {
 });
 
 // NOMBRE ASIGNATURA VALIDO (LETRAS, LETRAS CON TILDE Y ESPACIO)
-jQuery.validator.addMethod("nomAsig", function(value, element) {
+jQuery.validator.addMethod("alfaYespacio", function(value, element) {
     return this.optional(element) || /^[ a-záéíóúüñ]*$/i.test(value);
 });
 
@@ -721,12 +721,12 @@ $('#CARNET').change(function() {
         data: { 'CARNET': $(this).val() },
         success: function(msg) {
             //var ob = JSON.parse(msg);
-           
+
             if (msg != null) {
                 console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
-               
+
                 $('#PRIMER_NOMBRE_PERSONA').val(msg.primer_nombre_persona);
                 $('#SEGUNDO_NOMBRE_PERSONA').val(msg.segundo_nombre_persona);
                 $('#PRIMER_APELLIDO_PERSONA').val(msg.primer_apellido_persona);
@@ -744,31 +744,31 @@ $('#CARNET').change(function() {
                 $('#ID_ALUMNO').val(msg.ID_PERSONA);
 
             } else {
-             $('#addAlumno').show();
-             $('#editAlumno').hide();
-             infoAlumnosLimpiar();
-             $('#addAlumno').show();
-             $('#editAlumno').hide();
-            
-            var validator = $("#crearAlumno").validate();
-            validator.resetForm();
-            $('.form-control').removeClass('is-valid is-invalid');
-            $('.custom-select').removeClass('is-valid is-invalid');
-            $('.toggle-disabled').prop("disabled", true);
+                $('#addAlumno').show();
+                $('#editAlumno').hide();
+                infoAlumnosLimpiar();
+                $('#addAlumno').show();
+                $('#editAlumno').hide();
+
+                var validator = $("#crearAlumno").validate();
+                validator.resetForm();
+                $('.form-control').removeClass('is-valid is-invalid');
+                $('.custom-select').removeClass('is-valid is-invalid');
+                $('.toggle-disabled').prop("disabled", true);
             }
         }
     });
 });
 
 function infoAlumnosLimpiar() {
-   
+
     $('#PRIMER_NOMBRE_PERSONA').val('');
     $('#SEGUNDO_NOMBRE_PERSONA').val('');
     $('#PRIMER_APELLIDO_PERSONA').val('');
     $('#SEGUNDO_APELLIDO_PERSONA').val('');
-    $('#FECHA_NACIMIENTO_A').val(''); 
+    $('#FECHA_NACIMIENTO_A').val('');
     $('#SEXO').val('');
-   // $('#SEXO option:selected').text('Seleccione...').attr("disabled", false);
+    // $('#SEXO option:selected').text('Seleccione...').attr("disabled", false);
     $('#CORREO_PERSONAL').val('');
     $('#TELEFONO_FIJO').val('');
     $('#CARRERA').val('');

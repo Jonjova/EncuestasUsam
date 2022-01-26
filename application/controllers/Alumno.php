@@ -7,7 +7,7 @@ class Alumno extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('AlumnoModel','am',true);
+		$this->load->model('AlumnoModel', 'am', true);
 		$this->load->model('DatosComunesModel', 'modelDatos', true);
 	}
 
@@ -15,10 +15,14 @@ class Alumno extends CI_Controller
 	public function maxPersona()
 	{
 		$id = $this->modelDatos->maxPersonaModel();
-		foreach ($id as $i) {
-			if ($i['ID_PERSONA'] == null) {
+		foreach ($id as $i)
+		{
+			if ($i['ID_PERSONA'] == null)
+			{
 				return 1;
-			} else {
+			}
+			else
+			{
 				return $i['ID_PERSONA'];
 			}
 		}
@@ -28,10 +32,14 @@ class Alumno extends CI_Controller
 	public function maxAlumno()
 	{
 		$id = $this->modelDatos->maxAlumnoModel();
-		foreach ($id as $i) {
-			if ($i['ID_ALUMNO'] == null) {
+		foreach ($id as $i)
+		{
+			if ($i['ID_ALUMNO'] == null)
+			{
 				return 1;
-			} else {
+			}
+			else
+			{
 				return $i['ID_ALUMNO'];
 			}
 		}
@@ -63,14 +71,14 @@ class Alumno extends CI_Controller
 			'CARNET' => $this->input->post('CARNET'),
 			'PERSONA' => $this->maxPersona(),
 			'CARRERA' => $this->input->post('CARRERA'),
-			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO'),
+			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
 		$insertPersona = $this->am->insertPerson($datosPersona);
 		$insertAlumno = $this->am->insertAlum($datosAlumno);
 
-		if($insertPersona == TRUE && $insertAlumno == TRUE )
+		if ($insertPersona == TRUE && $insertAlumno == TRUE )
 		{
 			echo "true";
 		}
@@ -79,9 +87,8 @@ class Alumno extends CI_Controller
 	//Metodo Actualizar 
 	public function Actualizar()
 	{
-
-			date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
-		$wherePersona =$this->input->post('ID_PERSONA');
+		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
+		$wherePersona = $this->input->post('ID_PERSONA');
 		$datosPersona = array(
 			//'ID_PERSONA' => $this->maxPersona(),
 			'PRIMER_NOMBRE_PERSONA' => $this->input->post('PRIMER_NOMBRE_PERSONA'),
@@ -109,14 +116,16 @@ class Alumno extends CI_Controller
 			//'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
-        $actualizarPersona = $this->am->actualizarPerson('tbl_persona',$datosPersona,array('ID_PERSONA'=>$wherePersona));
+        $actualizarPersona = $this->am->actualizarPerson('tbl_persona', $datosPersona, array('ID_PERSONA' => $wherePersona));
 		//$actualizarPersona = $this->am->actualizarPerson($datosPersona);
-		$actualizarAlumno = $this->am->actualizarAlum('tbl_alumnos',$datosAlumno,array('ID_ALUMNO'=>$whereAlumno));
+		$actualizarAlumno = $this->am->actualizarAlum('tbl_alumnos', $datosAlumno, array('ID_ALUMNO' => $whereAlumno));
 		//$actualizarAlumno = $this->am->actualizarAlum($datosAlumno);
-		if ($actualizarPersona == TRUE ||  $actualizarAlumno == TRUE) 
+		if ($actualizarPersona == TRUE || $actualizarAlumno == TRUE) 
 		{
 			echo "true";
-		}else{
+		}
+		else
+		{
 			echo "false";
 		}
 	}

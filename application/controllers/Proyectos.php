@@ -7,8 +7,8 @@ class Proyectos extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('ProyectoModel','pm',true);
-		$this->load->model('GrupoAlumnoModel','gam',true);
+		$this->load->model('ProyectoModel', 'pm', true);
+		$this->load->model('GrupoAlumnoModel', 'gam', true);
 	}
 
 	public function index()
@@ -81,7 +81,7 @@ class Proyectos extends CI_Controller
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
 									class="custom-select" style="width: auto;">
 									<option value="Iniciado">Iniciado</option>
-									<option value="En proceso">En Proceso</option>
+									<option value="En proceso">En proceso</option>
 									<option value="Finalizado">Finalizado</option>
 									<option value="Incompleto">Incompleto</option>
 									<option value="No entregado">No entregado</option>
@@ -91,7 +91,7 @@ class Proyectos extends CI_Controller
 						$estado = '<a class="btn btn-warning" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
 									class="custom-select" style="width: auto;">
-									<option value="En proceso">En Proceso</option>
+									<option value="En proceso">En proceso</option>
 									<option value="Finalizado">Finalizado</option>
 									<option value="Incompleto">Incompleto</option>
 									<option value="No entregado">No entregado</option>
@@ -188,7 +188,7 @@ class Proyectos extends CI_Controller
 
 		//Datos de tabla  "Proyectos"
 		$insert = $this->pm->insertProyecto($datos);
-		if($insert == TRUE )
+		if ($insert == TRUE )
 		{
 			echo "true";
 		}

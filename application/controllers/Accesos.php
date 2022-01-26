@@ -6,12 +6,12 @@ class Accesos extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('AccesosModel','am',true);
+		$this->load->model('AccesosModel', 'am', true);
 	}
 
 	public function index()
 	{
-		if($this->session->userdata('currently_logged_in') or false)
+		if ($this->session->userdata('currently_logged_in') or false)
 		{
 			redirect('/Dashboard/');
 		}
@@ -21,10 +21,10 @@ class Accesos extends CI_Controller
 			{
 				//header
 				$data = array('title' => 'Inicio de Sesion' );
-				$this->load->view('Layout/Header',$data);
-		  	   //Body
+				$this->load->view('Layout/Header', $data);
+		  	    //Body
 				$this->load->view('Login');
-		       //Footer
+		        //Footer
 				$this->load->view('Layout/Footer');
 			}
 		}
@@ -49,7 +49,7 @@ class Accesos extends CI_Controller
 			exit;
 		}
 
-		if($res->ESTADO_PERMISO == 0) {
+		if ($res->ESTADO_PERMISO == 0) {
 			echo json_encode(array('msg' => '¡Usuario Inhabilitado!'));
 			$this->output->set_status_header(401);//si no se cumple status 401
 			exit;
@@ -78,7 +78,7 @@ class Accesos extends CI_Controller
 			'currently_logged_in' => 1);
 		$this->session->set_userdata($data);
 		//$this->session->set_flashdata('msg','Bienvenido al sistema '.$data['nombre_usuario']);
-		echo json_encode( array('url' => base_url('dashboard')));
+		echo json_encode(array('url' => base_url('dashboard')));
 	}
 
 	public function logout()
@@ -103,11 +103,11 @@ class Accesos extends CI_Controller
 
 	public function home()
 	{
-		if($this->session->userdata('is_logged'))
+		if ($this->session->userdata('is_logged'))
 		{
 			//header
 			$data = array('title' => 'Inicio' );
-			$this->load->view('Layout/Header',$data);
+			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
 			$this->load->view('Bienvenidos');
@@ -117,27 +117,6 @@ class Accesos extends CI_Controller
 		else
 		{
 			$this->index();
-		}
-	}
-
-	public function recuperar()
-	{
-		if($this->session->userdata('currently_logged_in') or false)
-		{
-			redirect('/Dashboard/');
-		}
-		else
-		{
-			if ($this->session->userdata('currently_logged_in') or true) 
-			{
-				//header
-				$data = array('title' => 'Recuperar Contraseña' );
-				$this->load->view('Layout/Header', $data);
-		  	   //Body
-				$this->load->view('Cuenta/RestablecerContrasenia');
-		       //Footer
-				$this->load->view('Layout/Footer');
-			}
 		}
 	}
 

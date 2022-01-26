@@ -41,7 +41,7 @@ $(document).ready(function() {
     var $validator = $('.wizard-card form').validate({
         rules: {
             // INSERTAR
-            NOMBRE_PROFESION: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15, inProf: true },
+            NOMBRE_PROFESION: { required: true, alfaYespacio: true, minlength: 3, maxlength: 15, inProf: true },
             PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
@@ -60,7 +60,7 @@ $(document).ready(function() {
             COORDINACION: { required: true },
             COORDINADOR: { required: true },
             CODIGO_ASIGNATURA: { required: true, codAsignatura: true, inCodAsig: true },
-            NOMBRE_ASIGNATURA: { required: true, nomAsig: true },
+            NOMBRE_ASIGNATURA: { required: true, alfaYespacio: true },
             ID_ASIGNATURA: { required: true },
             ID_DOCENTE: { required: true },
             OLD_PASSWORD: { required: true },
@@ -70,7 +70,7 @@ $(document).ready(function() {
             FECHA_INICIO: { required: true },
             FECHA_FIN: { required: true },
             // ACTUALIZAR
-            NOMBRE_PROFESION_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15, upProf: true },
+            NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 15, upProf: true },
             PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             SEGUNDO_NOMBRE_PERSONA_UPDATE: { alfaOespacio: true, minlength: 3, maxlength: 25 },
@@ -92,7 +92,7 @@ $(document).ready(function() {
             // INSERTAR
             NOMBRE_PROFESION: {
                 required: "Nombre requerido.",
-                alfaOespacio: "S\u00f3lo letras.",
+                alfaYespacio: "S\u00f3lo letras.",
                 minlength: 'M\u00ednimo 3 caracteres',
                 maxlength: 'M\u00e1ximo 15 caracteres.',
                 inProf: 'Profesi\u00f3n ya existe!'
@@ -168,7 +168,7 @@ $(document).ready(function() {
             },
             NOMBRE_ASIGNATURA: {
                 required: "Nombre requerido.",
-                nomAsig: "S\u00f3lo letras o espacios."
+                alfaYespacio: "S\u00f3lo letras o espacios."
             },
             ID_ASIGNATURA: { required: "Asignatura requerida." },
             ID_DOCENTE: { required: "Docente requerido." },
@@ -184,7 +184,7 @@ $(document).ready(function() {
             // ACTUALIZAR
             NOMBRE_PROFESION_UPDATE: {
                 required: "Nombre requerido.",
-                alfaOespacio: "S\u00f3lo letras.",
+                alfaYespacio: "S\u00f3lo letras.",
                 minlength: 'M\u00ednimo 3 caracteres',
                 maxlength: 'M\u00e1ximo 25 caracteres.',
                 upProf: 'Profesi\u00f3n ya existe!'

@@ -14,7 +14,7 @@ class Usuario extends CI_Controller
 	// VISTA INSERTAR USUARIOS
 	public function usuario()
 	{
-		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
+		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
 			$data = array('title' => 'Nuevo Usuario' );
 			//header
@@ -36,7 +36,7 @@ class Usuario extends CI_Controller
 	// VISTA MOSTRAR USUARIOS
 	public function usuarios()
 	{
-		if($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
+		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
 			$data = array('title' => 'Usuarios' );
 			//header
@@ -76,7 +76,8 @@ class Usuario extends CI_Controller
 	public function maxUsuario()
 	{
 		$datos = $this->modelDatos->maxUsuarioModel();
-		foreach ($datos as $i) {
+		foreach ($datos as $i)
+		{
 			if ($i['ID_USUARIO'] == null)
 			{
 				return 1;
@@ -134,8 +135,8 @@ class Usuario extends CI_Controller
 		$i = 1;
 		if (!empty($resultList))
 			{
-			foreach ($resultList as $key => $value) {
-				
+			foreach ($resultList as $key => $value)
+			{
 				$btnPass = 
 					'<a class="btn btn-warning" style="font-size: x-large;" onclick="resetPass('.$value['PERSONA'].');">
 						<i class="fas fa-sync-alt"></i>

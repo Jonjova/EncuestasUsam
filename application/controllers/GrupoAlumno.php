@@ -7,7 +7,7 @@ class GrupoAlumno extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('GrupoAlumnoModel','gam',true);
+		$this->load->model('GrupoAlumnoModel', 'gam', true);
 	}
 	
 	//CREAR
@@ -20,19 +20,19 @@ class GrupoAlumno extends CI_Controller
 		
 		$insert = $this->gam->insertGrupoAlumno($grupo, $asignatura, $ciclo, $alumno);
 
-		if($insert == TRUE )
+		if ($insert == TRUE )
 		{
 			echo "true";
 		}
 	}
 
-	//CREAR
+	// AGREGAR ALUMNO A UN GRUPO
 	function agregar()
 	{
-		$grupo = $this->input->post('GRUPO_GA',TRUE);
-		$alumno = $this->input->post('ID_ALUMNO_GA',TRUE);
+		$grupo = $this->input->post('GRUPO_GA', TRUE);
+		$alumno = $this->input->post('ID_ALUMNO_GA', TRUE);
 		$insert = $this->gam->agregarGrupoAlumno($grupo, $alumno);
-		if($insert == TRUE )
+		if ($insert == TRUE )
 		{
 			echo "true";
 		}
