@@ -724,7 +724,7 @@ $('#CARNET').change(function() {
             //var ob = JSON.parse(msg);
 
             if (msg != null) {
-                console.log(msg);
+                //console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
                 $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);

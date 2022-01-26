@@ -12,7 +12,8 @@ const actualizar = document.querySelector("#editAlumno");
 //var guardar = $("#addAlumno");
 const guardar = document.querySelector("#addAlumno");
 var addEdit = $("#crearAlumno");
-guardar.addEventListener("click", function(evento){
+if (guardar) {
+    guardar.addEventListener("click", function(evento){
     // Aquí todo el código que se ejecuta cuando se da click al botón
    addEdit.submit(function(event) {
     event.preventDefault();
@@ -44,14 +45,16 @@ guardar.addEventListener("click", function(evento){
                 text: 'Algunos campos son requeridos!'
             })
         }
-    });
-});
+     });
+  });
+ });
+}
 
-});
 /****************************************************************************
                     EDITAR ALUMNO
 ****************************************************************************/
-actualizar.addEventListener("click", function(evento){
+if (actualizar) {
+    actualizar.addEventListener("click", function(evento){
     addEdit.submit(function(event) {
     event.preventDefault();
     $.ajax({
@@ -88,9 +91,10 @@ actualizar.addEventListener("click", function(evento){
             })
         }
     });
-});
- /*NOTA PARA ACTUALIZAR EN LA TABLA DE ALUMNOS SE NESECITA TRAER LA REFERNCIA Y LAS DEMAS */   
-});
+  });
+ });
+}
+
 
 //Esta funcion carga una funcion 2 veces en este caso una accion dinamica
 //para el poper del select
