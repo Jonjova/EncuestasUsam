@@ -213,10 +213,15 @@ while ($fila = $resultado->fetch_assoc()) {
 
  $pdf->Output();
 } else {
-    echo "!No hay datos!";
+    //echo "!No hay datos!";
+        $this->session->set_flashdata('msjerror', '!No hay datos!');
+       redirect('/Proyectos/');
 }
 
 }else {
-    echo "!No ha seleccionado una asignatura!";
-}
+   // echo "!No ha seleccionado una asignatura!";
+    $this->session->set_flashdata('msjerror', '!No ha seleccionado una asignatura!');
+    redirect('/Proyectos/');
+}           
+
 ?>
