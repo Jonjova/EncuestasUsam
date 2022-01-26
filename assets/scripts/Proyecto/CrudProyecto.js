@@ -17,10 +17,10 @@ function CargaContenidoProyecto() {
         $('#carga').hide();
 
     }, 2000);
-    cargaresto();
+    cargarTblProyecto();
 }
 
-function cargaresto() {
+function cargarTblProyecto() {
     $('#Proyecto').on('init.dt', function() {
         $("#Proyecto").removeClass('table-loader').show();
     });

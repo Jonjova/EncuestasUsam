@@ -163,7 +163,7 @@
 
                                 <button type="button" class="btn btn-secondary pull-left btn-sm" onclick="limpiar()"
                                     id="cancelBtnId" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="addAlumno" class="btn btn-success btn-sm toggle-disabled"
+                                <button type="submit" id="addAlumno" class="btn btn-success btn-sm toggle-disabled d"
                                     disabled>Guardar</button>
                                 <button type="submit" id="editAlumno" class="btn btn-primary btn-sm "
                                     style="display: none;">Actualizar</button>
