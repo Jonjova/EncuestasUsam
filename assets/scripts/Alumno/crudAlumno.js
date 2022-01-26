@@ -141,7 +141,9 @@ function limpiar() {
     $('.toggle-disabled').prop("disabled", true);
     $('#CARNET').show();
     $('#CARNET2').hide();
-     $('.d').css('pointer-events', 'none');
+    $('.d').css('pointer-events', 'none');
+    $('#tituloEditM').hide();
+    $('#tituloAddM').show();
     infoAlumnosLimpiar();
 }
 

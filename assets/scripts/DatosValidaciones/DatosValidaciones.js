@@ -746,10 +746,14 @@ $('#CARNET').change(function() {
                 $('#ID_ALUMNO').val(msg.ID_ALUMNO);
                 $('#CARNET').hide();
                 $('#CARNET2').show();
+                $('#tituloAddM').hide();
+                $('#tituloEditM').show();
                 //jQuery("#CARNET").replaceWith('<input type="text" placeholder="Ingrese Carnet" id="CARNET2" name="CARNET2" class=" form-control mb-2 mr-sm-2 required" required>');
 
             } else {
                 infoAlumnosLimpiar();
+                $('#tituloEditM').hide();
+                $('#tituloAddM').show();
                 $('#CARNET').show();
                 $('#CARNET2').hide();
                 $('#addAlumno').show();
