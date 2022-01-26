@@ -139,6 +139,8 @@ function limpiar() {
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
     $('.toggle-disabled').prop("disabled", true);
+    $('#CARNET').show();
+    $('#CARNET2').hide();
      $('.d').css('pointer-events', 'none');
     infoAlumnosLimpiar();
 }
@@ -149,7 +151,7 @@ function limpiar() {
 
 $("#crearAlumno").validate({
     rules: {
-        CARNET: { required: true, inCarnet: true },
+        CARNET: { required: true, inCarnet: false },
         PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
         PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
         SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },

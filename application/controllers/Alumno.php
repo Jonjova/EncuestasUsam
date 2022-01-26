@@ -109,7 +109,7 @@ class Alumno extends CI_Controller
 		$whereAlumno =$this->input->post('ID_ALUMNO');
 		$datosAlumno = array( 
 			//'ID_ALUMNO' => $this->maxAlumno(),
-			'CARNET' => $this->input->post('CARNET'),
+			'CARNET' => $this->input->post('CARNET2'),
 			//'PERSONA' => $this->maxPersona(),
 			'CARRERA' => $this->input->post('CARRERA'),
 			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO')

@@ -52,6 +52,7 @@
                                                 <label>Carnet</label>
                                                 <input type="text" placeholder="Ingrese Carnet" id="CARNET" 
                                                     name="CARNET" class="form-control mb-2 mr-sm-2 required" required>
+                                                    <input style="display: none" name="CARNET2" id="CARNET2" placeholder="Ingrese Carnet" class="form-control mb-2 mr-sm-2 required" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Primer Nombre</label>

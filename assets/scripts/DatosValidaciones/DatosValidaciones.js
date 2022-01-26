@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     // MASCARAS DE CAMPOS
     $('#CARNET').mask('999999');
+    $('#CARNET2').mask('999999');
     $('#DUI').mask('99999999-9');
     $('#NIT').mask('9999-999999-999-9');
     $('#TELEFONO_FIJO').mask('9999-9999');
@@ -724,9 +725,10 @@ $('#CARNET').change(function() {
             //var ob = JSON.parse(msg);
 
             if (msg != null) {
-                //console.log(msg);
+                console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
+                $('#CARNET2').val(msg.CARNET);
                 $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);
                 $('#SEGUNDO_NOMBRE_PERSONA').val(msg.SEGUNDO_NOMBRE_PERSONA);
                 $('#PRIMER_APELLIDO_PERSONA').val(msg.PRIMER_APELLIDO_PERSONA);
@@ -742,10 +744,14 @@ $('#CARNET').change(function() {
                 $('#DIRECCION').val(msg.DIRECCION);
                 $('#ID_PERSONA').val(msg.ID_PERSONA);
                 $('#ID_ALUMNO').val(msg.ID_ALUMNO);
+                $('#CARNET').hide();
+                $('#CARNET2').show();
+                //jQuery("#CARNET").replaceWith('<input type="text" placeholder="Ingrese Carnet" id="CARNET2" name="CARNET2" class=" form-control mb-2 mr-sm-2 required" required>');
 
             } else {
-
                 infoAlumnosLimpiar();
+                $('#CARNET').show();
+                $('#CARNET2').hide();
                 $('#addAlumno').show();
                 $('#editAlumno').hide();
                 var validator = $("#crearAlumno").validate();
@@ -754,6 +760,8 @@ $('#CARNET').change(function() {
                 $('.custom-select').removeClass('is-valid is-invalid');
                 $('.toggle-disabled').prop("disabled", true);
                 $('.d').css('pointer-events', 'none');
+                
+                //$("#CARNET").off("change");
             }
         }
     });
