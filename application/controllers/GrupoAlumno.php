@@ -41,7 +41,7 @@ class GrupoAlumno extends CI_Controller
 	//LLenar select con ajax 
 	public function Alumno($asignatura)
 	{
-		$datos = $this->gam->obtAlumno($asignatura);
+		$datos = $this->gam->obtAlumno(isset($asignatura));
 		echo json_encode($datos);
 	}
 
