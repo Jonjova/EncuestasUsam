@@ -25,6 +25,7 @@
 
 <!--Importante base_url() es un complementa a la url que hagamos en ajax -->    
 <script type="text/javascript">
+    
     window.addEventListener('load', function() {
         document.getElementById('loader').classList.toggle('loader2');
     });
@@ -37,6 +38,18 @@
     if (cod_docente == "") {
         cod_docente = 0;
     }
+    if ($(window).width() < 1200) {
+        $('#logobienvenida').attr("src", url + "assets/img/logo_USAM.png");
+    } else {
+        $('#logobienvenida').attr("src", url + "assets/img/logousam.jpg");
+    }
+    $(window).resize(function() {
+        if ($(window).width() < 1200) {
+            $('#logobienvenida').attr("src", url + "assets/img/logo_USAM.png");
+        } else {
+            $('#logobienvenida').attr("src", url + "assets/img/logousam.jpg");
+        }
+    });
 </script>
 
 <!-- ALERTAS JS -->

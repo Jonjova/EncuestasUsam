@@ -16,7 +16,8 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Estudiante</h5>
+                                <h5 class="modal-title" id="tituloAddM">Nuevo Estudiante</h5>
+                                <h5 class="modal-title" style="display: none;" class="modal-title" id="tituloEditM">Actualizar Estudiante</h5>
                                 <!-- <div class="meter" style="left: 120px;">
                         <div id="percentage"></div>
                     </div>-->
@@ -52,6 +53,7 @@
                                                 <label>Carnet</label>
                                                 <input type="text" placeholder="Ingrese Carnet" id="CARNET" 
                                                     name="CARNET" class="form-control mb-2 mr-sm-2 required" required>
+                                                    <input style="display: none" name="CARNET2" id="CARNET2" placeholder="Ingrese Carnet" class="form-control mb-2 mr-sm-2 required" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Primer Nombre</label>

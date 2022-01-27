@@ -73,7 +73,8 @@ class Proyectos extends CI_Controller
 		if (!empty($resultList))
 		{
 			$var = 0;
-			foreach ($resultList as $key => $value) {
+			foreach ($resultList as $key => $value)
+			{
 				switch ($value['ESTADO_PROYECTO'])
 				{
 					case "Iniciado":
@@ -128,11 +129,24 @@ class Proyectos extends CI_Controller
 				$ver = '<a onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value)">
 							<i class="far fa-eye"></i>
 						</a> ';
-				
+				$heightN = strlen($value['NOMBRE_PROYECTO']);
+				$heightD = strlen($value['DESCRIPCION']);
+				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 10).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
+				$descProy = '<textarea class="txt-tbl" style="height: '.($heightD + 10).'px;" readonly>'.$value['DESCRIPCION'].'.</textarea>';
+
+				if ($heightN < 25)
+				{
+					$nombreProy = $value['NOMBRE_PROYECTO'];
+				}
+				if ($heightD < 25)
+				{
+					$descProy = $value['DESCRIPCION'];
+				}
 				if ($_SESSION['ID_TIPO_USUARIO'] != 4)
 				{
 					$result['data'][] = array(
-						$value['NOMBRE_PROYECTO'],
+						// $value['NOMBRE_PROYECTO'],
+						$nombreProy,
 						$value['NOMBRE_TIPO_INVESTIGACION'],
 						$value['NOMBRE_ASIGNATURA'],
 						$value['NOMBRE_DISENIO'],
@@ -140,14 +154,15 @@ class Proyectos extends CI_Controller
 						$btnInfo,
 						$estado,
 						$value['COD_CICLO'],
-						$value['DESCRIPCION'],
+						$descProy,
 						$value['FECHA_ASIGNACION']
 						);
 				}
 				else
 				{
 					$result['data'][] = array(
-						$value['NOMBRE_PROYECTO'],
+						// $value['NOMBRE_PROYECTO'],
+						$nombreProy,
 						$value['NOMBRE_TIPO_INVESTIGACION'],
 						$value['NOMBRE_ASIGNATURA'],
 						$value['NOMBRE_DISENIO'],
@@ -155,7 +170,8 @@ class Proyectos extends CI_Controller
 						$btnInfo,
 						$selectEstado,
 						$value['COD_CICLO'],
-						$value['DESCRIPCION'],
+						// $value['DESCRIPCION'],
+						$descProy,
 						$value['FECHA_ASIGNACION']
 						);
 				}

@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     // MASCARAS DE CAMPOS
     $('#CARNET').mask('999999');
+    $('#CARNET2').mask('999999');
     $('#DUI').mask('99999999-9');
     $('#NIT').mask('9999-999999-999-9');
     $('#TELEFONO_FIJO').mask('9999-9999');
@@ -44,8 +45,6 @@ function llenarDropdowns() {
     obtCicl();
     obtCarrera();
 
-    var cod_asignatura = $('#ASIGNATURA_PROY').val(),
-        cod_ciclo = $('#CICLO_PROY').val();
     $("#CrearProyecto [name='ID_ASIGNATURA']").change(function() {
         obtGrupoAlumn($(this).val());
         obtA($(this).val());
@@ -56,15 +55,19 @@ function llenarDropdowns() {
     });
     $('#ASIGNATURA_PROY').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
-        llenarTablaProyecto($(this).val(), cod_ciclo, cod_coordinador, 0);
+        llenarTablaProyecto($(this).val(), $('#CICLO_PROY').val(), cod_coordinador, 0);
     });
     $('#CICLO_PROY').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
-        llenarTablaProyecto(cod_asignatura, $(this).val(), cod_coordinador, 0);
+        llenarTablaProyecto($('#ASIGNATURA_PROY').val(), $(this).val(), cod_coordinador, 0);
     });
     $('#asignaturaR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
-        llenarTablaProyecto($(this).val(), 0, cod_coordinador, 0);
+        llenarTablaProyecto($(this).val(), $('#cicloR').val(), cod_coordinador, 0);
+    });
+    $('#cicloR').change(function() {
+        $('#Proyecto').dataTable().fnDestroy();
+        llenarTablaProyecto($('#asignaturaR').val(), $(this).val(), cod_coordinador, 0);
     });
     $('#coordinadorR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
@@ -73,10 +76,6 @@ function llenarDropdowns() {
     $('#facultadR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto(0, 0, cod_coordinador, $(this).val());
-    });
-    $('#cicloR').change(function() {
-        $('#Proyecto').dataTable().fnDestroy();
-        llenarTablaProyecto(0, $(this).val(), cod_coordinador, 0);
     });
     $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
     $('#ID_DOCENTE').select2();
@@ -727,6 +726,7 @@ $('#CARNET').change(function() {
                 console.log(msg);
                 $('#addAlumno').hide();
                 $('#editAlumno').show();
+                $('#CARNET2').val(msg.CARNET);
                 $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);
                 $('#SEGUNDO_NOMBRE_PERSONA').val(msg.SEGUNDO_NOMBRE_PERSONA);
                 $('#PRIMER_APELLIDO_PERSONA').val(msg.PRIMER_APELLIDO_PERSONA);
@@ -742,10 +742,18 @@ $('#CARNET').change(function() {
                 $('#DIRECCION').val(msg.DIRECCION);
                 $('#ID_PERSONA').val(msg.ID_PERSONA);
                 $('#ID_ALUMNO').val(msg.ID_ALUMNO);
+                $('#CARNET').hide();
+                $('#CARNET2').show();
+                $('#tituloAddM').hide();
+                $('#tituloEditM').show();
+                //jQuery("#CARNET").replaceWith('<input type="text" placeholder="Ingrese Carnet" id="CARNET2" name="CARNET2" class=" form-control mb-2 mr-sm-2 required" required>');
 
             } else {
-
                 infoAlumnosLimpiar();
+                $('#tituloEditM').hide();
+                $('#tituloAddM').show();
+                $('#CARNET').show();
+                $('#CARNET2').hide();
                 $('#addAlumno').show();
                 $('#editAlumno').hide();
                 var validator = $("#crearAlumno").validate();
@@ -754,6 +762,8 @@ $('#CARNET').change(function() {
                 $('.custom-select').removeClass('is-valid is-invalid');
                 $('.toggle-disabled').prop("disabled", true);
                 $('.d').css('pointer-events', 'none');
+
+                //$("#CARNET").off("change");
             }
         }
     });

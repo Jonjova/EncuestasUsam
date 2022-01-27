@@ -45,14 +45,14 @@ class ProyectoModel extends CI_Model
 						);
 				}
 			}
-			if ($asignatura != 0)
+			if ($asignatura != 0 && $ciclo == 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
 					WHERE ID_ASIGNATURA = $asignatura"
 					);
 			}
-			if ($ciclo != 0)
+			if ($ciclo != 0 && $asignatura == 0)
 			{
 				if ($coordinador != null)
 				{
@@ -75,7 +75,7 @@ class ProyectoModel extends CI_Model
 						);
 				}
 			}
-			else if ($asignatura != 0 && $ciclo != 0)
+			if ($asignatura != 0 && $ciclo != 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
@@ -85,21 +85,32 @@ class ProyectoModel extends CI_Model
 		}
 		else
 		{
-			if ($ciclo != 0)
+			if ($asignatura == 0 && $ciclo == 0 && $coordinador == 0 && $facultad == 0)
 			{
-				$query = $this->db->query(
-					"SELECT * FROM VW_PROYECTO
-					WHERE CICLO = $ciclo"
-					);
+				$query = $this->db->get('VW_PROYECTO');
 			}
-			else if ($asignatura != 0)
+			if ($asignatura != 0 && $ciclo == 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
 					WHERE ID_ASIGNATURA = $asignatura"
 					);
 			}
-			else if ($coordinador != 0)
+			if ($ciclo != 0 && $asignatura == 0)
+			{
+				$query = $this->db->query(
+					"SELECT * FROM VW_PROYECTO
+					WHERE CICLO = $ciclo"
+					);
+			}
+			if ($asignatura != 0 && $ciclo != 0)
+			{
+				$query = $this->db->query(
+					"SELECT * FROM VW_PROYECTO
+					WHERE ID_ASIGNATURA = $asignatura AND CICLO = $ciclo"
+					);
+			}
+			if ($coordinador != 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
@@ -109,16 +120,12 @@ class ProyectoModel extends CI_Model
 						);"
 					);
 			}
-			else if ($facultad != 0)
+			if ($facultad != 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
 					WHERE FACULTAD = $facultad"
 					);
-			}
-			else
-			{
-				$query = $this->db->get('VW_PROYECTO');
 			}
 		}
 		return $query->result_array();
