@@ -58,10 +58,10 @@ function llenarDropdowns() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto($(this).val(), cod_ciclo, cod_coordinador, 0);
     });
-    /*$('#CICLO_PROY').change(function() {
+    $('#CICLO_PROY').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto(cod_asignatura, $(this).val(), cod_coordinador, 0);
-    });*/
+    });
     $('#asignaturaR').change(function() {
         $('#Proyecto').dataTable().fnDestroy();
         llenarTablaProyecto($(this).val(), 0, cod_coordinador, 0);

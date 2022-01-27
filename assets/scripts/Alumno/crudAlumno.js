@@ -12,84 +12,84 @@ const actualizar = document.querySelector("#editAlumno");
 //var guardar = $("#addAlumno");
 const guardar = document.querySelector("#addAlumno");
 var addEdit = $("#crearAlumno");
-guardar.addEventListener("click", function(evento){
+guardar.addEventListener("click", function(evento) {
     // Aquí todo el código que se ejecuta cuando se da click al botón
-   addEdit.submit(function(event) {
-    event.preventDefault();
-    $.ajax({
-        url: url + 'Alumno/Guardar',
-        data: $("#crearAlumno").serialize(),
-        type: "post",
-        dataType: 'json',
-        success: function(response) {
+    addEdit.submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: url + 'Alumno/Guardar',
+            data: $("#crearAlumno").serialize(),
+            type: "post",
+            dataType: 'json',
+            success: function(response) {
 
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Datos guardados correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $(this).find('.nav-tabs a:first').tab('show');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Datos guardados correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                $(this).find('.nav-tabs a:first').tab('show');
 
-            $('#modalAlumno').modal('hide');
-            limpiar();
+                $('#modalAlumno').modal('hide');
+                limpiar();
 
-            cargaFuncion();
-        },
-        error: function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algunos campos son requeridos!'
-            })
-        }
+                cargaFuncion();
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algunos campos son requeridos!'
+                })
+            }
+        });
     });
-});
 
 });
 /****************************************************************************
                     EDITAR ALUMNO
 ****************************************************************************/
-actualizar.addEventListener("click", function(evento){
+actualizar.addEventListener("click", function(evento) {
     addEdit.submit(function(event) {
-    event.preventDefault();
-    $.ajax({
-        url: url + 'Alumno/Actualizar',
-        data: $("#crearAlumno").serialize(),
-        type: "post",
-        dataType: 'json',
-        success: function(response) {
+        event.preventDefault();
+        $.ajax({
+            url: url + 'Alumno/Actualizar',
+            data: $("#crearAlumno").serialize(),
+            type: "post",
+            dataType: 'json',
+            success: function(response) {
 
-            if (response == 1) {
-               
-                //alert('Actualizado correctamente');
+                if (response == 1) {
+
+                    //alert('Actualizado correctamente');
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Actualizado correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $(this).find('.nav-tabs a:first').tab('show');
+
+                    $('#modalAlumno').modal('hide');
+                    limpiar();
+                    $('.d').css('pointer-events', 'none');
+                    $('.toggle-disabled').prop("disabled", true);
+                    cargaFuncion();
+                }
+            },
+            error: function() {
                 Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Actualizado correctamente',
-                    showConfirmButton: false,
-                    timer: 1500
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algunos campos son requeridos!'
                 })
-                $(this).find('.nav-tabs a:first').tab('show');
-
-            $('#modalAlumno').modal('hide');
-            limpiar();
-             $('.d').css('pointer-events', 'none');
-             $('.toggle-disabled').prop("disabled", true);
-            cargaFuncion();
-            } 
-        },
-        error: function() {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algunos campos son requeridos!'
-            })
-        }
+            }
+        });
     });
-});
- /*NOTA PARA ACTUALIZAR EN LA TABLA DE ALUMNOS SE NESECITA TRAER LA REFERNCIA Y LAS DEMAS */   
+    /*NOTA PARA ACTUALIZAR EN LA TABLA DE ALUMNOS SE NESECITA TRAER LA REFERNCIA Y LAS DEMAS */
 });
 
 //Esta funcion carga una funcion 2 veces en este caso una accion dinamica
@@ -135,7 +135,7 @@ function limpiar() {
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
     $('.toggle-disabled').prop("disabled", true);
-     $('.d').css('pointer-events', 'none');
+    $('.d').css('pointer-events', 'none');
     infoAlumnosLimpiar();
 }
 

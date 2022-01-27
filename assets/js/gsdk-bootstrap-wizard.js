@@ -49,7 +49,7 @@ $(document).ready(function() {
             FECHA_NACIMIENTO: { required: true, min: false, max: false, minEdad: true, maxEdad: true },
             SEXO: { required: true },
             DUI: { required: true, isDUI: true, inDUI: true },
-            NIT: { required: true, isNIT: true, inNIT: true },
+            NIT: { isNIT: true, inNIT: true },
             TELEFONO_FIJO: { required: true, telF: true, inTelF: true },
             TELEFONO_MOVIL: { required: true, telM: true, inTelM: true },
             DEPARTAMENTO: { required: true },
@@ -78,7 +78,7 @@ $(document).ready(function() {
             FECHA_NACIMIENTO_UPDATE: { required: true, min: false, max: false, minEdad: true, maxEdad: true },
             SEXO_UPDATE: { required: true },
             DUI_UPDATE: { required: true, isDUI: true, upDUI: true },
-            NIT_UPDATE: { required: true, isNIT: true, upNIT: true },
+            NIT_UPDATE: { isNIT: true, upNIT: true },
             TELEFONO_FIJO_UPDATE: { required: true, telF: true, upTelF: true },
             TELEFONO_MOVIL_UPDATE: { required: true, telM: true, upTelM: true },
             DEPARTAMENTO_UPDATE: { required: true },
@@ -131,7 +131,6 @@ $(document).ready(function() {
                 inDUI: "Este DUI ya existe!"
             },
             NIT: {
-                required: "NIT requerido.",
                 isNIT: "NIT inv\u00e1lido.",
                 inNIT: "Este NIT ya existe!"
             },
@@ -223,7 +222,6 @@ $(document).ready(function() {
                 upDUI: "Este DUI ya existe!"
             },
             NIT_UPDATE: {
-                required: "NIT requerido.",
                 isNIT: "NIT inv\u00e1lido.",
                 upNIT: "Este NIT ya existe!"
             },

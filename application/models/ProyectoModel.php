@@ -75,13 +75,13 @@ class ProyectoModel extends CI_Model
 						);
 				}
 			}
-			/*else if ($asignatura != 0 && $ciclo != 0)
+			else if ($asignatura != 0 && $ciclo != 0)
 			{
 				$query = $this->db->query(
 					"SELECT * FROM VW_PROYECTO
 					WHERE ID_ASIGNATURA = $asignatura AND CICLO = $ciclo"
 					);
-			}*/
+			}
 		}
 		else
 		{

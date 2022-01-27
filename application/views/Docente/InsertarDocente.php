@@ -111,7 +111,7 @@
                                                         <div class="form-group">
                                                             <label>Número de NIT:</label>
                                                             <input name="NIT" id="NIT" type="text" class="form-control"
-                                                                placeholder="0000-000000-000-0" required>
+                                                                placeholder="0000-000000-000-0">
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1,12 +1,11 @@
             <!--Recursos Diseño y alertas -->
             <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style.css">
 
-            <div class="loader" id="loader">
-                <div class="lds-facebook">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            <div class="lds-ring loader" id="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
 
             <div class="split-screen">
