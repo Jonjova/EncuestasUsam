@@ -3,13 +3,13 @@
 			<?php 
 				require 'application/config/database.php';		
 
-				$sql = "SELECT * FROM vw_asignatura_asignada;";
+				$sql = "SELECT * FROM VW_ASIGNATURA_ASIGNADA;";
 				$resultado = $mysqli->query($sql);
 
-				$sql_c = "SELECT * FROM vw_coordinador_facultad";
+				$sql_c = "SELECT * FROM VW_COORDINADOR_FACULTAD";
 				$resultado_c = $mysqli->query($sql_c);
 
-				$sql_f = "SELECT * FROM vw_facultad";
+				$sql_f = "SELECT * FROM VW_FACULTAD";
 				$resultado_f = $mysqli->query($sql_f);
 
 				$sql_ci = "SELECT id_ciclo, cod_ciclo FROM encuestasusam.tbl_ciclo;";
@@ -54,8 +54,8 @@
 			                <select class="custom-select" id="asignaturaR" name="asignaturaR" required="required">
 			                    <option value="0">Todas</option>
 			                    <?php while ($fila = $resultado->fetch_assoc()) { ?>
-			                    <option value="<?php echo $fila['id_asignatura']; ?>">
-			                        <?php echo $fila['nombre_asignatura']; ?>
+			                    <option value="<?php echo $fila['ID_ASIGNATURA']; ?>">
+			                        <?php echo $fila['NOMBRE_ASIGNATURA']; ?>
 			                    </option>
 			                    <?php } ?>
 			                </select>
@@ -83,7 +83,7 @@
 			                <select class="custom-select" id="coordinadorR" name="coordinadorR" required="required">
 			                    <option value="0">Todos</option>
 			                    <?php while ($fila = $resultado_c->fetch_assoc()) { ?>
-			                    <option value="<?php echo $fila['coordinador']; ?>"><?php echo $fila['n_coordinador']; ?>
+			                    <option value="<?php echo $fila['COORDINADOR']; ?>"><?php echo $fila['N_COORDINADOR']; ?>
 			                    </option>
 			                    <?php } ?>
 			                </select>
@@ -99,7 +99,7 @@
 			                <select class="custom-select" id="facultadR" name="facultadR" required="required">
 			                    <option value="0">Todas</option>
 			                    <?php while ($fila = $resultado_f->fetch_assoc()) { ?>
-			                    <option value="<?php echo $fila['id_facultad']; ?>"><?php echo $fila['nombre_facultad']; ?>
+			                    <option value="<?php echo $fila['ID_FACULTAD']; ?>"><?php echo $fila['NOMBRE_FACULTAD']; ?>
 			                    </option>
 			                    <?php } ?>
 			                </select>
@@ -132,14 +132,17 @@
 			<table id="Proyecto" class="table table-hover table-striped dt-responsive nowrap" style="width:100%;">
 			    <thead style="background-color: #094f8b; color: #fff; font-size: 17px;">
 			        <tr>
-			            <th>Nombre Proyecto </th>
-			            <th>Tipo de investigación</th>
+			            <th>Tema</th>
+						<th>Descripción</th>
+			            <th>Investigación</th>
+						<th>Diseño</th>
 			            <th>Asignatura</th>
-			            <th>Diseño</th>
+						<?php if($this->session->userdata('ID_TIPO_USUARIO') != 4): ?>
+						<th>Docente</th>
+						<?php endif ?>
 			            <th>Alumnos</th>
 			            <th>Estado</th>
-			            <th>Cod Ciclo</th>
-			            <th>Descripción</th>
+			            <th>Ciclo</th>
 			            <th>Fecha Asignación</th>
 			        </tr>
 			    </thead>

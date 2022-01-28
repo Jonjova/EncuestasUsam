@@ -47,9 +47,6 @@ input:checked[type="checkbox"]:before {
     left: 40px;
 }
 
-
-/* Rounded sliders */
-
 .slider.round {
     border-radius: 34px;
 }
@@ -89,9 +86,6 @@ input[type="submit"]:hover {
     outline: 0;
 }
 
-
-/*           Animations              */
-
 .form-control,
 .input-group-addon {
     -webkit-transition: all 300ms linear;
@@ -108,13 +102,7 @@ input[type="submit"]:hover {
 }
 
 .wizard-container {
-    /* padding-top: 100px; */
     z-index: 3;
-    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff; */
 }
 
 .wizard-navigation {
@@ -198,9 +186,6 @@ input[type="submit"]:hover {
     letter-spacing: 1px;
 }
 
-
-/*           Font Smoothing      */
-
 h1,
 .h1,
 h2,
@@ -275,7 +260,6 @@ h3 .small {
 
 .wizard-card .picture-container {
     position: relative;
-    /* cursor: pointer; */
     text-align: center;
 }
 
@@ -354,7 +338,7 @@ h3 .small {
     top: 0px;
     left: 0px;
     color: #FFFFFF;
-    cursor: pointer;
+    cursor: default;
     font-weight: 500;
 }
 
@@ -377,9 +361,6 @@ h3 .small {
     color: #999999;
     font-size: 14px;
 }
-
-
-/*             Inputs               */
 
 .custom-select,
 .form-control {
@@ -563,9 +544,6 @@ fieldset[disabled] .btn-form.active {
     border-color: #094f8b;
 }
 
-
-/*           Buttons fill .btn-fill           */
-
 .btn-fill {
     color: #FFFFFF !important;
     opacity: 1 !important;
@@ -613,12 +591,6 @@ fieldset[disabled] .btn-form.active {
     float: left !important;
 }
 
-
-/*          End Buttons fill          */
-
-
-/*            Navigation menu                */
-
 .nav-pills {
     background-color: #999999;
 }
@@ -640,7 +612,7 @@ fieldset[disabled] .btn-form.active {
     text-align: center;
     color: #FFFFFF !important;
     font-size: 12px;
-    cursor: pointer;
+    cursor: default;
 }
 
 .nav-pills>li>a:focus,
@@ -679,9 +651,6 @@ fieldset[disabled] .btn-form.active {
 .text-danger:hover {
     color: #FF3B30;
 }
-
-
-/*           Labels & Progress-bar              */
 
 label {
     font-weight: 400;

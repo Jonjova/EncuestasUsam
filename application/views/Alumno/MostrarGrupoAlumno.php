@@ -12,8 +12,11 @@
                             <br>
                             <div class="row" style="word-break: break-all;">
                                 <div class="col-sm-12">
-                                    <div id="NOMBRE_PROYECTO" style="width: fit-content; margin: auto;">
+                                    <div id="NOMBRE_PROYECTO" style="text-align: center; width: fit-content; margin: auto; margin-top: 30px;">
 
+                                    </div>
+                                    <div id="NOMBRE_GRUPO_ALUMNO"
+                                        style="text-align: center; width: fit-content; margin: 20px auto 0px auto;">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -29,12 +32,6 @@
                                         </button>
                                         <div id="cont-agregarAlumnoG" style="margin-bottom: 80px;">
                                             <div class="form-group">
-                                                <div id="NOMBRE_GRUPO_ALUMNO"
-                                                    style="width: fit-content; margin: auto; margin-top: 30px; margin-bottom: 50px;">
-                                                </div>
-                                                <!-- <label>Nombre del Grupo:</label>
-                                                <input type="text" id="NOMBRE_GRUPO_ALUMNO"
-                                                    class="form-control mb-2 mr-sm-2 " readonly> -->
                                                 <label>Alumno:</label>
                                                 <select name="ID_ALUMNO_GA[]" id="ALUMNO_GA" title="Selecciona.."
                                                     onblur="validaSelect(this);" data-live-search="true"

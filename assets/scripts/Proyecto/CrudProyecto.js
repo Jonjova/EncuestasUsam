@@ -104,39 +104,6 @@ jQuery.validator.setDefaults({
     }
 });
 
-//aqui se agrega el campo del name
-$("#CrearProyecto").validate({
-    rules: {
-        NOMBRE_PROYECTO: { required: true, minlength: 6, maxlength: 150 },
-        DESCRIPCION: { required: true, minlength: 6, maxlength: 250 },
-        ID_TIPO_INVESTIGACION: { required: true },
-        ID_ASIGNATURA: { required: true },
-        ID_DISENIO_INVESTIGACION: { required: true },
-        FECHA_ASIGNACION: { required: true },
-        ID_GRUPO_ALUMNO: { required: true },
-        CICLO: { required: true }
-    },
-    messages: {
-        NOMBRE_PROYECTO: {
-            required: 'Nombre de Proyecto es requerido.',
-            minlength: 'El mínimo permitido son 6 caracteres.',
-            maxlength: 'El máximo permitido son 150 caracteres.'
-        },
-        DESCRIPCION: {
-            required: 'Descripción es requerido.',
-            minlength: 'El mínimo permitido son 6 caracteres',
-            maxlength: 'El máximo permitido son 250 caracteres.'
-        },
-        ID_TIPO_INVESTIGACION: { required: 'Tipo de investigación es requerido.' },
-        ID_ASIGNATURA: { required: 'Asignatura es requerido.' },
-        ID_DISENIO_INVESTIGACION: { required: 'Diseño de investigación es requerido.' },
-        FECHA_ASIGNACION: { required: 'Fecha es requerido.' },
-        ID_GRUPO_ALUMNO: { required: 'Grupo de alumno es requerido.' },
-        CICLO: { required: 'Ciclo es requerido.' }
-    }
-});
-
-
 /****************************************************************************
                         LLENAR INFORMACION GRUPO
 ****************************************************************************/
@@ -174,7 +141,7 @@ function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
                 integrantes += '<h5 style="color: #999;"><b>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</b></h5>';
             });
             $('#NOMBRE_PROYECTO').html(nombreProyecto);
-            $('#NOMBRE_GRUPO_ALUMNO').html(nombreProyecto + '' + nombreGrupo);
+            $('#NOMBRE_GRUPO_ALUMNO').html(nombreGrupo);
             $('#INTEGRANTES').html(integrantes);
             $('#InfoGrupoAlumno').modal({
                 backdrop: "static",

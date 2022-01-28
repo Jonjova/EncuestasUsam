@@ -260,14 +260,7 @@ $(function() {
                 async: false,
                 dataType: 'json',
                 success: function(msg) {
-                    $('body').removeClass('modal-open');
-                    $('#modalDocente').removeClass('show');
-                    $('.modal-backdrop').removeClass('show');
-                    $('.modal-backdrop').css('display', 'none');
-                    $('#modalDocente').css('display', 'none');
-                    $('#modalDocente').removeAttr('aria-modal', 'true');
-                    $('#modalDocente').removeAttr('role', 'dialog');
-                    $('#modalDocente').attr('aria-hidden', 'true');
+                    $('#modalDocente').modal('hide');
                     $('#Docentes').DataTable().ajax.reload(null, false);
                     Swal.fire({
                         toast: true,

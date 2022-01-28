@@ -11,22 +11,22 @@ class Reportes extends CI_Controller
 
 	public function reportes()
 	{
-		$this->load->view('Reportes/reporteGeneralProy');
+		$this->load->view('Reportes/Proy_General');
 	}
 
 	public function reporte()
 	{
-		$this->load->view('Reportes/reporteProyectos');
+		$this->load->view('Reportes/Proy_AsignaturaCiclo');
 	}
 	
 	public function reporteC()
 	{
-		$this->load->view('Reportes/reporteProyectosC');
+		$this->load->view('Reportes/Proy_Coordinador');
 	} 
 	
 	public function reporteF()
 	{
-		$this->load->view('Reportes/reporteProyectosF');		
+		$this->load->view('Reportes/Proy_Facultad');		
 	}
 
 	public function reporteCI()

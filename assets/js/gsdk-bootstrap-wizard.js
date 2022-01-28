@@ -41,7 +41,7 @@ $(document).ready(function() {
     var $validator = $('.wizard-card form').validate({
         rules: {
             // INSERTAR
-            NOMBRE_PROFESION: { required: true, alfaYespacio: true, minlength: 3, maxlength: 15, inProf: true },
+            NOMBRE_PROFESION: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, inProf: true },
             PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
@@ -69,8 +69,17 @@ $(document).ready(function() {
             COD_CICLO: { required: true, inCiclo: true },
             FECHA_INICIO: { required: true },
             FECHA_FIN: { required: true },
+            // PROYECTO
+            NOMBRE_PROYECTO: { required: true, minlength: 6, maxlength: 255 },
+            DESCRIPCION: { required: true, minlength: 6, maxlength: 255 },
+            ID_TIPO_INVESTIGACION: { required: true },
+            ID_ASIGNATURA: { required: true },
+            ID_DISENIO_INVESTIGACION: { required: true },
+            FECHA_ASIGNACION: { required: true },
+            ID_GRUPO_ALUMNO: { required: true },
+            CICLO: { required: true },
             // ACTUALIZAR
-            NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 15, upProf: true },
+            NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, upProf: true },
             PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             SEGUNDO_NOMBRE_PERSONA_UPDATE: { alfaOespacio: true, minlength: 3, maxlength: 25 },
@@ -94,7 +103,7 @@ $(document).ready(function() {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
                 minlength: 'M\u00ednimo 3 caracteres',
-                maxlength: 'M\u00e1ximo 15 caracteres.',
+                maxlength: 'M\u00e1ximo 100 caracteres.',
                 inProf: 'Profesi\u00f3n ya existe!'
             },
             PRIMER_NOMBRE_PERSONA: {
@@ -180,12 +189,29 @@ $(document).ready(function() {
             },
             FECHA_INICIO: { required: "Fecha inicio requerida." },
             FECHA_FIN: { required: "Fecha fin requerida." },
+            // PROYECTO
+            NOMBRE_PROYECTO: {
+                required: 'Nombre de Proyecto requerido.',
+                minlength: 'El mínimo permitido son 6 caracteres.',
+                maxlength: 'El máximo permitido son 255 caracteres.'
+            },
+            DESCRIPCION: {
+                required: 'Descripción es requerido.',
+                minlength: 'El mínimo permitido son 6 caracteres',
+                maxlength: 'El máximo permitido son 255 caracteres.'
+            },
+            ID_TIPO_INVESTIGACION: { required: 'Tipo de investigación requerido.' },
+            ID_ASIGNATURA: { required: 'Asignatura es requerida.' },
+            ID_DISENIO_INVESTIGACION: { required: 'Diseño de investigación requerido.' },
+            FECHA_ASIGNACION: { required: 'Fecha requerida.' },
+            ID_GRUPO_ALUMNO: { required: 'Grupo de alumno requerido.' },
+            CICLO: { required: 'Ciclo requerido.' },
             // ACTUALIZAR
             NOMBRE_PROFESION_UPDATE: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
                 minlength: 'M\u00ednimo 3 caracteres',
-                maxlength: 'M\u00e1ximo 25 caracteres.',
+                maxlength: 'M\u00e1ximo 100 caracteres.',
                 upProf: 'Profesi\u00f3n ya existe!'
             },
             PRIMER_NOMBRE_PERSONA_UPDATE: {
@@ -263,28 +289,16 @@ $(document).ready(function() {
             var $valid = $('.wizard-card form').valid();
             if (!$valid) {
                 $validator.focusInvalid();
-                //$('#CreateCoordinador').removeClass('was-validated');
-                //$('#CreateDocente').removeClass('was-validated');
                 return false;
             }
-            //$('#CreateCoordinador').addClass('was-validated');
-            //$('#CreateDocente').addClass('was-validated');
-
         },
 
         onInit: function(tab, navigation, index) {
-
-            //check number of tabs and fill the entire row
             var $total = navigation.find('li').length;
             $width = 100 / $total;
             var $wizard = navigation.closest('.wizard-card');
 
             $display_width = $(document).width();
-
-            // if ($display_width < 600 && $total > 3) {
-            //     $width = 50;
-            // }
-
             navigation.find('li').css('width', $width + '%');
             $first_li = navigation.find('li:first-child a').html();
             $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
@@ -294,19 +308,14 @@ $(document).ready(function() {
         },
 
         onTabClick: function(tab, navigation, index) {
-
             var $valid = $('.wizard-card form').valid();
-
-            if (!$valid || $('span').hasClass('text-danger')) {
+            if (!$valid) {
                 $validator.focusInvalid();
-                $('#CreateCoordinador').addClass('was-validated');
-                $('#CreateDocente').addClass('was-validated');
                 return false;
             } else {
-                $('#CreateCoordinador').removeClass('was-validated');
-                $('#CreateDocente').removeClass('was-validated');
                 return true;
             }
+            // return false;
         },
 
         onTabShow: function(tab, navigation, index) {

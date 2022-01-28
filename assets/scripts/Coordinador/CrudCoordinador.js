@@ -222,14 +222,7 @@ $(function() {
                 async: false,
                 dataType: 'json',
                 success: function(msg) {
-                    $('body').removeClass('modal-open');
-                    $('#modalCoordinador').removeClass('show');
-                    $('.modal-backdrop').removeClass('show');
-                    $('.modal-backdrop').css('display', 'none');
-                    $('#modalCoordinador').css('display', 'none');
-                    $('#modalCoordinador').removeAttr('aria-modal', 'true');
-                    $('#modalCoordinador').removeAttr('role', 'dialog');
-                    $('#modalCoordinador').attr('aria-hidden', 'true');
+                    $('#modalCoordinador').modal('hide');
                     $('#Coordinadores').DataTable().ajax.reload(null, false);
                     Swal.fire({
                         toast: true,

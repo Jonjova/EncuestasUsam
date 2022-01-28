@@ -145,33 +145,31 @@ class Proyectos extends CI_Controller
 				if ($_SESSION['ID_TIPO_USUARIO'] != 4)
 				{
 					$result['data'][] = array(
-						// $value['NOMBRE_PROYECTO'],
 						$nombreProy,
+						$descProy,
 						$value['NOMBRE_TIPO_INVESTIGACION'],
-						$value['NOMBRE_ASIGNATURA'],
 						$value['NOMBRE_DISENIO'],
+						$value['NOMBRE_ASIGNATURA'],
+						$value['DOCENTE'],
 						$value['Alumnos']. ' Integrantes &nbsp;'.
 						$btnInfo,
 						$estado,
 						$value['COD_CICLO'],
-						$descProy,
 						$value['FECHA_ASIGNACION']
 						);
 				}
 				else
 				{
 					$result['data'][] = array(
-						// $value['NOMBRE_PROYECTO'],
 						$nombreProy,
+						$descProy,
 						$value['NOMBRE_TIPO_INVESTIGACION'],
-						$value['NOMBRE_ASIGNATURA'],
 						$value['NOMBRE_DISENIO'],
+						$value['NOMBRE_ASIGNATURA'],
 						$value['Alumnos']. ' Integrantes &nbsp;'.
 						$btnInfo,
 						$selectEstado,
 						$value['COD_CICLO'],
-						// $value['DESCRIPCION'],
-						$descProy,
 						$value['FECHA_ASIGNACION']
 						);
 				}
