@@ -141,7 +141,6 @@ class ValidarCampos extends CI_Controller
 		$resultado = $this->modelValidar->findCarnet($valor);
 		if ($resultado)
 		{
-
 			echo 1;
 		}
 		else
@@ -152,7 +151,6 @@ class ValidarCampos extends CI_Controller
 
 	public function ObtenerInfoAlumno()
 	{
-		
 		$valor = $this->input->post('CARNET');
 		$resultado = $this->modelValidar->obtenerInfoAlumno($valor);
 		echo json_encode($resultado);
@@ -272,6 +270,36 @@ class ValidarCampos extends CI_Controller
 	{ 
 		$valor = $this->input->post('CORREO_INSTITUCIONAL_UPDATE');
 		$resultado = $this->modelValidar->cambiarEmailUSAMModel($valor, $idPersona);
+		if ($resultado)
+		{
+			echo 1;
+		}
+		else
+		{
+			echo 0;
+		}
+	}
+
+	// VALIDAR CODIGO ASIGNATURA EXISTENTE
+	public function cambiarCodAsignatura($id)
+	{ 
+		$valor = $this->input->post('CODIGO_ASIGNATURA_UPDATE');
+		$resultado = $this->modelValidar->cambiarCodAsignaturaModel($valor, $id);
+		if ($resultado)
+		{
+			echo 1;
+		}
+		else
+		{
+			echo 0;
+		}
+	}
+
+	// VALIDAR CARNET EXISTENTE
+	public function cambiarCarnet($id)
+	{ 
+		$valor = $this->input->post('CARNET_UPDATE');
+		$resultado = $this->modelValidar->cambiarCarnetModel($valor, $id);
 		if ($resultado)
 		{
 			echo 1;

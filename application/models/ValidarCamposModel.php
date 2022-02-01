@@ -69,7 +69,6 @@ class ValidarCamposModel extends CI_Model
 	{
 		$this->db->where('CARNET', $valor);
 		return $this->db->get('TBL_ALUMNOS')->result();
-	
 	}
 
 	public function obtenerInfoAlumno($valor)
@@ -173,6 +172,30 @@ class ValidarCamposModel extends CI_Model
 	function cambiarEmailUSAMModel($valor, $idPersona)
 	{
 		$query = $this->db->query("SELECT CORREO_INSTITUCIONAL FROM TBL_PERSONA WHERE CORREO_INSTITUCIONAL = '".$valor."' "."AND ID_PERSONA != '".$idPersona."'");
+		if (!$query->result())
+        {
+            return false;
+        }
+        return $query->row();
+	}
+
+	// VALIDAR CODIGO ASIGNATURA
+	function cambiarCodAsignaturaModel($valor, $id)
+	{
+		$query = $this->db->query("SELECT CODIGO_ASIGNATURA FROM TBL_ASIGNATURA WHERE CODIGO_ASIGNATURA = '".$valor."' "."AND ID_ASIGNATURA != '".$id."'");
+		if (!$query->result())
+        {
+            return false;
+        }
+        return $query->row();
+	}
+
+	// VALIDAR CARNET
+	public function cambiarCarnetModel($valor)
+	{
+		// $this->db->where('CARNET', $valor);
+		// return $this->db->get('TBL_ALUMNOS')->result();
+		$query = $this->db->query("SELECT CARNET FROM TBL_ALUMNOS WHERE CARNET = '".$valor."' "."AND ID_ALUMNO != '".$id."'");
 		if (!$query->result())
         {
             return false;

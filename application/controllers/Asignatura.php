@@ -135,13 +135,26 @@ class Asignatura extends CI_Controller
         $resultList = $this->modelAsignatura->mostrarAsignaturaModel($_SESSION['COORDINADOR']);
         $result = array();
         $i = 1;
-        foreach ($resultList as $key => $value)
+        if (!empty($resultList))
         {
-            $result['data'][] = array(
-                    $i++,
-                    $value['CODIGO_ASIGNATURA'],
-                    $value['NOMBRE_ASIGNATURA']
-                );
+            foreach ($resultList as $key => $value)
+            {
+                $btnUpdate = 
+                        '<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerAsignatura('.$value['ID_ASIGNATURA'].');" 
+                            data-toggle="modal" data-target="#modalAsignatura">
+                            <i class="fas fa-pen" title="Actualizar"></i>
+                        </a>';
+                $result['data'][] = array(
+                        $i++,
+                        $value['CODIGO_ASIGNATURA'],
+                        $value['NOMBRE_ASIGNATURA'],
+                        $btnUpdate
+                    );
+            }
+        }
+        else
+        {
+            $result['data']= array();
         }
         echo json_encode($result);
     }
@@ -156,6 +169,11 @@ class Asignatura extends CI_Controller
         {
             foreach ($resultList as $key => $value)
             {
+                $btnUpdate = 
+                    '<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerDocenteAsignatura('.$value['ID_DOCENTE_ASIGNATURA'].');" 
+                        data-toggle="modal" data-target="#modalDocenteAsignatura">
+                        <i class="fas fa-pen" title="Actualizar"></i>
+                    </a>';
                 $result['data'][] = array(
                         $i++,
                         $value['CODIGO_ASIGNATURA'],
@@ -169,6 +187,58 @@ class Asignatura extends CI_Controller
             $result['data']= array();
         }
         echo json_encode($result);
+    }
+
+    // OBTENER ASIGNATURAS
+    public function obtenerAsignatura($id)
+	{
+		$resultData = $this->modelAsignatura->obtenerAsignaturaModel(array('ID_ASIGNATURA' => $id));
+		echo json_encode($resultData);
+	}
+
+    // ACTUALIZAR ASIGNATURAS
+    public function updateAsignatura()
+    {
+        $where = $this->input->post('ID_ASIGNATURA_UPDATE');
+        $datos = array(
+			'CODIGO_ASIGNATURA' => $this->input->post('CODIGO_ASIGNATURA_UPDATE'),
+			'NOMBRE_ASIGNATURA' => $this->input->post('NOMBRE_ASIGNATURA_UPDATE')
+		);
+        $editar = $this->modelAsignatura->updateAsignaturaModel('TBL_ASIGNATURA', $datos, array('ID_ASIGNATURA' => $where));
+        if ($editar == TRUE) 
+        {
+            echo json_encode('Datos actualizados!');
+        }
+        else
+        {
+            echo json_encode('Error al actualizar!');
+        }
+    }
+
+    // OBTENER ASIGNATURAS ASIGNADAS
+    public function obtenerDocenteAsignatura($id)
+	{
+		$resultData = $this->modelAsignatura->obtenerDocenteAsignaturaModel(array('ID_DOCENTE_ASIGNATURA' => $id));
+		echo json_encode($resultData);
+	}
+
+    // ACTUALIZAR ASIGNATURAS ASIGNADAS
+    public function updateDocenteAsignatura()
+    {
+        $where = $this->input->post('ID_DOCENTE_ASIGNATURA_UPDATE');
+        $datos = array(
+			'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA'),
+			'ID_DOCENTE' => $this->input->post('ID_DOCENTE')
+		);
+        $editar = $this->modelAsignatura->updateDocenteAsignaturaModel('TBL_DOCENTE_ASIGNATURA', $datos, array('ID_DOCENTE_ASIGNATURA' => $where));
+        if ($editar == TRUE) 
+        {
+            echo json_encode('Datos actualizados!');
+        }
+        else
+        {
+            echo json_encode('Error al actualizar!');
+        }
     }
 
 }

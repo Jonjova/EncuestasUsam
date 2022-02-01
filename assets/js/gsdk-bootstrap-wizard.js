@@ -41,6 +41,8 @@ $(document).ready(function() {
     var $validator = $('.wizard-card form').validate({
         rules: {
             // INSERTAR
+            CARNET: { required: true, inCarnet: true },
+            CARRERA: { required: true },
             NOMBRE_PROFESION: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, inProf: true },
             PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
@@ -79,6 +81,7 @@ $(document).ready(function() {
             ID_GRUPO_ALUMNO: { required: true },
             CICLO: { required: true },
             // ACTUALIZAR
+            CARNET_UPDATE: { required: true, upCarnet: true },
             NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, upProf: true },
             PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
@@ -95,10 +98,17 @@ $(document).ready(function() {
             CORREO_PERSONAL_UPDATE: { correo: true, correoP: true, upMailPer: true },
             CORREO_INSTITUCIONAL_UPDATE: { required: true, correo: true, correoU: true, upMailIns: true },
             PROFESION_UPDATE: { required: true },
-            COORDINACION_UPDATE: { required: true }
+            COORDINACION_UPDATE: { required: true },
+            CODIGO_ASIGNATURA_UPDATE: { required: true, codAsignatura: true, upCodAsig: true },
+            NOMBRE_ASIGNATURA_UPDATE: { required: true, alfaYespacio: true },
         },
         messages: {
             // INSERTAR
+            CARNET: {
+                required: 'Carnet requerido.',
+                inCarnet: 'Este carnet ya existe!'
+            },
+            CARRERA: { required: 'Carrera requerida.' },
             NOMBRE_PROFESION: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
@@ -207,6 +217,10 @@ $(document).ready(function() {
             ID_GRUPO_ALUMNO: { required: 'Grupo de alumno requerido.' },
             CICLO: { required: 'Ciclo requerido.' },
             // ACTUALIZAR
+            CARNET_UPDATE: {
+                required: 'Carnet requerido.',
+                upCarnet: 'Este carnet ya existe!'
+            },
             NOMBRE_PROFESION_UPDATE: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
@@ -275,7 +289,16 @@ $(document).ready(function() {
                 upMailIns: "Este correo ya existe!"
             },
             PROFESION_UPDATE: { required: "Profesi\u00f3n requerida." },
-            COORDINACION_UPDATE: { required: "Coordinaci\u00f3n requerida." }
+            COORDINACION_UPDATE: { required: "Coordinaci\u00f3n requerida." },
+            CODIGO_ASIGNATURA_UPDATE: {
+                required: "C\u00f3digo requerido.",
+                codAsignatura: "S\u00f3lo letras sin tilde, números o espacios.",
+                upCodAsig: "Este c\u00f3digo ya existe"
+            },
+            NOMBRE_ASIGNATURA_UPDATE: {
+                required: "Nombre requerido.",
+                alfaYespacio: "S\u00f3lo letras o espacios."
+            },
         }
     });
 
@@ -316,6 +339,7 @@ $(document).ready(function() {
                 return true;
             }
             // return false;
+            //
         },
 
         onTabShow: function(tab, navigation, index) {

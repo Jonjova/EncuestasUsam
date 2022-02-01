@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     // MASCARAS DE CAMPOS
     $('#CARNET').mask('999999');
-    $('#CARNET2').mask('999999');
+    $('#CARNET_UPDATE').mask('999999');
     $('#DUI').mask('99999999-9');
     $('#NIT').mask('9999-999999-999-9');
     $('#TELEFONO_FIJO').mask('9999-9999');
@@ -219,6 +219,7 @@ function docente(asignatura) {
         type: 'POST',
         success: function(respuesta) {
             $('#ID_DOCENTE').html(respuesta);
+            $('#ID_DOCENTE_UPDATE').html(respuesta);
         }
     })
 }
@@ -271,6 +272,7 @@ function obtCarrera() {
         success: function(data) {
             // console.log(data);
             $('#CARRERA').html(data);
+            $('#CARRERA_UPDATE').html(data);
         }
     });
 }
@@ -691,16 +693,13 @@ jQuery.validator.addMethod("inCiclo", function(value) {
 
 // VALIDAR CARNET EXISTENTE
 jQuery.validator.addMethod("inCarnet", function(value) {
-    // var resp = false;
+    var resp = false;
     $.ajax({
         type: 'POST',
         url: url + 'ValidarCampos/validarCarnet',
         data: { 'CARNET': value },
-        //dataType: 'json',
         async: false,
         success: function(msg) {
-            // console.log(msg);
-
             if (msg != 0) {
                 resp = false;
             } else {
@@ -710,84 +709,6 @@ jQuery.validator.addMethod("inCarnet", function(value) {
     });
     return resp;
 });
-
-
-// VALIDAR CARNET EXISTENTE (CARGAR DATOS)
-$('#CARNET').change(function() {
-    $.ajax({
-        type: 'POST',
-        url: url + 'ValidarCampos/ObtenerInfoAlumno',
-        dataType: 'json',
-        data: { 'CARNET': $(this).val() },
-        success: function(msg) {
-            //var ob = JSON.parse(msg);
-
-            if (msg != null) {
-                console.log(msg);
-                $('#addAlumno').hide();
-                $('#editAlumno').show();
-                $('#CARNET2').val(msg.CARNET);
-                $('#PRIMER_NOMBRE_PERSONA').val(msg.PRIMER_NOMBRE_PERSONA);
-                $('#SEGUNDO_NOMBRE_PERSONA').val(msg.SEGUNDO_NOMBRE_PERSONA);
-                $('#PRIMER_APELLIDO_PERSONA').val(msg.PRIMER_APELLIDO_PERSONA);
-                $('#SEGUNDO_APELLIDO_PERSONA').val(msg.SEGUNDO_APELLIDO_PERSONA);
-                $('#FECHA_NACIMIENTO_A').val(msg.FECHA_NACIMIENTO);
-                $('#SEXO').val(msg.SEXO);
-                $('#CORREO_PERSONAL').val(msg.CORREO_PERSONAL);
-                $('#TELEFONO_FIJO').val(msg.TELEFONO_FIJO);
-                $('#CARRERA').val(msg.CARRERA);
-                $('#CORREO_INSTITUCIONAL').val(msg.CORREO_INSTITUCIONAL);
-                $('#TELEFONO_MOVIL').val(msg.TELEFONO_MOVIL);
-                $('#DEPARTAMENTO').val(msg.DEPARTAMENTO);
-                $('#DIRECCION').val(msg.DIRECCION);
-                $('#ID_PERSONA').val(msg.ID_PERSONA);
-                $('#ID_ALUMNO').val(msg.ID_ALUMNO);
-                $('#CARNET').hide();
-                $('#CARNET2').show();
-                $('#tituloAddM').hide();
-                $('#tituloEditM').show();
-                //jQuery("#CARNET").replaceWith('<input type="text" placeholder="Ingrese Carnet" id="CARNET2" name="CARNET2" class=" form-control mb-2 mr-sm-2 required" required>');
-
-            } else {
-                infoAlumnosLimpiar();
-                $('#tituloEditM').hide();
-                $('#tituloAddM').show();
-                $('#CARNET').show();
-                $('#CARNET2').hide();
-                $('#addAlumno').show();
-                $('#editAlumno').hide();
-                var validator = $("#crearAlumno").validate();
-                validator.resetForm();
-                $('.form-control').removeClass('is-valid is-invalid');
-                $('.custom-select').removeClass('is-valid is-invalid');
-                $('.toggle-disabled').prop("disabled", true);
-                $('.d').css('pointer-events', 'none');
-
-                //$("#CARNET").off("change");
-            }
-        }
-    });
-});
-
-function infoAlumnosLimpiar() {
-
-    $('#PRIMER_NOMBRE_PERSONA').val('');
-    $('#SEGUNDO_NOMBRE_PERSONA').val('');
-    $('#PRIMER_APELLIDO_PERSONA').val('');
-    $('#SEGUNDO_APELLIDO_PERSONA').val('');
-    $('#FECHA_NACIMIENTO_A').val('');
-    $('#SEXO').val('');
-    // $('#SEXO option:selected').text('Seleccione...').attr("disabled", false);
-    $('#CORREO_PERSONAL').val('');
-    $('#TELEFONO_FIJO').val('');
-    $('#CARRERA').val('');
-    $('#CORREO_INSTITUCIONAL').val('');
-    $('#TELEFONO_MOVIL').val('');
-    $('#DEPARTAMENTO').val('');
-    $('#DIRECCION').val('');
-    $('#ID_PERSONA').val('');
-    $('#ID_ALUMNO').val('');
-}
 
 /****************************************************************************
                 VALIDAR CAMPOS EXISTENTES PARA ACTUALIZAR
@@ -925,6 +846,46 @@ jQuery.validator.addMethod("upMailIns", function(value) {
         type: 'POST',
         url: url + 'ValidarCampos/cambiarEmailUSAM/' + persona,
         data: { 'CORREO_INSTITUCIONAL_UPDATE': value },
+        async: false,
+        success: function(msg) {
+            if (msg != 0) {
+                resp = false;
+            } else {
+                resp = true;
+            }
+        }
+    });
+    return resp;
+});
+
+// VALIDAR CODIGO ASIGNATURA EXISTENTE
+jQuery.validator.addMethod("upCodAsig", function(value) {
+    var id = $('#ID_ASIGNATURA_UPDATE').val();
+    var resp = false;
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarCodAsignatura/' + id,
+        data: { 'CODIGO_ASIGNATURA_UPDATE': value },
+        async: false,
+        success: function(msg) {
+            if (msg != 0) {
+                resp = false;
+            } else {
+                resp = true;
+            }
+        }
+    });
+    return resp;
+});
+
+// VALIDAR CARNET EXISTENTE
+jQuery.validator.addMethod("upCarnet", function(value) {
+    var id = $('#ID_ALUMNO_UPDATE').val();
+    var resp = false;
+    $.ajax({
+        type: 'POST',
+        url: url + 'ValidarCampos/cambiarCodAsignatura/' + id,
+        data: { 'CARNET_UPDATE': value },
         async: false,
         success: function(msg) {
             if (msg != 0) {

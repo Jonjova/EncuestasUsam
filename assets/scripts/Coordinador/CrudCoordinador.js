@@ -111,7 +111,7 @@ $(function() {
                 success: function(msg) {
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',
@@ -178,23 +178,23 @@ function obtenerCoordinador(persona) {
         data: { 'ID_PERSONA': persona },
         dataType: 'json',
         success: function(response) {
-            $('#ID_PERSONA_UPDATE').val(response.ID_PERSONA);
-            $('#PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
-            $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
-            $('#PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
-            $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
-            $('#FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
-            $('#SEXO_UPDATE').val(response.SEXO);
-            $('#DUI_UPDATE').val(response.DUI);
-            $('#NIT_UPDATE').val(response.NIT);
-            $('#CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
-            $('#TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
-            $('#TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
-            $('#DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
-            $('#DIRECCION_UPDATE').val(response.DIRECCION);
-            $('#CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
-            $('#PROFESION_UPDATE').val(response.PROFESION);
-            $('#COORDINACION_UPDATE').val(response.COORDINACION);
+            $('#UpdateCoordinador #ID_PERSONA_UPDATE').val(response.ID_PERSONA);
+            $('#UpdateCoordinador #PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
+            $('#UpdateCoordinador #SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
+            $('#UpdateCoordinador #PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
+            $('#UpdateCoordinador #SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
+            $('#UpdateCoordinador #FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
+            $('#UpdateCoordinador #SEXO_UPDATE').val(response.SEXO);
+            $('#UpdateCoordinador #DUI_UPDATE').val(response.DUI);
+            $('#UpdateCoordinador #NIT_UPDATE').val(response.NIT);
+            $('#UpdateCoordinador #CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
+            $('#UpdateCoordinador #TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
+            $('#UpdateCoordinador #TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
+            $('#UpdateCoordinador #DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
+            $('#UpdateCoordinador #DIRECCION_UPDATE').val(response.DIRECCION);
+            $('#UpdateCoordinador #CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
+            $('#UpdateCoordinador #PROFESION_UPDATE').val(response.PROFESION);
+            $('#UpdateCoordinador #COORDINACION_UPDATE').val(response.COORDINACION);
         }
     })
 }
@@ -226,7 +226,7 @@ $(function() {
                     $('#Coordinadores').DataTable().ajax.reload(null, false);
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',

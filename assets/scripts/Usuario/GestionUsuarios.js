@@ -211,23 +211,23 @@ function obtenerUsuario(persona) {
         dataType: 'json',
         success: function(response) {
             $('#titulo-rol').html(response.NOMBRE_ROL.toUpperCase());
-            $('#ID_PERSONA_UPDATE').val(response.ID_PERSONA);
-            $('#PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
-            $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
-            $('#PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
-            $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
-            $('#FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
-            $('#SEXO_UPDATE').val(response.SEXO);
-            $('#DUI_UPDATE').val(response.DUI);
-            $('#NIT_UPDATE').val(response.NIT);
-            $('#CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
-            $('#TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
-            $('#TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
-            $('#DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
-            $('#DIRECCION_UPDATE').val(response.DIRECCION);
-            $('#CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
-            $('#PROFESION_UPDATE').val(response.PROFESION);
-            $('#ID_TIPO_USUARIO_UPDATE').val(response.ID_TIPO_USUARIO);
+            $('#UpdatePersona #ID_PERSONA_UPDATE').val(response.ID_PERSONA);
+            $('#UpdatePersona #PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
+            $('#UpdatePersona #SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
+            $('#UpdatePersona #PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
+            $('#UpdatePersona #SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
+            $('#UpdatePersona #FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
+            $('#UpdatePersona #SEXO_UPDATE').val(response.SEXO);
+            $('#UpdatePersona #DUI_UPDATE').val(response.DUI);
+            $('#UpdatePersona #NIT_UPDATE').val(response.NIT);
+            $('#UpdatePersona #CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
+            $('#UpdatePersona #TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
+            $('#UpdatePersona #TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
+            $('#UpdatePersona #DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
+            $('#UpdatePersona #DIRECCION_UPDATE').val(response.DIRECCION);
+            $('#UpdatePersona #CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
+            $('#UpdatePersona #PROFESION_UPDATE').val(response.PROFESION);
+            $('#UpdatePersona #ID_TIPO_USUARIO_UPDATE').val(response.ID_TIPO_USUARIO);
         }
     })
 }

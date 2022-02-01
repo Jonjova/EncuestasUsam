@@ -112,7 +112,7 @@ $(function() {
                 success: function(msg) {
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',
@@ -145,7 +145,7 @@ function cambiarEstado(personaUsuario) {
         success: function() {
             Swal.fire({
                 toast: true,
-                timer: 3000,
+                timer: 1500,
                 icon: 'success',
                 position: 'top-end',
                 iconColor: '#3ca230',
@@ -216,23 +216,23 @@ function obtenerDocente(persona) {
         data: { 'ID_PERSONA': persona },
         dataType: 'json',
         success: function(response) {
-            $('#ID_PERSONA_UPDATE').val(response.ID_PERSONA);
-            $('#PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
-            $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
-            $('#PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
-            $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
-            $('#FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
-            $('#SEXO_UPDATE').val(response.SEXO);
-            $('#DUI_UPDATE').val(response.DUI);
-            $('#NIT_UPDATE').val(response.NIT);
-            $('#CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
-            $('#TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
-            $('#TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
-            $('#DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
-            $('#DIRECCION_UPDATE').val(response.DIRECCION);
-            $('#CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
-            $('#PROFESION_UPDATE').val(response.PROFESION);
-            $('#COORDINADOR_UPDATE').val(response.COORDINADOR);
+            $('#UpdateDocente #ID_PERSONA_UPDATE').val(response.ID_PERSONA);
+            $('#UpdateDocente #PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
+            $('#UpdateDocente #SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
+            $('#UpdateDocente #PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
+            $('#UpdateDocente #SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
+            $('#UpdateDocente #FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
+            $('#UpdateDocente #SEXO_UPDATE').val(response.SEXO);
+            $('#UpdateDocente #DUI_UPDATE').val(response.DUI);
+            $('#UpdateDocente #NIT_UPDATE').val(response.NIT);
+            $('#UpdateDocente #CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
+            $('#UpdateDocente #TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
+            $('#UpdateDocente #TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
+            $('#UpdateDocente #DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
+            $('#UpdateDocente #DIRECCION_UPDATE').val(response.DIRECCION);
+            $('#UpdateDocente #CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
+            $('#UpdateDocente #PROFESION_UPDATE').val(response.PROFESION);
+            $('#UpdateDocente #COORDINADOR_UPDATE').val(response.COORDINADOR);
         }
     })
 }
@@ -264,7 +264,7 @@ $(function() {
                     $('#Docentes').DataTable().ajax.reload(null, false);
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',

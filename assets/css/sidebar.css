@@ -263,3 +263,8 @@ table.dataTable>thead .sorting_desc_disabled::after {
     height: calc(100vh - 126px);
     background: #fff
 }
+
+.btn[disabled] {
+    opacity: .65 !important;
+    cursor: not-allowed !important;
+}

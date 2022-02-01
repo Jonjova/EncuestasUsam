@@ -54,7 +54,7 @@ class Alumno extends CI_Controller
 			'SEGUNDO_NOMBRE_PERSONA' => $this->input->post('SEGUNDO_NOMBRE_PERSONA'),
 			'PRIMER_APELLIDO_PERSONA' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
 			'SEGUNDO_APELLIDO_PERSONA' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
-			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO_A'),
+			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO'),
 			'SEXO' => $this->input->post('SEXO'),
 			'CORREO_INSTITUCIONAL' => $this->input->post('CORREO_INSTITUCIONAL'),
 			'CORREO_PERSONAL' => $this->input->post('CORREO_PERSONAL'),
@@ -88,38 +88,31 @@ class Alumno extends CI_Controller
 	public function Actualizar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
-		$wherePersona = $this->input->post('ID_PERSONA');
+		$wherePersona = $this->input->post('ID_PERSONA_UPDATE');
+		$whereAlumno =$this->input->post('ID_ALUMNO_UPDATE');
+
 		$datosPersona = array(
-			//'ID_PERSONA' => $this->maxPersona(),
 			'PRIMER_NOMBRE_PERSONA' => $this->input->post('PRIMER_NOMBRE_PERSONA'),
 			'SEGUNDO_NOMBRE_PERSONA' => $this->input->post('SEGUNDO_NOMBRE_PERSONA'),
 			'PRIMER_APELLIDO_PERSONA' => $this->input->post('PRIMER_APELLIDO_PERSONA'),
 			'SEGUNDO_APELLIDO_PERSONA' => $this->input->post('SEGUNDO_APELLIDO_PERSONA'),
-			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO_A'),
+			'FECHA_NACIMIENTO' => $this->input->post('FECHA_NACIMIENTO'),
 			'SEXO' => $this->input->post('SEXO'),
-			'CORREO_INSTITUCIONAL' => $this->input->post('CORREO_INSTITUCIONAL'),
-			'CORREO_PERSONAL' => $this->input->post('CORREO_PERSONAL'),
+			'CORREO_INSTITUCIONAL' => $this->input->post('CORREO_INSTITUCIONAL_UPDATE'),
+			'CORREO_PERSONAL' => $this->input->post('CORREO_PERSONAL_UPDATE'),
 			'DIRECCION' => $this->input->post('DIRECCION'),
 			'DEPARTAMENTO' => $this->input->post('DEPARTAMENTO'),
-			'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO'),
-			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL'),
-			'PROFESION' => null,
-			'FECHA_CREA' => date('Y-m-d H:m:s')
+			'TELEFONO_FIJO' => $this->input->post('TELEFONO_FIJO_UPDATE'),
+			'TELEFONO_MOVIL' => $this->input->post('TELEFONO_MOVIL_UPDATE')
 			);
-		$whereAlumno =$this->input->post('ID_ALUMNO');
+		
 		$datosAlumno = array( 
-			//'ID_ALUMNO' => $this->maxAlumno(),
-			'CARNET' => $this->input->post('CARNET2'),
-			//'PERSONA' => $this->maxPersona(),
+			'CARNET' => $this->input->post('CARNET_UPDATE'),
 			'CARRERA' => $this->input->post('CARRERA'),
-			'USUARIO_CREA' =>$this->session->userdata('ID_USUARIO')
-			//'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
-        $actualizarPersona = $this->am->actualizarPerson('tbl_persona', $datosPersona, array('ID_PERSONA' => $wherePersona));
-		//$actualizarPersona = $this->am->actualizarPerson($datosPersona);
-		$actualizarAlumno = $this->am->actualizarAlum('tbl_alumnos', $datosAlumno, array('ID_ALUMNO' => $whereAlumno));
-		//$actualizarAlumno = $this->am->actualizarAlum($datosAlumno);
+        $actualizarPersona = $this->am->actualizarPerson('TBL_PERSONA', $datosPersona, array('ID_PERSONA' => $wherePersona));
+		$actualizarAlumno = $this->am->actualizarAlum('TBL_ALUMNOS', $datosAlumno, array('ID_ALUMNO' => $whereAlumno));
 		if ($actualizarPersona == TRUE || $actualizarAlumno == TRUE) 
 		{
 			echo "true";

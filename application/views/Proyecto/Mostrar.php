@@ -115,8 +115,8 @@
 
 			<?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 			<br>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAlumno"><i
-			        class="fas fa-plus-circle"></i> Agregar Estudiante
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateAlumno" id="btnAlumno">
+				<i class="fas fa-plus-circle"></i> Agregar Estudiante
 			</button>
 			<?php endif ?>
 

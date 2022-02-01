@@ -23,7 +23,7 @@ $(function() {
                 success: function(msg) {
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',

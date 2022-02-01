@@ -48,5 +48,33 @@ class AsignaturaModel extends CI_Model
         return $datos->result_array();
     }
 
+    // OBTENER ASIGNATURAS
+    public function obtenerAsignaturaModel($where)
+    {
+        $query = $this->db->select('*')->from('TBL_ASIGNATURA')->where($where)->get();                         
+        return $query->row_array();
+    }
+
+    // ACTUALIZAR ASIGNATURAS ASIGNADAS
+    public function updateAsignaturaModel($tablename, $data, $where)
+    {
+        $query = $this->db->update($tablename, $data, $where);
+        return $query;
+    }
+
+    // OBTENER ASIGNATURAS ASIGNADAS
+    public function obtenerDocenteAsignaturaModel($where)
+    {
+        $query = $this->db->select('*')->from('TBL_DOCENTE_ASIGNATURA')->where($where)->get();                         
+        return $query->row_array();
+    }
+
+    // ACTUALIZAR ASIGNATURAS ASIGNADAS
+    public function updateDocenteAsignaturaModel($tablename, $data, $where)
+    {
+        $query = $this->db->update($tablename, $data, $where);
+        return $query;
+    }
+
 }
 ?>

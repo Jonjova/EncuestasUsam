@@ -1,37 +1,6 @@
 $(document).ready(function() {
     llenarTablaAsignatura();
     llenarTablaDocenteAsignatura();
-
-    // Swal.fire({
-    //     icon: 'error',
-    //     allowEscapeKey: false,
-    //     allowOutsideClick: false,
-    //     confirmButtonColor: "#343a40",
-    //     text: 'Campos vac\u00edos o inv\u00e1lidos!',
-    //     title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
-    // });
-
-    // Swal.fire({
-    //     toast: true,
-    //     //timer: 3000,
-    //     icon: 'success',
-    //     iconColor: '#3ca230',
-    //     position: 'top-end',
-    //     allowEscapeKey: false,
-    //     allowOutsideClick: false,
-    //     showConfirmButton: false,
-    //     title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos actualizados!</p>'
-    // });
-
-    // Swal.fire({
-    //     toast: true,
-    //     icon: 'error',
-    //     iconColor: '#fff',
-    //     background: '#f00',
-    //     title: '<p style="color: #fff; font-size: 1.23em; font-weight: 600; line-height: unset; margin: 0;">asd</p>',
-    //     confirmButtonColor: "#343a40" //verde rgba(60,162,48, 0.5)
-    // }); //box-shadow: 0 0 0 3px celeste rgba(100, 150, 200, 0.5); rojo rgba(242,116,116, 0.5) cafe rgba(146,48,9, 0.5) azul rgba(9,79,139, 0.5)
-
 });
 
 /****************************************************************************
@@ -227,7 +196,7 @@ $(function() {
                 success: function(msg) {
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',
@@ -271,7 +240,7 @@ $(function() {
                 success: function(msg) {
                     Swal.fire({
                         toast: true,
-                        timer: 3000,
+                        timer: 1500,
                         icon: 'success',
                         position: 'top-end',
                         iconColor: '#3ca230',
@@ -293,3 +262,132 @@ $(function() {
         }
     });
 });
+
+/****************************************************************************
+                        OBTENER ASIGNATURA
+****************************************************************************/
+function obtenerAsignatura(asignatura) {
+    $('#UpdateAsignatura .form-control').removeClass('is-valid');
+    $('#UpdateAsignatura .form-control').removeClass('is-invalid');
+    $('#UpdateAsignatura .moving-tab').css('width', '100%');
+    $.ajax({
+        url: url + 'Asignatura/obtenerAsignatura/' + asignatura,
+        method: 'post',
+        dataType: 'json',
+        success: function(response) {
+            $('#ID_ASIGNATURA_UPDATE').val(response.ID_ASIGNATURA);
+            $('#CODIGO_ASIGNATURA_UPDATE').val(response.CODIGO_ASIGNATURA);
+            $('#NOMBRE_ASIGNATURA_UPDATE').val(response.NOMBRE_ASIGNATURA);
+        }
+    });
+}
+
+/****************************************************************************
+                            ACTUALIZAR ASIGNATURA
+****************************************************************************/
+$(function() {
+    $('#UpdateAsignatura').submit(function(event) {
+        if (!$(this).valid()) {
+            Swal.fire({
+                icon: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonColor: "#343a40",
+                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+            });
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: url + 'Asignatura/updateAsignatura',
+                data: $(this).serialize(),
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                success: function(msg) {
+                    $('#modalAsignatura').modal('hide');
+                    $('#Asignaturas').DataTable().ajax.reload(null, false);
+                    Swal.fire({
+                        toast: true,
+                        timer: 1500,
+                        icon: 'success',
+                        position: 'top-end',
+                        iconColor: '#3ca230',
+                        showConfirmButton: false,
+                        title: '<p style="color: #343a40; font-size: 1.3526em; font-weight: 600; line-height: unset; margin: 0;">' + msg + '</p>'
+                    });
+                },
+                error: function(msg) {
+                    console.log(msg);
+                }
+            });
+        }
+    });
+});
+
+/****************************************************************************
+                        OBTENER ASIGNATURA ASIGNADA
+****************************************************************************/
+// function obtenerDocenteAsignatura(id) {
+//     // $('#ID_DOCENTE_UPDATE').html("<option selected disabled value=''>Seleccione...</option>");
+//     // $('#ID_DOCENTE_UPDATE').select2();
+//     docente(0);
+//     $('#ID_DOCENTE').html("<option selected disabled value=''>Seleccione...</option>");
+//     $('#ID_DOCENTE').select2();
+//     $('#UpdateDocenteAsignatura .form-control').removeClass('is-valid');
+//     $('#UpdateDocenteAsignatura .form-control').removeClass('is-invalid');
+//     $('#UpdateDocenteAsignatura .moving-tab').css('width', '100%');
+//     $.ajax({
+//         url: url + 'Asignatura/obtenerDocenteAsignatura/' + id,
+//         method: 'post',
+//         dataType: 'json',
+//         success: function(response) {
+//             $('#ID_DOCENTE_ASIGNATURA_UPDATE').val(response.ID_DOCENTE_ASIGNATURA);
+//             $('#ID_ASIGNATURA').val(response.ID_ASIGNATURA);
+//             //$('#ID_DOCENTE').val(response.ID_DOCENTE);
+//         }
+//     });
+// }
+
+/****************************************************************************
+                            ACTUALIZAR ASIGNATURA ASIGNADA
+****************************************************************************/
+// $(function() {
+//     $('#UpdateDocenteAsignatura').submit(function(event) {
+//         if (!$(this).valid()) {
+//             Swal.fire({
+//                 icon: 'error',
+//                 allowEscapeKey: false,
+//                 allowOutsideClick: false,
+//                 confirmButtonColor: "#343a40",
+//                 text: 'Campos vac\u00edos o inv\u00e1lidos!',
+//                 title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+//             });
+//         } else {
+//             event.preventDefault();
+//             $.ajax({
+//                 url: url + 'Asignatura/updateDocenteAsignatura',
+//                 data: $(this).serialize(),
+//                 type: 'POST',
+//                 async: false,
+//                 dataType: 'json',
+//                 success: function(msg) {
+//                     $('#modalDocenteAsignatura').modal('hide');
+//                     $('#DocentesAsignaturas').DataTable().ajax.reload(null, false);
+//                     Swal.fire({
+//                         toast: true,
+//                         timer: 1500,
+//                         icon: 'success',
+//                         position: 'top-end',
+//                         iconColor: '#3ca230',
+//                         showConfirmButton: false,
+//                         title: '<p style="color: #343a40; font-size: 1.3526em; font-weight: 600; line-height: unset; margin: 0;">' + msg + '</p>'
+//                     });
+//                 },
+//                 error: function(msg) {
+//                     console.log(msg);
+//                 }
+//             });
+//         }
+//     });
+// });
