@@ -379,7 +379,7 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200; //Comprobar 5=5 segundos en lugar de 7200 = 5 minutos 
+$config['sess_expiration'] = 60*5; //Comprobar 5= 5 segundos en lugar de 7200 = 5 minutos 
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;

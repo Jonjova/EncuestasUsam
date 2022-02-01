@@ -23,6 +23,7 @@ class Proyectos extends CI_Controller
 			$this->load->view('Proyecto/Mostrar');
 			$this->load->view('Alumno/insertarAlumno');
 			$this->load->view('Alumno/MostrarGrupoAlumno');
+
 		 	//Footer
 			$this->load->view('Layout/Footer');
 		}
