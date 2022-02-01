@@ -322,7 +322,8 @@
                                                                     <label>Carnet:</label>
                                                                     <input type="text" name="CARNET_UPDATE"
                                                                         id="CARNET_UPDATE" class="form-control"
-                                                                        placeholder="Ingrese Carnet" required>
+                                                                        placeholder="Ingrese Carnet" required >
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">

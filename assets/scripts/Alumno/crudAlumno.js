@@ -201,79 +201,79 @@ $(function() {
                         VALIDACIONES ALUMNO
 ****************************************************************************/
 
-// $("#createAlumno").validate({
-//     rules: {
-//         CARNET: { required: true, inCarnet: false },
-//         PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
-//         PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
-//         SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
-//         SEGUNDO_APELLIDO_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
-//         SEXO: { required: true },
-//         CORREO_PERSONAL: { correo: true, correoP: true, inMailPer: true },
-//         CORREO_INSTITUCIONAL: { required: true, correo: true, correoU: true, inMailIns: true },
-//         TELEFONO_FIJO: { required: true, telF: true, inTelF: true },
-//         TELEFONO_MOVIL: { required: true, telM: true, inTelM: true },
-//         DEPARTAMENTO: { required: true },
-//         DIRECCION: { required: true, minlength: 10, maxlength: 50 },
-//         CARRERA: { required: true },
-//         FECHA_NACIMIENTO_A: { required: true }
-//     },
-//     messages: {
-//         CARNET: {
-//             required: 'Carnet requerido.',
-//             inCarnet: 'Este carnet ya existe!'
-//         },
-//         PRIMER_NOMBRE_PERSONA: {
-//             required: "Nombre requerido.",
-//             alfaOespacio: "S\u00f3lo letras.",
-//             minlength: 'M\u00ednimo 3 caracteres',
-//             maxlength: 'M\u00e1ximo 15 caracteres.'
-//         },
-//         PRIMER_APELLIDO_PERSONA: {
-//             required: "Apellido requerido.",
-//             alfaOespacio: 'S\u00f3lo letras.',
-//             minlength: 'M\u00ednimo 3 caracteres',
-//             maxlength: 'M\u00e1ximo 15 caracteres.'
-//         },
-//         SEGUNDO_NOMBRE_PERSONA: {
-//             alfaOespacio: 'S\u00f3lo letras.',
-//             minlength: 'M\u00ednimo 3 caracteres',
-//             maxlength: 'M\u00e1ximo 15 caracteres.'
-//         },
-//         SEGUNDO_APELLIDO_PERSONA: {
-//             alfaOespacio: 'S\u00f3lo letras.',
-//             minlength: 'M\u00ednimo 3 caracteres',
-//             maxlength: 'M\u00e1ximo 15 caracteres.'
-//         },
-//         SEXO: { required: 'Sexo requerido.' },
-//         CORREO_PERSONAL: {
-//             correo: "Ingrese un correo v\u00e1lido.",
-//             correoP: "Ingrese un correo personal.",
-//             inMailPer: "Este correo ya existe!"
-//         },
-//         CORREO_INSTITUCIONAL: {
-//             required: "Correo institucional requerido.",
-//             correo: "Ingrese un correo v\u00e1lido.",
-//             correoU: "Ingrese un correo institucional.",
-//             inMailIns: "Este correo ya existe!"
-//         },
-//         TELEFONO_FIJO: {
-//             required: "Tel\u00f3fono fijo requerido.",
-//             telF: "Ingrese un tel\u00e9fono fijo",
-//             inTelF: "Este tel\u00e9fono ya existe!"
-//         },
-//         TELEFONO_MOVIL: {
-//             required: "Tel\u00f3fono m\u00f3vil requerido.",
-//             telM: "Ingrese un tel\u00e9fono m\u00f3vil",
-//             inTelM: "Este tel\u00e9fono ya existe!"
-//         },
-//         DEPARTAMENTO: { required: 'Departamento requerido.' },
-//         DIRECCION: {
-//             required: 'Direcci\u00f3n requerida.',
-//             minlength: 'M\u00ednimo 10 caracteres',
-//             maxlength: 'M\u00e1ximo 50 caracteres.'
-//         },
-//         CARRERA: { required: 'Carrera requerida.' },
-//         FECHA_NACIMIENTO_A: { required: 'Fecha requerida.' }
-//     }
-// });
+ $("#updateAlumno").validate({
+     rules: {
+         CARNET_UPDATE: { required: true, upCarnet: true },
+         PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
+         PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
+         SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
+         SEGUNDO_APELLIDO_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
+         SEXO: { required: true },
+         CORREO_PERSONAL: { correo: true, correoP: true, upMailPer: true },
+         CORREO_INSTITUCIONAL_UPDATE: { required: true, correo: true, correoU: true, upMailIns: true },
+         TELEFONO_FIJO_UPDATE: { required: true, telF: true, upTelF: true },
+         TELEFONO_MOVIL_UPDATE: { required: true, telM: true, upTelM: true },
+         DEPARTAMENTO: { required: true },
+         DIRECCION: { required: true, minlength: 10, maxlength: 50 },
+         CARRERA: { required: true },
+         FECHA_NACIMIENTO_A: { required: true }
+     },
+     messages: {
+         CARNET_UPDATE: {
+             required: 'Carnet requerido.',
+             upCarnet: 'Este carnet ya existe!'
+         },
+         PRIMER_NOMBRE_PERSONA: {
+             required: "Nombre requerido.",
+             alfaOespacio: "S\u00f3lo letras.",
+             minlength: 'M\u00ednimo 3 caracteres',
+             maxlength: 'M\u00e1ximo 15 caracteres.'
+         },
+         PRIMER_APELLIDO_PERSONA: {
+             required: "Apellido requerido.",
+             alfaOespacio: 'S\u00f3lo letras.',
+             minlength: 'M\u00ednimo 3 caracteres',
+             maxlength: 'M\u00e1ximo 15 caracteres.'
+         },
+         SEGUNDO_NOMBRE_PERSONA: {
+             alfaOespacio: 'S\u00f3lo letras.',
+             minlength: 'M\u00ednimo 3 caracteres',
+             maxlength: 'M\u00e1ximo 15 caracteres.'
+         },
+         SEGUNDO_APELLIDO_PERSONA: {
+             alfaOespacio: 'S\u00f3lo letras.',
+             minlength: 'M\u00ednimo 3 caracteres',
+             maxlength: 'M\u00e1ximo 15 caracteres.'
+         },
+         SEXO: { required: 'Sexo requerido.' },
+         CORREO_PERSONAL: {
+             correo: "Ingrese un correo v\u00e1lido.",
+             correoP: "Ingrese un correo personal.",
+             upMailPer: "Este correo ya existe!"
+         },
+         CORREO_INSTITUCIONAL_UPDATE: {
+             required: "Correo institucional requerido.",
+             correo: "Ingrese un correo v\u00e1lido.",
+             correoU: "Ingrese un correo institucional.",
+             upMailIns: "Este correo ya existe!"
+         },
+         TELEFONO_FIJO_UPDATE: {
+             required: "Tel\u00f3fono fijo requerido.",
+             telF: "Ingrese un tel\u00e9fono fijo",
+             upTelF: "Este tel\u00e9fono ya existe!"
+         },
+         TELEFONO_MOVIL_UPDATE: {
+             required: "Tel\u00f3fono m\u00f3vil requerido.",
+             telM: "Ingrese un tel\u00e9fono m\u00f3vil",
+             upTelM: "Este tel\u00e9fono ya existe!"
+         },
+         DEPARTAMENTO: { required: 'Departamento requerido.' },
+         DIRECCION: {
+             required: 'Direcci\u00f3n requerida.',
+             minlength: 'M\u00ednimo 10 caracteres',
+             maxlength: 'M\u00e1ximo 50 caracteres.'
+         },
+         CARRERA: { required: 'Carrera requerida.' },
+         FECHA_NACIMIENTO_A: { required: 'Fecha requerida.' }
+     }
+ });
