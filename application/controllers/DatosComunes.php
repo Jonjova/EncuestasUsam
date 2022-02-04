@@ -65,7 +65,7 @@ class DatosComunes extends CI_Controller
 		}
 	}
 
-	// LLENAR SELECT COORDINADOR
+	// LLENAR SELECT COORDINADORES (PARA LLENAR TABLA DE PROYECTOS)
 	public function dropCoordinadores()
 	{
 		$datos = $this->modelDatos->dropCoordinadorModel();
@@ -97,6 +97,8 @@ class DatosComunes extends CI_Controller
 			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
 		}
 	}
+
+	// LLENAR SELECT ASIGNATURA COORDINADOR (PARA LLENAR TABLA DE PROYECTOS)
 	public function dropAsignaturaProy()
 	{
 		echo "<option selected value='0'>Todas...</option>";
@@ -117,6 +119,8 @@ class DatosComunes extends CI_Controller
 			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
 		}
 	}
+
+	// LLENAR SELECT ASIGNATURA DOCENTE (PARA LLENAR TABLA DE PROYECTOS)
 	public function dropAsignaturaAsignadaProy()
 	{
 		echo "<option selected value='0'>Todas...</option>";
@@ -127,7 +131,28 @@ class DatosComunes extends CI_Controller
 		}
 	}
 
-	// LLENAR SELECT DOCENTE
+	// LLENAR SELECT CICLO
+	public function dropCiclo()
+	{
+		$datos = $this->modelDatos->dropCicloModel();
+		foreach ($datos as $c)
+		{
+			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+		}
+	}
+
+	// LLENAR SELECT CICLO (PARA LLENAR TABLA DE PROYECTOS)
+	public function cicloProy()
+	{
+		$datos = $this->modelDatos->cicloProy();
+		echo "<option selected value='0'>Todos...</option>";
+		foreach ($datos as $c)
+		{
+			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+		}
+	}
+
+	// LLENAR SELECT DOCENTE (PARA ASIGNAR ASIGNATURA)
 	public function dropDocente($asignatura)
 	{
 		$datos = $this->modelDatos->dropDocenteModel($asignatura);
@@ -139,22 +164,21 @@ class DatosComunes extends CI_Controller
 	}
 
 	// LLENAR SELECT CARRERA
-	public function Carrera()
+	public function dropCarrera()
 	{
-		$datos = $this->modelDatos->obtCarrer();
+		$datos = $this->modelDatos->dropCarreraModel();
 		echo "<option selected disabled value=''>Seleccione...</option>";
 		foreach ($datos as $ti)
 		{
 			echo "<option value='".$ti['ID_CARRERA']."'>".$ti['NOMBRE_CARRERA']."</option>";
 		}
-		//echo json_encode($datos);
 	}
 
 	// LLENAR SELECT TIPO INVESTIGACION
-	public function obtTipoInvestigacion()
+	public function dropTipoInvestigacion()
 	{
-		$datos = $this->modelDatos->obtTI();
-		echo "<option selected disabled value=''>Seleccionar...</option>";
+		$datos = $this->modelDatos->dropTipoInvestigacionModel();
+		echo "<option selected disabled value=''>Seleccione...</option>";
 		foreach ($datos as $ti)
 		{
 			echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
@@ -162,40 +186,28 @@ class DatosComunes extends CI_Controller
 	}
 
 	// LLENAR SELECT DISEÑO INVESTIGACION
-	public function obtDisenioInvestigacion()
+	public function dropDisenioInvestigacion()
 	{
-		$datos = $this->modelDatos->obtDI();
-		echo "<option selected disabled value=''>Seleccionar...</option>";
+		$datos = $this->modelDatos->dropDisenioInvestigacionModel();
+		echo "<option selected disabled value=''>Seleccione...</option>";
 		foreach ($datos as $di)
 		{
 			echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
 		}
 	}
 
-	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGrupoAlumno($asignatura)
+	// LLENAR SELECT ALUMNOS
+	public function dropAlumnos($asignatura)
 	{
-		$datos = $this->modelDatos->obtGA($asignatura);
+		$datos = $this->modelDatos->dropAlumnosModel($asignatura);
 		echo json_encode($datos);
 	}
 
-	// LLENAR SELECT CICLO
-	public function obtCiclo()
+	// LLENAR SELECT GRUPO ALUMNOS
+	public function dropGrupoAlumno($asignatura)
 	{
-		$datos = $this->modelDatos->obtC();
-		foreach ($datos as $c)
-		{
-			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
-		}
-	}
-	public function cicloProy()
-	{
-		$datos = $this->modelDatos->cicloProy();
-		echo "<option selected value='0'>Todos...</option>";
-		foreach ($datos as $c)
-		{
-			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
-		}
+		$datos = $this->modelDatos->dropGrupoAlumnoModel($asignatura);
+		echo json_encode($datos);
 	}
 	
 }

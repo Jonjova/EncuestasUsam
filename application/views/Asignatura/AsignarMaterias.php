@@ -1,9 +1,7 @@
-            <!--Contenido de desarrollo-->
             <div class="container" id="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2" id="col-wizard">
 
-                        <!--      Wizard container        -->
                         <div class="wizard-container">
 
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
@@ -21,7 +19,6 @@
                                         </ul>
                                     </div>
 
-                                    <!-- DATOS WIZARD -->
                                     <div class="tab-content" id="tab-content">
 
                                         <div class="tab-pane" id="asignatura">
@@ -40,7 +37,7 @@
                                                     <div class="form-group">
                                                         <label>Docente:</label>
                                                         <select name="ID_DOCENTE" id="ID_DOCENTE" class="custom-select"
-                                                            style="font-size: 1rem;" onblur="validaSelect(this);"
+                                                            style="font-size: 1rem; width: 100%;" onblur="validaSelect(this);"
                                                             required>
                                                         </select>
                                                         <input name="USUARIO_CREA" type="hidden"
@@ -53,7 +50,6 @@
                                         </div>
 
                                     </div>
-                                    <!-- FIN DATOS WIZARD -->
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
@@ -66,10 +62,7 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- wizard container -->
 
                     </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!--aqui termina tu contenido de desarrollo-->

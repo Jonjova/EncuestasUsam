@@ -10,13 +10,14 @@ function llenarTablaProyecto(asignatura, ciclo, cod_coordinador, facultad) {
     });
 }
 
-function limpiarAlumno() {
+function limpiarProyecto() {
     $('#CrearProyecto').trigger("reset");
     var validator = $("#CrearProyecto").validate();
     validator.resetForm();
-    $('.form-control').removeClass('is-valid is-invalid');
-    $('.custom-select').removeClass('is-valid is-invalid');
-    infoAlumnosLimpiar();
+    $('#CrearProyecto')[0].reset();
+    $('#CrearProyecto').find('.nav-pills a:first').tab('show');
+    $('#CrearProyecto .form-control').removeClass('is-valid is-invalid');
+    $('#CrearProyecto .custom-select').removeClass('is-valid is-invalid');
 }
 
 /****************************************************************************
@@ -35,10 +36,9 @@ $(function() {
             });
         } else {
             event.preventDefault();
-            $(this).find('.nav-pills a:first').tab('show');
             $.ajax({
                 url: url + 'Proyectos/Guardar',
-                data: $("#CrearProyecto").serialize(),
+                data: $(this).serialize(),
                 type: "post",
                 async: false,
                 dataType: 'json',
@@ -52,8 +52,7 @@ $(function() {
                         showConfirmButton: false,
                         title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos guardados!</p>'
                     });
-                    $('#CrearProyecto')[0].reset();
-                    limpiarAlumno();
+                    limpiarProyecto();
                 },
                 error: function() {
                     Swal.fire({
@@ -68,40 +67,6 @@ $(function() {
         }
     });
 
-});
-
-/****************************************************************************
-                            VALIDACIONES PROYECTO
-****************************************************************************/
-//efecto en los input de la case needs-validation
-jQuery.validator.setDefaults({
-    debug: true,
-    success: "valid",
-    onfocusout: function(e) {
-        this.element(e);
-    },
-    onkeyup: false,
-
-    highlight: function(element) {
-        jQuery(element).closest('.form-control').addClass('is-invalid');
-        jQuery(element).closest('.custom-select').addClass('is-invalid');
-    },
-    unhighlight: function(element) {
-        jQuery(element).closest('.form-control').removeClass('is-invalid');
-        jQuery(element).closest('.form-control').addClass('is-valid');
-        jQuery(element).closest('.custom-select').removeClass('is-invalid');
-        jQuery(element).closest('.custom-select').addClass('is-valid');
-    },
-
-    errorElement: 'div',
-    errorClass: 'invalid-feedback',
-    errorPlacement: function(error, element) {
-        if (element.parent('.input-group-prepend').length) {
-            $(element).siblings(".invalid-feedback").append(error);
-        } else {
-            error.insertAfter(element);
-        }
-    }
 });
 
 /****************************************************************************
@@ -178,7 +143,7 @@ function agregarAlumnoGA() {
     $('#cont-agregarAlumnoG').show();
     $('#ALUMNO_GA').html('');
     $.ajax({
-        url: url + "GrupoAlumno/Alumno/" + $('#ASIGNATURA_AL').val(),
+        url: url + "DatosComunes/dropAlumnos/" + 1,
         type: 'post',
         dataType: 'json',
         cache: false,

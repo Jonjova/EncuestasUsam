@@ -53,18 +53,15 @@
     </nav>
 
     <div class="wrapper">
-        <!-- Sidebar  -->
         <nav id="sidebar">
 
             <div class="image-sidebar">
-                <!-- <h3>Bootstrap Sidebar</h3> -->
                 <img src="<?php echo base_url();?>assets/img/usam.jpg" width="250px" style="" />
             </div>
 
             <ul class="list-unstyled components">
-                <!-- <p>Dummy Heading</p> -->
                 <li class="active">
-                    <a href="<?php echo base_url();?>Accesos/home">
+                    <a href="<?php echo base_url();?>Dashboard">
                         <i class="fas fa-home"></i> Inicio
                     </a>
                 </li>
@@ -101,23 +98,6 @@
                         </li>
                     </ul>
                 </li>
-                <?php endif; ?>
-
-                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2): ?>
-                <!-- <li> 
-                    <a href="#permisosSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-user-shield"></i> Permisos</a>
-                    <ul class="collapse list-unstyled" id="permisosSubmenu">
-                        <li>
-                            <a href="<?php echo base_url();?>Permisos/permisos">
-                                <i class="fas fa-plus-circle"></i> Agregar</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>Permisos/index">
-                                <i class="fas fa-eye"></i> Mostrar</a>
-                        </li>
-                    </ul>
-                </li> -->
                 <?php endif; ?>
 
                 <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
@@ -238,7 +218,7 @@
                         </li>
                         <?php endif; ?>
                         <li>
-                            <a href="<?php echo base_url();?>Proyectos/index">
+                            <a href="<?php echo base_url();?>Proyectos/proyectos">
                                 <i class="fas fa-eye"></i> Ver Proyectos
                             </a>
                         </li>

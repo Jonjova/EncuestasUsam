@@ -11,35 +11,11 @@ class Proyectos extends CI_Controller
 		$this->load->model('GrupoAlumnoModel', 'gam', true);
 	}
 
-	public function index()
-	{
-		if ($this->session->userdata('is_logged'))
-		{
-			$data = array('title' => 'Proyectos' );
-			//header
-			$this->load->view('Layout/Header', $data);
-			//Body
-			$this->load->view('Layout/Sidebar');
-			$this->load->view('Proyecto/Mostrar');
-			$this->load->view('Alumno/insertarAlumno');
-			$this->load->view('Alumno/MostrarGrupoAlumno');
-
-		 	//Footer
-			$this->load->view('Layout/Footer');
-		}
-		else
-		{
-			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
-			redirect('/Accesos/');
-			show_404();
-		}
-	}
-
 	public function proyecto()
 	{
 		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 4)
 		{
-			$data = array('title' => 'Nuevo Proyecto' );
+			$data = array('title' => 'USAM - Nuevo Proyecto' );
 			//header
 			$this->load->view('Layout/Header', $data);
 			//Body
@@ -51,7 +27,30 @@ class Proyectos extends CI_Controller
 		}
 		else
 		{
-			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
+			$this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
+			redirect('/Accesos/');
+			show_404();
+		}
+	}
+
+	public function proyectos()
+	{
+		if ($this->session->userdata('is_logged'))
+		{
+			$data = array('title' => 'USAM - Proyectos' );
+			//header
+			$this->load->view('Layout/Header', $data);
+			//Body
+			$this->load->view('Layout/Sidebar');
+			$this->load->view('Proyecto/Mostrar');
+			$this->load->view('Alumno/insertarAlumno');
+			$this->load->view('Alumno/MostrarGrupoAlumno');
+		 	//Footer
+			$this->load->view('Layout/Footer');
+		}
+		else
+		{
+			$this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
 			redirect('/Accesos/');
 			show_404();
 		}
@@ -131,8 +130,8 @@ class Proyectos extends CI_Controller
 						</a> ';
 				$heightN = strlen($value['NOMBRE_PROYECTO']);
 				$heightD = strlen($value['DESCRIPCION']);
-				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 10).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
-				$descProy = '<textarea class="txt-tbl" style="height: '.($heightD + 10).'px;" readonly>'.$value['DESCRIPCION'].'.</textarea>';
+				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 28).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
+				$descProy = '<textarea class="txt-tbl" style="height: '.($heightD + 28).'px;" readonly>'.$value['DESCRIPCION'].'.</textarea>';
 
 				if ($heightN < 25)
 				{
@@ -177,7 +176,7 @@ class Proyectos extends CI_Controller
 		}
 		else
 		{
-			$result['data']= array();
+			$result['data'] = array();
 		}
 		echo json_encode($result);
 	}

@@ -26,8 +26,8 @@
 \u00cd = Í
 \u00d3 = Ó
 \u00da = Ú
-\u00f1 = ñ
-\u00d1 = Ñ
+\u00f1 = \u00f1
+\u00d1 = \u00f1
 */
 
 searchVisible = 0;
@@ -75,13 +75,13 @@ $(document).ready(function() {
             NOMBRE_PROYECTO: { required: true, minlength: 6, maxlength: 255 },
             DESCRIPCION: { required: true, minlength: 6, maxlength: 255 },
             ID_TIPO_INVESTIGACION: { required: true },
-            ID_ASIGNATURA: { required: true },
             ID_DISENIO_INVESTIGACION: { required: true },
             FECHA_ASIGNACION: { required: true },
             ID_GRUPO_ALUMNO: { required: true },
             CICLO: { required: true },
             // ACTUALIZAR
             CARNET_UPDATE: { required: true, upCarnet: true },
+            CARRERA_UPDATE: { required: true },
             NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, upProf: true },
             PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
@@ -139,7 +139,7 @@ $(document).ready(function() {
                 maxlength: 'M\u00e1ximo 15 caracteres.'
             },
             FECHA_NACIMIENTO: {
-                required: "Fecha de nacimiento requerida.",
+                required: "Fecha nacimiento requerida.",
                 minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
                 maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
             },
@@ -181,7 +181,7 @@ $(document).ready(function() {
             COORDINADOR: { required: "Coordinador requerido." },
             CODIGO_ASIGNATURA: {
                 required: "C\u00f3digo requerido.",
-                codAsignatura: "S\u00f3lo letras sin tilde, números o espacios.",
+                codAsignatura: "S\u00f3lo letras sin tilde, n\u00fameros o espacios.",
                 inCodAsig: "Este c\u00f3digo ya existe"
             },
             NOMBRE_ASIGNATURA: {
@@ -201,26 +201,26 @@ $(document).ready(function() {
             FECHA_FIN: { required: "Fecha fin requerida." },
             // PROYECTO
             NOMBRE_PROYECTO: {
-                required: 'Nombre de Proyecto requerido.',
-                minlength: 'El mínimo permitido son 6 caracteres.',
-                maxlength: 'El máximo permitido son 255 caracteres.'
+                required: 'Tema requerido.',
+                minlength: 'M\u00ednimo 6 caracteres.',
+                maxlength: 'M\u00e1ximo 255 caracteres.'
             },
             DESCRIPCION: {
-                required: 'Descripción es requerido.',
-                minlength: 'El mínimo permitido son 6 caracteres',
-                maxlength: 'El máximo permitido son 255 caracteres.'
+                required: 'Descripci\u00f3n requerida.',
+                minlength: 'El m\u00ednimo 6 caracteres',
+                maxlength: 'El m\u00e1ximo 255 caracteres.'
             },
-            ID_TIPO_INVESTIGACION: { required: 'Tipo de investigación requerido.' },
-            ID_ASIGNATURA: { required: 'Asignatura es requerida.' },
-            ID_DISENIO_INVESTIGACION: { required: 'Diseño de investigación requerido.' },
+            ID_TIPO_INVESTIGACION: { required: 'Tipo de investigaci\u00f3n requerida.' },
+            ID_DISENIO_INVESTIGACION: { required: 'Dise\u00f1o de investigaci\u00f3n requerida.' },
             FECHA_ASIGNACION: { required: 'Fecha requerida.' },
-            ID_GRUPO_ALUMNO: { required: 'Grupo de alumno requerido.' },
+            ID_GRUPO_ALUMNO: { required: 'Grupo requerido.' },
             CICLO: { required: 'Ciclo requerido.' },
             // ACTUALIZAR
             CARNET_UPDATE: {
                 required: 'Carnet requerido.',
                 upCarnet: 'Este carnet ya existe!'
             },
+            CARRERA_UPDATE: { required: 'Carrera requerida.' },
             NOMBRE_PROFESION_UPDATE: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
@@ -251,7 +251,7 @@ $(document).ready(function() {
                 maxlength: 'M\u00e1ximo 25 caracteres.'
             },
             FECHA_NACIMIENTO_UPDATE: {
-                required: "Fecha de nacimiento requerida.",
+                required: "Fecha nacimiento requerida.",
                 minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
                 maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
             },
@@ -292,7 +292,7 @@ $(document).ready(function() {
             COORDINACION_UPDATE: { required: "Coordinaci\u00f3n requerida." },
             CODIGO_ASIGNATURA_UPDATE: {
                 required: "C\u00f3digo requerido.",
-                codAsignatura: "S\u00f3lo letras sin tilde, números o espacios.",
+                codAsignatura: "S\u00f3lo letras sin tilde, n\u00fameros o espacios.",
                 upCodAsig: "Este c\u00f3digo ya existe"
             },
             NOMBRE_ASIGNATURA_UPDATE: {
@@ -369,9 +369,11 @@ $(document).ready(function() {
     if ($(document).width() <= 992) {
         $('#UpdateCoordinador .moving-tab').css('width', '100%');
         $('#UpdateDocente .moving-tab').css('width', '100%');
+        $('#createUpdateAlumno .moving-tab').css('width', '100%');
     } else {
         $('#UpdateCoordinador .moving-tab').css('width', '25%');
         $('#UpdateDocente .moving-tab').css('width', '25%');
+        $('#createUpdateAlumno .moving-tab').css('width', '25%');
     }
 
 });
@@ -381,7 +383,6 @@ $(window).resize(function() {
         $wizard = $(this);
         index = $wizard.bootstrapWizard('currentIndex');
         refreshAnimation($wizard, index);
-
         $('.moving-tab').css({
             'transition': 'transform 0s'
         });
@@ -394,7 +395,6 @@ function refreshAnimation($wizard, index) {
     move_distanceW = $wizard.width() / total_steps;
     step_width = move_distanceW;
     move_distanceW *= index;
-
     move_distanceH = $wizard.find('li').height();
     move_distanceH *= index;
 
@@ -406,7 +406,6 @@ function refreshAnimation($wizard, index) {
             'transition': 'all 0.3s ease-out'
         });
     } else {
-
         $wizard.find('.moving-tab').css('width', step_width);
         $('.wizard-card .wizard-navigation ul li').css('width', width_li + '%');
         $('.moving-tab').css({
@@ -417,11 +416,13 @@ function refreshAnimation($wizard, index) {
 
     if ($(document).width() >= 992 && $(document).width() <= 1200) {
         $('#logo_USAM').css('display', 'none');
+        $('#logo_USAM2').css('display', 'none');
         $('#col_persona').removeClass('col-sm-6');
         $('#col_persona').addClass('col-sm-8');
         $('#col_persona').addClass('col-sm-offset-1');
     } else {
         $('#logo_USAM').css('display', 'block');
+        $('#logo_USAM2').css('display', 'block');
         $('#col_persona').removeClass('col-sm-8');
         $('#col_persona').removeClass('col-sm-offset-1');
         $('#col_persona').addClass('col-sm-6');
@@ -429,5 +430,6 @@ function refreshAnimation($wizard, index) {
 
     if ($(document).width() >= 1200) {
         $('#logo_USAM').css('margin-top', '20px');
+        $('#logo_USAM2').css('margin-top', '30px');
     }
 }

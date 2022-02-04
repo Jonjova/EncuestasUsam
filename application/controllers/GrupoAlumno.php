@@ -10,7 +10,7 @@ class GrupoAlumno extends CI_Controller
 		$this->load->model('GrupoAlumnoModel', 'gam', true);
 	}
 	
-	//CREAR
+	// GUARDAR GRUPO ALUMNO
 	function Guardar()
 	{
 		$grupo = $this->input->post('NOMBRE_GRUPO', TRUE);
@@ -38,20 +38,6 @@ class GrupoAlumno extends CI_Controller
 		}
 	}
 
-	//LLenar select con ajax 
-	public function Alumno($asignatura)
-	{
-		$datos = $this->gam->obtAlumno(isset($asignatura));
-		echo json_encode($datos);
-	}
-
-	//LLenar select con ajax 
-	public function Asignatura()
-	{
-		$datos = $this->gam->obtAdignatura();
-		echo json_encode($datos);
-	}
-
 	//Validar si ya existe en un Grupo el Alumno
 	public function validarGrupoAlumno()
 	{
@@ -59,10 +45,10 @@ class GrupoAlumno extends CI_Controller
 		echo $this->gam->validarGrupo($ga);
 	}
 
-	//Eliminar
+	// ELIMINAR ALUMNO DE UN GRUPO
 	public function eliminarGrupoAlumno($id)
 	{
-		return $this->gam->EliminarGA($id);
+		return $this->gam->eliminarGrupoAlumnoModel($id);
 	}
 	
 }

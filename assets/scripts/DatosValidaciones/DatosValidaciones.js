@@ -2,21 +2,9 @@
                             CARGAR METODOS
 ****************************************************************************/
 $(document).ready(function() {
-
-    // MASCARAS DE CAMPOS
-    $('#CARNET').mask('999999');
-    $('#CARNET_UPDATE').mask('999999');
-    $('#DUI').mask('99999999-9');
-    $('#NIT').mask('9999-999999-999-9');
-    $('#TELEFONO_FIJO').mask('9999-9999');
-    $('#TELEFONO_MOVIL').mask('9999-9999');
-    $('#DUI_UPDATE').mask('99999999-9');
-    $('#NIT_UPDATE').mask('9999-999999-999-9');
-    $('#TELEFONO_FIJO_UPDATE').mask('9999-9999');
-    $('#TELEFONO_MOVIL_UPDATE').mask('9999-9999');
-
     // DROPDOWNS
     llenarDropdowns();
+    mascarasYformatos();
 
     if (window.location.href != url) {
         if (window.location.href != (url + 'Accesos/')) {
@@ -40,14 +28,14 @@ function llenarDropdowns() {
     rol();
     coordinacion();
     coordinador();
-    obtTipoInvestiga();
-    obtDiseInvestiga();
-    obtCicl();
-    obtCarrera();
+    tipoInvestigacion();
+    disenioInvestigacion();
+    ciclo();
+    carrera();
 
     $("#CrearProyecto [name='ID_ASIGNATURA']").change(function() {
-        obtGrupoAlumn($(this).val());
-        obtA($(this).val());
+        grupoAlumno($(this).val());
+        alumnos($(this).val());
     });
     $('#ID_COORDINADOR').change(function() {
         $('#Docentes').dataTable().fnDestroy();
@@ -194,7 +182,7 @@ function asignatura() {
     });
 }
 
-// LLENAR SELECT ASIGNATURA ASIGNADA
+// LLENAR SELECT ASIGNATURA ASIGNADA (PARA CREAR PROYECTO)
 function asignaturaAsignada() {
     $.ajax({
         url: url + 'DatosComunes/dropAsignaturaAsignada',
@@ -225,9 +213,9 @@ function docente(asignatura) {
 }
 
 // LLENAR SELECT TIPO INVESTIGACION
-function obtTipoInvestiga() {
+function tipoInvestigacion() {
     $.ajax({
-        url: url + "DatosComunes/obtTipoInvestigacion",
+        url: url + "DatosComunes/dropTipoInvestigacion",
         type: 'post',
         success: function(respuesta) {
             $('#ID_TIPO_INVESTIGACION').html(respuesta);
@@ -236,9 +224,9 @@ function obtTipoInvestiga() {
 }
 
 // LLENAR SELECT DISENIO INVESTIGACION
-function obtDiseInvestiga() {
+function disenioInvestigacion() {
     $.ajax({
-        url: url + "DatosComunes/obtDisenioInvestigacion",
+        url: url + "DatosComunes/dropDisenioInvestigacion",
         type: 'post',
         success: function(respuesta) {
             $('#ID_DISENIO_INVESTIGACION').html(respuesta);
@@ -247,9 +235,9 @@ function obtDiseInvestiga() {
 }
 
 // LLENAR SELECT CICLO
-function obtCicl() {
+function ciclo() {
     $.ajax({
-        url: url + "DatosComunes/obtCiclo",
+        url: url + "DatosComunes/dropCiclo",
         type: 'post',
         success: function(respuesta) {
             $('#CICLO').html(respuesta);
@@ -265,12 +253,11 @@ function obtCicl() {
 }
 
 // LLENAR SELECT CARRERA
-function obtCarrera() {
+function carrera() {
     $.ajax({
-        url: url + "DatosComunes/Carrera",
+        url: url + "DatosComunes/dropCarrera",
         type: 'post',
         success: function(data) {
-            // console.log(data);
             $('#CARRERA').html(data);
             $('#CARRERA_UPDATE').html(data);
         }
@@ -278,10 +265,10 @@ function obtCarrera() {
 }
 
 // LLENAR SELECT ALUMNOS
-function obtA(asignatura) {
+function alumnos(asignatura) {
     $('#ID_ALUMNO_GA').html('');
     $.ajax({
-        url: url + "GrupoAlumno/Alumno/" + asignatura,
+        url: url + "DatosComunes/dropAlumnos/" + asignatura,
         type: 'post',
         dataType: 'json',
         cache: false,
@@ -297,9 +284,9 @@ function obtA(asignatura) {
 }
 
 // LLENAR SELECT GRUPO ALUMNO
-function obtGrupoAlumn(asignatura) {
+function grupoAlumno(asignatura) {
     $.ajax({
-        url: url + "DatosComunes/obtGrupoAlumno/" + asignatura,
+        url: url + "DatosComunes/dropGrupoAlumno/" + asignatura,
         type: 'post',
         dataType: 'json',
         cache: false,
@@ -314,13 +301,56 @@ function obtGrupoAlumn(asignatura) {
 }
 
 /****************************************************************************
-                            VALIDAR CAMPOS PARA INSERTAR
+                        EFECTO DE LOS INPUTS VALIDADOS
 ****************************************************************************/
+jQuery.validator.setDefaults({
+    debug: true,
+    success: "valid",
+    onfocusout: function(e) {
+        this.element(e);
+    },
+    onkeyup: false,
 
-// NOMBRES Y APELLIDOS VALIDOS (LETRAS, LETRAS CON TILDE, SIN ESPACIO)
-jQuery.validator.addMethod("alfaOespacio", function(value, element) {
-    return this.optional(element) || /^[a-záéíóúüñ]*$/i.test(value);
+    highlight: function(element) {
+        jQuery(element).closest('.form-control').addClass('is-invalid');
+        jQuery(element).closest('.custom-select').addClass('is-invalid');
+    },
+    unhighlight: function(element) {
+        jQuery(element).closest('.form-control').removeClass('is-invalid');
+        jQuery(element).closest('.form-control').addClass('is-valid');
+        jQuery(element).closest('.custom-select').removeClass('is-invalid');
+        jQuery(element).closest('.custom-select').addClass('is-valid');
+    },
+
+    errorElement: 'div',
+    errorClass: 'invalid-feedback',
+    errorPlacement: function(error, element) {
+        if (element.parent('.input-group-prepend').length) {
+            $(element).siblings(".invalid-feedback").append(error);
+        } else {
+            error.insertAfter(element);
+        }
+    }
 });
+
+/****************************************************************************
+                        VALIDAR CAMPOS PARA GRUPO
+****************************************************************************/
+$('#CreateGrupo').validate({
+    rules: {
+        // INSERTAR
+        NOMBRE_GRUPO: { required: true },
+        ID_ALUMNO_GA: { required: true }
+    },
+    messages: {
+        NOMBRE_GRUPO: { required: 'Nombre requerido.' },
+        ID_ALUMNO_GA: { required: 'Alumnos requeridos.' }
+    }
+});
+
+/****************************************************************************
+                        VALIDAR CAMPOS PARA INSERTAR
+****************************************************************************/
 
 // FECHA DE NACIMIENTO VALIDA
 function f_MinEdad(value) {
@@ -361,10 +391,68 @@ function f_MaxEdad(value) {
     }
 }
 
-$('#FECHA_NACIMIENTO').prop('min', f_MinEdad(1));
-$('#FECHA_NACIMIENTO').prop('max', f_MaxEdad(1));
-$('#FECHA_NACIMIENTO_UPDATE').prop('min', f_MinEdad(1));
-$('#FECHA_NACIMIENTO_UPDATE').prop('max', f_MaxEdad(1));
+function mascarasYformatos() {
+    // MASCARAS DE CAMPOS
+    $('#CARNET').mask('999999');
+    $('#CARNET_UPDATE').mask('999999');
+    $('#DUI').mask('99999999-9');
+    $('#NIT').mask('9999-999999-999-9');
+    $('#TELEFONO_FIJO').mask('9999-9999');
+    $('#TELEFONO_MOVIL').mask('9999-9999');
+    $('#DUI_UPDATE').mask('99999999-9');
+    $('#NIT_UPDATE').mask('9999-999999-999-9');
+    $('#TELEFONO_FIJO_UPDATE').mask('9999-9999');
+    $('#TELEFONO_MOVIL_UPDATE').mask('9999-9999');
+
+    // FECHA EDAD
+    $('#FECHA_NACIMIENTO').prop('min', f_MinEdad(1));
+    $('#FECHA_NACIMIENTO').prop('max', f_MaxEdad(1));
+    $('#FECHA_NACIMIENTO_UPDATE').prop('min', f_MinEdad(1));
+    $('#FECHA_NACIMIENTO_UPDATE').prop('max', f_MaxEdad(1));
+
+    // FORMATO DE NOMBRES, APELLIDOS Y CODIGO DE ASIGNATURA
+    $('#PRIMER_NOMBRE_PERSONA').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#PRIMER_APELLIDO_PERSONA').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#SEGUNDO_NOMBRE_PERSONA').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#SEGUNDO_APELLIDO_PERSONA').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#CODIGO_ASIGNATURA').keyup(function() {
+        $(this).val($(this).val().toUpperCase());
+    });
+
+    // FORMATO DE NOMBRES, APELLIDOS Y CODIGO DE ASIGNATURA
+    $('#PRIMER_NOMBRE_PERSONA_UPDATE').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#PRIMER_APELLIDO_PERSONA_UPDATE').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#SEGUNDO_NOMBRE_PERSONA_UPDATE').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+
+    $('#SEGUNDO_APELLIDO_PERSONA_UPDATE').keyup(function() {
+        $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
+    });
+}
+
+// NOMBRES Y APELLIDOS VALIDOS (LETRAS, LETRAS CON TILDE, SIN ESPACIO)
+jQuery.validator.addMethod("alfaOespacio", function(value, element) {
+    return this.optional(element) || /^[a-záéíóúüñ]*$/i.test(value);
+});
 
 jQuery.validator.addMethod("minEdad", function(value, element) {
     return this.optional(element) || (value >= f_MinEdad(1));
@@ -472,44 +560,6 @@ jQuery.validator.addMethod("codAsignatura", function(value, element) {
 // NOMBRE ASIGNATURA VALIDO (LETRAS, LETRAS CON TILDE Y ESPACIO)
 jQuery.validator.addMethod("alfaYespacio", function(value, element) {
     return this.optional(element) || /^[ a-záéíóúüñ]*$/i.test(value);
-});
-
-// FORMATO DE NOMBRES, APELLIDOS Y CODIGO DE ASIGNATURA
-$('#PRIMER_NOMBRE_PERSONA').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#PRIMER_APELLIDO_PERSONA').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#SEGUNDO_NOMBRE_PERSONA').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#SEGUNDO_APELLIDO_PERSONA').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#CODIGO_ASIGNATURA').keyup(function() {
-    $(this).val($(this).val().toUpperCase());
-});
-
-// FORMATO DE NOMBRES, APELLIDOS Y CODIGO DE ASIGNATURA
-$('#PRIMER_NOMBRE_PERSONA_UPDATE').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#PRIMER_APELLIDO_PERSONA_UPDATE').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#SEGUNDO_NOMBRE_PERSONA_UPDATE').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
-});
-
-$('#SEGUNDO_APELLIDO_PERSONA_UPDATE').keyup(function() {
-    $(this).val($(this).val().slice(0, 1).toUpperCase() + $(this).val().slice(1).toLowerCase());
 });
 
 /****************************************************************************
@@ -884,7 +934,7 @@ jQuery.validator.addMethod("upCarnet", function(value) {
     var resp = false;
     $.ajax({
         type: 'POST',
-        url: url + 'ValidarCampos/cambiarCodAsignatura/' + id,
+        url: url + 'ValidarCampos/cambiarCarnet/' + id,
         data: { 'CARNET_UPDATE': value },
         async: false,
         success: function(msg) {

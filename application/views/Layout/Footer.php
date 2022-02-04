@@ -121,9 +121,6 @@
 <!--CRUD ALUMNO-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Alumno/crudAlumno.js"></script>
 
-<!--CRUD PERMISOS-->
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Permisos/crudPermisos.js"></script>
-
 <!--GESTION BITACORA-->
 <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/Bitacora/GestionBitacora.js"></script>
 

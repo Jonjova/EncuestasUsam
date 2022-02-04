@@ -17,7 +17,7 @@ class Asignatura extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
-            $data = array('title' => 'Nueva Asignatura' );
+            $data = array('title' => 'USAM - Nueva Asignatura' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');
@@ -39,7 +39,7 @@ class Asignatura extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
-            $data = array('title' => 'Nueva Asignación' );
+            $data = array('title' => 'USAM - Nueva Asignaci&oacute;n' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');
@@ -61,7 +61,7 @@ class Asignatura extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
-            $data = array('title' => 'Asignaturas' );
+            $data = array('title' => 'USAM - Asignaturas' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');
@@ -83,7 +83,7 @@ class Asignatura extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 3)
         {
             //header
-            $data = array('title' => 'Asignadas' );
+            $data = array('title' => 'USAM - Asignadas' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');

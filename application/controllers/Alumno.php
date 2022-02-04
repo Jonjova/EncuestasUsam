@@ -45,6 +45,7 @@ class Alumno extends CI_Controller
 		}
 	}
 
+	// GUARDAR ALUMNO
 	public function Guardar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
@@ -84,7 +85,7 @@ class Alumno extends CI_Controller
 		}
 	}
 
-	//Metodo Actualizar 
+	// ACTUALIZAR ALUMNO
 	public function Actualizar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA

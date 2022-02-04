@@ -15,7 +15,7 @@ class Bitacora extends CI_Controller
 	public function verBitacora()
 	{
 		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1){
-			$data = array('title' => 'Bitacora' );
+			$data = array('title' => 'USAM - Bitacora' );
 			//header
 			$this->load->view('Layout/Header', $data);
 			//Body

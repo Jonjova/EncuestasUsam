@@ -71,7 +71,8 @@ class ValidarCamposModel extends CI_Model
 		return $this->db->get('TBL_ALUMNOS')->result();
 	}
 
-	public function obtenerInfoAlumno($valor)
+	// CARGAR DATOS DE ALUMNO
+	public function obtenerInfoAlumnoModel($valor)
 	{
 		$this->db->select(
 							'a.CARNET, b.PRIMER_NOMBRE_PERSONA, b.SEGUNDO_NOMBRE_PERSONA, b.PRIMER_APELLIDO_PERSONA, 
@@ -191,10 +192,8 @@ class ValidarCamposModel extends CI_Model
 	}
 
 	// VALIDAR CARNET
-	public function cambiarCarnetModel($valor)
+	public function cambiarCarnetModel($valor, $id)
 	{
-		// $this->db->where('CARNET', $valor);
-		// return $this->db->get('TBL_ALUMNOS')->result();
 		$query = $this->db->query("SELECT CARNET FROM TBL_ALUMNOS WHERE CARNET = '".$valor."' "."AND ID_ALUMNO != '".$id."'");
 		if (!$query->result())
         {

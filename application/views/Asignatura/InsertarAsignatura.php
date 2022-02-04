@@ -1,9 +1,7 @@
-            <!--Contenido de desarrollo-->
             <div class="container" id="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2" id="col-wizard">
 
-                        <!--      Wizard container        -->
                         <div class="wizard-container">
 
                             <div class="card wizard-card" data-color="blue" id="wizardProfile">
@@ -22,10 +20,8 @@
                                         </ul>
                                     </div>
 
-                                    <!-- DATOS WIZARD -->
                                     <div class="tab-content" id="tab-content">
 
-                                        <!-- DATOS PERSONALES -->
                                         <div class="tab-pane" id="datosAsignatura">
                                             <div class="row" style="display: block;">
                                                 <h4 class="info-text"> Datos de la Asignatura </h4>
@@ -41,7 +37,6 @@
                                                         <input name="USUARIO_CREA" type="hidden" value="<?=$this->session->userdata('ID_USUARIO')?>">
                                                         <input name="FECHA_CREA" type="hidden" value="<?php echo date('Y/m/d'); ?>">
                                                     </div>
-                                                    <!-- ID COORDINADOR -->
                                                     <?php if($this->session->userdata('ID_TIPO_USUARIO') == 1): ?>
                                                         <div class="form-group">
                                                             <label>Coordinador:</label>
@@ -57,7 +52,6 @@
                                         </div>
 
                                     </div>
-                                    <!-- FIN DATOS WIZARD -->
 
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
@@ -69,10 +63,7 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- wizard container -->
 
                     </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!--aqui termina tu contenido de desarrollo-->

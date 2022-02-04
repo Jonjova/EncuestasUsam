@@ -127,35 +127,35 @@ class DatosComunesModel extends CI_Model
 			'SELECT * FROM VW_DROP_DOCENTES
 			WHERE ID_DOCENTE NOT IN 
 				(
-					SELECT ID_DOCENTE FROM tbl_docente_asignatura 
+					SELECT ID_DOCENTE FROM TBL_DOCENTE_ASIGNATURA 
 					WHERE ID_ASIGNATURA = '.$asignatura.'
 				);');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT CARRERA
-	public function obtCarrer()
+	public function dropCarreraModel()
 	{
 		$datos = $this->db->get('CAT_CARRERA');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT TIPO INVESTIGACION
-	public function obtTI()
+	public function dropTipoInvestigacionModel()
 	{
 		$datos = $this->db->get('CAT_TIPO_INVESTIGACION');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT DISEÑO INVESTIGACION
-	public function obtDI()
+	public function dropDisenioInvestigacionModel()
 	{
 		$datos = $this->db->get('CAT_DISENIO_INVESTIGACION');
 		return $datos->result_array();
 	}
 
 	// LLENAR SELECT CICLO
-	public function obtC()
+	public function dropCicloModel()
 	{
 		$datos = $this->db->query(
 			'SELECT * FROM TBL_CICLO 
@@ -168,10 +168,29 @@ class DatosComunesModel extends CI_Model
 		return $datos->result_array();
 	}
 
-	// LLENAR SELECT GRUPO ALUMNOS
-	public function obtGA($asignatura)
+	// LLENAR SELECT ALUMNOS
+	public function dropAlumnosModel($asignatura)
 	{
-		//$datos = $this->db->get('tbl_grupo');
+		$datos = $this->db->query(
+			"SELECT ta.ID_ALUMNO, ta.CARNET, tp.PRIMER_NOMBRE_PERSONA, tp.SEGUNDO_NOMBRE_PERSONA,
+				tp.PRIMER_APELLIDO_PERSONA , tp.SEGUNDO_APELLIDO_PERSONA
+			FROM TBL_ALUMNOS AS ta
+				INNER JOIN TBL_PERSONA AS tp ON tp.ID_PERSONA = ta.PERSONA
+			WHERE ta.ID_ALUMNO NOT IN
+				(
+					SELECT tga.ID_DET_ALUMNO
+					FROM TBL_GRUPO_ALUMNO AS tga
+						INNER JOIN TBL_GRUPO AS tg ON tg.ID_GRUPO_ALUMNO = tga.ID_DET_GRUPO
+						INNER JOIN TBL_CICLO AS tc ON tc.ID_CICLO = tg.CICLO
+					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO) AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN) AND tg.ID_ASIGNATURA = $asignatura
+				)
+			ORDER BY ta.ID_ALUMNO DESC;");
+		return $datos->result_array();
+	}
+
+	// LLENAR SELECT GRUPO ALUMNOS
+	public function dropGrupoAlumnoModel($asignatura)
+	{
 		$datos = $this->db->query(
 			"SELECT tg.ID_GRUPO_ALUMNO, tg.NOMBRE_GRUPO
 			FROM TBL_GRUPO AS tg

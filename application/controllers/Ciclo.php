@@ -17,7 +17,7 @@ class Ciclo extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 2)
         {
             //header
-            $data = array('title' => 'Nueva Ciclo' );
+            $data = array('title' => 'USAM - Nuevo Ciclo' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');
@@ -33,29 +33,7 @@ class Ciclo extends CI_Controller
         }
     }
 
-    // VISTA MOSTRAR CICLO
-    public function ciclos()
-    {
-        if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 2)
-        {
-            //header
-            $data = array('title' => 'Asignaturas' );
-            $this->load->view('Layout/Header', $data);
-            //Body
-            $this->load->view('Layout/Sidebar');
-            $this->load->view('Ciclo/MostrarCiclo');
-            //Footer
-            $this->load->view('Layout/Footer');
-        }
-        else
-        {
-            $this->session->set_flashdata('msjerror', 'Usted no se ha identificado.');
-            redirect('/Accesos/');
-            show_404();
-        }
-    }
-
-    // ID PERSONA
+    // ID CICLO
     public function maxCiclo()
     {
         $id = $this->modelDatos->maxCicloModel();

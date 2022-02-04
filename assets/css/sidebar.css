@@ -243,6 +243,10 @@ table.dataTable>thead .sorting_desc_disabled::after {
     font-size: 95%;
 }
 
+textarea {
+    resize: none;
+}
+
 .txt-tbl {
     /* font-family: 'Roboto', Arial, sans-serif; */
     text-align: center;
@@ -252,7 +256,6 @@ table.dataTable>thead .sorting_desc_disabled::after {
     font-size: 16px;
     outline: none;
     border: none;
-    resize: none;
     width: 200px;
 }
 

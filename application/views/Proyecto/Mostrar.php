@@ -6,13 +6,13 @@
 				$sql = "SELECT * FROM VW_ASIGNATURA_ASIGNADA;";
 				$resultado = $mysqli->query($sql);
 
-				$sql_c = "SELECT * FROM VW_COORDINADOR_FACULTAD";
+				$sql_c = "SELECT * FROM VW_COORDINADOR_FACULTAD;";
 				$resultado_c = $mysqli->query($sql_c);
 
-				$sql_f = "SELECT * FROM VW_FACULTAD";
+				$sql_f = "SELECT * FROM VW_FACULTAD;";
 				$resultado_f = $mysqli->query($sql_f);
 
-				$sql_ci = "SELECT id_ciclo, cod_ciclo FROM encuestasusam.tbl_ciclo;";
+				$sql_ci = "SELECT * FROM TBL_CICLO;";
 				$resultado_ci = $mysqli->query($sql_ci);
 			?>
 
@@ -65,7 +65,7 @@
 			                <select class="custom-select" id="cicloR" name="cicloR" required>
 			                    <option value="0">Todos</option>
 			                    <?php while ($fila = $resultado_ci->fetch_assoc()) { ?>
-			                    <option value="<?php echo $fila['id_ciclo']; ?>"><?php echo $fila['cod_ciclo']; ?>
+			                    <option value="<?php echo $fila['ID_CICLO']; ?>"><?php echo $fila['COD_CICLO']; ?>
 			                    </option>
 			                    <?php } ?>
 			                </select>
@@ -115,7 +115,7 @@
 
 			<?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
 			<br>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateAlumno" id="btnAlumno">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAlumno" id="btnAlumno">
 				<i class="fas fa-plus-circle"></i> Agregar Estudiante
 			</button>
 			<?php endif ?>

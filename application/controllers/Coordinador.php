@@ -17,7 +17,7 @@ class Coordinador extends CI_Controller
 		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2))
 		{
 			//header
-			$data = array('title' => 'Nuevo Coordinador' );
+			$data = array('title' => 'USAM - Nuevo Coordinador' );
 			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
@@ -39,7 +39,7 @@ class Coordinador extends CI_Controller
 		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 2))
 		{
 			//header
-			$data = array('title' => 'Coordinadores' );
+			$data = array('title' => 'USAM - Coordinadores' );
 			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');

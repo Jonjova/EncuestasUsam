@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller
 		if ($this->session->userdata('is_logged'))
 		{
 			//header
-			$data = array('title' => 'Bienvenido' );
+			$data = array('title' => 'USAM - Inicio' );
 			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
@@ -26,7 +26,6 @@ class Dashboard extends CI_Controller
 		{
 			$this->session->set_flashdata('msjerror','Usted no se ha identificado.');
 			redirect('/Accesos/');
-			//show_404();
 		}
 	}
 }

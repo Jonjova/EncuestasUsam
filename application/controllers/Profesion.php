@@ -15,7 +15,7 @@ class Profesion extends CI_Controller
     {
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
-            $data = array('title' => 'Nueva Profesión' );
+            $data = array('title' => 'USAM - Nueva Profesión' );
             $this->load->view('Layout/Header', $data);
             $this->load->view('Layout/Sidebar');
             $this->load->view('Profesion/InsertarProfesion');
@@ -33,7 +33,7 @@ class Profesion extends CI_Controller
     {
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
-            $data = array('title' => 'Profesiones' );
+            $data = array('title' => 'USAM - Profesiones' );
             $this->load->view('Layout/Header', $data);
             $this->load->view('Layout/Sidebar');
             $this->load->view('Profesion/MostrarProfesiones');

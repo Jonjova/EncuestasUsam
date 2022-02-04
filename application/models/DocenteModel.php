@@ -69,7 +69,7 @@ class DocenteModel extends CI_Model
 	// OBTENER ESTADO DOCENTES
 	public function getEstadoModel($where)
 	{
-		$estatus = $this->db->query('SELECT `ESTADO_PERMISO` FROM `tbl_usuario` WHERE `ID_USUARIO` = '.$where.'');
+		$estatus = $this->db->query('SELECT `ESTADO_PERMISO` FROM `TBL_USUARIO` WHERE `ID_USUARIO` = '.$where.'');
 		return $estatus->result_array();
 	}
 

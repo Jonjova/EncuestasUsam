@@ -2,8 +2,7 @@
                 <div class="modal-dialog  modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #094f8b; color: #fff;">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Información del grupo</h5>
-                            <div id="msg"></div>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Informaci&oacute;n del grupo</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i class="fas fa-times-circle text-white"></i></span>
                             </button>
@@ -12,8 +11,8 @@
                             <br>
                             <div class="row" style="word-break: break-all;">
                                 <div class="col-sm-12">
-                                    <div id="NOMBRE_PROYECTO" style="text-align: center; width: fit-content; margin: auto; margin-top: 30px;">
-
+                                    <div id="NOMBRE_PROYECTO"
+                                        style="text-align: center; width: fit-content; margin: auto; margin-top: 30px;">
                                     </div>
                                     <div id="NOMBRE_GRUPO_ALUMNO"
                                         style="text-align: center; width: fit-content; margin: 20px auto 0px auto;">
@@ -35,12 +34,12 @@
                                                 <label>Alumno:</label>
                                                 <select name="ID_ALUMNO_GA[]" id="ALUMNO_GA" title="Selecciona.."
                                                     onblur="validaSelect(this);" data-live-search="true"
-                                                    class="bootstrap-select strings show-tick " multiple
+                                                    class="bootstrap-select strings show-tick" multiple
                                                     data-width="100%" required>
                                                 </select>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="width: 100%;"
-                                                id="">Guardar</button>
+                                            <button type="submit" class="btn btn-success"
+                                                style="width: 100%;" >Guardar</button>
                                         </div>
                                     </form>
                                 </div>

@@ -18,6 +18,7 @@ class ProyectoModel extends CI_Model
 		}
 	}
 	
+	// MOSTRAR PROYECTOS
 	public function mostrarProyect($asignatura, $ciclo, $coordinador, $docente, $tipoUser, $facultad)
 	{
 		if ($tipoUser == 3 || $tipoUser == 4)
@@ -131,7 +132,7 @@ class ProyectoModel extends CI_Model
 		return $query->result_array();
 	}
 
-	// INFORMACION grupo alumno
+	// INFORMACION GRUPOS
     public function datosGrupoAlumnoModel($where)
     {
         $query = $this->db->select('*')->from('VW_INFO_GRUPO')->where($where)->get();

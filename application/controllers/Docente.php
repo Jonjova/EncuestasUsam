@@ -17,7 +17,7 @@ class Docente extends CI_Controller
 		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
 			//header
-			$data = array('title' => 'Nuevo Docente' );
+			$data = array('title' => 'USAM - Nuevo Docente' );
 			$this->load->view('Layout/Header', $data);
 			//Body
 			$this->load->view('Layout/Sidebar');
@@ -38,7 +38,7 @@ class Docente extends CI_Controller
 	{
 		if ($this->session->userdata('is_logged') && ($this->session->userdata('ID_TIPO_USUARIO') == 1 || $this->session->userdata('ID_TIPO_USUARIO') == 3))
 		{
-			$data = array('title' => 'Docentes' );
+			$data = array('title' => 'USAM - Docentes' );
 			//header
 			$this->load->view('Layout/Header', $data);
 			//Body

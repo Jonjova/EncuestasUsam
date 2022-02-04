@@ -16,7 +16,7 @@ class Usuario extends CI_Controller
 	{
 		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
-			$data = array('title' => 'Nuevo Usuario' );
+			$data = array('title' => 'USAM - Nuevo Usuario' );
 			//header
 			$this->load->view('Layout/Header', $data);
 			//Body
@@ -38,7 +38,7 @@ class Usuario extends CI_Controller
 	{
 		if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
 		{
-			$data = array('title' => 'Usuarios' );
+			$data = array('title' => 'USAM - Usuarios' );
 			//header
 			$this->load->view('Layout/Header', $data);
 			//Body

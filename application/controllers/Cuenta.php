@@ -16,7 +16,7 @@ class Cuenta extends CI_Controller
         if ($this->session->userdata('is_logged') && $this->session->userdata('ID_TIPO_USUARIO') == 1)
         {
             //header
-            $data = array('title' => 'Actualizar Mis Datos' );
+            $data = array('title' => 'USAM - Actualizar Mis Datos' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');
@@ -38,7 +38,7 @@ class Cuenta extends CI_Controller
         if ($this->session->userdata('is_logged'))
         {
             //header
-            $data = array('title' => 'Contraseña' );
+            $data = array('title' => 'USAM - Contraseña' );
             $this->load->view('Layout/Header', $data);
             //Body
             $this->load->view('Layout/Sidebar');

@@ -149,10 +149,11 @@ class ValidarCampos extends CI_Controller
 		}
 	}
 
-	public function ObtenerInfoAlumno()
+	// CARGAR DATOS DE ALUMNO
+	public function obtenerInfoAlumno()
 	{
 		$valor = $this->input->post('CARNET');
-		$resultado = $this->modelValidar->obtenerInfoAlumno($valor);
+		$resultado = $this->modelValidar->obtenerInfoAlumnoModel($valor);
 		echo json_encode($resultado);
 	}
 
