@@ -350,8 +350,7 @@ function obtenerProyecto(value){
                     </div>
                 </div>
             </div>`;
-
-
+            
     $.ajax({
         url: url + 'Proyectos/obtenerDatosProyecto/'+ value,
         method: 'POST',

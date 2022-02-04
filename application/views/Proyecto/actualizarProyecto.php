@@ -43,14 +43,14 @@
                                                                <label>Tema del proyecto:</label>
                                                                 <input type="hidden" name="ID_PROYECTO_UPDATE_" id="ID_PROYECTO_UPDATE_">
                                                                 <input name="NOMBRE_PROYECTO_UPDATE" id="NOMBRE_PROYECTO_UPDATE"
-                                                                type="text" class="form-control" placeholder="Nombre">
+                                                                type="text" class="form-control" placeholder="Nombre" required>
                                                               </div>
 
                                                               <div class="form-group">
                                                                <label>Descripci&oacute;n:</label>
                                                                <textarea name="DESCRIPCION_UPDATE" id="DESCRIPCION_UPDATE"
                                                                 placeholder="Descripción" rows="2" cols="50"
-                                                                class="form-control"></textarea>
+                                                                class="form-control" required></textarea>
                                                              </div>
                                                             </div> 
                                                         </div>
@@ -61,7 +61,7 @@
                                                             <label>Tipo de investigaci&oacute;n:</label>
                                                             <select name="ID_TIPO_INVESTIGACION_UPDATE"
                                                                 id="ID_TIPO_INVESTIGACION_UPDATE"
-                                                                class="custom-select"></select>
+                                                                class="custom-select" required></select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
