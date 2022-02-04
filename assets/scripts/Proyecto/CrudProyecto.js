@@ -233,3 +233,74 @@ function cambiarEstadoProyecto(proyecto, estado) {
         }
     });
 }
+
+
+/****************************************************************************
+                            OBTENER PROYECTOS PRO ID
+****************************************************************************/
+function obtenerProyecto(value){
+    $.ajax({
+        url: url + 'Proyectos/obtenerDatosProyecto/'+ value,
+        method: 'POST',
+        dataType: 'json',
+        data:  JSON.stringify({ 'ID_PROYECTO': value }),
+        success: function(r){
+          console.log(r); 
+         
+            $('#UpdateProyecto_ #ID_PROYECTO_UPDATE_').val(r.ID_PROYECTO);
+            $('#UpdateProyecto_ #NOMBRE_PROYECTO_UPDATE').val(r.NOMBRE_PROYECTO);
+            $('#UpdateProyecto_ #DESCRIPCION_UPDATE').val(r.DESCRIPCION);
+            $('#UpdateProyecto_ #ID_TIPO_INVESTIGACION_UPDATE').val(r.ID_TIPO_INVESTIGACION);
+            $('#UpdateProyecto_ #ID_ASIGNATURA_UPDATE_').val(r.ID_ASIGNATURA);
+            $('#UpdateProyecto_ #ID_DISENIO_INVESTIGACION_UPDATE').val(r.ID_DISENIO_INVESTIGACION);
+        },
+        error:function(){
+
+        }
+        
+    }) 
+}
+
+/****************************************************************************
+                            ACTUALIZAR PROYECTO
+****************************************************************************/
+$(function() {
+    $('#UpdateProyecto_').submit(function(event) {
+        if (!$(this).valid()) {
+            Swal.fire({
+                icon: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonColor: "#343a40",
+                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+            });
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: url + 'Proyectos/Actualizar',
+                data: $(this).serialize(),
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                success: function(msg) {
+                    $('#modalProyecto').modal('hide');
+                   
+                    Swal.fire({
+                        toast: true,
+                        timer: 1500,
+                        icon: 'success',
+                        position: 'top-end',
+                        iconColor: '#3ca230',
+                        showConfirmButton: false,
+                        title: '<p style="color: #343a40; font-size: 1.3526em; font-weight: 600; line-height: unset; margin: 0;">' + msg + '</p>'
+                    });
+                    $('#Proyecto').DataTable().ajax.reload(null, false);
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+    });
+});

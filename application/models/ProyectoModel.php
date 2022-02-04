@@ -146,5 +146,17 @@ class ProyectoModel extends CI_Model
 		return $query;
 	}
 
+	//DATOS PROYECTO POR ID 
+	public function idDatosProyecto($where){
+		$query = $this->db->select('*')->from('tbl_proyecto')->where($where)->get();
+	     return $query->row_array();
+	}
+
+	//ACTUALIZAR PROYECTO
+	public function actualizarProyecto($tablename,$data,$where)
+	{
+		$query = $this->db->update($tablename, $data, $where);
+		return $query;
+	}
 }
 ?>

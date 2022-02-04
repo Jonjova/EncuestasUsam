@@ -132,6 +132,11 @@ class Proyectos extends CI_Controller
 				$heightD = strlen($value['DESCRIPCION']);
 				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 28).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
 				$descProy = '<textarea class="txt-tbl" style="height: '.($heightD + 28).'px;" readonly>'.$value['DESCRIPCION'].'.</textarea>';
+				$btnUpdate = 
+                        '<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerProyecto('.$value['ID_PROYECTO'].');" 
+                            data-toggle="modal" data-target="#modalProyecto">
+                            <i class="fas fa-pen" title="Actualizar"></i>
+                        </a>';
 
 				if ($heightN < 25)
 				{
@@ -154,7 +159,8 @@ class Proyectos extends CI_Controller
 						$btnInfo,
 						$estado,
 						$value['COD_CICLO'],
-						$value['FECHA_ASIGNACION']
+						$value['FECHA_ASIGNACION'],
+						$btnUpdate
 						);
 				}
 				else
@@ -169,7 +175,8 @@ class Proyectos extends CI_Controller
 						$btnInfo,
 						$selectEstado,
 						$value['COD_CICLO'],
-						$value['FECHA_ASIGNACION']
+						$value['FECHA_ASIGNACION'],
+						$btnUpdate
 						);
 				}
 			}
@@ -207,6 +214,38 @@ class Proyectos extends CI_Controller
 		}
 	}
 
+	//Guardar Proyecto
+	public function Actualizar()
+	{
+		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
+		$whereProyecto = $this->input->post('ID_PROYECTO_UPDATE_');
+		$datosProyectos = array(
+			'NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO_UPDATE'),
+			'DESCRIPCION' => $this->input->post('DESCRIPCION_UPDATE'),
+			'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION_UPDATE'),
+			'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA_UPDATE_'),
+			'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION_UPDATE'),
+			//'FECHA_ASIGNACION' => date('Y-m-d H:i:s'),
+			//'ID_GRUPO_ALUMNO' => $this->input->post('ID_GRUPO_ALUMNO'),
+			//'CICLO' => $this->input->post('CICLO'),
+			//'ESTADO_PROYECTO' => "Iniciado",
+			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
+			//'FECHA_CREA' => date('Y-m-d H:m:s')
+			);
+
+		 $actualizarProyecto = $this->pm->actualizarProyecto('TBL_PROYECTO', $datosProyectos, array('ID_PROYECTO' => $whereProyecto));
+		
+		if ($actualizarProyecto == TRUE)
+		{
+			echo json_encode('Datos actualizados!');
+        }
+        else
+        {
+            echo json_encode('Error al actualizar!');
+		}
+      
+	}
+
 	// CAMBIAR ESTADO
 	public function cambiarEstado($where)
 	{
@@ -220,6 +259,12 @@ class Proyectos extends CI_Controller
 		{
 			echo "false";
 		}
+	}
+	//OBTENER DATOS DE UN PROYECTO
+	public function obtenerDatosProyecto($id){
+		
+		$resultado = $this->pm->idDatosProyecto(array('ID_PROYECTO' =>$id));
+		echo json_encode($resultado);
 	}
 
 }

@@ -171,6 +171,8 @@ function asignatura() {
         type: 'POST',
         success: function(respuesta) {
             $('#ID_ASIGNATURA').html(respuesta);
+           
+
         }
     });
     $.ajax({
@@ -189,6 +191,7 @@ function asignaturaAsignada() {
         type: 'POST',
         success: function(respuesta) {
             $('#CrearProyecto #ID_ASIGNATURA').html(respuesta);
+            $('#ID_ASIGNATURA_UPDATE_').html(respuesta);
         }
     });
     $.ajax({
@@ -219,6 +222,7 @@ function tipoInvestigacion() {
         type: 'post',
         success: function(respuesta) {
             $('#ID_TIPO_INVESTIGACION').html(respuesta);
+            $('#ID_TIPO_INVESTIGACION_UPDATE').html(respuesta);
         }
     })
 }
@@ -230,6 +234,7 @@ function disenioInvestigacion() {
         type: 'post',
         success: function(respuesta) {
             $('#ID_DISENIO_INVESTIGACION').html(respuesta);
+             $('#ID_DISENIO_INVESTIGACION_UPDATE').html(respuesta);
         }
     })
 }
