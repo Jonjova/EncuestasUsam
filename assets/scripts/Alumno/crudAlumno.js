@@ -498,13 +498,13 @@ $('#createUpdateAlumno').delegate('#btnCreateAlumno', 'click', function() {
 // LIMPIAR INPUTS
 function infoAlumnosLimpiar() {
     $('#confirmUpdate').hide();
-    $('#createUpdateAlumno')[0].reset();
     $('#modalAlumno').find('.nav-pills a:first').tab('show');
     $('#createUpdateAlumno .btn-finish').removeAttr('disabled');
     $('#createUpdateAlumno .form-control').removeAttr('disabled');
     $('#createUpdateAlumno .custom-select').removeAttr('disabled');
     $('#createUpdateAlumno .form-control').removeClass('is-valid is-invalid');
     $('#createUpdateAlumno .custom-select').removeClass('is-valid is-invalid');
+    $('#createUpdateAlumno')[0].reset();
 }
 
 // CANCELAR ACTUALIZAR

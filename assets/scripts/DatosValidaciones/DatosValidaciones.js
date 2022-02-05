@@ -171,7 +171,7 @@ function asignatura() {
         type: 'POST',
         success: function(respuesta) {
             $('#ID_ASIGNATURA').html(respuesta);
-           
+
 
         }
     });
@@ -191,7 +191,7 @@ function asignaturaAsignada() {
         type: 'POST',
         success: function(respuesta) {
             $('#CrearProyecto #ID_ASIGNATURA').html(respuesta);
-            $('#ID_ASIGNATURA_UPDATE_').html(respuesta);
+            $('#ID_ASIGNATURA_UPDATE').html(respuesta);
         }
     });
     $.ajax({
@@ -234,7 +234,7 @@ function disenioInvestigacion() {
         type: 'post',
         success: function(respuesta) {
             $('#ID_DISENIO_INVESTIGACION').html(respuesta);
-             $('#ID_DISENIO_INVESTIGACION_UPDATE').html(respuesta);
+            $('#ID_DISENIO_INVESTIGACION_UPDATE').html(respuesta);
         }
     })
 }
@@ -350,6 +350,35 @@ $('#CreateGrupo').validate({
     messages: {
         NOMBRE_GRUPO: { required: 'Nombre requerido.' },
         ID_ALUMNO_GA: { required: 'Alumnos requeridos.' }
+    }
+});
+
+/****************************************************************************
+                VALIDAR CAMPOS PARA ACTUALIZAR PROYECTO
+****************************************************************************/
+$('#UpdateProyecto').validate({
+    rules: {
+        // INSERTAR
+        NOMBRE_PROYECTO_UPDATE: { required: true, minlength: 6, maxlength: 255 },
+        DESCRIPCION_UPDATE: { required: true, minlength: 6, maxlength: 255 },
+        ID_TIPO_INVESTIGACION_UPDATE: { required: true },
+        ID_DISENIO_INVESTIGACION_UPDATE: { required: true },
+        ID_ASIGNATURA_UPDATE: { required: true },
+    },
+    messages: {
+        NOMBRE_PROYECTO_UPDATE: {
+            required: 'Tema requerido.',
+            minlength: 'M\u00ednimo 6 caracteres.',
+            maxlength: 'M\u00e1ximo 255 caracteres.'
+        },
+        DESCRIPCION_UPDATE: {
+            required: 'Descripci\u00f3n requerida.',
+            minlength: 'El m\u00ednimo 6 caracteres',
+            maxlength: 'El m\u00e1ximo 255 caracteres.'
+        },
+        ID_TIPO_INVESTIGACION_UPDATE: { required: 'Tipo de investigaci\u00f3n requerida.' },
+        ID_DISENIO_INVESTIGACION_UPDATE: { required: 'Dise\u00f1o de investigaci\u00f3n requerida.' },
+        ID_ASIGNATURA_UPDATE: { required: "Asignatura requerida." },
     }
 });
 

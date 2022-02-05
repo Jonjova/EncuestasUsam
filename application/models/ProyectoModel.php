@@ -132,7 +132,7 @@ class ProyectoModel extends CI_Model
 		return $query->result_array();
 	}
 
-	// INFORMACION GRUPOS
+	// INFORMACION GRUPO
     public function datosGrupoAlumnoModel($where)
     {
         $query = $this->db->select('*')->from('VW_INFO_GRUPO')->where($where)->get();
@@ -146,13 +146,13 @@ class ProyectoModel extends CI_Model
 		return $query;
 	}
 
-	//DATOS PROYECTO POR ID 
+	// DATOS PROYECTO POR ID 
 	public function idDatosProyecto($where){
-		$query = $this->db->select('*')->from('tbl_proyecto')->where($where)->get();
+		$query = $this->db->select('*')->from('TBL_PROYECTO')->where($where)->get();
 	     return $query->row_array();
 	}
 
-	//ACTUALIZAR PROYECTO
+	// ACTUALIZAR PROYECTO
 	public function actualizarProyecto($tablename,$data,$where)
 	{
 		$query = $this->db->update($tablename, $data, $where);

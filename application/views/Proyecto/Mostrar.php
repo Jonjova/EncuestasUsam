@@ -29,7 +29,7 @@
 			    </div>
 			    <?php else: ?>
 			    <input type="text" readonly value="Filtrar Información"
-			        style="text-align:center; font-size: 30px; background: #fff; border: none; outline: none; width: 350px;">
+			        style="text-align:center; font-size: 30px; background: none; border: none; outline: none; width: 350px;">
 			    <?php endif; ?>
 
 			    <div class="col-sm-4">

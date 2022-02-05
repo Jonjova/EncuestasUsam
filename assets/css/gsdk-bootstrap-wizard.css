@@ -595,6 +595,13 @@ fieldset[disabled] .btn-form.active {
     background-color: #999999;
 }
 
+#modalGrupo .nav-pills,
+#modalProyecto .nav-pills,
+#modalGrupo .nav-pills>li>a,
+#modalProyecto .nav-pills>li>a {
+    background-color: #094f8b;
+}
+
 .nav-pills>li+li {
     margin-left: 0;
 }

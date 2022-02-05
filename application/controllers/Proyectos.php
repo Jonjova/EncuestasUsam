@@ -58,14 +58,14 @@ class Proyectos extends CI_Controller
 		}
 	}
 
-	// INFORMACION COORDINADOR
+	// INFORMACION GRUPO
 	public function datosInfoGrupo($proyecto)
 	{
 		$resultData = $this->pm->datosGrupoAlumnoModel(array('ID_PROYECTO' => $proyecto));
 		echo json_encode($resultData);
 	}
 
-	//Mostrar
+	// MOSTRAR PROYECTOS
 	public function MostrarProyecto($asignatura, $ciclo, $coordinador, $facultad)
 	{
 		$resultList = $this->pm->mostrarProyect($asignatura, $ciclo, $coordinador, $_SESSION['DOCENTE'], $_SESSION['ID_TIPO_USUARIO'], $facultad);
@@ -76,12 +76,17 @@ class Proyectos extends CI_Controller
 			$var = 0;
 			foreach ($resultList as $key => $value)
 			{
+				$btnUpdate = 
+					'<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerProyecto('.$value['ID_PROYECTO'].');" 
+						data-toggle="modal" data-target="#modalProyecto">
+						<i class="fas fa-pen" title="Actualizar"></i>
+					</a>';
 				switch ($value['ESTADO_PROYECTO'])
 				{
 					case "Iniciado":
 						$estado = '<a class="btn btn-info" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
-									class="custom-select" style="width: auto;">
+									class="custom-select" style="width: 160px;">
 									<option value="Iniciado">Iniciado</option>
 									<option value="En proceso">En proceso</option>
 									<option value="Finalizado">Finalizado</option>
@@ -92,7 +97,7 @@ class Proyectos extends CI_Controller
 					case "En proceso":
 						$estado = '<a class="btn btn-warning" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
-									class="custom-select" style="width: auto;">
+									class="custom-select" style="width: 160px;">
 									<option value="En proceso">En proceso</option>
 									<option value="Finalizado">Finalizado</option>
 									<option value="Incompleto">Incompleto</option>
@@ -102,23 +107,35 @@ class Proyectos extends CI_Controller
 					case "Finalizado":
 						$estado = '<a class="btn btn-success" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
-								class="custom-select" style="width: auto;">
+								class="custom-select" style="width: 160px;">
 									<option value="Finalizado">Finalizado</option>
 								</select>';
+						$btnUpdate = 
+							'<a class="btn btn-danger" style="font-size: x-large;">
+								<i class="fas fa-pen" title="Actualizar"></i> <i class="fas fa-times" title="Actualizar"></i>
+							</a>';
 						break;
 					case "Incompleto":
 						$estado = '<a class="btn btn-dark" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
-								class="custom-select" style="width: auto;">
+								class="custom-select" style="width: 160px;">
 									<option value="Incompleto">Incompleto</option>
 								</select>';
+						$btnUpdate = 
+							'<a class="btn btn-danger" style="font-size: x-large;">
+								<i class="fas fa-pen" title="Actualizar"></i> <i class="fas fa-times" title="Actualizar"></i>
+							</a>';
 						break;
 					case "No entregado":
 						$estado = '<a class="btn btn-danger" title="Estado">'.$value['ESTADO_PROYECTO'].'</a>';
 						$selectEstado = '<select name="ESTADO_PROY" onchange="cambiarEstadoProyecto('.$value['ID_PROYECTO'].', this.value);" 
-								class="custom-select" style="width: auto;">
+								class="custom-select" style="width: 160px;">
 									<option value="No entregado">No entregado</option>
 								</select>';
+						$btnUpdate = 
+							'<a class="btn btn-danger" style="font-size: x-large;">
+								<i class="fas fa-pen" title="Actualizar"></i> <i class="fas fa-times" title="Actualizar"></i>
+							</a>';
 						break;
 				}
 				
@@ -134,11 +151,6 @@ class Proyectos extends CI_Controller
 				$heightD = strlen($value['DESCRIPCION']);
 				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 28).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
 				$descProy = '<textarea class="txt-tbl" style="height: '.($heightD + 28).'px;" readonly>'.$value['DESCRIPCION'].'.</textarea>';
-				$btnUpdate = 
-                        '<a class="btn btn-dark" style="font-size: x-large;" onclick="obtenerProyecto('.$value['ID_PROYECTO'].');" 
-                            data-toggle="modal" data-target="#modalProyecto">
-                            <i class="fas fa-pen" title="Actualizar"></i>
-                        </a>';
 
 				if ($heightN < 25)
 				{
@@ -162,7 +174,6 @@ class Proyectos extends CI_Controller
 						$estado,
 						$value['COD_CICLO'],
 						$value['FECHA_ASIGNACION']
-						//$btnUpdate
 						);
 				}
 				else
@@ -190,7 +201,7 @@ class Proyectos extends CI_Controller
 		echo json_encode($result);
 	}
 
-	//Guardar Proyecto
+	// GUARDAR PROYECTO
 	public function Guardar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
@@ -208,7 +219,6 @@ class Proyectos extends CI_Controller
 			'FECHA_CREA' => date('Y-m-d H:m:s')
 			);
 
-		//Datos de tabla  "Proyectos"
 		$insert = $this->pm->insertProyecto($datos);
 		if ($insert == TRUE )
 		{
@@ -216,16 +226,23 @@ class Proyectos extends CI_Controller
 		}
 	}
 
-	//ACTUALIZAR PROYECTO
+	// OBTENER DATOS DE UN PROYECTO
+	public function obtenerDatosProyecto($id){
+		
+		$resultado = $this->pm->idDatosProyecto(array('ID_PROYECTO' =>$id));
+		echo json_encode($resultado);
+	}
+
+	// ACTUALIZAR PROYECTO
 	public function Actualizar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
-		$whereProyecto = $this->input->post('ID_PROYECTO_UPDATE_');
+		$whereProyecto = $this->input->post('ID_PROYECTO_UPDATE');
 		$datosProyectos = array(
 			'NOMBRE_PROYECTO' => $this->input->post('NOMBRE_PROYECTO_UPDATE'),
 			'DESCRIPCION' => $this->input->post('DESCRIPCION_UPDATE'),
 			'ID_TIPO_INVESTIGACION' => $this->input->post('ID_TIPO_INVESTIGACION_UPDATE'),
-			'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA_UPDATE_'),
+			'ID_ASIGNATURA' => $this->input->post('ID_ASIGNATURA_UPDATE'),
 			'ID_DISENIO_INVESTIGACION' => $this->input->post('ID_DISENIO_INVESTIGACION_UPDATE'),
 			'USUARIO_CREA' => $this->session->userdata('ID_USUARIO'),
 			);
@@ -256,12 +273,6 @@ class Proyectos extends CI_Controller
 		{
 			echo "false";
 		}
-	}
-	//OBTENER DATOS DE UN PROYECTO
-	public function obtenerDatosProyecto($id){
-		
-		$resultado = $this->pm->idDatosProyecto(array('ID_PROYECTO' =>$id));
-		echo json_encode($resultado);
 	}
 
 }
