@@ -116,6 +116,13 @@ $(document).ready(function() {
                 maxlength: 'M\u00e1ximo 100 caracteres.',
                 inProf: 'Profesi\u00f3n ya existe!'
             },
+            ABREVIATURA_M: {
+                required: "Nombre abreviatura requerido.",
+                alfaYespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 100 caracteres.',
+                inProf: 'Profesi\u00f3n ya existe!'
+            },
             PRIMER_NOMBRE_PERSONA: {
                 required: "Nombre requerido.",
                 alfaOespacio: "S\u00f3lo letras.",
@@ -227,6 +234,13 @@ $(document).ready(function() {
                 minlength: 'M\u00ednimo 3 caracteres',
                 maxlength: 'M\u00e1ximo 100 caracteres.',
                 upProf: 'Profesi\u00f3n ya existe!'
+            },
+            ABREVIATURA_M_UPDATE: {
+                required: "Nombre abreviatura requerido.",
+                alfaYespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 3 caracteres',
+                maxlength: 'M\u00e1ximo 100 caracteres.',
+                inProf: 'Profesi\u00f3n ya existe!'
             },
             PRIMER_NOMBRE_PERSONA_UPDATE: {
                 required: "Nombre requerido.",
