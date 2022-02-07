@@ -9,6 +9,8 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre Profesión</th>
+                            <th>Abreviatura Masculina</th>
+                            <th>Abreviatura Femenina</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -45,7 +47,7 @@
                                             <div class="tab-content" id="tab-content">
                                                 <div class="tab-pane" id="profesion">
                                                     <div class="row" style="display: block;">
-                                                        <br><br><br><br><br>
+                                                        <br>
 
                                                         <div class="col-sm-8 col-sm-offset-2">
                                                             <div class="form-group">
@@ -57,6 +59,23 @@
                                                                     placeholder="Ingrese nombre" required>
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="form-group">
+                                                        <label>Abreviatura para nombres masculinos:</label>
+                                                        <input name="ABREVIATURA_M_UPDATE" id="ABREVIATURA_M_UPDATE" type="text"
+                                                            class="form-control" placeholder="Ingrese abreviatura" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="form-group">
+                                                        <label>Abreviatura para nombres femenino:</label>
+                                                        <input name="ABREVIATURA_F_UPDATE" id="ABREVIATURA_F_UPDATE" type="text"
+                                                            class="form-control" placeholder="Ingrese abreviatura">
+                                                    </div>
+                                                </div>
+
                                                     </div>
                                                 </div>
                                             </div>

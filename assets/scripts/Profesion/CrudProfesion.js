@@ -17,7 +17,7 @@ $(function() {
                 allowEscapeKey: false,
                 allowOutsideClick: false,
                 confirmButtonColor: "#343a40",
-                text: 'Campos vac\u00edos o inv\u00e1lidos!',
+                text: '¡Campos vac\u00edos o inv\u00e1lidos!',
                 title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
             });
         } else {
@@ -64,6 +64,9 @@ function obtenerProfesion(profesion) {
         success: function(response) {
             $('#ID_PROFESION_UPDATE').val(response.ID_PROFESION);
             $('#NOMBRE_PROFESION_UPDATE').val(response.NOMBRE_PROFESION);
+            $('#ABREVIATURA_M_UPDATE').val(response.ABREVIATURA_M);
+            $('#ABREVIATURA_F_UPDATE').val(response.ABREVIATURA_F);
+
         }
     })
 }

@@ -23,13 +23,29 @@
 
                                         <div class="tab-pane" id="profesion">
                                             <div class="row" style="display: block;">
-                                                <br><br><br><br><br>
+                                                <br>
 
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <div class="form-group">
                                                         <label>Nombre de la profesión:</label>
                                                         <input name="NOMBRE_PROFESION" id="NOMBRE_PROFESION" type="text"
                                                             class="form-control" placeholder="Ingrese nombre" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="form-group">
+                                                        <label>Abreviatura para nombres masculinos:</label>
+                                                        <input name="ABREVIATURA_M" id="ABREVIATURA_M" type="text"
+                                                            class="form-control" placeholder="Ingrese abreviatura" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="form-group">
+                                                        <label>Abreviatura para nombres femenino:</label>
+                                                        <input name="ABREVIATURA_F" id="ABREVIATURA_F" type="text"
+                                                            class="form-control" placeholder="Ingrese abreviatura">
                                                     </div>
                                                 </div>
                                             </div>

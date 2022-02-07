@@ -77,7 +77,9 @@ class Profesion extends CI_Controller
                     </a>';
                 $result['data'][] = array(
                     $i++,
-                    $value['NOMBRE_PROFESION'],
+                    $value['NOMBRE_PROFESION'],                    
+                    $value['ABREVIATURA_M'],
+                    $value['ABREVIATURA_F'],
                     $btnUpdate
                 );
             }
@@ -99,7 +101,9 @@ class Profesion extends CI_Controller
     {
         $where = $this->input->post('ID_PROFESION_UPDATE');
         $nombre = $this->input->post('NOMBRE_PROFESION_UPDATE');
-        $editar = $this->modelProf->updateProfesionModel('CAT_PROFESION', array('NOMBRE_PROFESION' => $nombre), array('ID_PROFESION' => $where));
+        $abr_m = $this->input->post('ABREVIATURA_M_UPDATE');
+        $abr_f = $this->input->post('ABREVIATURA_F_UPDATE');
+        $editar = $this->modelProf->updateProfesionModel('CAT_PROFESION', array('NOMBRE_PROFESION' => $nombre, 'ABREVIATURA_M' => $abr_m, 'ABREVIATURA_F' => $abr_f), array('ID_PROFESION' => $where));
         if ($editar == TRUE) 
         {
             echo json_encode('Datos actualizados!');
