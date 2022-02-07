@@ -210,6 +210,7 @@ function obtenerUsuario(persona) {
         data: { 'ID_PERSONA': persona },
         dataType: 'json',
         success: function(response) {
+            // USUARIOS
             $('#titulo-rol').html(response.NOMBRE_ROL.toUpperCase());
             $('#UpdatePersona #ID_PERSONA_UPDATE').val(response.ID_PERSONA);
             $('#UpdatePersona #PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
@@ -228,6 +229,24 @@ function obtenerUsuario(persona) {
             $('#UpdatePersona #CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
             $('#UpdatePersona #PROFESION_UPDATE').val(response.PROFESION);
             $('#UpdatePersona #ID_TIPO_USUARIO_UPDATE').val(response.ID_TIPO_USUARIO);
+            // SUPER ADMIN
+            $('#UpdatePerfil #ID_PERSONA_UPDATE').val(response.ID_PERSONA);
+            $('#UpdatePerfil #PRIMER_NOMBRE_PERSONA_UPDATE').val(response.PRIMER_NOMBRE_PERSONA);
+            $('#UpdatePerfil #SEGUNDO_NOMBRE_PERSONA_UPDATE').val(response.SEGUNDO_NOMBRE_PERSONA);
+            $('#UpdatePerfil #PRIMER_APELLIDO_PERSONA_UPDATE').val(response.PRIMER_APELLIDO_PERSONA);
+            $('#UpdatePerfil #SEGUNDO_APELLIDO_PERSONA_UPDATE').val(response.SEGUNDO_APELLIDO_PERSONA);
+            $('#UpdatePerfil #FECHA_NACIMIENTO_UPDATE').val(response.FECHA_NACIMIENTO);
+            $('#UpdatePerfil #SEXO_UPDATE').val(response.SEXO);
+            $('#UpdatePerfil #DUI_UPDATE').val(response.DUI);
+            $('#UpdatePerfil #NIT_UPDATE').val(response.NIT);
+            $('#UpdatePerfil #CORREO_PERSONAL_UPDATE').val(response.CORREO_PERSONAL);
+            $('#UpdatePerfil #TELEFONO_FIJO_UPDATE').val(response.TELEFONO_FIJO);
+            $('#UpdatePerfil #TELEFONO_MOVIL_UPDATE').val(response.TELEFONO_MOVIL);
+            $('#UpdatePerfil #DEPARTAMENTO_UPDATE').val(response.DEPARTAMENTO);
+            $('#UpdatePerfil #DIRECCION_UPDATE').val(response.DIRECCION);
+            $('#UpdatePerfil #CORREO_INSTITUCIONAL_UPDATE').val(response.CORREO_INSTITUCIONAL);
+            $('#UpdatePerfil #PROFESION_UPDATE').val(response.PROFESION);
+            $('#UpdatePerfil #ID_TIPO_USUARIO_UPDATE').val(response.ID_TIPO_USUARIO);
         }
     })
 }

@@ -185,7 +185,7 @@
                                                                     <label>N&uacute;mero de NIT:</label>
                                                                     <input name="NIT_UPDATE" id="NIT_UPDATE" type="text"
                                                                         class="form-control"
-                                                                        placeholder="0000-000000-000-0" required>
+                                                                        placeholder="0000-000000-000-0">
                                                                 </div>
                                                             </div>
                                                         </div>

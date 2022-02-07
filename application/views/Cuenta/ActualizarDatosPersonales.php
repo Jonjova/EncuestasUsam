@@ -21,6 +21,8 @@
                                         </ul>
                                     </div>
 
+                                    <input type="hidden" name="ID_PERSONA_UPDATE" id="ID_PERSONA_UPDATE">
+
                                     <div class="tab-content" id="tab-content">
 
                                         <div class="tab-pane" id="datosPersonales">
@@ -91,7 +93,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Número de DUI:</label>
-                                                            <input name="DUI" id="DUI_UPDATE" type="text"
+                                                            <input name="DUI_UPDATE" id="DUI_UPDATE" type="text"
                                                                 class="form-control" placeholder="00000000-0" required>
                                                         </div>
                                                     </div>
@@ -99,9 +101,8 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Número de NIT:</label>
-                                                            <input name="NIT" id="NIT_UPDATE" type="text"
-                                                                class="form-control" placeholder="0000-000000-000-0"
-                                                                required>
+                                                            <input name="NIT_UPDATE" id="NIT_UPDATE" type="text"
+                                                                class="form-control" placeholder="0000-000000-000-0">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,7 +125,7 @@
                                                     <div class="form-group">
                                                         <div class="form-group">
                                                             <label>Correo Personal(No Obligatorio):</label>
-                                                            <input name="CORREO_PERSONAL" id="CORREO_PERSONAL_UPDATE"
+                                                            <input name="CORREO_PERSONAL_UPDATE" id="CORREO_PERSONAL_UPDATE"
                                                                 type="email" class="form-control"
                                                                 placeholder="personal@mail.com">
                                                         </div>
@@ -134,14 +135,14 @@
                                                 <div class="col-sm-5 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>N&uacute;mero de Tel&eacute;fono Fijo:</label>
-                                                        <input name="TELEFONO_FIJO" id="TELEFONO_FIJO_UPDATE" type="tel"
+                                                        <input name="TELEFONO_FIJO_UPDATE" id="TELEFONO_FIJO_UPDATE" type="tel"
                                                             class="form-control" placeholder="0000-0000" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label>N&uacute;mero de Tel&eacute;fono M&oacute;vil:</label>
-                                                        <input name="TELEFONO_MOVIL" id="TELEFONO_MOVIL_UPDATE"
+                                                        <input name="TELEFONO_MOVIL_UPDATE" id="TELEFONO_MOVIL_UPDATE"
                                                             type="tel" class="form-control" placeholder="0000-0000"
                                                             required>
                                                     </div>
@@ -204,7 +205,7 @@
                                                 <div class="col-sm-7 col-sm-offset-1">
                                                     <div class="form-group">
                                                         <label>Correo Institucional:</label>
-                                                        <input name="CORREO_INSTITUCIONAL"
+                                                        <input name="CORREO_INSTITUCIONAL_UPDATE"
                                                             id="CORREO_INSTITUCIONAL_UPDATE" type="text"
                                                             class="form-control" placeholder="docente@liveusam.edu.sv"
                                                             required>

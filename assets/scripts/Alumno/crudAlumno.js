@@ -384,9 +384,8 @@ var wizardUpdateAlumno =
                     <div class="form-group">
                         <label>Carrera:</label>
                         <select name="CARRERA" id="CARRERA_UPDATE"
-                            class="custom-select required"
-                            onblur="validaSelect(this);"
-                            style="font-size: 1rem;" required>
+                            class="custom-select" style="font-size: 1rem;"
+                            onblur="validaSelect(this);" required>
                         </select>
                     </div>
                 </div>
@@ -535,8 +534,12 @@ function obtenerAlumno() {
             $('#createUpdateAlumno #TELEFONO_MOVIL_UPDATE').val(msg.TELEFONO_MOVIL);
             $('#createUpdateAlumno #DEPARTAMENTO_UPDATE').val(msg.DEPARTAMENTO);
             $('#createUpdateAlumno #DIRECCION_UPDATE').val(msg.DIRECCION);
-            $('#createUpdateAlumno #CARRERA_UPDATE').val(2);
-            console.log(msg.CARRERA);
+            $('#createUpdateAlumno #CARRERA_UPDATE').val(msg.CARRERA);
+            if (navigator.userAgent.indexOf("Firefox/") != -1) {
+                setTimeout(function() {
+                    $('#createUpdateAlumno #CARRERA_UPDATE').val(msg.CARRERA);
+                }, 100);
+            }
             $('#createUpdateAlumno #CORREO_INSTITUCIONAL_UPDATE').val(msg.CORREO_INSTITUCIONAL);
         }
     });

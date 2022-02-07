@@ -542,6 +542,9 @@ jQuery.validator.addMethod("isNIT", function(value) {
         }
     }
     resultado = (calculo == (parseInt(value.charAt(16))));
+    if (value == "____-______-___-_" || value == "") {
+        resultado = true;
+    }
     return resultado;
 });
 
@@ -980,4 +983,70 @@ jQuery.validator.addMethod("upCarnet", function(value) {
         }
     });
     return resp;
+});
+
+/****************************************************************************
+                        VALIDAR CAMBIAR CONTRASEÑA
+****************************************************************************/
+// VALIDAR CONTRASEÑA ACTUAL
+var oldPassword = $('#OLD_PASSWORD');
+$('#OLD_PASSWORD').change(function() {
+    $.ajax({
+        type: 'POST',
+        url: url + 'Cuenta/validarPassword',
+        data: { 'PASSWORD': oldPassword.val() },
+        success: function(msg) {
+            if (msg == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Contrase\u00f1a incorrecta!'
+                })
+                $('#OLD_PASSWORD').val('');
+                $('#OLD_PASSWORD').removeClass('is-valid');
+            }
+        }
+    });
+});
+jQuery.validator.addMethod("existPass", function(value) {
+    var resp = false;
+    $.ajax({
+        type: 'POST',
+        url: url + 'Cuenta/validarPassword',
+        data: { 'PASSWORD': value },
+        async: false,
+        success: function(msg) {
+            if (msg != 0) {
+                resp = false;
+            } else {
+                resp = true;
+            }
+        }
+    });
+    return resp;
+});
+
+// COMPARAR CONTRASEÑA ACTUAL CON NUEVA CONTRASEÑA
+var password = $('#PASSWORD');
+var rePassword = $('#RE_PASSWORD');
+$('#PASSWORD').change(function() {
+    if (password.val() != rePassword.val() && rePassword.val() != '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Las contrase\u00f1as no coinciden!'
+        })
+        $('#RE_PASSWORD').val('');
+        $('#RE_PASSWORD').removeClass('is-valid');
+    }
+});
+
+// COMPARAR CON NUEVA CONTRASEÑA CONTRASEÑA ACTUAL
+$('#RE_PASSWORD').change(function() {
+    if (password.val() != rePassword.val()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Las contrase\u00f1as no coinciden!'
+        })
+        $('#RE_PASSWORD').val('');
+        $('#RE_PASSWORD').removeClass('is-valid');
+    }
 });
