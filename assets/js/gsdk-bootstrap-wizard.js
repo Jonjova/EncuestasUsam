@@ -40,10 +40,14 @@ $(document).ready(function() {
 
     var $validator = $('.wizard-card form').validate({
         rules: {
-            // INSERTAR
-            CARNET: { required: true, inCarnet: true },
-            CARRERA: { required: true },
+            /**************************************
+                            INSERTAR
+            ***************************************/
+            // PROFESIONES
             NOMBRE_PROFESION: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, inProf: true },
+            ABREVIATURA_M: { required: true, alfaOespacio: true, minlength: 2, maxlength: 5 },
+            ABREVIATURA_F: { alfaOespacio: true, minlength: 2, maxlength: 5 },
+            // DATOS PERSONALES (COMUNES)
             PRIMER_NOMBRE_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             PRIMER_APELLIDO_PERSONA: { required: true, alfaOespacio: true, minlength: 3, maxlength: 15 },
             SEGUNDO_NOMBRE_PERSONA: { alfaOespacio: true, minlength: 3, maxlength: 15 },
@@ -61,13 +65,15 @@ $(document).ready(function() {
             PROFESION: { required: true },
             COORDINACION: { required: true },
             COORDINADOR: { required: true },
+            // ALUMNOS
+            CARNET: { required: true, inCarnet: true },
+            CARRERA: { required: true },
+            // ASIGNATURAS
             CODIGO_ASIGNATURA: { required: true, codAsignatura: true, inCodAsig: true },
             NOMBRE_ASIGNATURA: { required: true, alfaYespacio: true },
             ID_ASIGNATURA: { required: true },
             ID_DOCENTE: { required: true },
-            OLD_PASSWORD: { required: true },
-            PASSWORD: { required: true },
-            RE_PASSWORD: { required: true },
+            // CICLOS
             COD_CICLO: { required: true, inCiclo: true },
             FECHA_INICIO: { required: true },
             FECHA_FIN: { required: true },
@@ -79,10 +85,14 @@ $(document).ready(function() {
             FECHA_ASIGNACION: { required: true },
             ID_GRUPO_ALUMNO: { required: true },
             CICLO: { required: true },
-            // ACTUALIZAR
-            CARNET_UPDATE: { required: true, upCarnet: true },
-            CARRERA_UPDATE: { required: true },
+            /**************************************
+                            ACTUALIZAR
+            ***************************************/
+            // PROFESIONES
             NOMBRE_PROFESION_UPDATE: { required: true, alfaYespacio: true, minlength: 3, maxlength: 100, upProf: true },
+            ABREVIATURA_M_UPDATE: { required: true, alfaOespacio: true, minlength: 2, maxlength: 5 },
+            ABREVIATURA_F_UPDATE: { alfaOespacio: true, minlength: 2, maxlength: 5 },
+            // DATOS PERSONALES (COMUNES)
             PRIMER_NOMBRE_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             PRIMER_APELLIDO_PERSONA_UPDATE: { required: true, alfaOespacio: true, minlength: 3, maxlength: 25 },
             SEGUNDO_NOMBRE_PERSONA_UPDATE: { alfaOespacio: true, minlength: 3, maxlength: 25 },
@@ -99,16 +109,22 @@ $(document).ready(function() {
             CORREO_INSTITUCIONAL_UPDATE: { required: true, correo: true, correoU: true, upMailIns: true },
             PROFESION_UPDATE: { required: true },
             COORDINACION_UPDATE: { required: true },
+            // ALUMNOS
+            CARNET_UPDATE: { required: true, upCarnet: true },
+            CARRERA_UPDATE: { required: true },
+            // ASIGNATURAS
             CODIGO_ASIGNATURA_UPDATE: { required: true, codAsignatura: true, upCodAsig: true },
             NOMBRE_ASIGNATURA_UPDATE: { required: true, alfaYespacio: true },
+            // CONTASENIA
+            OLD_PASSWORD: { required: true, existPass: true },
+            PASSWORD: { required: true },
+            RE_PASSWORD: { required: true },
         },
         messages: {
-            // INSERTAR
-            CARNET: {
-                required: 'Carnet requerido.',
-                inCarnet: 'Este carnet ya existe!'
-            },
-            CARRERA: { required: 'Carrera requerida.' },
+            /**************************************
+                            INSERTAR
+            ***************************************/
+            // PROFESIONES
             NOMBRE_PROFESION: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
@@ -118,11 +134,16 @@ $(document).ready(function() {
             },
             ABREVIATURA_M: {
                 required: "Nombre abreviatura requerido.",
-                alfaYespacio: "S\u00f3lo letras.",
-                minlength: 'M\u00ednimo 3 caracteres',
-                maxlength: 'M\u00e1ximo 100 caracteres.',
-                inProf: 'Profesi\u00f3n ya existe!'
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 2 caracteres',
+                maxlength: 'M\u00e1ximo 5 caracteres.'
             },
+            ABREVIATURA_F: {
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 2 caracteres',
+                maxlength: 'M\u00e1ximo 5 caracteres.'
+            },
+            // DATOS PERSONALES (COMUNES)
             PRIMER_NOMBRE_PERSONA: {
                 required: "Nombre requerido.",
                 alfaOespacio: "S\u00f3lo letras.",
@@ -186,6 +207,13 @@ $(document).ready(function() {
             PROFESION: { required: "Profesi\u00f3n requerida." },
             COORDINACION: { required: "Coordinaci\u00f3n requerida." },
             COORDINADOR: { required: "Coordinador requerido." },
+            // ALUMNOS
+            CARNET: {
+                required: 'Carnet requerido.',
+                inCarnet: 'Este carnet ya existe!'
+            },
+            CARRERA: { required: 'Carrera requerida.' },
+            // ASIGNATURAS
             CODIGO_ASIGNATURA: {
                 required: "C\u00f3digo requerido.",
                 codAsignatura: "S\u00f3lo letras sin tilde, n\u00fameros o espacios.",
@@ -197,9 +225,7 @@ $(document).ready(function() {
             },
             ID_ASIGNATURA: { required: "Asignatura requerida." },
             ID_DOCENTE: { required: "Docente requerido." },
-            OLD_PASSWORD: { required: "Contrase\u00f1a antigua requerida." },
-            PASSWORD: { required: "Nueva contrase\u00f1a requerida." },
-            RE_PASSWORD: { required: "Confirme la nueva contrase\u00f1a." },
+            // CICLOS
             COD_CICLO: {
                 required: "Nombre ciclo requerido.",
                 inCiclo: "Ciclo ya existe!"
@@ -222,12 +248,10 @@ $(document).ready(function() {
             FECHA_ASIGNACION: { required: 'Fecha requerida.' },
             ID_GRUPO_ALUMNO: { required: 'Grupo requerido.' },
             CICLO: { required: 'Ciclo requerido.' },
-            // ACTUALIZAR
-            CARNET_UPDATE: {
-                required: 'Carnet requerido.',
-                upCarnet: 'Este carnet ya existe!'
-            },
-            CARRERA_UPDATE: { required: 'Carrera requerida.' },
+            /**************************************
+                            ACTUALIZAR
+            ***************************************/
+            // PROFESIONES
             NOMBRE_PROFESION_UPDATE: {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras.",
@@ -237,11 +261,16 @@ $(document).ready(function() {
             },
             ABREVIATURA_M_UPDATE: {
                 required: "Nombre abreviatura requerido.",
-                alfaYespacio: "S\u00f3lo letras.",
-                minlength: 'M\u00ednimo 3 caracteres',
-                maxlength: 'M\u00e1ximo 100 caracteres.',
-                inProf: 'Profesi\u00f3n ya existe!'
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 2 caracteres',
+                maxlength: 'M\u00e1ximo 5 caracteres.'
             },
+            ABREVIATURA_F_UPDATE: {
+                alfaOespacio: "S\u00f3lo letras.",
+                minlength: 'M\u00ednimo 2 caracteres',
+                maxlength: 'M\u00e1ximo 5 caracteres.'
+            },
+            // DATOS PERSONALES (COMUNES)
             PRIMER_NOMBRE_PERSONA_UPDATE: {
                 required: "Nombre requerido.",
                 alfaOespacio: "S\u00f3lo letras.",
@@ -304,6 +333,13 @@ $(document).ready(function() {
             },
             PROFESION_UPDATE: { required: "Profesi\u00f3n requerida." },
             COORDINACION_UPDATE: { required: "Coordinaci\u00f3n requerida." },
+            // ALUMNOS
+            CARNET_UPDATE: {
+                required: 'Carnet requerido.',
+                upCarnet: 'Este carnet ya existe!'
+            },
+            CARRERA_UPDATE: { required: 'Carrera requerida.' },
+            // ASIGNATURAS
             CODIGO_ASIGNATURA_UPDATE: {
                 required: "C\u00f3digo requerido.",
                 codAsignatura: "S\u00f3lo letras sin tilde, n\u00fameros o espacios.",
@@ -313,6 +349,17 @@ $(document).ready(function() {
                 required: "Nombre requerido.",
                 alfaYespacio: "S\u00f3lo letras o espacios."
             },
+            // CONTASENIA
+            OLD_PASSWORD: {
+                required: "Contrase\u00f1a antigua requerida.",
+                existPass: "Contrase\u00f1a incorrecta!"
+            },
+            PASSWORD: {
+                required: "Nueva contrase\u00f1a requerida."
+            },
+            RE_PASSWORD: {
+                required: "Confirme la nueva contrase\u00f1a."
+            }
         }
     });
 

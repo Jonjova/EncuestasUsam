@@ -989,24 +989,6 @@ jQuery.validator.addMethod("upCarnet", function(value) {
                         VALIDAR CAMBIAR CONTRASEÑA
 ****************************************************************************/
 // VALIDAR CONTRASEÑA ACTUAL
-var oldPassword = $('#OLD_PASSWORD');
-$('#OLD_PASSWORD').change(function() {
-    $.ajax({
-        type: 'POST',
-        url: url + 'Cuenta/validarPassword',
-        data: { 'PASSWORD': oldPassword.val() },
-        success: function(msg) {
-            if (msg == 1) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Contrase\u00f1a incorrecta!'
-                })
-                $('#OLD_PASSWORD').val('');
-                $('#OLD_PASSWORD').removeClass('is-valid');
-            }
-        }
-    });
-});
 jQuery.validator.addMethod("existPass", function(value) {
     var resp = false;
     $.ajax({
@@ -1025,15 +1007,18 @@ jQuery.validator.addMethod("existPass", function(value) {
     return resp;
 });
 
-// COMPARAR CONTRASEÑA ACTUAL CON NUEVA CONTRASEÑA
+// COMPARAR NUEVA CONTRASEÑA CON REPETIR CONTRASEÑA
 var password = $('#PASSWORD');
 var rePassword = $('#RE_PASSWORD');
 $('#PASSWORD').change(function() {
     if (password.val() != rePassword.val() && rePassword.val() != '') {
         Swal.fire({
             icon: 'error',
-            title: 'Las contrase\u00f1as no coinciden!'
-        })
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonColor: "#343a40",
+            title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Las contrase\u00f1as no coinciden!</p>'
+        });
         $('#RE_PASSWORD').val('');
         $('#RE_PASSWORD').removeClass('is-valid');
     }
@@ -1044,8 +1029,11 @@ $('#RE_PASSWORD').change(function() {
     if (password.val() != rePassword.val()) {
         Swal.fire({
             icon: 'error',
-            title: 'Las contrase\u00f1as no coinciden!'
-        })
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonColor: "#343a40",
+            title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Las contrase\u00f1as no coinciden!</p>'
+        });
         $('#RE_PASSWORD').val('');
         $('#RE_PASSWORD').removeClass('is-valid');
     }

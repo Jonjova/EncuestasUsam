@@ -56,7 +56,7 @@
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
                                             <input type="submit" class="btn btn-finish btn-fill btn-form btn-wd btn-sm"
-                                                name="finish" value="Guardar" />
+                                                name="finish" value="actualizar" />
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
