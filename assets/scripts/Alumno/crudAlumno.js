@@ -194,7 +194,7 @@ var wizardCreateAlumno =
                         <input name="CORREO_INSTITUCIONAL"
                             id="CORREO_INSTITUCIONAL" type="text"
                             class="form-control"
-                            placeholder="docente@liveusam.edu.sv" required>
+                            placeholder="alumno@liveusam.edu.sv" required>
                     </div>
                 </div>
             </div>
@@ -395,7 +395,7 @@ var wizardUpdateAlumno =
                         <input name="CORREO_INSTITUCIONAL_UPDATE"
                             id="CORREO_INSTITUCIONAL_UPDATE" type="text"
                             class="form-control"
-                            placeholder="docente@liveusam.edu.sv" required>
+                            placeholder="alumno@liveusam.edu.sv" required>
                     </div>
                 </div>
             </div>

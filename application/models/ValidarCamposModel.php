@@ -80,15 +80,12 @@ class ValidarCamposModel extends CI_Model
 							d.NOMBRE_CARRERA, b.CORREO_INSTITUCIONAL, b.TELEFONO_MOVIL, e.NOMBRE_DEPARTAMENTO, b.DIRECCION, 
 							b.ID_PERSONA, a.ID_ALUMNO, b.SEXO, a.CARRERA, b.DEPARTAMENTO'
 						);
-
 		$this->db->from('TBL_ALUMNOS a');
 		$this->db->join('TBL_PERSONA b', 'a.PERSONA = b.ID_PERSONA');
 		$this->db->join('CAT_SEXO c', 'b.SEXO = c.ID_SEXO');
 		$this->db->join('CAT_CARRERA d', 'a.CARRERA = d.ID_CARRERA');
 		$this->db->join('CAT_DEPARTAMENTO e', 'a.PERSONA = b.ID_PERSONA');
-
 		$this->db->like('CARNET', $valor); 
-		
 		return $this->db->get()->row_array();
 	}
 

@@ -140,7 +140,7 @@
 						<?php if($this->session->userdata('ID_TIPO_USUARIO') != 4): ?>
 						<th>Docente</th>
 						<?php endif ?>
-			            <th>Alumnos</th>
+			            <th>Grupo</th>
 			            <th>Estado</th>
 			            <th>Ciclo</th>
 			            <th>Fecha Asignación</th>

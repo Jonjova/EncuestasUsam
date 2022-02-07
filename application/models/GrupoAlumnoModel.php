@@ -105,5 +105,17 @@ class GrupoAlumnoModel extends CI_Model
 		$this->db->delete('TBL_GRUPO_ALUMNO');
 	}
 
+	public function mostrarGruposModel($where)
+    {
+        $query = $this->db->select('*')->from('VW_TBL_GRUPOS')->where($where)->get();
+        return $query->result_array();
+    }
+
+	public function integrantesGrupoModel($where)
+    {
+        $query = $this->db->select('*')->from('VW_INTEGRANTES')->where($where)->get();
+        return $query->result_array();
+    }
+
 }
 ?>

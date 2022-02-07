@@ -167,7 +167,7 @@ $(document).ready(function() {
                 maxlength: 'M\u00e1ximo 15 caracteres.'
             },
             FECHA_NACIMIENTO: {
-                required: "Fecha nacimiento requerida.",
+                required: "Fecha requerida.",
                 minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
                 maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
             },
@@ -294,7 +294,7 @@ $(document).ready(function() {
                 maxlength: 'M\u00e1ximo 25 caracteres.'
             },
             FECHA_NACIMIENTO_UPDATE: {
-                required: "Fecha nacimiento requerida.",
+                required: "Fecha requerida.",
                 minEdad: 'Edad m\u00e1xima 60 a\u00f1os',
                 maxEdad: 'Edad m\u00ednima 18 a\u00f1os'
             },

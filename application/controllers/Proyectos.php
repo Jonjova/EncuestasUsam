@@ -140,13 +140,9 @@ class Proyectos extends CI_Controller
 				}
 				
 				$btnInfo = '<a data-backdrop="static" class="btn btn-secondary" 
-							style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].', 
-							'.$value['ID_DET_GA'].', '.$var.', '.$value['ID_ASIGNATURA'].', '.$value['CICLO'].');">
+							style="font-size: x-large;" onclick="infoGrupo('.$value['ID_PROYECTO'].');">
 							<i class="fas fa-info-circle"></i>
 						</a>';
-				$ver = '<a onclick="infoGrupo('.$value['ID_PROYECTO'].', this.value)">
-							<i class="far fa-eye"></i>
-						</a> ';
 				$heightN = strlen($value['NOMBRE_PROYECTO']);
 				$heightD = strlen($value['DESCRIPCION']);
 				$nombreProy = '<textarea class="txt-tbl" style="height: '.($heightN + 28).'px;" readonly>'.$value['NOMBRE_PROYECTO'].'.</textarea>';
@@ -169,6 +165,7 @@ class Proyectos extends CI_Controller
 						$value['NOMBRE_DISENIO'],
 						$value['NOMBRE_ASIGNATURA'],
 						$value['DOCENTE'],
+						// $value['NOMBRE_GRUPO'].'<br><br>'.
 						$value['Alumnos']. ' Integrantes &nbsp;'.
 						$btnInfo,
 						$estado,
@@ -184,6 +181,7 @@ class Proyectos extends CI_Controller
 						$value['NOMBRE_TIPO_INVESTIGACION'],
 						$value['NOMBRE_DISENIO'],
 						$value['NOMBRE_ASIGNATURA'],
+						// $value['NOMBRE_GRUPO'].'<br><br>'.
 						$value['Alumnos']. ' Integrantes &nbsp;'.
 						$btnInfo,
 						$selectEstado,

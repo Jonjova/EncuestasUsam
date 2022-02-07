@@ -1,3 +1,11 @@
+$(document).ready(function() {
+    $('#Grupos').DataTable({
+        "ajax": url + "GrupoAlumno/mostrarGrupos",
+        "order": [],
+        "language": idioma_espanol
+    });
+});
+
 // LLENAR INPUTS PARA AGREGAR ALUMNOS A UN NUEVO GRUPO
 function grupoAsignaturaCiclo() {
     $('#ID_ASIGNATURA_G').val($('#CrearProyecto #ID_ASIGNATURA').val());
@@ -66,6 +74,7 @@ $("#CreateGrupo").submit(function(event) {
                         showConfirmButton: false,
                         title: '<p style="color: #343a40; font-size: 1.49em; font-weight: 600; line-height: unset; margin: 0;">Datos guardados!</p>'
                     });
+                    $("#CreateGrupo")[0].reset();
                     cargarSelectGrupos();
                     cargarSelectAlumnos();
                     $('#modalGrupo').modal('hide');
@@ -90,4 +99,27 @@ function cargarSelectAlumnos() {
         contar = (contar + setTimeout(alumnos($("#CrearProyecto [name='ID_ASIGNATURA']").val()), 1000));
     }
     $('.bootstrap-select').selectpicker('refresh');
+}
+
+/****************************************************************************
+                        LLENAR INFORMACION GRUPOS
+****************************************************************************/
+function integrantesGrupo(id_grupo_alumno) {
+    $.ajax({
+        url: url + 'GrupoAlumno/integrantesGrupo/' + id_grupo_alumno,
+        method: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function(r) {
+            var integrantes = '<h4>Integrantes:</h4><br>';
+            $.each(r, function(index, object) {
+                integrantes += '<h5 style="color: #999;"><b>#' + object.CARNET + ' ' + object.ALUMNO + '</b></h5>';
+            });
+            $('#INTEGRANTES').html(integrantes);
+            $('#modalGrupos').modal({
+                backdrop: "static",
+                keyboard: false
+            });
+        }
+    });
 }

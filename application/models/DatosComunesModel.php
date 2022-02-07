@@ -182,7 +182,8 @@ class DatosComunesModel extends CI_Model
 					FROM TBL_GRUPO_ALUMNO AS tga
 						INNER JOIN TBL_GRUPO AS tg ON tg.ID_GRUPO_ALUMNO = tga.ID_DET_GRUPO
 						INNER JOIN TBL_CICLO AS tc ON tc.ID_CICLO = tg.CICLO
-					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO) AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN) AND tg.ID_ASIGNATURA = $asignatura
+					WHERE (tga.ID_DET_ALUMNO IN (tga.ID_DET_ALUMNO) AND NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN)
+						AND tg.ID_ASIGNATURA = $asignatura
 				)
 			ORDER BY ta.ID_ALUMNO DESC;");
 		return $datos->result_array();
@@ -195,13 +196,15 @@ class DatosComunesModel extends CI_Model
 			"SELECT tg.ID_GRUPO_ALUMNO, tg.NOMBRE_GRUPO
 			FROM TBL_GRUPO AS tg
 				INNER JOIN TBL_CICLO AS tc ON tc.ID_CICLO = tg.CICLO
-			WHERE tg.ID_GRUPO_ALUMNO IN
-				(
-					SELECT tg.ID_GRUPO_ALUMNO
-					FROM TBL_GRUPO
-					WHERE NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN AND tg.ID_ASIGNATURA = $asignatura
-				)
+			WHERE NOW() BETWEEN tc.FECHA_INICIO AND tc.FECHA_FIN
+				AND tg.ID_ASIGNATURA = $asignatura
+				AND tg.ID_GRUPO_ALUMNO NOT IN
+					(
+						SELECT tp.ID_GRUPO_ALUMNO
+						FROM TBL_PROYECTO AS tp
+					)
 			ORDER BY tg.ID_GRUPO_ALUMNO ASC;");
+			
 		return $datos->result_array();
 	}
 

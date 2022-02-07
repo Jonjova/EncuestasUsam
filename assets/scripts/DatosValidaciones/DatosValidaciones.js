@@ -573,7 +573,7 @@ jQuery.validator.addMethod("correo", function(value, element) {
 
 // CORREO PERSONAL VALIDO
 jQuery.validator.addMethod("correoP", function(value) {
-    if (value.split('@liveusam')[1] && value.split('@usam')[1]) {
+    if (value.split('@liveusam')[1] || value.split('@usam')[1]) {
         return false;
     } else {
         return true;

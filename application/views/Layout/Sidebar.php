@@ -93,7 +93,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>Profesion/profesiones">
-                                <i class="fas fa-eye"></i> Mostrar
+                                <i class="fas fa-eye"></i> Ver Registradas
                             </a>
                         </li>
                     </ul>
@@ -213,17 +213,32 @@
                         <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyecto">
-                                <i class="fas fa-plus-circle"></i> Agregar
+                                <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <?php endif; ?>
                         <li>
                             <a href="<?php echo base_url();?>Proyectos/proyectos">
-                                <i class="fas fa-eye"></i> Ver Proyectos
+                                <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
+                <li>
+                    <a href="#grupoSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-users"></i> Grupos
+                    </a>
+                    <ul class="collapse list-unstyled" id="grupoSubmenu">
+                        <li>
+                            <a href="<?php echo base_url();?>GrupoAlumno/grupos">
+                                <i class="fas fa-eye"></i> Ver Registrados
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <?php endif; ?>
             </ul>
 
         </nav>

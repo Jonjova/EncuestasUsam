@@ -72,15 +72,12 @@ $(function() {
 /****************************************************************************
                         LLENAR INFORMACION GRUPO
 ****************************************************************************/
-function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
+function infoGrupo(proyecto) {
     $('#agregarAlumnoG').show();
     $('#cont-agregarAlumnoG').hide();
-    $('#ASIGNATURA_AL').val(asignatura);
-    $('#GRUPO_GA').val(ciclo);
     $.ajax({
         url: url + 'Proyectos/datosInfoGrupo/' + proyecto,
         method: 'post',
-        data: { 'ID_PROYECTO': proyecto },
         dataType: 'json',
         cache: false,
         success: function(r) {
@@ -89,11 +86,13 @@ function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
             var integrantes = '<h4>Integrantes:</h4>';
             var eliminar = '';
             $.each(r, function(index, object) {
+                $('#ASIGNATURA_AL').val(object.ID_ASIGNATURA);
+                $('#GRUPO_GA').val(object.ID_GRUPO_ALUMNO);
                 nombreProyecto = '<h4>Proyecto:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_PROYECTO + '"</b></h4>';
                 nombreGrupo = '<br><h4>Nombre del grupo:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_GRUPO + '"</b></h4>';
                 eliminar =
                     '<a class="btn btn-danger" ' +
-                    'onclick="eliminarGA(' + proyecto + ',' + id_grupo_alumno + ',' + object.ID_DET_GA + ',' + asignatura + ',' + ciclo + ');">' +
+                    'onclick="eliminarGA(' + proyecto + ',' + object.ID_DET_GA + ');">' +
                     '<i class="fas fa-user-times"></i> ' +
                     '</a>';
                 if (r.length <= 1) {
@@ -119,15 +118,13 @@ function infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
 /****************************************************************************
                         ELIMINAR ALUMNO DE UN GRUPO
 ****************************************************************************/
-function eliminarGA(proyecto, id_grupo_alumno, id, asignatura, ciclo) {
+function eliminarGA(proyecto, id) {
     $.ajax({
         url: url + 'GrupoAlumno/eliminarGrupoAlumno/' + id,
         method: 'post',
         cache: false,
         success: function(r) {
-            infoGrupo(proyecto, id_grupo_alumno, id, asignatura, ciclo);
-            $('#ASIGNATURA_AL').val(asignatura);
-            $('#GRUPO_GA').val(ciclo);
+            infoGrupo(proyecto);
             $('#Proyecto').DataTable().ajax.reload(null, false);
         }
     });
@@ -143,7 +140,7 @@ function agregarAlumnoGA() {
     $('#cont-agregarAlumnoG').show();
     $('#ALUMNO_GA').html('');
     $.ajax({
-        url: url + "DatosComunes/dropAlumnos/" + 1,
+        url: url + "DatosComunes/dropAlumnos/" + $('#ASIGNATURA_AL').val(),
         type: 'post',
         dataType: 'json',
         cache: false,
