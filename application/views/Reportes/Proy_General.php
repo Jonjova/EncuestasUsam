@@ -29,7 +29,7 @@ if ($resp > 0)
         $pdf->Cell(50, 5, utf8_decode(strtoupper("facultad de ".$fila['NOMBRE_FACULTAD'])), 0, 1, "L");
         $pdf->SetFont("Times", "", 14);
         $pdf->SetTextColor(9, 79, 139);
-        $pdf->Cell(50, 5, utf8_decode('"'.$fila['NOMBRE_PROYECTO'].'"'), 0, 1, "L");
+        $pdf->MultiCell(190, 5, utf8_decode('"'.$fila['NOMBRE_PROYECTO'].'"'), 0, "L", false);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFont("Times", "B", 12);
         $pdf->Cell(50, 5, utf8_decode("Coordinación:"), 0, 1, "L");
@@ -46,7 +46,7 @@ if ($resp > 0)
         $pdf->SetFont("Times", "B", 12);
         $pdf->Cell(50, 5,"Integrantes del grupo: ", 0, 1, "L");
         $pdf->SetFont("Times", "", 12);
-        $pdf->Cell(50, 5, utf8_decode($fila['ALUMNO']), 0, 1, "L");
+        $pdf->MultiCell(190, 5, utf8_decode($fila['ALUMNO']), 0, "L", false);
         $pdf->SetFont("Times", "B", 12);
         $pdf->Cell(50, 5, utf8_decode("Ciclo:"), 0, 1, "L");
         $pdf->SetFont("Times", "", 12);

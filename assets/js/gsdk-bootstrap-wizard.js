@@ -392,15 +392,14 @@ $(document).ready(function() {
         },
 
         onTabClick: function(tab, navigation, index) {
-            var $valid = $('.wizard-card form').valid();
-            if (!$valid) {
-                $validator.focusInvalid();
-                return false;
-            } else {
-                return true;
-            }
-            // return false;
-            //
+            // var $valid = $('.wizard-card form').valid();
+            // if (!$valid) {
+            //     $validator.focusInvalid();
+            //     return false;
+            // } else {
+            //     return true;
+            // }
+            return false;
         },
 
         onTabShow: function(tab, navigation, index) {

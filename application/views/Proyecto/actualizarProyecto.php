@@ -64,14 +64,6 @@
                                                     onblur="validaSelect(this);" style="font-size: 1rem;" required>
                                                 </select>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label>Asignatura:</label>
-                                                <select name="ID_ASIGNATURA_UPDATE" id="ID_ASIGNATURA_UPDATE"
-                                                    class="custom-select" onblur="validaSelect(this);"
-                                                    style="font-size: 1rem;" required>
-                                                </select>
-                                            </div>
                                         </div>
 
                                         <br><br>
