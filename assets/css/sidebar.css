@@ -124,7 +124,7 @@ a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #343a40;
 }
 
 #sidebar ul p {
@@ -138,15 +138,31 @@ a:focus {
     display: block;
 }
 
+#sidebar ul li .margen {
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    background: #515861;
+    margin-bottom: 3px;
+}
+
 #sidebar ul li a:hover {
     color: #343a40;
     background: #fff;
+}
+/* Efecto en submenu */
+#sidebar ul li .sub:hover {
+    color: #343a40;
+    background: #fff;
+    margin-bottom: 3px;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #3F464D;
+    background: #5e6771;
+    margin-bottom: 3px;
 }
 
 a[data-toggle="collapse"] {
@@ -270,4 +286,10 @@ textarea {
 .btn[disabled] {
     opacity: .65 !important;
     cursor: not-allowed !important;
+}
+
+.deslizar{
+    height: 50%;
+    margin-left: 5px;
+    overflow:hidden;
 }

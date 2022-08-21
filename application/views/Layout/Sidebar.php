@@ -59,7 +59,7 @@
                 <img src="<?php echo base_url();?>assets/img/usam.jpg" width="250px" style="" />
             </div>
 
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components menu deslizar">
                 <li class="active">
                     <a href="<?php echo base_url();?>Dashboard">
                         <i class="fas fa-home"></i> Inicio
@@ -73,7 +73,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="bitacoraSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Bitacora/verBitacora">
+                            <a class="sub margen" href="<?php echo base_url();?>Bitacora/verBitacora">
                                 <i class="fas fa-eye"></i> Mostrar</a>
                         </li>
                     </ul>
@@ -87,12 +87,12 @@
                     </a>
                     <ul class="collapse list-unstyled" id="profSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Profesion/profesion">
+                            <a class="sub margen" href="<?php echo base_url();?>Profesion/profesion">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Profesion/profesiones">
+                            <a class="sub margen" href="<?php echo base_url();?>Profesion/profesiones">
                                 <i class="fas fa-eye"></i> Ver Registradas
                             </a>
                         </li>
@@ -107,12 +107,12 @@
                     </a>
                     <ul class="collapse list-unstyled" id="usersSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Usuario/usuario">
+                            <a class="sub margen" href="<?php echo base_url();?>Usuario/usuario">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Usuario/usuarios">
+                            <a class="sub margen" href="<?php echo base_url();?>Usuario/usuarios">
                                 <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
@@ -127,12 +127,12 @@
                     </a>
                     <ul class="collapse list-unstyled" id="coordinadorSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Coordinador/coordinador">
+                            <a class="sub margen" href="<?php echo base_url();?>Coordinador/coordinador">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Coordinador/coordinadores">
+                            <a class="sub margen" href="<?php echo base_url();?>Coordinador/coordinadores">
                                 <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
@@ -147,7 +147,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="cicloSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Ciclo/ciclo">
+                            <a class="sub margen" class="sub" href="<?php echo base_url();?>Ciclo/ciclo">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
@@ -162,12 +162,12 @@
                     </a>
                     <ul class="collapse list-unstyled" id="DocenteSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Docente/docente">
+                            <a class="sub margen" href="<?php echo base_url();?>Docente/docente">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Docente/docentes">
+                            <a class="sub margen" href="<?php echo base_url();?>Docente/docentes">
                                 <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
@@ -182,22 +182,22 @@
                     </a>
                     <ul class="collapse list-unstyled" id="AsignaturasSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>Asignatura/asignatura">
+                            <a class="sub margen" href="<?php echo base_url();?>Asignatura/asignatura">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Asignatura/asignaturas">
+                            <a class="sub margen" href="<?php echo base_url();?>Asignatura/asignaturas">
                                 <i class="fas fa-eye"></i> Ver Registradas
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Asignatura/asignar">
+                            <a class="sub margen" href="<?php echo base_url();?>Asignatura/asignar">
                                 <i class="fas fa-user-plus"></i> Asignar
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>Asignatura/asignadas">
+                            <a class="sub margen" href="<?php echo base_url();?>Asignatura/asignadas">
                                 <i class="fas fa-eye"></i> Ver Asignadas
                             </a>
                         </li>
@@ -212,13 +212,13 @@
                     <ul class="collapse list-unstyled" id="proyectSubmenu">
                         <?php if($this->session->userdata('ID_TIPO_USUARIO') == 4): ?>
                         <li>
-                            <a href="<?php echo base_url();?>Proyectos/proyecto">
+                            <a class="sub margen" href="<?php echo base_url();?>Proyectos/proyecto">
                                 <i class="fas fa-plus-circle"></i> Registrar
                             </a>
                         </li>
                         <?php endif; ?>
                         <li>
-                            <a href="<?php echo base_url();?>Proyectos/proyectos">
+                            <a class="sub margen" href="<?php echo base_url();?>Proyectos/proyectos">
                                 <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
@@ -232,7 +232,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="grupoSubmenu">
                         <li>
-                            <a href="<?php echo base_url();?>GrupoAlumno/grupos">
+                            <a class="sub margen" href="<?php echo base_url();?>GrupoAlumno/grupos">
                                 <i class="fas fa-eye"></i> Ver Registrados
                             </a>
                         </li>
