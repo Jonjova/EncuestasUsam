@@ -8,7 +8,9 @@ $(document).ready(function () {
 		scrollbarPosition: "inside",
 		raggerLength: true,
 		mouseWheel: { enable: true },
-    scrollButtons: {enable:true}
+    scrollButtons: {enable:true},
+    mouseWheelPixels: 80,
+    scrollInertia: 0
 	});
 	$("#dismiss, .overlay").on("click", function () {
 		$("#sidebar").removeClass("active");
