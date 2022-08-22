@@ -278,10 +278,16 @@ function alumnos(asignatura) {
         dataType: 'json',
         cache: false,
         success: function(data) {
+            console.log(data);
             var options;
-            $.each(data, function(index, object) {
-                options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
-            });
+            if(data.length>0){
+                $.each(data, function(index, object) {
+                    options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
+                });
+            }else{
+                options = '<option value="0" disabled>No hay alumnos</option>';
+            }
+           
             $('#ID_ALUMNO_GA').html(options);
             $('.bootstrap-select').selectpicker('refresh');
         }
@@ -290,17 +296,21 @@ function alumnos(asignatura) {
 
 // LLENAR SELECT GRUPO ALUMNO
 function grupoAlumno(asignatura) {
+    var options='<option disabled selected value="0">Seleccione..</option>' ;
     $.ajax({
         url: url + "DatosComunes/dropGrupoAlumno/" + asignatura,
         type: 'post',
         dataType: 'json',
         cache: false,
         success: function(data) {
-            var options = "<option selected disabled value='0'>Seleccionar... </option>";
+           if (data.length>0) {
             $.each(data, function(index, object) {
                 options += '<option value="' + object.ID_GRUPO_ALUMNO + '">' + object.NOMBRE_GRUPO + '</option>';
             });
-            $('#ID_GRUPO_ALUMNO').html(options);
+           }else{
+            options = '<option disabled selected value="0">Seleccione..</option><option disabled value="1">No hay grupos</option>';
+           }
+           $('#ID_GRUPO_ALUMNO').html(options);
         }
     })
 }

@@ -114,10 +114,16 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->dropAsignaturaAsignadaModel($_SESSION['DOCENTE']);
 		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $i)
-		{
-			echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
+		$longitud = count($datos);
+		if ($longitud>0) {
+			foreach ($datos as $i)
+			{
+				echo "<option value='".$i['ID_ASIGNATURA']."'>".$i['CODIGO_ASIGNATURA'].", ".$i['NOMBRE_ASIGNATURA']."</option>";
+			}
+		}else{
+			echo "<option  disabled value=''>No hay asignatura</option>";
 		}
+		
 	}
 
 	// LLENAR SELECT ASIGNATURA DOCENTE (PARA LLENAR TABLA DE PROYECTOS)
@@ -135,10 +141,17 @@ class DatosComunes extends CI_Controller
 	public function dropCiclo()
 	{
 		$datos = $this->modelDatos->dropCicloModel();
-		foreach ($datos as $c)
-		{
-			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+		$longitud = count($datos);
+		echo "<option value='0'>Seleccione...</option>";
+		if ($longitud>0) {
+			foreach ($datos as $c)
+			{
+				echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay ciclos</option>";
 		}
+		
 	}
 
 	// LLENAR SELECT CICLO (PARA LLENAR TABLA DE PROYECTOS)
@@ -146,9 +159,14 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->cicloProy();
 		echo "<option selected value='0'>Todos...</option>";
+		$longitud = count($datos);
+		if ($longitud>0) {
 		foreach ($datos as $c)
-		{
-			echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+			{
+				echo "<option value='".$c['ID_CICLO']."'>".$c['COD_CICLO']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay ciclos</option>";
 		}
 	}
 
@@ -157,10 +175,16 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->dropDocenteModel($asignatura);
 		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $i)
-		{
-			echo "<option value='".$i['ID_DOCENTE']."'>".$i['DOCENTE']."</option>";
+		$longitud = count($datos);
+		if ($longitud>0) {
+			foreach ($datos as $i)
+			{
+				echo "<option value='".$i['ID_DOCENTE']."'>".$i['DOCENTE']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay docentes</option>";
 		}
+		
 	}
 
 	// LLENAR SELECT CARRERA
@@ -168,10 +192,16 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->dropCarreraModel();
 		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $ti)
-		{
-			echo "<option value='".$ti['ID_CARRERA']."'>".$ti['NOMBRE_CARRERA']."</option>";
+		$longitud = count($datos);
+		if ($longitud>0) {
+			foreach ($datos as $ti)
+			{
+				echo "<option value='".$ti['ID_CARRERA']."'>".$ti['NOMBRE_CARRERA']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay carrera</option>";
 		}
+		
 	}
 
 	// LLENAR SELECT TIPO INVESTIGACION
@@ -179,10 +209,16 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->dropTipoInvestigacionModel();
 		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $ti)
-		{
-			echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
+		$longitud = count($datos);
+		if ($longitud>0) {
+			foreach ($datos as $ti)
+			{
+				echo "<option value='".$ti['ID_TIPO']."'>".$ti['NOMBRE_TIPO_INVESTIGACION']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay tipo investigación</option>";
 		}
+		
 	}
 
 	// LLENAR SELECT DISEÑO INVESTIGACION
@@ -190,10 +226,15 @@ class DatosComunes extends CI_Controller
 	{
 		$datos = $this->modelDatos->dropDisenioInvestigacionModel();
 		echo "<option selected disabled value=''>Seleccione...</option>";
-		foreach ($datos as $di)
-		{
-			echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
-		}
+		$longitud = count($datos);
+		if ($longitud>0) {
+			foreach ($datos as $di)
+			{
+				echo "<option value='".$di['ID_DISENIO']."'>".$di['NOMBRE_DISENIO']."</option>";
+			}
+		}else{
+			echo "<option value='0'>No hay diseño investigación</option>";
+		}	
 	}
 
 	// LLENAR SELECT ALUMNOS

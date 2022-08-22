@@ -19,9 +19,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
+                                <div class="container"id="infointegrantes">
+                                    <div class="body_content">
                                     <div id="INTEGRANTES"
                                         style="width: fit-content; margin: auto; margin-top: 30px; margin-bottom: 50px;">
                                     </div>
+                                    </div>
+                                </div>  
                                     <form id="agregarGAForm" style="width: 40%; margin: auto;">
                                         <input type="hidden" name="ASIGNATURA_AL" id="ASIGNATURA_AL">
                                         <input type="hidden" name="GRUPO_GA" id="GRUPO_GA">
@@ -51,3 +55,18 @@
                     </div>
                 </div>
             </div>
+
+
+            <style>
+                .body_content {
+                position: relative;
+                margin-top: 10px;
+                padding: 5px;
+                max-height: 150px;
+                left: 0px;
+                margin-left: 100px;
+                margin-right: 100px;
+                margin-bottom: 10px;
+                
+                }
+            </style>

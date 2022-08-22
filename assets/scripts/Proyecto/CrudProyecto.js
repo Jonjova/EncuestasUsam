@@ -74,6 +74,7 @@ $(function() {
 ****************************************************************************/
 function infoGrupo(proyecto) {
     $('#agregarAlumnoG').show();
+    $('#infointegrantes').show();
     $('#cont-agregarAlumnoG').hide();
     $.ajax({
         url: url + 'Proyectos/datosInfoGrupo/' + proyecto,
@@ -81,29 +82,39 @@ function infoGrupo(proyecto) {
         dataType: 'json',
         cache: false,
         success: function(r) {
+             $(".body_content").mCustomScrollbar({
+                theme: "inset-2-dark",
+                scrollButtons: {enable:true}
+            });
             var nombreProyecto = '';
             var nombreGrupo = '';
             var integrantes = '<h4>Integrantes:</h4>';
             var eliminar = '';
             $.each(r, function(index, object) {
-                $('#ASIGNATURA_AL').val(object.ID_ASIGNATURA);
-                $('#GRUPO_GA').val(object.ID_GRUPO_ALUMNO);
-                nombreProyecto = '<h4>Proyecto:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_PROYECTO + '"</b></h4>';
-                nombreGrupo = '<br><h4>Nombre del grupo:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_GRUPO + '"</b></h4>';
-                eliminar =
-                    '<a class="btn btn-danger" ' +
-                    'onclick="eliminarGA(' + proyecto + ',' + object.ID_DET_GA + ');">' +
-                    '<i class="fas fa-user-times"></i> ' +
-                    '</a>';
-                if (r.length <= 1) {
-                    eliminar = '';
+                if (r.length>0) {
+                    $('#ASIGNATURA_AL').val(object.ID_ASIGNATURA);
+                    $('#GRUPO_GA').val(object.ID_GRUPO_ALUMNO);
+                    nombreProyecto = '<h4>Proyecto:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_PROYECTO + '"</b></h4>';
+                    nombreGrupo = '<br><h4>Nombre del grupo:</h4><h4 style="color: #999;"><b>"' + object.NOMBRE_GRUPO + '"</b></h4>';
+                    eliminar =
+                        '<a class="btn btn-danger" ' +
+                        'onclick="eliminarGA(' + proyecto + ',' + object.ID_DET_GA + ');">' +
+                        '<i class="fas fa-user-times"></i> ' +
+                        '</a>';
+                    if (r.length <= 1) {
+                        eliminar = '';
+                    }
+                    if (object.ESTADO_PROYECTO != "Iniciado" && object.ESTADO_PROYECTO != "En proceso" || cod_docente == 0) {
+                        eliminar = '';
+                        $('#agregarAlumnoG').hide();
+                        // $('#infointegrantes').hide();
+                    }
+                    integrantes += '<h5 style="color: #999;"><b>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</b></h5>';    
+                }else{
+                    integrantes = '<h5>No hay Integrantes</h5>';
                 }
-                if (object.ESTADO_PROYECTO != "Iniciado" && object.ESTADO_PROYECTO != "En proceso" || cod_docente == 0) {
-                    eliminar = '';
-                    $('#agregarAlumnoG').hide();
-                }
-                integrantes += '<h5 style="color: #999;"><b>#' + object.CARNET + ' ' + object.ALUMNO + ' ' + eliminar + '</b></h5>';
-            });
+                
+               });
             $('#NOMBRE_PROYECTO').html(nombreProyecto);
             $('#NOMBRE_GRUPO_ALUMNO').html(nombreGrupo);
             $('#INTEGRANTES').html(integrantes);
@@ -137,6 +148,7 @@ function agregarAlumnoGA() {
     $('#NOMBRE_PROYECTO').html('');
     $('#INTEGRANTES').html('');
     $('#agregarAlumnoG').hide();
+    $('#infointegrantes').hide();
     $('#cont-agregarAlumnoG').show();
     $('#ALUMNO_GA').html('');
     $.ajax({
@@ -145,10 +157,16 @@ function agregarAlumnoGA() {
         dataType: 'json',
         cache: false,
         success: function(data) {
-            var options;
-            $.each(data, function(index, object) {
-                options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
-            });
+            
+            if (data.length>0) {
+                var options;
+                $.each(data, function(index, object) {
+                    options += '<option value="' + object.ID_ALUMNO + '">' + object.CARNET + " " + object.PRIMER_NOMBRE_PERSONA + " " + object.PRIMER_APELLIDO_PERSONA + '</option>';
+                });
+            }else{
+                options = '<option value="0" disabled>No hay integrantes</option>';
+            } 
+           
             $('#ALUMNO_GA').html(options);
             $('.bootstrap-select').selectpicker('refresh');
         }
